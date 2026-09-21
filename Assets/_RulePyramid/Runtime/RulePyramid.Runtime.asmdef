@@ -1,0 +1,16 @@
+{
+    "name": "RulePyramid.Runtime",
+    "rootNamespace": "RulePyramid.Runtime",
+    "references": [
+        "RulePyramid.Core"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

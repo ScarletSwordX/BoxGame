@@ -1,0 +1,32 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
+    <ui:Style src="Hud.uss"/>
+    <ui:VisualElement name="root" class="hud-root">
+        <ui:VisualElement name="top" class="hud-top">
+            <ui:Label name="levelTitle" text="L01" class="title"/>
+            <ui:Label name="phaseLabel" text="Grounded" class="phase"/>
+            <ui:Label name="turnLabel" text="0" class="turns"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="left" class="hud-left">
+            <ui:Label text="规则" class="section"/>
+            <ui:Label name="rulesLabel" text="" class="rules"/>
+            <ui:Label name="objectiveLabel" text="" class="objective"/>
+        </ui:VisualElement>
+        <ui:VisualElement name="bottom" class="hud-bottom">
+            <ui:Label name="hintLabel" text="" class="hint"/>
+            <ui:Label name="rejectLabel" text="" class="reject"/>
+            <ui:VisualElement class="row">
+                <ui:Button name="hintButton" text="提示"/>
+                <ui:Button name="undoButton" text="撤销 Z"/>
+                <ui:Button name="restartButton" text="重开 R"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="winPanel" class="win-panel hidden">
+            <ui:Label text="通关" class="title"/>
+            <ui:VisualElement class="row">
+                <ui:Button name="winUndoButton" text="撤销"/>
+                <ui:Button name="winRestartButton" text="重开"/>
+                <ui:Button name="nextButton" text="下一关"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

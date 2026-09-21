@@ -1,0 +1,30 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <ui:Style src="LevelEditor.uss"/>
+    <ui:VisualElement name="root" class="root">
+        <ui:VisualElement class="toolbar">
+            <ui:Button name="newButton" text="New"/>
+            <ui:Button name="openButton" text="Open"/>
+            <ui:Button name="saveButton" text="Save"/>
+            <ui:Button name="saveAsButton" text="Save As"/>
+            <ui:Button name="undoButton" text="Undo"/>
+            <ui:Button name="redoButton" text="Redo"/>
+            <ui:Button name="validateButton" text="Validate"/>
+            <ui:Button name="playtestButton" text="Playtest"/>
+            <ui:Button name="stopButton" text="Stop"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="meta">
+            <ui:Label name="idLabel" text="id"/>
+            <ui:IntegerField name="yField" label="Y" value="1"/>
+            <ui:EnumField name="brushField" label="Brush"/>
+            <ui:TextField name="tokenField" label="Token" value="WIN"/>
+            <ui:TextField name="colorField" label="Color" value="RED"/>
+        </ui:VisualElement>
+        <ui:VisualElement class="body">
+            <ui:VisualElement name="gridHost" class="grid-host"/>
+            <ui:VisualElement class="side">
+                <ui:Label name="selectionLabel" text="未选择"/>
+                <ui:Label name="diagLabel" text="" class="diag"/>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

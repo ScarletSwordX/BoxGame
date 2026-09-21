@@ -1,0 +1,252 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "id": "L05",
+  "title": "让脚下成为电梯",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    "max": {
+      "x": 5,
+      "y": 7,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 5,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 5,
+        "y": 4,
+        "z": 0
+      }
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 6,
+        "z": 0
+      },
+      "max": {
+        "x": 3,
+        "y": 6,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 2
+      },
+      "max": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 4,
+        "y": 1,
+        "z": -1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "kind": "Color",
+      "color": "RED",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 2,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Color",
+      "color": "PINK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 5,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "lift_front",
+      "kind": "Color",
+      "color": "BLUE",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "lift_rear",
+      "kind": "Color",
+      "color": "BLUE",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "t_blue",
+      "kind": "Text",
+      "color": "",
+      "token": "BLUE",
+      "cell": {
+        "x": 0,
+        "y": 2,
+        "z": -1
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_is",
+      "kind": "Text",
+      "color": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 2,
+        "z": -1
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_block",
+      "kind": "Text",
+      "color": "",
+      "token": "BLOCK",
+      "cell": {
+        "x": 2,
+        "y": 2,
+        "z": -1
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_and",
+      "kind": "Text",
+      "color": "",
+      "token": "AND",
+      "cell": {
+        "x": 3,
+        "y": 2,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "t_fly",
+      "kind": "Text",
+      "color": "",
+      "token": "FLY",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": -1
+      },
+      "anchored": true
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "r01",
+      "tokens": [
+        "RED",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "r02",
+      "tokens": [
+        "PINK",
+        "IS",
+        "WIN"
+      ]
+    }
+  ],
+  "options": {
+    "supportMode": "StrictBelow",
+    "jumpMode": "LandingBounce3",
+    "bounceRiseCells": 3,
+    "decisionMode": "GroundedOrBounceApex",
+    "ruleAxes": [
+      "PositiveX",
+      "PositiveZ"
+    ],
+    "winMode": "DistinctEntitiesSameCell",
+    "winCheckMode": "AfterAtomicLogicChange",
+    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "playerBlockMode": "ImplicitFromYou"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.264,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "CameraRelativeGrid"
+  },
+  "tutorial": {
+    "objective": "AND 合并属性；先登乘再启动 BLOCK+FLY 平台。",
+    "hints": [
+      "空槽连接着 BLOCK 与 FLY。",
+      "先走上后平台，再把 AND 推进同一行。",
+      "推入 AND 后，角色站在前平台上；升停后向 +X 出口走。"
+    ]
+  },
+  "referenceSolution": {
+    "commands": [
+      "S",
+      "S",
+      "S",
+      "E",
+      "E"
+    ],
+    "expectedFinalStatus": "Won"
+  }
+}

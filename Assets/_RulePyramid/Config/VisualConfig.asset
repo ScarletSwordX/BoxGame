@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad903e064e8a4bc49b5cbdfe94a8acfb, type: 3}
+  m_Name: VisualConfig
+  m_EditorClassIdentifier: 
+  cellSize: 1
+  origin: {x: 0, y: 0, z: 0}
+  terrainMaterial: {fileID: 2100000, guid: 0367bff605fa7964ebcb3e18f02c036e, type: 2}
+  redMaterial: {fileID: 2100000, guid: c7681d53f7c6446418f55f2ba31a2f63, type: 2}
+  blueMaterial: {fileID: 2100000, guid: 225564afddfd36e4dbb123cd9df71ca7, type: 2}
+  pinkMaterial: {fileID: 2100000, guid: 0cf44420e9b0c12408df243b215a915f, type: 2}
+  pinkHollowMaterial: {fileID: 2100000, guid: 1cc6ac712829a9146a7da7c20d86f444, type: 2}
+  textMaterial: {fileID: 2100000, guid: bcf4cb4d5b98cad418614e598bc25c0a, type: 2}
+  anchoredTextMaterial: {fileID: 2100000, guid: 834de510413f9164682e3f56b5f4c658, type: 2}
+  youTint: {r: 1, g: 0.35, b: 0.25, a: 1}
+  winGlow: {r: 1, g: 0.5, b: 0.8, a: 0.45}
+  cameraDistance: 18
+  cameraPitch: 35.264
+  cameraYaws:
+  - 45
+  - 135
+  - 225
+  - 315

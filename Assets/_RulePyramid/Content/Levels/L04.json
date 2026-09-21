@@ -1,0 +1,199 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "id": "L04",
+  "title": "落下去，弹上来",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 6,
+      "y": 9,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 6,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 2,
+        "y": 3,
+        "z": 2
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 6,
+        "y": 4,
+        "z": 1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "kind": "Color",
+      "color": "RED",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 4,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Color",
+      "color": "PINK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 5,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring",
+      "kind": "Color",
+      "color": "BLUE",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "t_blue",
+      "kind": "Text",
+      "color": "",
+      "token": "BLUE",
+      "cell": {
+        "x": 0,
+        "y": 4,
+        "z": 2
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_is",
+      "kind": "Text",
+      "color": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 4,
+        "z": 2
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_jump",
+      "kind": "Text",
+      "color": "",
+      "token": "JUMP",
+      "cell": {
+        "x": 2,
+        "y": 4,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "r01",
+      "tokens": [
+        "RED",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "r02",
+      "tokens": [
+        "BLUE",
+        "IS",
+        "BLOCK"
+      ]
+    },
+    {
+      "id": "r03",
+      "tokens": [
+        "PINK",
+        "IS",
+        "WIN"
+      ]
+    }
+  ],
+  "options": {
+    "supportMode": "StrictBelow",
+    "jumpMode": "LandingBounce3",
+    "bounceRiseCells": 3,
+    "decisionMode": "GroundedOrBounceApex",
+    "ruleAxes": [
+      "PositiveX",
+      "PositiveZ"
+    ],
+    "winMode": "DistinctEntitiesSameCell",
+    "winCheckMode": "AfterAtomicLogicChange",
+    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "playerBlockMode": "ImplicitFromYou"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.264,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "CameraRelativeGrid"
+  },
+  "tutorial": {
+    "objective": "真正下落才触发三格弹跳；顶点仅一次侧移。",
+    "hints": [
+      "高台比普通跳跃更高。",
+      "先补成 BLUE IS JUMP，再落到蓝台上。",
+      "弹到顶点后向 +X 移动一次，落在上层平台。"
+    ]
+  },
+  "referenceSolution": {
+    "commands": [
+      "N",
+      "E",
+      "E",
+      "E"
+    ],
+    "expectedFinalStatus": "Won"
+  }
+}
