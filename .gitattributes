@@ -1,0 +1,25 @@
+* text=auto eol=crlf
+*.cs text eol=crlf
+*.json text eol=crlf
+*.uxml text eol=crlf
+*.uss text eol=crlf
+*.asmdef text eol=crlf
+*.md text eol=crlf
+*.txt text eol=crlf
+*.yml text eol=crlf
+*.yaml text eol=crlf
+*.shader text eol=crlf
+*.hlsl text eol=crlf
+*.meta text eol=crlf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.tga binary
+*.psd binary
+*.dll binary
+*.exe binary
+*.zip binary
+*.unity binary
+*.asset binary
+*.mat binary
+*.prefab binary
