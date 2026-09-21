@@ -1,0 +1,12 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "levels": [
+    "levels/L01.json",
+    "levels/L02.json",
+    "levels/L03.json",
+    "levels/L04.json",
+    "levels/L05.json",
+    "levels/L06.json"
+  ]
+}

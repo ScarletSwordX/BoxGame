@@ -1,0 +1,2483 @@
+{
+  "mechanicsVersion": "RP-v0.5",
+  "scope": "Finite Python design witnesses only; Unity, full state-space search, complex contacts and editor interactions are NOT certified.",
+  "levels": [
+    {
+      "levelId": "L01",
+      "initialStable": true,
+      "winOnlyOnLastCommand": true,
+      "undoFromWin": true,
+      "reversedEntityOrderSameWin": true,
+      "steps": [
+        {
+          "step": 1,
+          "command": "E",
+          "player": [
+            1,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            4,
+            1,
+            1
+          ]
+        },
+        {
+          "step": 2,
+          "command": "N",
+          "player": [
+            1,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            4,
+            1,
+            1
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            2,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            4,
+            1,
+            1
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            3,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            4,
+            1,
+            1
+          ]
+        },
+        {
+          "step": 5,
+          "command": "S",
+          "player": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            4,
+            1,
+            1
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "player": [
+            4,
+            1,
+            1
+          ],
+          "phase": "Won",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            4,
+            1,
+            1
+          ]
+        }
+      ],
+      "win": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          4,
+          1,
+          1
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            1,
+            1
+          ],
+          "to": [
+            1,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            1,
+            1
+          ],
+          "to": [
+            1,
+            1,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            1,
+            2
+          ],
+          "to": [
+            2,
+            1,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            1,
+            2
+          ],
+          "to": [
+            3,
+            1,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            2
+          ],
+          "to": [
+            3,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            1
+          ],
+          "to": [
+            4,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            4,
+            1,
+            1
+          ],
+          "cause": "Walk"
+        }
+      ]
+    },
+    {
+      "levelId": "L02",
+      "initialStable": true,
+      "winOnlyOnLastCommand": true,
+      "undoFromWin": true,
+      "reversedEntityOrderSameWin": true,
+      "steps": [
+        {
+          "step": 1,
+          "command": "N",
+          "player": [
+            4,
+            2,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            6,
+            1,
+            3
+          ]
+        },
+        {
+          "step": 2,
+          "command": "N",
+          "player": [
+            4,
+            2,
+            3
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            6,
+            1,
+            3
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            5,
+            1,
+            3
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            6,
+            1,
+            3
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            6,
+            1,
+            3
+          ],
+          "phase": "Won",
+          "rules": {
+            "BLUE": [],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            6,
+            1,
+            3
+          ]
+        }
+      ],
+      "win": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          6,
+          1,
+          3
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "TextPushed",
+          "id": "t_win",
+          "from": [
+            4,
+            2,
+            2
+          ],
+          "to": [
+            4,
+            2,
+            3
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            4,
+            2,
+            1
+          ],
+          "to": [
+            4,
+            2,
+            2
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "t_win",
+          "from": [
+            4,
+            2,
+            3
+          ],
+          "to": [
+            4,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            2,
+            2
+          ],
+          "to": [
+            4,
+            2,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            2,
+            3
+          ],
+          "to": [
+            5,
+            2,
+            3
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            5,
+            2,
+            3
+          ],
+          "to": [
+            5,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            5,
+            1,
+            3
+          ],
+          "to": [
+            6,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            6,
+            1,
+            3
+          ],
+          "cause": "Walk"
+        }
+      ]
+    },
+    {
+      "levelId": "L03",
+      "initialStable": true,
+      "winOnlyOnLastCommand": true,
+      "undoFromWin": true,
+      "reversedEntityOrderSameWin": true,
+      "steps": [
+        {
+          "step": 1,
+          "command": "E",
+          "player": [
+            2,
+            3,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "HOVER"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 2,
+          "command": "N",
+          "player": [
+            2,
+            3,
+            3
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 3,
+          "command": "S",
+          "player": [
+            2,
+            3,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            3,
+            3,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            4,
+            3,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            3,
+            2
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "player": [
+            5,
+            3,
+            2
+          ],
+          "phase": "Won",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            3,
+            2
+          ]
+        }
+      ],
+      "win": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          3,
+          2
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            3,
+            2
+          ],
+          "to": [
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "t_hover",
+          "from": [
+            2,
+            3,
+            3
+          ],
+          "to": [
+            2,
+            3,
+            4
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            2
+          ],
+          "to": [
+            2,
+            3,
+            3
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "bridge",
+          "from": [
+            3,
+            5,
+            2
+          ],
+          "to": [
+            3,
+            4,
+            2
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "bridge",
+          "from": [
+            3,
+            4,
+            2
+          ],
+          "to": [
+            3,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "bridge",
+          "from": [
+            3,
+            3,
+            2
+          ],
+          "to": [
+            3,
+            2,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            3
+          ],
+          "to": [
+            2,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            2
+          ],
+          "to": [
+            3,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            3,
+            2
+          ],
+          "to": [
+            4,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            3,
+            2
+          ],
+          "to": [
+            5,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            3,
+            2
+          ],
+          "cause": "Walk"
+        }
+      ]
+    },
+    {
+      "levelId": "L04",
+      "initialStable": true,
+      "winOnlyOnLastCommand": true,
+      "undoFromWin": true,
+      "reversedEntityOrderSameWin": true,
+      "steps": [
+        {
+          "step": 1,
+          "command": "N",
+          "player": [
+            2,
+            4,
+            1
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            1
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "player": [
+            3,
+            5,
+            1
+          ],
+          "phase": "BounceApex",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            1
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            4,
+            5,
+            1
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            1
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            5,
+            5,
+            1
+          ],
+          "phase": "Won",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            1
+          ]
+        }
+      ],
+      "win": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          5,
+          1
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "TextPushed",
+          "id": "t_jump",
+          "from": [
+            2,
+            4,
+            1
+          ],
+          "to": [
+            2,
+            4,
+            2
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            0
+          ],
+          "to": [
+            2,
+            4,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            1
+          ],
+          "to": [
+            3,
+            4,
+            1
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            3,
+            4,
+            1
+          ],
+          "to": [
+            3,
+            3,
+            1
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            3,
+            3,
+            1
+          ],
+          "to": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "event": "BounceStarted",
+          "id": "player",
+          "surfaceId": "spring",
+          "contactPos": [
+            3,
+            2,
+            1
+          ],
+          "requestedRise": 3
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            1
+          ],
+          "to": [
+            3,
+            3,
+            1
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            3,
+            3,
+            1
+          ],
+          "to": [
+            3,
+            4,
+            1
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            3,
+            4,
+            1
+          ],
+          "to": [
+            3,
+            5,
+            1
+          ]
+        },
+        {
+          "event": "LandingBounce",
+          "id": "player",
+          "surfaceId": "spring",
+          "contactPos": [
+            3,
+            2,
+            1
+          ],
+          "apexPos": [
+            3,
+            5,
+            1
+          ],
+          "requestedRise": 3,
+          "actualRise": 3
+        },
+        {
+          "event": "BounceApexReached",
+          "id": "player",
+          "pos": [
+            3,
+            5,
+            1
+          ]
+        },
+        {
+          "event": "ApexSteer",
+          "id": "player",
+          "from": [
+            3,
+            5,
+            1
+          ],
+          "to": [
+            4,
+            5,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            5,
+            1
+          ],
+          "to": [
+            5,
+            5,
+            1
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            5,
+            1
+          ],
+          "cause": "Walk"
+        }
+      ]
+    },
+    {
+      "levelId": "L05",
+      "initialStable": true,
+      "winOnlyOnLastCommand": true,
+      "undoFromWin": true,
+      "reversedEntityOrderSameWin": true,
+      "steps": [
+        {
+          "step": 1,
+          "command": "S",
+          "player": [
+            3,
+            2,
+            2
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "step": 2,
+          "command": "S",
+          "player": [
+            3,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "step": 3,
+          "command": "S",
+          "player": [
+            3,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "FLY"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            4,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "FLY"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            5,
+            5,
+            0
+          ],
+          "phase": "Won",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "FLY"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            5,
+            5,
+            0
+          ]
+        }
+      ],
+      "win": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          5,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            3
+          ],
+          "to": [
+            3,
+            2,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            2
+          ],
+          "to": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "t_and",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            -1
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            1
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            1,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            1,
+            1
+          ],
+          "to": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "player",
+          "from": [
+            3,
+            3,
+            0
+          ],
+          "to": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            2,
+            1
+          ],
+          "to": [
+            3,
+            3,
+            1
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            3,
+            0
+          ],
+          "to": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "player",
+          "from": [
+            3,
+            4,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            3,
+            1
+          ],
+          "to": [
+            3,
+            4,
+            1
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            4,
+            1
+          ],
+          "to": [
+            3,
+            5,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            5,
+            0
+          ],
+          "to": [
+            4,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            4,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            5,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ]
+    },
+    {
+      "levelId": "L06",
+      "initialStable": true,
+      "winOnlyOnLastCommand": true,
+      "undoFromWin": true,
+      "reversedEntityOrderSameWin": true,
+      "steps": [
+        {
+          "step": 1,
+          "command": "E",
+          "player": [
+            1,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "player": [
+            2,
+            5,
+            0
+          ],
+          "phase": "BounceApex",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            3,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            4,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            5,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 6,
+          "command": "J",
+          "player": [
+            5,
+            8,
+            0
+          ],
+          "phase": "BounceApex",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "player": [
+            6,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 8,
+          "command": "E",
+          "player": [
+            7,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 9,
+          "command": "E",
+          "player": [
+            8,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "HOVER",
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            13,
+            0
+          ]
+        },
+        {
+          "step": 10,
+          "command": "N",
+          "player": [
+            8,
+            8,
+            1
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "step": 11,
+          "command": "S",
+          "player": [
+            8,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "step": 12,
+          "command": "E",
+          "player": [
+            9,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "step": 13,
+          "command": "E",
+          "player": [
+            10,
+            8,
+            0
+          ],
+          "phase": "Won",
+          "rules": {
+            "BLUE": [
+              "BLOCK",
+              "JUMP"
+            ],
+            "RED": [
+              "YOU"
+            ],
+            "PINK": [
+              "WIN"
+            ]
+          },
+          "goal": [
+            10,
+            8,
+            0
+          ]
+        }
+      ],
+      "win": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          10,
+          8,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            3,
+            0
+          ],
+          "to": [
+            1,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "BounceStarted",
+          "id": "player",
+          "surfaceId": "spring_low",
+          "contactPos": [
+            2,
+            2,
+            0
+          ],
+          "requestedRise": 3
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            0
+          ],
+          "to": [
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "LandingBounce",
+          "id": "player",
+          "surfaceId": "spring_low",
+          "contactPos": [
+            2,
+            2,
+            0
+          ],
+          "apexPos": [
+            2,
+            5,
+            0
+          ],
+          "requestedRise": 3,
+          "actualRise": 3
+        },
+        {
+          "event": "BounceApexReached",
+          "id": "player",
+          "pos": [
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "ApexSteer",
+          "id": "player",
+          "from": [
+            2,
+            5,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            5,
+            0
+          ],
+          "to": [
+            4,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "JumpApex",
+          "id": "player",
+          "from": [
+            5,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            6,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            5,
+            6,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "BounceStarted",
+          "id": "player",
+          "surfaceId": "spring_high",
+          "contactPos": [
+            5,
+            5,
+            0
+          ],
+          "requestedRise": 3
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            5,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            6,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            5,
+            6,
+            0
+          ],
+          "to": [
+            5,
+            7,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            5,
+            7,
+            0
+          ],
+          "to": [
+            5,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "LandingBounce",
+          "id": "player",
+          "surfaceId": "spring_high",
+          "contactPos": [
+            5,
+            5,
+            0
+          ],
+          "apexPos": [
+            5,
+            8,
+            0
+          ],
+          "requestedRise": 3,
+          "actualRise": 3
+        },
+        {
+          "event": "BounceApexReached",
+          "id": "player",
+          "pos": [
+            5,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "ApexSteer",
+          "id": "player",
+          "from": [
+            5,
+            8,
+            0
+          ],
+          "to": [
+            6,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            6,
+            8,
+            0
+          ],
+          "to": [
+            7,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            7,
+            8,
+            0
+          ],
+          "to": [
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "t_hover",
+          "from": [
+            8,
+            8,
+            1
+          ],
+          "to": [
+            8,
+            8,
+            2
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            0
+          ],
+          "to": [
+            8,
+            8,
+            1
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            13,
+            0
+          ],
+          "to": [
+            10,
+            12,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            12,
+            0
+          ],
+          "to": [
+            10,
+            11,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            11,
+            0
+          ],
+          "to": [
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            10,
+            0
+          ],
+          "to": [
+            10,
+            9,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            9,
+            0
+          ],
+          "to": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            1
+          ],
+          "to": [
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            0
+          ],
+          "to": [
+            9,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            9,
+            8,
+            0
+          ],
+          "to": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            10,
+            8,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ]
+    }
+  ],
+  "checks": [
+    {
+      "name": "Only explicit YOU; player is effectively solid and world-gravitating",
+      "passed": true
+    },
+    {
+      "name": "Movable text falls without any FALL rule",
+      "passed": true
+    },
+    {
+      "name": "Hollow non-player colors also fall to world terrain",
+      "passed": true
+    },
+    {
+      "name": "Visibly anchored text does not fall",
+      "passed": true
+    },
+    {
+      "name": "HOVER retains height but does not supply BLOCK",
+      "passed": true
+    },
+    {
+      "name": "Gravity derives as FLY > HOVER > world Down; no stale defaults",
+      "passed": true
+    },
+    {
+      "name": "Implicit BLOCK follows YOU, not the red color or a sticky component",
+      "passed": true
+    },
+    {
+      "name": "Incomplete AND suffix does not erase a valid prefix",
+      "passed": true
+    },
+    {
+      "name": "Only +X and +Z same-height straight sentences parse",
+      "passed": true
+    },
+    {
+      "name": "Head-bumped normal text falls back; no hidden levitation",
+      "passed": true
+    },
+    {
+      "name": "Head-bumped HOVER block legitimately retains its new height",
+      "passed": true
+    },
+    {
+      "name": "Landing press can move a HOVER solid down by one when clear",
+      "passed": true
+    },
+    {
+      "name": "JUMP consumes landing before press; rise measured from contact +3",
+      "passed": true
+    },
+    {
+      "name": "No auto-step and no ordinary-jump horizontal displacement",
+      "passed": true
+    },
+    {
+      "name": "Removed directional-jump commands are rejected without ticking",
+      "passed": true
+    },
+    {
+      "name": "All six face neighbors and a corner fail the victory predicate",
+      "passed": true
+    },
+    {
+      "name": "Enter hollow WIN and undo the entire winning command",
+      "passed": true
+    },
+    {
+      "name": "Default gravity can bring a hollow WIN into a BLOCK player",
+      "passed": true
+    },
+    {
+      "name": "Inactive target and single-entity YOU+WIN do not self-win",
+      "passed": true
+    },
+    {
+      "name": "WIN does not cancel BLOCK or enable contact victory",
+      "passed": true
+    },
+    {
+      "name": "Mid-bounce target hit commits victory before the normal apex",
+      "passed": true
+    },
+    {
+      "name": "Camera and rejected apex steer preserve the pending apex",
+      "passed": true
+    },
+    {
+      "name": "Breaking HOVER restores fall in the same command; undo restores both",
+      "passed": true
+    },
+    {
+      "name": "AND stays physically supported while BLOCK+FLY carries the player",
+      "passed": true
+    }
+  ]
+}

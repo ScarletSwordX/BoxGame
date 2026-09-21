@@ -1,0 +1,133 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "id": "L01",
+  "title": "填入那个位置",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 5,
+      "y": 6,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 5,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 2,
+        "y": 3,
+        "z": 1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "kind": "Color",
+      "color": "RED",
+      "token": "",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Color",
+      "color": "PINK",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "r01",
+      "tokens": [
+        "RED",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "r02",
+      "tokens": [
+        "PINK",
+        "IS",
+        "WIN"
+      ]
+    }
+  ],
+  "options": {
+    "supportMode": "StrictBelow",
+    "jumpMode": "LandingBounce3",
+    "bounceRiseCells": 3,
+    "decisionMode": "GroundedOrBounceApex",
+    "ruleAxes": [
+      "PositiveX",
+      "PositiveZ"
+    ],
+    "winMode": "DistinctEntitiesSameCell",
+    "winCheckMode": "AfterAtomicLogicChange",
+    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "playerBlockMode": "ImplicitFromYou"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.264,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "CameraRelativeGrid"
+  },
+  "tutorial": {
+    "objective": "进入空心目标；邻接不算。",
+    "hints": [
+      "进入发光轮廓。",
+      "中墙后面留有同高通道。",
+      "绕到目标同高处，再走进目标格。"
+    ]
+  },
+  "referenceSolution": {
+    "commands": [
+      "E",
+      "N",
+      "E",
+      "E",
+      "S",
+      "E"
+    ],
+    "expectedFinalStatus": "Won"
+  }
+}

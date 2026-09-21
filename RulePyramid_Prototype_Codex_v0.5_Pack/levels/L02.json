@@ -1,0 +1,159 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "id": "L02",
+  "title": "让文字落进句子",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 7,
+      "y": 6,
+      "z": 4
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 7,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 4,
+        "y": 1,
+        "z": 2
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "kind": "Color",
+      "color": "RED",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Color",
+      "color": "PINK",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "t_pink",
+      "kind": "Text",
+      "color": "",
+      "token": "PINK",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_is",
+      "kind": "Text",
+      "color": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_win",
+      "kind": "Text",
+      "color": "",
+      "token": "WIN",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": 2
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "r01",
+      "tokens": [
+        "RED",
+        "IS",
+        "YOU"
+      ]
+    }
+  ],
+  "options": {
+    "supportMode": "StrictBelow",
+    "jumpMode": "LandingBounce3",
+    "bounceRiseCells": 3,
+    "decisionMode": "GroundedOrBounceApex",
+    "ruleAxes": [
+      "PositiveX",
+      "PositiveZ"
+    ],
+    "winMode": "DistinctEntitiesSameCell",
+    "winCheckMode": "AfterAtomicLogicChange",
+    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "playerBlockMode": "ImplicitFromYou"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.264,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "CameraRelativeGrid"
+  },
+  "tutorial": {
+    "objective": "可动文字也会下落；落到另一高度可以成句。",
+    "hints": [
+      "下层句子还缺最后一个词。",
+      "把上层 WIN 推出台沿，它会落到下层。",
+      "向 +Z 推一次，再沿台边走下去进入目标。"
+    ]
+  },
+  "referenceSolution": {
+    "commands": [
+      "N",
+      "N",
+      "E",
+      "E"
+    ],
+    "expectedFinalStatus": "Won"
+  }
+}

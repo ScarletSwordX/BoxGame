@@ -1,0 +1,258 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "id": "L06",
+  "title": "借两次落差，迎回塔冠",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 10,
+      "y": 14,
+      "z": 2
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 1,
+        "y": 2,
+        "z": 0
+      }
+    },
+    {
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 5,
+        "y": 14,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 4,
+        "y": 4,
+        "z": 0
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 5,
+        "y": 3,
+        "z": 0
+      }
+    },
+    {
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 7,
+        "z": 2
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "kind": "Color",
+      "color": "RED",
+      "token": "",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Color",
+      "color": "PINK",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 13,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring_low",
+      "kind": "Color",
+      "color": "BLUE",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring_high",
+      "kind": "Color",
+      "color": "BLUE",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 4,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "t_pink",
+      "kind": "Text",
+      "color": "",
+      "token": "PINK",
+      "cell": {
+        "x": 6,
+        "y": 8,
+        "z": 1
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_is",
+      "kind": "Text",
+      "color": "",
+      "token": "IS",
+      "cell": {
+        "x": 7,
+        "y": 8,
+        "z": 1
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_hover",
+      "kind": "Text",
+      "color": "",
+      "token": "HOVER",
+      "cell": {
+        "x": 8,
+        "y": 8,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "r01",
+      "tokens": [
+        "RED",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "r02",
+      "tokens": [
+        "PINK",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "r03",
+      "tokens": [
+        "BLUE",
+        "IS",
+        "BLOCK",
+        "AND",
+        "JUMP"
+      ]
+    }
+  ],
+  "options": {
+    "supportMode": "StrictBelow",
+    "jumpMode": "LandingBounce3",
+    "bounceRiseCells": 3,
+    "decisionMode": "GroundedOrBounceApex",
+    "ruleAxes": [
+      "PositiveX",
+      "PositiveZ"
+    ],
+    "winMode": "DistinctEntitiesSameCell",
+    "winCheckMode": "AfterAtomicLogicChange",
+    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "playerBlockMode": "ImplicitFromYou"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.264,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "CameraRelativeGrid"
+  },
+  "tutorial": {
+    "objective": "两次弹跳利用不同基准高度；取消目标悬停。",
+    "hints": [
+      "第二个弹跳台和脚下同高。",
+      "走上去不会弹；在上面原地跳起再落下。",
+      "到高处把 PINK IS HOVER 拆开，再进入下降后的塔冠。"
+    ]
+  },
+  "referenceSolution": {
+    "commands": [
+      "E",
+      "E",
+      "E",
+      "E",
+      "E",
+      "J",
+      "E",
+      "E",
+      "E",
+      "N",
+      "S",
+      "E",
+      "E"
+    ],
+    "expectedFinalStatus": "Won"
+  }
+}

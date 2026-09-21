@@ -1,0 +1,225 @@
+{
+  "schemaVersion": 5,
+  "mechanicsVersion": "RP-v0.5",
+  "id": "L03",
+  "title": "撤掉例外，桥才落下",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 6,
+      "y": 8,
+      "z": 4
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 6,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 2,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "max": {
+        "x": 2,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 6,
+        "y": 2,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 2
+      },
+      "max": {
+        "x": 3,
+        "y": 1,
+        "z": 2
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "player",
+      "kind": "Color",
+      "color": "RED",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Color",
+      "color": "PINK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "bridge",
+      "kind": "Color",
+      "color": "BLUE",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 5,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "t_blue",
+      "kind": "Text",
+      "color": "",
+      "token": "BLUE",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_is",
+      "kind": "Text",
+      "color": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "t_hover",
+      "kind": "Text",
+      "color": "",
+      "token": "HOVER",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "r01",
+      "tokens": [
+        "RED",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "r02",
+      "tokens": [
+        "BLUE",
+        "IS",
+        "BLOCK"
+      ]
+    },
+    {
+      "id": "r03",
+      "tokens": [
+        "PINK",
+        "IS",
+        "WIN"
+      ]
+    }
+  ],
+  "options": {
+    "supportMode": "StrictBelow",
+    "jumpMode": "LandingBounce3",
+    "bounceRiseCells": 3,
+    "decisionMode": "GroundedOrBounceApex",
+    "ruleAxes": [
+      "PositiveX",
+      "PositiveZ"
+    ],
+    "winMode": "DistinctEntitiesSameCell",
+    "winCheckMode": "AfterAtomicLogicChange",
+    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "playerBlockMode": "ImplicitFromYou"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.264,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "CameraRelativeGrid"
+  },
+  "tutorial": {
+    "objective": "HOVER 是例外；拆句子恢复默认下落。",
+    "hints": [
+      "桥块悬得太高。",
+      "它不下落，是因为 BLUE IS HOVER 仍然成立。",
+      "从 HOVER 的 -Z 一侧向 +Z 推走它，再走上落下的桥。"
+    ]
+  },
+  "referenceSolution": {
+    "commands": [
+      "E",
+      "N",
+      "S",
+      "E",
+      "E",
+      "E"
+    ],
+    "expectedFinalStatus": "Won"
+  }
+}
