@@ -1,0 +1,2500 @@
+{
+  "mechanicsVersion": "LD-v0.4",
+  "scope": "Single-YOU graybox intended paths and stated regressions only. Not Unity validation.",
+  "levels": [
+    {
+      "id": "L01",
+      "title": "填入那个位置",
+      "trace": [
+        {
+          "step": 1,
+          "command": "CAM+",
+          "player": [
+            0,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 2,
+          "command": "N",
+          "player": [
+            0,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 3,
+          "command": "N",
+          "player": [
+            0,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 4,
+          "command": "N",
+          "player": [
+            0,
+            1,
+            3
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            1,
+            1,
+            3
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "player": [
+            2,
+            1,
+            3
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "player": [
+            3,
+            1,
+            3
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 8,
+          "command": "S",
+          "player": [
+            3,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 9,
+          "command": "S",
+          "player": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 10,
+          "command": "S",
+          "player": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 11,
+          "command": "E",
+          "player": [
+            4,
+            1,
+            0
+          ],
+          "phase": "Won",
+          "won": true
+        }
+      ],
+      "finalPositions": {
+        "player": [
+          4,
+          1,
+          0
+        ],
+        "goal": [
+          4,
+          1,
+          0
+        ]
+      },
+      "winRecord": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          4,
+          1,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            1,
+            0
+          ],
+          "to": [
+            0,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            1,
+            1
+          ],
+          "to": [
+            0,
+            1,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            1,
+            2
+          ],
+          "to": [
+            0,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            1,
+            3
+          ],
+          "to": [
+            1,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            1,
+            3
+          ],
+          "to": [
+            2,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            1,
+            3
+          ],
+          "to": [
+            3,
+            1,
+            3
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            3
+          ],
+          "to": [
+            3,
+            1,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            2
+          ],
+          "to": [
+            3,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            1
+          ],
+          "to": [
+            3,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            0
+          ],
+          "to": [
+            4,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            4,
+            1,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ],
+      "initialStable": true,
+      "initialNotWon": true,
+      "witnessPassed": true,
+      "undoWithMotionPhaseAndWinPassed": true,
+      "cameraInvariantPassed": true
+    },
+    {
+      "id": "L02",
+      "title": "把一句话顶完整",
+      "trace": [
+        {
+          "step": 1,
+          "command": "E",
+          "player": [
+            2,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 2,
+          "command": "N",
+          "player": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 4,
+          "command": "S",
+          "player": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 5,
+          "command": "J",
+          "player": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "player": [
+            4,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "player": [
+            5,
+            1,
+            0
+          ],
+          "phase": "Won",
+          "won": true
+        }
+      ],
+      "finalPositions": {
+        "player": [
+          5,
+          1,
+          0
+        ],
+        "goal": [
+          5,
+          1,
+          0
+        ],
+        "t_pink": [
+          1,
+          3,
+          0
+        ],
+        "t_is": [
+          2,
+          3,
+          0
+        ],
+        "t_win": [
+          3,
+          3,
+          0
+        ]
+      },
+      "winRecord": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          1,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "TextPushed",
+          "id": "t_win",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            1,
+            2,
+            0
+          ],
+          "to": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            2,
+            2,
+            1
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            2,
+            2,
+            1
+          ],
+          "to": [
+            2,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            1,
+            1
+          ],
+          "to": [
+            3,
+            1,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            1
+          ],
+          "to": [
+            3,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "HeadBump",
+          "id": "t_win",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "HeadBump",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            1,
+            0
+          ],
+          "to": [
+            4,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            1,
+            0
+          ],
+          "to": [
+            5,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            1,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ],
+      "initialStable": true,
+      "initialNotWon": true,
+      "witnessPassed": true,
+      "undoWithMotionPhaseAndWinPassed": true,
+      "cameraInvariantPassed": true
+    },
+    {
+      "id": "L03",
+      "title": "落地写下重力",
+      "trace": [
+        {
+          "step": 1,
+          "command": "S",
+          "player": [
+            2,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "player": [
+            3,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            4,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            5,
+            2,
+            0
+          ],
+          "phase": "Won",
+          "won": true
+        }
+      ],
+      "finalPositions": {
+        "player": [
+          5,
+          2,
+          0
+        ],
+        "goal": [
+          5,
+          2,
+          0
+        ],
+        "bridge": [
+          4,
+          1,
+          0
+        ],
+        "t_blue": [
+          0,
+          1,
+          0
+        ],
+        "t_is": [
+          1,
+          1,
+          0
+        ],
+        "t_fall": [
+          2,
+          1,
+          0
+        ]
+      },
+      "winRecord": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          2,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            1
+          ],
+          "to": [
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "LandingPress",
+          "id": "t_fall",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            2,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "LandingPress",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "bridge",
+          "from": [
+            4,
+            4,
+            0
+          ],
+          "to": [
+            4,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "bridge",
+          "from": [
+            4,
+            3,
+            0
+          ],
+          "to": [
+            4,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "bridge",
+          "from": [
+            4,
+            2,
+            0
+          ],
+          "to": [
+            4,
+            1,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            4,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            2,
+            0
+          ],
+          "to": [
+            5,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            2,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ],
+      "initialStable": true,
+      "initialNotWon": true,
+      "witnessPassed": true,
+      "undoWithMotionPhaseAndWinPassed": true,
+      "cameraInvariantPassed": true
+    },
+    {
+      "id": "L04",
+      "title": "落下去，弹上来",
+      "trace": [
+        {
+          "step": 1,
+          "command": "N",
+          "player": [
+            0,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 2,
+          "command": "S",
+          "player": [
+            0,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            1,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            2,
+            5,
+            0
+          ],
+          "phase": "BounceApex",
+          "won": false
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            3,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "player": [
+            4,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "player": [
+            5,
+            5,
+            0
+          ],
+          "phase": "Won",
+          "won": true
+        }
+      ],
+      "finalPositions": {
+        "player": [
+          5,
+          5,
+          0
+        ],
+        "goal": [
+          5,
+          5,
+          0
+        ],
+        "spring": [
+          2,
+          1,
+          0
+        ],
+        "t_blue": [
+          -2,
+          3,
+          2
+        ],
+        "t_is": [
+          -1,
+          3,
+          2
+        ],
+        "t_jump": [
+          0,
+          3,
+          2
+        ]
+      },
+      "winRecord": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          5,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "TextPushed",
+          "id": "t_jump",
+          "from": [
+            0,
+            3,
+            1
+          ],
+          "to": [
+            0,
+            3,
+            2
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            0,
+            3,
+            0
+          ],
+          "to": [
+            0,
+            3,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            3,
+            1
+          ],
+          "to": [
+            0,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            3,
+            0
+          ],
+          "to": [
+            1,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "BounceStarted",
+          "id": "player",
+          "surfaceId": "spring",
+          "contactPos": [
+            2,
+            2,
+            0
+          ],
+          "requestedRise": 3
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            0
+          ],
+          "to": [
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "LandingBounce",
+          "id": "player",
+          "surfaceId": "spring",
+          "contactPos": [
+            2,
+            2,
+            0
+          ],
+          "apexPos": [
+            2,
+            5,
+            0
+          ],
+          "requestedRise": 3,
+          "actualRise": 3
+        },
+        {
+          "event": "BounceApexReached",
+          "id": "player",
+          "pos": [
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "ApexSteer",
+          "id": "player",
+          "from": [
+            2,
+            5,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            5,
+            0
+          ],
+          "to": [
+            4,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            5,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ],
+      "initialStable": true,
+      "initialNotWon": true,
+      "witnessPassed": true,
+      "undoWithMotionPhaseAndWinPassed": true,
+      "cameraInvariantPassed": true
+    },
+    {
+      "id": "L05",
+      "title": "让脚下成为电梯",
+      "trace": [
+        {
+          "step": 1,
+          "command": "S",
+          "player": [
+            3,
+            2,
+            2
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 2,
+          "command": "S",
+          "player": [
+            3,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 3,
+          "command": "S",
+          "player": [
+            3,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            4,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            5,
+            5,
+            0
+          ],
+          "phase": "Won",
+          "won": true
+        }
+      ],
+      "finalPositions": {
+        "player": [
+          5,
+          5,
+          0
+        ],
+        "goal": [
+          5,
+          5,
+          0
+        ],
+        "lift_front": [
+          3,
+          5,
+          0
+        ],
+        "lift_rear": [
+          3,
+          5,
+          1
+        ],
+        "t_blue": [
+          0,
+          2,
+          -1
+        ],
+        "t_is": [
+          1,
+          2,
+          -1
+        ],
+        "t_block": [
+          2,
+          2,
+          -1
+        ],
+        "t_and": [
+          3,
+          2,
+          -1
+        ],
+        "t_fly": [
+          4,
+          2,
+          -1
+        ]
+      },
+      "winRecord": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          5,
+          5,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            3
+          ],
+          "to": [
+            3,
+            2,
+            2
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            2
+          ],
+          "to": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "t_and",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            -1
+          ]
+        },
+        {
+          "event": "TextPushed",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            1
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            1,
+            0
+          ],
+          "to": [
+            3,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "player",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            1,
+            1
+          ],
+          "to": [
+            3,
+            2,
+            1
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            2,
+            0
+          ],
+          "to": [
+            3,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "player",
+          "from": [
+            3,
+            3,
+            0
+          ],
+          "to": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            2,
+            1
+          ],
+          "to": [
+            3,
+            3,
+            1
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            3,
+            0
+          ],
+          "to": [
+            3,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "player",
+          "from": [
+            3,
+            4,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            3,
+            1
+          ],
+          "to": [
+            3,
+            4,
+            1
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_rear",
+          "from": [
+            3,
+            4,
+            1
+          ],
+          "to": [
+            3,
+            5,
+            1
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            5,
+            0
+          ],
+          "to": [
+            4,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "FlyOrRide",
+          "id": "lift_front",
+          "from": [
+            3,
+            4,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            5,
+            5,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ],
+      "initialStable": true,
+      "initialNotWon": true,
+      "witnessPassed": true,
+      "undoWithMotionPhaseAndWinPassed": true,
+      "cameraInvariantPassed": true
+    },
+    {
+      "id": "L06",
+      "title": "借两次落差，迎回塔冠",
+      "trace": [
+        {
+          "step": 1,
+          "command": "E",
+          "player": [
+            1,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "player": [
+            2,
+            5,
+            0
+          ],
+          "phase": "BounceApex",
+          "won": false
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "player": [
+            3,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "player": [
+            4,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "player": [
+            5,
+            5,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 6,
+          "command": "J",
+          "player": [
+            5,
+            8,
+            0
+          ],
+          "phase": "BounceApex",
+          "won": false
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "player": [
+            6,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 8,
+          "command": "E",
+          "player": [
+            7,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 9,
+          "command": "E",
+          "player": [
+            8,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 10,
+          "command": "N",
+          "player": [
+            8,
+            8,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 11,
+          "command": "J",
+          "player": [
+            8,
+            8,
+            1
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 12,
+          "command": "S",
+          "player": [
+            8,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 13,
+          "command": "E",
+          "player": [
+            9,
+            8,
+            0
+          ],
+          "phase": "Grounded",
+          "won": false
+        },
+        {
+          "step": 14,
+          "command": "E",
+          "player": [
+            10,
+            8,
+            0
+          ],
+          "phase": "Won",
+          "won": true
+        }
+      ],
+      "finalPositions": {
+        "player": [
+          10,
+          8,
+          0
+        ],
+        "goal": [
+          10,
+          8,
+          0
+        ],
+        "spring_low": [
+          2,
+          1,
+          0
+        ],
+        "spring_high": [
+          5,
+          4,
+          0
+        ],
+        "t_pink": [
+          6,
+          10,
+          1
+        ],
+        "t_is": [
+          7,
+          10,
+          1
+        ],
+        "t_fall": [
+          8,
+          10,
+          1
+        ]
+      },
+      "winRecord": {
+        "youId": "player",
+        "winId": "goal",
+        "cell": [
+          10,
+          8,
+          0
+        ],
+        "cause": "Walk"
+      },
+      "events": [
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            0,
+            3,
+            0
+          ],
+          "to": [
+            1,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            1,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            2,
+            0
+          ]
+        },
+        {
+          "event": "BounceStarted",
+          "id": "player",
+          "surfaceId": "spring_low",
+          "contactPos": [
+            2,
+            2,
+            0
+          ],
+          "requestedRise": 3
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            2,
+            0
+          ],
+          "to": [
+            2,
+            3,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            3,
+            0
+          ],
+          "to": [
+            2,
+            4,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            2,
+            4,
+            0
+          ],
+          "to": [
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "LandingBounce",
+          "id": "player",
+          "surfaceId": "spring_low",
+          "contactPos": [
+            2,
+            2,
+            0
+          ],
+          "apexPos": [
+            2,
+            5,
+            0
+          ],
+          "requestedRise": 3,
+          "actualRise": 3
+        },
+        {
+          "event": "BounceApexReached",
+          "id": "player",
+          "pos": [
+            2,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "ApexSteer",
+          "id": "player",
+          "from": [
+            2,
+            5,
+            0
+          ],
+          "to": [
+            3,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            3,
+            5,
+            0
+          ],
+          "to": [
+            4,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            4,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "JumpApex",
+          "id": "player",
+          "from": [
+            5,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            6,
+            0
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            5,
+            6,
+            0
+          ],
+          "to": [
+            5,
+            5,
+            0
+          ]
+        },
+        {
+          "event": "BounceStarted",
+          "id": "player",
+          "surfaceId": "spring_high",
+          "contactPos": [
+            5,
+            5,
+            0
+          ],
+          "requestedRise": 3
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            5,
+            5,
+            0
+          ],
+          "to": [
+            5,
+            6,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            5,
+            6,
+            0
+          ],
+          "to": [
+            5,
+            7,
+            0
+          ]
+        },
+        {
+          "event": "BounceStep",
+          "id": "player",
+          "from": [
+            5,
+            7,
+            0
+          ],
+          "to": [
+            5,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "LandingBounce",
+          "id": "player",
+          "surfaceId": "spring_high",
+          "contactPos": [
+            5,
+            5,
+            0
+          ],
+          "apexPos": [
+            5,
+            8,
+            0
+          ],
+          "requestedRise": 3,
+          "actualRise": 3
+        },
+        {
+          "event": "BounceApexReached",
+          "id": "player",
+          "pos": [
+            5,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "ApexSteer",
+          "id": "player",
+          "from": [
+            5,
+            8,
+            0
+          ],
+          "to": [
+            6,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            6,
+            8,
+            0
+          ],
+          "to": [
+            7,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            7,
+            8,
+            0
+          ],
+          "to": [
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            0
+          ],
+          "to": [
+            8,
+            8,
+            1
+          ]
+        },
+        {
+          "event": "HeadBump",
+          "id": "t_fall",
+          "from": [
+            8,
+            9,
+            1
+          ],
+          "to": [
+            8,
+            10,
+            1
+          ]
+        },
+        {
+          "event": "HeadBump",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            1
+          ],
+          "to": [
+            8,
+            9,
+            1
+          ]
+        },
+        {
+          "event": "PlayerFell",
+          "id": "player",
+          "from": [
+            8,
+            9,
+            1
+          ],
+          "to": [
+            8,
+            8,
+            1
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            13,
+            0
+          ],
+          "to": [
+            10,
+            12,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            12,
+            0
+          ],
+          "to": [
+            10,
+            11,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            11,
+            0
+          ],
+          "to": [
+            10,
+            10,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            10,
+            0
+          ],
+          "to": [
+            10,
+            9,
+            0
+          ]
+        },
+        {
+          "event": "GravityFall",
+          "id": "goal",
+          "from": [
+            10,
+            9,
+            0
+          ],
+          "to": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            1
+          ],
+          "to": [
+            8,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            8,
+            8,
+            0
+          ],
+          "to": [
+            9,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Walk",
+          "id": "player",
+          "from": [
+            9,
+            8,
+            0
+          ],
+          "to": [
+            10,
+            8,
+            0
+          ]
+        },
+        {
+          "event": "Won",
+          "youId": "player",
+          "winId": "goal",
+          "cell": [
+            10,
+            8,
+            0
+          ],
+          "cause": "Walk"
+        }
+      ],
+      "initialStable": true,
+      "initialNotWon": true,
+      "witnessPassed": true,
+      "undoWithMotionPhaseAndWinPassed": true,
+      "cameraInvariantPassed": true
+    }
+  ],
+  "additionalChecks": [
+    {
+      "name": "All six face-neighbor positions fail; no adjacency fallback",
+      "passed": true
+    },
+    {
+      "name": "Edge/corner neighbors and separated projected cells are not victories",
+      "passed": true
+    },
+    {
+      "name": "Enter hollow WIN: immediate same-cell victory; terminal input locked; undo restores pre-win",
+      "passed": true
+    },
+    {
+      "name": "PINK alone is not a target; inactive hollow COLOR can be entered",
+      "passed": true
+    },
+    {
+      "name": "A single entity carrying YOU and WIN cannot match itself",
+      "passed": true
+    },
+    {
+      "name": "WIN never cancels BLOCK: solid target remains inaccessible, not an adjacency goal",
+      "passed": true
+    },
+    {
+      "name": "Hollow WIN falling into YOU also wins; sensor interaction is bidirectional",
+      "passed": true
+    },
+    {
+      "name": "Hollow WIN ascending into YOU wins at the first shared cell",
+      "passed": true
+    },
+    {
+      "name": "In-place jump entering WIN wins before falling back; no decision-point-only check",
+      "passed": true
+    },
+    {
+      "name": "Player descent stops at the first overlapping WIN grid cell",
+      "passed": true
+    },
+    {
+      "name": "Intermediate bounce cell can win; remaining ascent is not executed",
+      "passed": true
+    },
+    {
+      "name": "Non-BLOCK COLOR neither supports nor receives landing press from YOU",
+      "passed": true
+    },
+    {
+      "name": "Non-BLOCK COLOR is not head-bumped by YOU",
+      "passed": true
+    },
+    {
+      "name": "Bidirectional hollow/actor overlap applies even without WIN",
+      "passed": true
+    },
+    {
+      "name": "A hollow falling goal still stops above terrain/non-YOU BLOCK support",
+      "passed": true
+    },
+    {
+      "name": "Atomic push + rule activation does not win at the actor cell it just left",
+      "passed": true
+    },
+    {
+      "name": "Atomic push activates WIN at final occupied cell and triggers immediately",
+      "passed": true
+    },
+    {
+      "name": "Invalid BLOCK materialization is rejected before WIN; full transaction restored",
+      "passed": true
+    },
+    {
+      "name": "FLY rider/platform moves atomically and can win during ascent",
+      "passed": true
+    },
+    {
+      "name": "Won latch and winning IDs/cell survive snapshot JSON round-trip",
+      "passed": true
+    },
+    {
+      "name": "All four directional ground-jump commands rejected; in-place J has no X/Z motion",
+      "passed": true
+    },
+    {
+      "name": "Four-way walking does not auto-step or auto-hop onto a one-cell obstacle",
+      "passed": true
+    },
+    {
+      "name": "WAIT is only apex descent, not a new grounded action",
+      "passed": true
+    },
+    {
+      "name": "Horizontal collision with JUMP surface does not bounce either object",
+      "passed": true
+    },
+    {
+      "name": "JUMP raises the falling mover three cells from contact; surface stays put",
+      "passed": true
+    },
+    {
+      "name": "Drop height does not change the three-cell rebound",
+      "passed": true
+    },
+    {
+      "name": "Standing on JUMP with no downward displacement does not bounce",
+      "passed": true
+    },
+    {
+      "name": "Walk onto same-height JUMP: no bounce; in-place jump and land: bounce",
+      "passed": true
+    },
+    {
+      "name": "JUMP on the falling object alone is insufficient",
+      "passed": true
+    },
+    {
+      "name": "JUMP without BLOCK supplies no landing contact",
+      "passed": true
+    },
+    {
+      "name": "Bounce consumes impact before ordinary downward press",
+      "passed": true
+    },
+    {
+      "name": "Ceiling truncates bounce at first blocked grid cell",
+      "passed": true
+    },
+    {
+      "name": "Passive bounce does not head-bump movable overhead text",
+      "passed": true
+    },
+    {
+      "name": "Directional-jump commands also rejected at apex",
+      "passed": true
+    },
+    {
+      "name": "Apex camera is timeless; WAIT/Space produces one bounded repeat bounce, not extra height",
+      "passed": true
+    },
+    {
+      "name": "Blocked apex direction consumes no motion or turn",
+      "passed": true
+    },
+    {
+      "name": "One-cell apex steer lands; undo restores motion phase and permits a different choice",
+      "passed": true
+    },
+    {
+      "name": "Non-YOU falling BLOCK bounces too; next accepted world action resumes it",
+      "passed": true
+    },
+    {
+      "name": "Apex and forced descent survive snapshot round-trip",
+      "passed": true
+    },
+    {
+      "name": "L02 reaching inactive goal without completing the sentence does not win",
+      "passed": true
+    },
+    {
+      "name": "L03 presses FALL once, lowers bridge, and exits at equal height without directional jump",
+      "passed": true
+    },
+    {
+      "name": "L04 rule socket stays constrained; undo restores the disconnected JUMP",
+      "passed": true
+    },
+    {
+      "name": "L05 level boarding, AND activation, atomic passenger headroom, and no adjacent finish",
+      "passed": true
+    },
+    {
+      "name": "L06 second spring explicitly requires landing after the equal-height walk",
+      "passed": true
+    },
+    {
+      "name": "L06 FALL lowers hollow WIN onto the top platform without reintroducing BLOCK",
+      "passed": true
+    },
+    {
+      "name": "L03 without BLUE FALL",
+      "passed": true,
+      "reachableStates": 16,
+      "scope": "Exhausted only the named restricted transition subset in this reference model; not all solutions or Unity."
+    },
+    {
+      "name": "L04 without any bounce",
+      "passed": true,
+      "reachableStates": 20,
+      "scope": "Exhausted only the named restricted transition subset in this reference model; not all solutions or Unity."
+    },
+    {
+      "name": "L05 without BLUE FLY",
+      "passed": true,
+      "reachableStates": 27,
+      "scope": "Exhausted only the named restricted transition subset in this reference model; not all solutions or Unity."
+    },
+    {
+      "name": "L06 without any bounce",
+      "passed": true,
+      "reachableStates": 2,
+      "scope": "Exhausted only the named restricted transition subset in this reference model; not all solutions or Unity."
+    },
+    {
+      "name": "L06 without second spring",
+      "passed": true,
+      "reachableStates": 6,
+      "scope": "Exhausted only the named restricted transition subset in this reference model; not all solutions or Unity."
+    }
+  ],
+  "unverified": [
+    "Unity compilation, play mode, build, input, animation, camera and editor",
+    "All possible solutions and arbitrary rule combinations; shortest/unique solutions",
+    "Multi-YOU, moving JUMP surfaces and simultaneous competing fallers",
+    "Experimental edge support and fully general text bounce"
+  ]
+}

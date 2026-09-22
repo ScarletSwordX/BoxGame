@@ -1,0 +1,955 @@
+{
+  "schema": "DesignGraybox-v0.4",
+  "schemaVersion": 4,
+  "mechanicsVersion": "LD-v0.4",
+  "warning": "Design witness data, not a Unity project. fixedRules must be visible and traceable. Read the Markdown for collision and apex semantics.",
+  "levels": [
+    {
+      "id": "L01",
+      "title": "填入那个位置",
+      "bounds": [
+        0,
+        5,
+        0,
+        5,
+        0,
+        3
+      ],
+      "fixedRules": [
+        "RED IS YOU",
+        "RED IS BLOCK",
+        "RED IS FALL",
+        "PINK IS WIN"
+      ],
+      "solidBoxes": [
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          3
+        ],
+        [
+          2,
+          2,
+          1,
+          3,
+          0,
+          2
+        ]
+      ],
+      "entities": [
+        {
+          "id": "player",
+          "kind": "COLOR",
+          "color": "RED",
+          "pos": [
+            0,
+            1,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "goal",
+          "kind": "COLOR",
+          "color": "PINK",
+          "pos": [
+            4,
+            1,
+            0
+          ],
+          "anchored": false
+        }
+      ],
+      "solution": [
+        "CAM+",
+        "N",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E",
+        "S",
+        "S",
+        "S",
+        "E"
+      ],
+      "mechanicsVersion": "LD-v0.4",
+      "supportMode": "StrictBelow",
+      "jumpMode": "LandingBounce3",
+      "bounceRiseCells": 3,
+      "decisionMode": "GroundedOrBounceApex",
+      "ruleAxes": [
+        "PositiveX",
+        "PositiveZ"
+      ],
+      "winMode": "DistinctEntitiesSameCell",
+      "winCheckMode": "AfterAtomicLogicChange",
+      "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+      "schemaVersion": 4,
+      "camera": {
+        "initialSlot": 0,
+        "pitchDegrees": 35.264,
+        "yawDegrees": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "inputMode": "CameraRelativeGrid"
+      }
+    },
+    {
+      "id": "L02",
+      "title": "把一句话顶完整",
+      "bounds": [
+        0,
+        5,
+        0,
+        5,
+        0,
+        1
+      ],
+      "fixedRules": [
+        "RED IS YOU",
+        "RED IS BLOCK",
+        "RED IS FALL"
+      ],
+      "solidBoxes": [
+        [
+          0,
+          5,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          2,
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "entities": [
+        {
+          "id": "player",
+          "kind": "COLOR",
+          "color": "RED",
+          "pos": [
+            1,
+            2,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "goal",
+          "kind": "COLOR",
+          "color": "PINK",
+          "pos": [
+            5,
+            1,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "t_pink",
+          "kind": "TEXT",
+          "token": "PINK",
+          "pos": [
+            1,
+            3,
+            0
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_is",
+          "kind": "TEXT",
+          "token": "IS",
+          "pos": [
+            2,
+            3,
+            0
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_win",
+          "kind": "TEXT",
+          "token": "WIN",
+          "pos": [
+            2,
+            2,
+            0
+          ],
+          "anchored": false
+        }
+      ],
+      "solution": [
+        "E",
+        "N",
+        "E",
+        "S",
+        "J",
+        "E",
+        "E"
+      ],
+      "mechanicsVersion": "LD-v0.4",
+      "supportMode": "StrictBelow",
+      "jumpMode": "LandingBounce3",
+      "bounceRiseCells": 3,
+      "decisionMode": "GroundedOrBounceApex",
+      "ruleAxes": [
+        "PositiveX",
+        "PositiveZ"
+      ],
+      "winMode": "DistinctEntitiesSameCell",
+      "winCheckMode": "AfterAtomicLogicChange",
+      "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+      "schemaVersion": 4,
+      "camera": {
+        "initialSlot": 0,
+        "pitchDegrees": 35.264,
+        "yawDegrees": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "inputMode": "CameraRelativeGrid"
+      }
+    },
+    {
+      "id": "L03",
+      "title": "落地写下重力",
+      "bounds": [
+        0,
+        6,
+        0,
+        6,
+        0,
+        2
+      ],
+      "fixedRules": [
+        "RED IS YOU",
+        "RED IS BLOCK",
+        "RED IS FALL",
+        "PINK IS WIN",
+        "BLUE IS BLOCK"
+      ],
+      "solidBoxes": [
+        [
+          0,
+          6,
+          0,
+          0,
+          0,
+          2
+        ],
+        [
+          2,
+          2,
+          1,
+          3,
+          1,
+          1
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          0,
+          0
+        ],
+        [
+          1,
+          1,
+          2,
+          2,
+          0,
+          0
+        ],
+        [
+          5,
+          5,
+          1,
+          1,
+          0,
+          0
+        ]
+      ],
+      "entities": [
+        {
+          "id": "player",
+          "kind": "COLOR",
+          "color": "RED",
+          "pos": [
+            2,
+            4,
+            1
+          ],
+          "anchored": false
+        },
+        {
+          "id": "goal",
+          "kind": "COLOR",
+          "color": "PINK",
+          "pos": [
+            5,
+            2,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "bridge",
+          "kind": "COLOR",
+          "color": "BLUE",
+          "pos": [
+            4,
+            4,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "t_blue",
+          "kind": "TEXT",
+          "token": "BLUE",
+          "pos": [
+            0,
+            1,
+            0
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_is",
+          "kind": "TEXT",
+          "token": "IS",
+          "pos": [
+            1,
+            1,
+            0
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_fall",
+          "kind": "TEXT",
+          "token": "FALL",
+          "pos": [
+            2,
+            2,
+            0
+          ],
+          "anchored": false
+        }
+      ],
+      "solution": [
+        "S",
+        "E",
+        "E",
+        "E"
+      ],
+      "mechanicsVersion": "LD-v0.4",
+      "supportMode": "StrictBelow",
+      "jumpMode": "LandingBounce3",
+      "bounceRiseCells": 3,
+      "decisionMode": "GroundedOrBounceApex",
+      "ruleAxes": [
+        "PositiveX",
+        "PositiveZ"
+      ],
+      "winMode": "DistinctEntitiesSameCell",
+      "winCheckMode": "AfterAtomicLogicChange",
+      "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+      "schemaVersion": 4,
+      "camera": {
+        "initialSlot": 0,
+        "pitchDegrees": 35.264,
+        "yawDegrees": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "inputMode": "CameraRelativeGrid"
+      }
+    },
+    {
+      "id": "L04",
+      "title": "落下去，弹上来",
+      "bounds": [
+        -2,
+        5,
+        0,
+        8,
+        -1,
+        3
+      ],
+      "fixedRules": [
+        "RED IS YOU",
+        "RED IS BLOCK",
+        "RED IS FALL",
+        "PINK IS WIN",
+        "BLUE IS BLOCK"
+      ],
+      "solidBoxes": [
+        [
+          -2,
+          5,
+          0,
+          0,
+          -1,
+          3
+        ],
+        [
+          -2,
+          1,
+          1,
+          2,
+          0,
+          3
+        ],
+        [
+          3,
+          5,
+          1,
+          4,
+          0,
+          0
+        ],
+        [
+          2,
+          5,
+          1,
+          8,
+          -1,
+          -1
+        ],
+        [
+          2,
+          5,
+          1,
+          8,
+          1,
+          1
+        ],
+        [
+          -1,
+          -1,
+          3,
+          3,
+          1,
+          1
+        ],
+        [
+          1,
+          1,
+          3,
+          3,
+          1,
+          2
+        ],
+        [
+          0,
+          0,
+          3,
+          3,
+          3,
+          3
+        ],
+        [
+          0,
+          0,
+          4,
+          4,
+          2,
+          2
+        ]
+      ],
+      "entities": [
+        {
+          "id": "player",
+          "kind": "COLOR",
+          "color": "RED",
+          "pos": [
+            0,
+            3,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "goal",
+          "kind": "COLOR",
+          "color": "PINK",
+          "pos": [
+            5,
+            5,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "spring",
+          "kind": "COLOR",
+          "color": "BLUE",
+          "pos": [
+            2,
+            1,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "t_blue",
+          "kind": "TEXT",
+          "token": "BLUE",
+          "pos": [
+            -2,
+            3,
+            2
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_is",
+          "kind": "TEXT",
+          "token": "IS",
+          "pos": [
+            -1,
+            3,
+            2
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_jump",
+          "kind": "TEXT",
+          "token": "JUMP",
+          "pos": [
+            0,
+            3,
+            1
+          ],
+          "anchored": false
+        }
+      ],
+      "solution": [
+        "N",
+        "S",
+        "E",
+        "E",
+        "E",
+        "E",
+        "E"
+      ],
+      "mechanicsVersion": "LD-v0.4",
+      "supportMode": "StrictBelow",
+      "jumpMode": "LandingBounce3",
+      "bounceRiseCells": 3,
+      "decisionMode": "GroundedOrBounceApex",
+      "ruleAxes": [
+        "PositiveX",
+        "PositiveZ"
+      ],
+      "winMode": "DistinctEntitiesSameCell",
+      "winCheckMode": "AfterAtomicLogicChange",
+      "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+      "schemaVersion": 4,
+      "camera": {
+        "initialSlot": 0,
+        "pitchDegrees": 35.264,
+        "yawDegrees": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "inputMode": "CameraRelativeGrid"
+      }
+    },
+    {
+      "id": "L05",
+      "title": "让脚下成为电梯",
+      "bounds": [
+        0,
+        5,
+        0,
+        7,
+        -1,
+        3
+      ],
+      "fixedRules": [
+        "RED IS YOU",
+        "RED IS BLOCK",
+        "RED IS FALL",
+        "PINK IS WIN"
+      ],
+      "solidBoxes": [
+        [
+          0,
+          5,
+          0,
+          0,
+          -1,
+          3
+        ],
+        [
+          4,
+          5,
+          1,
+          4,
+          0,
+          0
+        ],
+        [
+          3,
+          3,
+          6,
+          6,
+          0,
+          1
+        ],
+        [
+          3,
+          3,
+          1,
+          1,
+          2,
+          3
+        ]
+      ],
+      "entities": [
+        {
+          "id": "player",
+          "kind": "COLOR",
+          "color": "RED",
+          "pos": [
+            3,
+            2,
+            3
+          ],
+          "anchored": false
+        },
+        {
+          "id": "goal",
+          "kind": "COLOR",
+          "color": "PINK",
+          "pos": [
+            5,
+            5,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "lift_front",
+          "kind": "COLOR",
+          "color": "BLUE",
+          "pos": [
+            3,
+            1,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "lift_rear",
+          "kind": "COLOR",
+          "color": "BLUE",
+          "pos": [
+            3,
+            1,
+            1
+          ],
+          "anchored": false
+        },
+        {
+          "id": "t_blue",
+          "kind": "TEXT",
+          "token": "BLUE",
+          "pos": [
+            0,
+            2,
+            -1
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_is",
+          "kind": "TEXT",
+          "token": "IS",
+          "pos": [
+            1,
+            2,
+            -1
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_block",
+          "kind": "TEXT",
+          "token": "BLOCK",
+          "pos": [
+            2,
+            2,
+            -1
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_and",
+          "kind": "TEXT",
+          "token": "AND",
+          "pos": [
+            3,
+            2,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "t_fly",
+          "kind": "TEXT",
+          "token": "FLY",
+          "pos": [
+            4,
+            2,
+            -1
+          ],
+          "anchored": true
+        }
+      ],
+      "solution": [
+        "S",
+        "S",
+        "S",
+        "E",
+        "E"
+      ],
+      "mechanicsVersion": "LD-v0.4",
+      "supportMode": "StrictBelow",
+      "jumpMode": "LandingBounce3",
+      "bounceRiseCells": 3,
+      "decisionMode": "GroundedOrBounceApex",
+      "ruleAxes": [
+        "PositiveX",
+        "PositiveZ"
+      ],
+      "winMode": "DistinctEntitiesSameCell",
+      "winCheckMode": "AfterAtomicLogicChange",
+      "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+      "schemaVersion": 4,
+      "camera": {
+        "initialSlot": 0,
+        "pitchDegrees": 35.264,
+        "yawDegrees": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "inputMode": "CameraRelativeGrid"
+      }
+    },
+    {
+      "id": "L06",
+      "title": "借两次落差，迎回塔冠",
+      "bounds": [
+        0,
+        10,
+        0,
+        14,
+        0,
+        1
+      ],
+      "fixedRules": [
+        "RED IS YOU",
+        "RED IS BLOCK",
+        "RED IS FALL",
+        "PINK IS WIN",
+        "BLUE IS BLOCK AND JUMP"
+      ],
+      "solidBoxes": [
+        [
+          0,
+          10,
+          0,
+          0,
+          0,
+          1
+        ],
+        [
+          0,
+          1,
+          1,
+          2,
+          0,
+          0
+        ],
+        [
+          0,
+          5,
+          1,
+          14,
+          1,
+          1
+        ],
+        [
+          3,
+          4,
+          1,
+          4,
+          0,
+          0
+        ],
+        [
+          5,
+          5,
+          1,
+          3,
+          0,
+          0
+        ],
+        [
+          6,
+          10,
+          1,
+          7,
+          0,
+          1
+        ]
+      ],
+      "entities": [
+        {
+          "id": "player",
+          "kind": "COLOR",
+          "color": "RED",
+          "pos": [
+            0,
+            3,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "goal",
+          "kind": "COLOR",
+          "color": "PINK",
+          "pos": [
+            10,
+            13,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "spring_low",
+          "kind": "COLOR",
+          "color": "BLUE",
+          "pos": [
+            2,
+            1,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "spring_high",
+          "kind": "COLOR",
+          "color": "BLUE",
+          "pos": [
+            5,
+            4,
+            0
+          ],
+          "anchored": false
+        },
+        {
+          "id": "t_pink",
+          "kind": "TEXT",
+          "token": "PINK",
+          "pos": [
+            6,
+            10,
+            1
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_is",
+          "kind": "TEXT",
+          "token": "IS",
+          "pos": [
+            7,
+            10,
+            1
+          ],
+          "anchored": true
+        },
+        {
+          "id": "t_fall",
+          "kind": "TEXT",
+          "token": "FALL",
+          "pos": [
+            8,
+            9,
+            1
+          ],
+          "anchored": false
+        }
+      ],
+      "solution": [
+        "E",
+        "E",
+        "E",
+        "E",
+        "E",
+        "J",
+        "E",
+        "E",
+        "E",
+        "N",
+        "J",
+        "S",
+        "E",
+        "E"
+      ],
+      "mechanicsVersion": "LD-v0.4",
+      "supportMode": "StrictBelow",
+      "jumpMode": "LandingBounce3",
+      "bounceRiseCells": 3,
+      "decisionMode": "GroundedOrBounceApex",
+      "ruleAxes": [
+        "PositiveX",
+        "PositiveZ"
+      ],
+      "winMode": "DistinctEntitiesSameCell",
+      "winCheckMode": "AfterAtomicLogicChange",
+      "actionMode": "FourWayMoveInPlaceJumpApexSteer",
+      "schemaVersion": 4,
+      "camera": {
+        "initialSlot": 0,
+        "pitchDegrees": 35.264,
+        "yawDegrees": [
+          45,
+          135,
+          225,
+          315
+        ],
+        "inputMode": "CameraRelativeGrid"
+      }
+    }
+  ]
+}
