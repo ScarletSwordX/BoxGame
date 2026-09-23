@@ -1,0 +1,510 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "id": "L05",
+  "title": "写出弹性，再真正落下",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -8
+    },
+    "max": {
+      "x": 7,
+      "y": 9,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -2
+      },
+      "max": {
+        "x": 7,
+        "y": 0,
+        "z": 3
+      },
+      "id": "t_main_01",
+      "appearance": "Stone"
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 7,
+        "y": 4,
+        "z": 3
+      },
+      "id": "t_main_02",
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -8
+      },
+      "max": {
+        "x": 7,
+        "y": 0,
+        "z": -3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -3
+      },
+      "max": {
+        "x": 7,
+        "y": 9,
+        "z": -3
+      },
+      "appearance": "TransparentGlass"
+    }
+  ],
+  "entities": [
+    {
+      "id": "src_03_01_spring",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -7
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_03_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -7
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_03_03_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -7
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_01_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_01_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_03_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_spring",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -1
+      },
+      "anchored": false
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 5,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": false
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "把 BOUNCY 推入句尾，再登簧起跳",
+      "family": "activate-bounce",
+      "commands": [
+        "N",
+        "PW",
+        "N",
+        "E",
+        "J",
+        "E",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "PW",
+          "actorId": "robot_01",
+          "actorCell": [
+            1,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            1,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "J",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            5,
+            1
+          ],
+          "phase": "BounceApex",
+          "events": [
+            "BounceApexReached",
+            "BounceStarted",
+            "BounceStep",
+            "JumpApex",
+            "LandingBounce",
+            "PlayerFell"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            5,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ApexSteer"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            5,
+            1
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          4,
+          5,
+          1
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "BOUNCY 是可获得的性质；登上弹簧不等于下落触发。",
+    "observation": "弹簧只有 STOP，还没有弹性。BOUNCY 词牌在句尾侧面，可以被推入。",
+    "necessity": "弹簧顶面在 Y=2，普通原地跳只能到 Y=3；出口身体格在 Y=5。先拼出弹性再真正下落，才有足够高度。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "走到 BOUNCY 的右侧，把它向 -X 推进竖向 +Z 句子；返回弹簧旁，登上去，原地跳起再落地。到 Y=5 顶点后向 +X 侧移一次，继续进入旗标。"
+      }
+    ],
+    "hints": [
+      "弹簧顶面现在有没有弹性标记？",
+      "爬上去没有发生下降接触；需要原地跳起再落下。",
+      "先推入 BOUNCY，再登簧按 Space；到顶点后重新按 +X。"
+    ],
+    "risks": [
+      "不能因为模型是弹簧就默认 BOUNCY。",
+      "仅做原地跳也不能触发教学通关门；必须靠真实规则与高度成立。"
+    ]
+  },
+  "presentation": {
+    "mainAreaBounds": {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -2
+      },
+      "max": {
+        "x": 7,
+        "y": 9,
+        "z": 3
+      }
+    },
+    "worldRuleTextIds": [
+      "w_spring",
+      "w_is",
+      "w_bouncy",
+      "src_01_01_robot",
+      "src_01_02_is",
+      "src_01_03_you",
+      "src_02_01_flag",
+      "src_02_02_is",
+      "src_02_03_win",
+      "src_03_01_spring",
+      "src_03_02_is",
+      "src_03_03_stop"
+    ],
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_spring",
+          "src_03_02_is",
+          "src_03_03_stop"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ],
+    "mustFrameAllWorldWords": true,
+    "minimumReadableWordPixels": 28,
+    "occludingTerrain": "transparent-or-cutaway-only; never hide text",
+    "ruleSummary": "derived-only; highlight live source IDs; no rule creation",
+    "protectedAreaExplanation": "每词是独立三维 Text；隔墙是有格子碰撞的透明 Terrain，不是 UI 规则板。所有词 anchored=false。"
+  },
+  "designNotes": {
+    "revision": "SPRING 的 STOP 由世界词牌提供；BOUNCY 必须由玩家写入。",
+    "mainWordsUnlocked": true,
+    "worldSourceOnly": true,
+    "accessNotImmunity": true
+  }
+}

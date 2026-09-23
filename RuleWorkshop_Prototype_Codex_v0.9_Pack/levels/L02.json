@@ -1,0 +1,461 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "id": "L02",
+  "title": "先让石头可推，再搭台阶",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -4
+    },
+    "max": {
+      "x": 8,
+      "y": 7,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "id": "t_main_01",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_main_02",
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 2,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -4
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": -1
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 8,
+        "y": 7,
+        "z": -1
+      },
+      "appearance": "TransparentGlass"
+    }
+  ],
+  "entities": [
+    {
+      "id": "src_01_01_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_01_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_03_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "先写 PUSH，再搬石登高",
+      "family": "enable-push-build-step",
+      "commands": [
+        "PN",
+        "S",
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "requireEvents": [
+        "RulesChanged"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PN",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            7,
+            3,
+            0
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          7,
+          3,
+          0
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "同一岩块可以被推，也可以保持原位供玩家登上。",
+    "observation": "出生点附近的岩块离高平台太远；直接爬上去再前进，会回落到低处。",
+    "necessity": "高平台的落脚面在 Y=3，地面身体在 Y=1，普通登攀一次只升一格；必须把可推石搬到平台边。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "按推动意图把岩块从 X=2 推到 X=5；松开 Shift 后登到岩块顶面，再登上 X=6 的平台，走入 X=7 的旗标。"
+      }
+    ],
+    "hints": [
+      "这块石头可以留着当台阶，也可以先搬到别处。",
+      "Shift＋方向负责搬动；松开 Shift 后方向负责登上。",
+      "把岩块推到高台前一格，再松手爬上岩块。"
+    ],
+    "risks": [
+      "推不动时不能自动改成攀爬。",
+      "不按 Shift 登上岩块不算一次有效物品改造；不要因此满足互动记录。"
+    ]
+  },
+  "presentation": {
+    "mainAreaBounds": {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 7,
+        "z": 3
+      }
+    },
+    "worldRuleTextIds": [
+      "w_rock",
+      "w_is",
+      "w_push",
+      "src_01_01_robot",
+      "src_01_02_is",
+      "src_01_03_you",
+      "src_02_01_flag",
+      "src_02_02_is",
+      "src_02_03_win"
+    ],
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ],
+    "mustFrameAllWorldWords": true,
+    "minimumReadableWordPixels": 28,
+    "occludingTerrain": "transparent-or-cutaway-only; never hide text",
+    "ruleSummary": "derived-only; highlight live source IDs; no rule creation",
+    "protectedAreaExplanation": "每词是独立三维 Text；隔墙是有格子碰撞的透明 Terrain，不是 UI 规则板。所有词 anchored=false。"
+  },
+  "designNotes": {
+    "revision": "先拼 ROCK IS PUSH，再移动岩块搭阶；本关不再只有规则列表和石头。",
+    "mainWordsUnlocked": true,
+    "worldSourceOnly": true,
+    "accessNotImmunity": true
+  }
+}

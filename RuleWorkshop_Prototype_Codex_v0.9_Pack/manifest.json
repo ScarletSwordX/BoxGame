@@ -1,0 +1,105 @@
+{
+  "mechanicsVersion": "RW-v0.9",
+  "files": [
+    {
+      "path": "CHANGELOG.md",
+      "bytes": 1898,
+      "sha256": "1ddd5559a59148c6ac99ea458ed13ca60d96d45ee7517c168d0049d1eacd1308"
+    },
+    {
+      "path": "README.md",
+      "bytes": 2497,
+      "sha256": "99911ae94b678fbd98b2aad283322a5ae792f33d9dcc84b9255ba9109bf072ee"
+    },
+    {
+      "path": "RuleWorkshop_Prototype_Codex_v0.9.md",
+      "bytes": 96867,
+      "sha256": "c18e4c6fc82c750a962220816a6fa8fe44f520d9d47d83e6b53184cc7849ea96"
+    },
+    {
+      "path": "VERIFICATION_SUMMARY.md",
+      "bytes": 4164,
+      "sha256": "d869012970f3a62a8a2c2a6044203cb61c28c42625a723fcc0794cdbd1ac5641"
+    },
+    {
+      "path": "catalog.json",
+      "bytes": 352,
+      "sha256": "ba167348c3e2a354833568a98a18ff2516ad0f75fa9667647c1120a2504308f1"
+    },
+    {
+      "path": "levels/L01.json",
+      "bytes": 7488,
+      "sha256": "d6505de294b7bf11d26546316c7c34758d09374dc237ad9590f9c939f35cc70c"
+    },
+    {
+      "path": "levels/L02.json",
+      "bytes": 9745,
+      "sha256": "591730837784c379c236674a21764f31f0304294d95a15bd7c2a3d8c1f0cf327"
+    },
+    {
+      "path": "levels/L03.json",
+      "bytes": 10719,
+      "sha256": "7ed52d70ed8d6ace13d7e88d613b8ef3d5a251f0959c0c99a84adcb5917341ef"
+    },
+    {
+      "path": "levels/L04.json",
+      "bytes": 11359,
+      "sha256": "7a02e29c0b2db2b09560a0113ab5d1b4eb482da22b4203f7d875c63012cb0f01"
+    },
+    {
+      "path": "levels/L05.json",
+      "bytes": 10781,
+      "sha256": "860fd92d67d1306b0817dc01274ac882500e859a1f8757ecf80cbbaa69634c03"
+    },
+    {
+      "path": "levels/L06.json",
+      "bytes": 14320,
+      "sha256": "bee9c701a92ec2778fb8d3df0aa3a591d0193cabe56c4e0ca9072c0b564d5e49"
+    },
+    {
+      "path": "levels/L07.json",
+      "bytes": 12607,
+      "sha256": "6ebe2a871f189087e429893e93488f545d8b314d14c6b3a5ae6c6ea7c48bc168"
+    },
+    {
+      "path": "levels/L08.json",
+      "bytes": 13000,
+      "sha256": "b94053efe9bb63f07d61b892f7d30ca4d4b2c3d151a6a9ccd5227765d85b6bf4"
+    },
+    {
+      "path": "levels/L09.json",
+      "bytes": 15330,
+      "sha256": "31348d1be3500865376e16bfbf6a95fafc55dea91d405448fabe8cd31b68a904"
+    },
+    {
+      "path": "levels/L10.json",
+      "bytes": 14454,
+      "sha256": "69131921339650fab454e14b1df8efb7b101d649ac2c1a91b0c0af5ca3753d83"
+    },
+    {
+      "path": "levels/L11.json",
+      "bytes": 15135,
+      "sha256": "34199d6cef97a1917b8e6c4b40f5cdc3ec4ed536ab109d05addf35309fd13674"
+    },
+    {
+      "path": "levels/L12.json",
+      "bytes": 22508,
+      "sha256": "935bab543e2f03c5b6ce1eaf3faea105ca2868ca78891a0900f0804dc23799a9"
+    },
+    {
+      "path": "reference_check.py",
+      "bytes": 43312,
+      "sha256": "5d8ede51a9a1da30364d66017b3d007d14526c67335828c4160e791369e7f02c"
+    },
+    {
+      "path": "validation_results.json",
+      "bytes": 149276,
+      "sha256": "5c66aac214379e776883b41e86161871b355f905052049c0714277bbb9f3e325"
+    },
+    {
+      "path": "world_word_inventory.json",
+      "bytes": 9719,
+      "sha256": "3de158b9d1b3719727927eca47a71468ccb33dfbc1fb3e6137be11727b6db7a3"
+    }
+  ]
+}

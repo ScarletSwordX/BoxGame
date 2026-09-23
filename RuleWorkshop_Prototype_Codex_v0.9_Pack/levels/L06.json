@@ -1,0 +1,705 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "id": "L06",
+  "title": "把弹性从弹簧借给石头",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -6
+    },
+    "max": {
+      "x": 10,
+      "y": 10,
+      "z": 6
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": 6
+      },
+      "id": "t_main_01",
+      "appearance": "Stone"
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 1,
+        "z": 6
+      },
+      "id": "t_main_02",
+      "appearance": "Stone"
+    },
+    {
+      "min": {
+        "x": 8,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 5,
+        "z": 6
+      },
+      "id": "t_main_03",
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -6
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": -1
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 10,
+        "y": 10,
+        "z": -1
+      },
+      "appearance": "TransparentGlass"
+    }
+  ],
+  "entities": [
+    {
+      "id": "src_03_01_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_03_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_03_03_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_04_01_spring",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_04_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_04_03_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -5
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_01_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_01_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_03_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is_r",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_spring",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is_s",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 6,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": false
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PS",
+        "PS",
+        "E",
+        "E",
+        "S",
+        "S",
+        "S",
+        "PE",
+        "PE",
+        "E",
+        "J",
+        "E",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PS",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            5
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "PS",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            4
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            4
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            4
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            3
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 8,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 9,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 10,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            7,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 11,
+          "command": "J",
+          "actorId": "robot_01",
+          "actorCell": [
+            7,
+            6,
+            1
+          ],
+          "phase": "BounceApex",
+          "events": [
+            "BounceApexReached",
+            "BounceStarted",
+            "BounceStep",
+            "JumpApex",
+            "LandingBounce",
+            "PlayerFell"
+          ]
+        },
+        {
+          "step": 12,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            8,
+            6,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ApexSteer"
+          ]
+        },
+        {
+          "step": 13,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            9,
+            6,
+            1
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          9,
+          6,
+          1
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "同一个属性词可以从一种物品转给另一种物品。",
+    "observation": "唯一的 BOUNCY 让低处弹簧有弹性，但高处出口需要靠近出口的岩块发射。",
+    "necessity": "初始弹簧位置与接触高度不够完成出口路线；岩块既要摆位，又需要弹性。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "把 BOUNCY 向 -Z 推两格，从 SPRING 的句子转入 ROCK 的句子；上到中层，把岩块推近出口。登上岩块并原地跳，借三格弹跳到出口高度。"
+      }
+    ],
+    "hints": [
+      "有弹性的未必必须是弹簧。",
+      "哪个物品既能搬动，又更接近出口？",
+      "把 BOUNCY 从 SPRING 行移到 ROCK 行，再把弹跳石推向高台。"
+    ],
+    "risks": [
+      "移走 BOUNCY 后，弹簧必须真的失去弹性。",
+      "岩块获得弹性时保留岩块身份，不替换成弹簧模型。"
+    ]
+  },
+  "presentation": {
+    "mainAreaBounds": {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 10,
+        "z": 6
+      }
+    },
+    "worldRuleTextIds": [
+      "w_spring",
+      "w_is_s",
+      "w_bouncy",
+      "w_rock",
+      "w_is_r",
+      "src_01_01_robot",
+      "src_01_02_is",
+      "src_01_03_you",
+      "src_02_01_flag",
+      "src_02_02_is",
+      "src_02_03_win",
+      "src_03_01_rock",
+      "src_03_02_is",
+      "src_03_03_push",
+      "src_04_01_spring",
+      "src_04_02_is",
+      "src_04_03_stop"
+    ],
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_rock",
+          "src_03_02_is",
+          "src_03_03_push"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_04",
+        "textIds": [
+          "src_04_01_spring",
+          "src_04_02_is",
+          "src_04_03_stop"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ],
+    "mustFrameAllWorldWords": true,
+    "minimumReadableWordPixels": 28,
+    "occludingTerrain": "transparent-or-cutaway-only; never hide text",
+    "ruleSummary": "derived-only; highlight live source IDs; no rule creation",
+    "protectedAreaExplanation": "每词是独立三维 Text；隔墙是有格子碰撞的透明 Terrain，不是 UI 规则板。所有词 anchored=false。"
+  },
+  "designNotes": {
+    "revision": "同一个 BOUNCY 在两条空间句子之间移动，名词与 IS 也可操作。",
+    "mainWordsUnlocked": true,
+    "worldSourceOnly": true,
+    "accessNotImmunity": true
+  }
+}

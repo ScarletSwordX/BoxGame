@@ -1,0 +1,400 @@
+[
+  {
+    "id": "L01",
+    "totalWords": 6,
+    "mainWords": 3,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L02",
+    "totalWords": 9,
+    "mainWords": 3,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L03",
+    "totalWords": 10,
+    "mainWords": 4,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L04",
+    "totalWords": 12,
+    "mainWords": 3,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_cloud",
+          "src_03_02_is",
+          "src_03_03_hover"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L05",
+    "totalWords": 12,
+    "mainWords": 3,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_spring",
+          "src_03_02_is",
+          "src_03_03_stop"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L06",
+    "totalWords": 17,
+    "mainWords": 5,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_rock",
+          "src_03_02_is",
+          "src_03_03_push"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_04",
+        "textIds": [
+          "src_04_01_spring",
+          "src_04_02_is",
+          "src_04_03_stop"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L07",
+    "totalWords": 16,
+    "mainWords": 4,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_rock",
+          "src_03_02_is",
+          "src_03_03_push"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_04",
+        "textIds": [
+          "src_04_01_cloud",
+          "src_04_02_is",
+          "src_04_03_stop"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L08",
+    "totalWords": 10,
+    "mainWords": 4,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L09",
+    "totalWords": 14,
+    "mainWords": 8,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_flag",
+          "src_01_02_is",
+          "src_01_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_rock",
+          "src_02_02_is",
+          "src_02_03_push"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L10",
+    "totalWords": 14,
+    "mainWords": 3,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_spring",
+          "src_03_02_is",
+          "src_03_03_push",
+          "src_03_04_and",
+          "src_03_05_bouncy"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L11",
+    "totalWords": 13,
+    "mainWords": 4,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_03",
+        "textIds": [
+          "src_03_01_rock",
+          "src_03_02_is",
+          "src_03_03_push"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  },
+  {
+    "id": "L12",
+    "totalWords": 20,
+    "mainWords": 12,
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_flag",
+          "src_01_02_is",
+          "src_01_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_spring",
+          "src_02_02_is",
+          "src_02_03_push",
+          "src_02_04_and",
+          "src_02_05_bouncy"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ]
+  }
+]

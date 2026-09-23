@@ -1,0 +1,6141 @@
+{
+  "mechanicsVersion": "RW-v0.9",
+  "levelCount": 12,
+  "witnessRouteCount": 18,
+  "multiSolutionLevelCount": 5,
+  "minimumRequiredMultiSolutionLevelCount": 4,
+  "finiteRegressionCount": 34,
+  "allFiniteRegressionsPassed": true,
+  "worldWordCount": 153,
+  "mainAreaWordCount": 56,
+  "noInteractionSearchStates": 547,
+  "noInteractionCommandAttempts": 5470,
+  "interactionAuditPassedLevels": [
+    "L01",
+    "L02",
+    "L03",
+    "L04",
+    "L05",
+    "L06",
+    "L07",
+    "L08",
+    "L09",
+    "L10",
+    "L11",
+    "L12"
+  ],
+  "validationScope": "Current finite Python graybox model; 12 no-interaction subgraphs exhausted; live word-source auditing. NOT Unity/visual/editor/input/playtest verification or all-solutions enumeration.",
+  "unsupportedInReference": [
+    "Void removal/death",
+    "multiple simultaneous YOU",
+    "direct YOU+HOVER/FLY inputs",
+    "Unity visuals/input/editor",
+    "one-to-many noun copying/mixed RHS"
+  ],
+  "checks": [
+    {
+      "name": "L01 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L02 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L03 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L04 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L05 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L06 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L07 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L08 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L09 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L10 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L11 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "L12 schema, world sources, movable words and real support",
+      "passed": true
+    },
+    {
+      "name": "Non-spatial fixedRules injection is rejected, not combined or silently ignored",
+      "passed": true
+    },
+    {
+      "name": "Deleting all world words removes all explicit properties and transformations",
+      "passed": true
+    },
+    {
+      "name": "Displayed token and parsed token share data; stable ID w_win does not force WIN",
+      "passed": true
+    },
+    {
+      "name": "Level 1 requires a real word push to activate FLAG WIN",
+      "passed": true
+    },
+    {
+      "name": "Level 2 PUSH changes actual rock solidity and manual displacement permission",
+      "passed": true
+    },
+    {
+      "name": "Replacing STOP with PUSH removes STOP; no hidden fallback sentence survives",
+      "passed": true
+    },
+    {
+      "name": "Protected YOU source is ordinary movable text; reaching it in a test fixture allows breaking control",
+      "passed": true
+    },
+    {
+      "name": "The source-area barrier is actual Terrain, not a cannot-push flag or UI exclusion zone",
+      "passed": true
+    },
+    {
+      "name": "Main-puzzle noun and IS words are not anchored as attribute-only slots",
+      "passed": true
+    },
+    {
+      "name": "Ordinary movement climbs a PUSH rock; push-intent moves it instead",
+      "passed": true
+    },
+    {
+      "name": "STOP without PUSH blocks manual displacement but remains climbable",
+      "passed": true
+    },
+    {
+      "name": "YOU and WIN on one identity never cause self-victory",
+      "passed": true
+    },
+    {
+      "name": "World noun words perform ROCK to FLAG conversion and recompute target solidity",
+      "passed": true
+    },
+    {
+      "name": "World IS transfer plus ROBOT IS FLAG preserves the distinct-body victory path",
+      "passed": true
+    },
+    {
+      "name": "Same L11 initial data retains bounce and lift as different solutions",
+      "passed": true
+    },
+    {
+      "name": "Four-view observation never changes rules or advances world time",
+      "passed": true
+    },
+    {
+      "name": "Adding visible source words does not restore directional jumps",
+      "passed": true
+    },
+    {
+      "name": "Ordinary text falls under world-default gravity and is not implicitly hovering",
+      "passed": true
+    },
+    {
+      "name": "Removing the visible YOU word never silently leaves a robot controller active",
+      "passed": true
+    },
+    {
+      "name": "Face adjacency to the hollow target still does not win",
+      "passed": true
+    },
+    {
+      "name": "No-interaction search detects a deliberately authored traversal-only counterexample",
+      "passed": true
+    },
+    {
+      "name": "Search limits are inconclusive, not no-bypass proofs",
+      "passed": true
+    }
+  ],
+  "levels": [
+    {
+      "id": "L01",
+      "title": "写出终点，再走进去",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 24,
+        "attempts": 240,
+        "allowedTransitions": 167,
+        "filteredInteractiveTransitions": 8,
+        "rejectedCommands": 65
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        }
+      ],
+      "wordCount": 6,
+      "mainAreaWordCount": 3,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "把 WIN 写入空间句子并进入旗标",
+          "family": "activate-win",
+          "passed": true,
+          "commandCount": 4,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              4,
+              1,
+              0
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              4,
+              1,
+              0
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 2,
+            "ActiveInteraction": 1,
+            "RulesChanged": 1,
+            "Walk": 3,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_win",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                1
+              ],
+              "after": [
+                2,
+                1,
+                2
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "w_flag",
+                "w_is",
+                "w_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "d02c680e1e719385333cbb6d7bb813a373dc644a2892720613994a44f0d788b0"
+    },
+    {
+      "id": "L02",
+      "title": "先让石头可推，再搭台阶",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 24,
+        "attempts": 240,
+        "allowedTransitions": 167,
+        "filteredInteractiveTransitions": 8,
+        "rejectedCommands": 65
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 9,
+      "mainAreaWordCount": 3,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "先写 PUSH，再搬石登高",
+          "family": "enable-push-build-step",
+          "passed": true,
+          "commandCount": 7,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              7,
+              3,
+              0
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              7,
+              3,
+              0
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 6,
+            "ActiveInteraction": 3,
+            "RulesChanged": 1,
+            "Walk": 2,
+            "Climbed": 2,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_push",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                1
+              ],
+              "after": [
+                2,
+                1,
+                2
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                0
+              ],
+              "after": [
+                4,
+                1,
+                0
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                4,
+                1,
+                0
+              ],
+              "after": [
+                5,
+                1,
+                0
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                3,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                3,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "w_rock",
+                "w_is",
+                "w_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "9fedf31fe77d50b21166193e3f6c5db7683b764d631e1bb79fd2ac7363eeeb5e"
+    },
+    {
+      "id": "L03",
+      "title": "阻挡和可推，可以改写",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 48,
+        "attempts": 480,
+        "allowedTransitions": 357,
+        "filteredInteractiveTransitions": 8,
+        "rejectedCommands": 115
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "STOP",
+          "textIds": [
+            "w_rock",
+            "w_is",
+            "w_stop"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "STOP"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 10,
+      "mainAreaWordCount": 4,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "主教学解",
+          "family": "taught-mechanic",
+          "passed": true,
+          "commandCount": 9,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              9,
+              4,
+              1
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              9,
+              4,
+              1
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 7,
+            "ActiveInteraction": 4,
+            "RulesChanged": 1,
+            "Walk": 3,
+            "Climbed": 3,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_push",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                2
+              ],
+              "after": [
+                2,
+                1,
+                3
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_stop",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                3
+              ],
+              "after": [
+                2,
+                1,
+                4
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                2,
+                1
+              ],
+              "after": [
+                6,
+                2,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                6,
+                2,
+                1
+              ],
+              "after": [
+                7,
+                2,
+                1
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                8,
+                4,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                9,
+                4,
+                1
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "w_rock",
+                "w_is",
+                "w_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "19af5fb5603f470bdb20fe613076ee3081e2f953755095bb099b925cd9260b8a"
+    },
+    {
+      "id": "L04",
+      "title": "看见悬停，写出承托",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 35,
+        "attempts": 350,
+        "allowedTransitions": 248,
+        "filteredInteractiveTransitions": 8,
+        "rejectedCommands": 94
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "CLOUD",
+          "result": "HOVER",
+          "textIds": [
+            "src_03_01_cloud",
+            "src_03_02_is",
+            "src_03_03_hover"
+          ],
+          "tokens": [
+            "CLOUD",
+            "IS",
+            "HOVER"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 12,
+      "mainAreaWordCount": 3,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "主教学解",
+          "family": "taught-mechanic",
+          "passed": true,
+          "commandCount": 8,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              8,
+              3,
+              1
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              8,
+              3,
+              1
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 2,
+            "ActiveInteraction": 1,
+            "RulesChanged": 1,
+            "Walk": 7,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_stop",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                3,
+                2
+              ],
+              "after": [
+                2,
+                3,
+                3
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                3,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                8,
+                3,
+                1
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "cloud_1": "CLOUD",
+            "cloud_2": "CLOUD",
+            "cloud_3": "CLOUD",
+            "robot_01": "ROBOT",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "CLOUD",
+              "result": "HOVER",
+              "textIds": [
+                "src_03_01_cloud",
+                "src_03_02_is",
+                "src_03_03_hover"
+              ],
+              "tokens": [
+                "CLOUD",
+                "IS",
+                "HOVER"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "CLOUD",
+              "result": "STOP",
+              "textIds": [
+                "w_cloud",
+                "w_is",
+                "w_stop"
+              ],
+              "tokens": [
+                "CLOUD",
+                "IS",
+                "STOP"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "6ceeebaaf76e7f5ff262c07a841a022b3276cb62233bc534b43677c6e0d8abb8"
+    },
+    {
+      "id": "L05",
+      "title": "写出弹性，再真正落下",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 28,
+        "attempts": 280,
+        "allowedTransitions": 186,
+        "filteredInteractiveTransitions": 4,
+        "rejectedCommands": 90
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "STOP",
+          "textIds": [
+            "src_03_01_spring",
+            "src_03_02_is",
+            "src_03_03_stop"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "STOP"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 12,
+      "mainAreaWordCount": 3,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "把 BOUNCY 推入句尾，再登簧起跳",
+          "family": "activate-bounce",
+          "passed": true,
+          "commandCount": 7,
+          "firstInteractionStep": 2,
+          "firstWordInteractionStep": 2,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              4,
+              5,
+              1
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              4,
+              5,
+              1
+            ],
+            "usedBounce": true,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Walk": 3,
+            "Pushed": 2,
+            "ActiveInteraction": 1,
+            "RulesChanged": 1,
+            "Climbed": 1,
+            "JumpApex": 1,
+            "PlayerFell": 1,
+            "BounceStarted": 1,
+            "BounceStep": 3,
+            "LandingBounce": 1,
+            "BounceApexReached": 1,
+            "ApexSteer": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_bouncy",
+              "commandEffect": "Pushed",
+              "before": [
+                1,
+                1,
+                0
+              ],
+              "after": [
+                0,
+                1,
+                0
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "PW",
+              "actorId": "robot_01",
+              "actorCell": [
+                1,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                1,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "J",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                5,
+                1
+              ],
+              "phase": "BounceApex",
+              "events": [
+                "BounceApexReached",
+                "BounceStarted",
+                "BounceStep",
+                "JumpApex",
+                "LandingBounce",
+                "PlayerFell"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                5,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ApexSteer"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                5,
+                1
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "spring": "SPRING",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "STOP",
+              "textIds": [
+                "src_03_01_spring",
+                "src_03_02_is",
+                "src_03_03_stop"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "STOP"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "BOUNCY",
+              "textIds": [
+                "w_spring",
+                "w_is",
+                "w_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "06bf34e93865fd8e240f7f26e195c0266caba21b2bc6cfa4f0bb44cabfd445d6"
+    },
+    {
+      "id": "L06",
+      "title": "把弹性从弹簧借给石头",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 57,
+        "attempts": 570,
+        "allowedTransitions": 423,
+        "filteredInteractiveTransitions": 14,
+        "rejectedCommands": 133
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "PUSH",
+          "textIds": [
+            "src_03_01_rock",
+            "src_03_02_is",
+            "src_03_03_push"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "PUSH"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "BOUNCY",
+          "textIds": [
+            "w_spring",
+            "w_is_s",
+            "w_bouncy"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "BOUNCY"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "STOP",
+          "textIds": [
+            "src_04_01_spring",
+            "src_04_02_is",
+            "src_04_03_stop"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "STOP"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 17,
+      "mainAreaWordCount": 5,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "主教学解",
+          "family": "taught-mechanic",
+          "passed": true,
+          "commandCount": 13,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              9,
+              6,
+              1
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              9,
+              6,
+              1
+            ],
+            "usedBounce": true,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 8,
+            "ActiveInteraction": 4,
+            "RulesChanged": 2,
+            "Walk": 5,
+            "Climbed": 2,
+            "JumpApex": 1,
+            "PlayerFell": 1,
+            "BounceStarted": 1,
+            "BounceStep": 3,
+            "LandingBounce": 1,
+            "BounceApexReached": 1,
+            "ApexSteer": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_bouncy",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                5
+              ],
+              "after": [
+                2,
+                1,
+                4
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_bouncy",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                4
+              ],
+              "after": [
+                2,
+                1,
+                3
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                2,
+                1
+              ],
+              "after": [
+                6,
+                2,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                6,
+                2,
+                1
+              ],
+              "after": [
+                7,
+                2,
+                1
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PS",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                5
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "PS",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                4
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                4
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                4
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                3
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 10,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 11,
+              "command": "J",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                6,
+                1
+              ],
+              "phase": "BounceApex",
+              "events": [
+                "BounceApexReached",
+                "BounceStarted",
+                "BounceStep",
+                "JumpApex",
+                "LandingBounce",
+                "PlayerFell"
+              ]
+            },
+            {
+              "step": 12,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                8,
+                6,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ApexSteer"
+              ]
+            },
+            {
+              "step": 13,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                9,
+                6,
+                1
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "spring": "SPRING",
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "src_03_01_rock",
+                "src_03_02_is",
+                "src_03_03_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "BOUNCY",
+              "textIds": [
+                "w_rock",
+                "w_is_r",
+                "w_bouncy"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "STOP",
+              "textIds": [
+                "src_04_01_spring",
+                "src_04_02_is",
+                "src_04_03_stop"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "STOP"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "24ea40fd6f15f52d2ada86d0e59a8855ad4bc8d3c98002c6913bd1a0ce40e836"
+    },
+    {
+      "id": "L07",
+      "title": "站到云上，再改写运动",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 28,
+        "attempts": 280,
+        "allowedTransitions": 202,
+        "filteredInteractiveTransitions": 4,
+        "rejectedCommands": 74
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "PUSH",
+          "textIds": [
+            "src_03_01_rock",
+            "src_03_02_is",
+            "src_03_03_push"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "PUSH"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "CLOUD",
+          "result": "STOP",
+          "textIds": [
+            "src_04_01_cloud",
+            "src_04_02_is",
+            "src_04_03_stop"
+          ],
+          "tokens": [
+            "CLOUD",
+            "IS",
+            "STOP"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "CLOUD",
+          "result": "HOVER",
+          "textIds": [
+            "w_cloud",
+            "w_is",
+            "w_hover"
+          ],
+          "tokens": [
+            "CLOUD",
+            "IS",
+            "HOVER"
+          ]
+        }
+      ],
+      "wordCount": 16,
+      "mainAreaWordCount": 4,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 1,
+      "routes": [
+        {
+          "id": "A",
+          "name": "主教学解",
+          "family": "taught-mechanic",
+          "passed": true,
+          "commandCount": 6,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 4,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              6,
+              6,
+              2
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              6,
+              6,
+              2
+            ],
+            "usedBounce": false,
+            "usedLift": true,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 5,
+            "ActiveInteraction": 3,
+            "Climbed": 2,
+            "RulesChanged": 1,
+            "FlyOrRide": 11,
+            "Walk": 2,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                1
+              ],
+              "after": [
+                3,
+                1,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_fly",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                3,
+                1
+              ],
+              "after": [
+                6,
+                3,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_hover",
+              "commandEffect": "Pushed",
+              "before": [
+                6,
+                3,
+                1
+              ],
+              "after": [
+                7,
+                3,
+                1
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                6,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "FlyOrRide",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                6,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "FlyOrRide",
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                6,
+                2
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "cloud_a": "CLOUD",
+            "cloud_b": "CLOUD",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "src_03_01_rock",
+                "src_03_02_is",
+                "src_03_03_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "CLOUD",
+              "result": "STOP",
+              "textIds": [
+                "src_04_01_cloud",
+                "src_04_02_is",
+                "src_04_03_stop"
+              ],
+              "tokens": [
+                "CLOUD",
+                "IS",
+                "STOP"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "CLOUD",
+              "result": "FLY",
+              "textIds": [
+                "w_cloud",
+                "w_is",
+                "w_fly"
+              ],
+              "tokens": [
+                "CLOUD",
+                "IS",
+                "FLY"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "1efa519dccb2ce62f7c2e3b7a5f9ffdb4fffd77f06a57a6d53277e440c15d3dc"
+    },
+    {
+      "id": "L08",
+      "title": "去找旗帜，还是造出旗帜",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 59,
+        "attempts": 590,
+        "allowedTransitions": 437,
+        "filteredInteractiveTransitions": 14,
+        "rejectedCommands": 139
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "PUSH",
+          "textIds": [
+            "w_rock",
+            "w_is",
+            "w_push"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "PUSH"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 10,
+      "mainAreaWordCount": 4,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 2,
+      "routes": [
+        {
+          "id": "A",
+          "name": "推石搭阶，抵达原旗标",
+          "family": "move-actor",
+          "passed": true,
+          "commandCount": 5,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": null,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              6,
+              3,
+              0
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              6,
+              3,
+              0
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 4,
+            "ActiveInteraction": 2,
+            "Climbed": 2,
+            "Walk": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                0
+              ],
+              "after": [
+                3,
+                1,
+                0
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                0
+              ],
+              "after": [
+                4,
+                1,
+                0
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                3,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                3,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "w_rock",
+                "w_is",
+                "w_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "将岩块变成旗标，进入新旗标",
+          "family": "transform-nearby-goal",
+          "passed": true,
+          "commandCount": 9,
+          "firstInteractionStep": 5,
+          "firstWordInteractionStep": 5,
+          "win": {
+            "youId": "robot_01",
+            "winId": "rock",
+            "cell": [
+              2,
+              1,
+              0
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "rock",
+            "winCell": [
+              2,
+              1,
+              0
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": true
+          },
+          "eventCounts": {
+            "Walk": 8,
+            "Pushed": 3,
+            "ActiveInteraction": 2,
+            "RulesChanged": 1,
+            "Transformed": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_flag_transform_rock",
+              "commandEffect": "Pushed",
+              "before": [
+                4,
+                1,
+                2
+              ],
+              "after": [
+                4,
+                1,
+                3
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_push",
+              "commandEffect": "Pushed",
+              "before": [
+                4,
+                1,
+                3
+              ],
+              "after": [
+                4,
+                1,
+                4
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [
+            {
+              "event": "Transformed",
+              "id": "rock",
+              "beforeSubject": "ROCK",
+              "afterSubject": "FLAG",
+              "cell": [
+                2,
+                1,
+                0
+              ],
+              "sources": [
+                [
+                  "w_rock",
+                  "w_is",
+                  "w_flag_transform_rock"
+                ]
+              ]
+            }
+          ],
+          "trace": [
+            {
+              "step": 1,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                1,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged",
+                "Transformed"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "FLAG",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Transformation",
+              "subject": "ROCK",
+              "result": "FLAG",
+              "textIds": [
+                "w_rock",
+                "w_is",
+                "w_flag_transform_rock"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "FLAG"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "fa3040749328f081014903287ba740d9796a8bcd3c3da317dbab2a82c17ac51e"
+    },
+    {
+      "id": "L09",
+      "title": "换一条路，或者换一个自己",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 59,
+        "attempts": 590,
+        "allowedTransitions": 427,
+        "filteredInteractiveTransitions": 22,
+        "rejectedCommands": 141
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_01_01_flag",
+            "src_01_02_is",
+            "src_01_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "w_robot",
+            "w_is_switch",
+            "w_you_r"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "PUSH",
+          "textIds": [
+            "src_02_01_rock",
+            "src_02_02_is",
+            "src_02_03_push"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "PUSH"
+          ]
+        }
+      ],
+      "wordCount": 14,
+      "mainAreaWordCount": 8,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 2,
+      "routes": [
+        {
+          "id": "A",
+          "name": "机器人推石登台，进入旗标",
+          "family": "move-original-actor",
+          "passed": true,
+          "commandCount": 5,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": null,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              6,
+              3,
+              0
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              6,
+              3,
+              0
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 4,
+            "ActiveInteraction": 2,
+            "Climbed": 2,
+            "Walk": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                2,
+                1,
+                0
+              ],
+              "after": [
+                3,
+                1,
+                0
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "rock",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                0
+              ],
+              "after": [
+                4,
+                1,
+                0
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                3,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                3,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_01_01_flag",
+                "src_01_02_is",
+                "src_01_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "w_robot",
+                "w_is_switch",
+                "w_you_r"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "src_02_01_rock",
+                "src_02_02_is",
+                "src_02_03_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "给原身体 WIN，再把控制权交给旗帜",
+          "family": "transfer-control",
+          "passed": true,
+          "commandCount": 13,
+          "firstInteractionStep": 4,
+          "firstWordInteractionStep": 4,
+          "win": {
+            "youId": "goal",
+            "winId": "robot_01",
+            "cell": [
+              3,
+              1,
+              3
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "goal",
+            "winId": "robot_01",
+            "winCell": [
+              3,
+              1,
+              3
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": true,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Walk": 11,
+            "Pushed": 4,
+            "ActiveInteraction": 2,
+            "RulesChanged": 2,
+            "ControlChanged": 1,
+            "PlayerFell": 2,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_win_robot",
+              "commandEffect": "Pushed",
+              "before": [
+                1,
+                1,
+                2
+              ],
+              "after": [
+                0,
+                1,
+                2
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_is_switch",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                3
+              ],
+              "after": [
+                3,
+                1,
+                4
+              ]
+            }
+          ],
+          "controlChanges": [
+            {
+              "event": "ControlChanged",
+              "oldId": "robot_01",
+              "newId": "goal"
+            }
+          ],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                1,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "PW",
+              "actorId": "robot_01",
+              "actorCell": [
+                1,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "PN",
+              "actorId": "goal",
+              "actorCell": [
+                6,
+                3,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "ControlChanged",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "W",
+              "actorId": "goal",
+              "actorCell": [
+                5,
+                3,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "N",
+              "actorId": "goal",
+              "actorCell": [
+                5,
+                3,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 10,
+              "command": "N",
+              "actorId": "goal",
+              "actorCell": [
+                5,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "PlayerFell",
+                "Walk"
+              ]
+            },
+            {
+              "step": 11,
+              "command": "W",
+              "actorId": "goal",
+              "actorCell": [
+                4,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 12,
+              "command": "W",
+              "actorId": "goal",
+              "actorCell": [
+                3,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 13,
+              "command": "N",
+              "actorId": "goal",
+              "actorCell": [
+                3,
+                1,
+                3
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_01_01_flag",
+                "src_01_02_is",
+                "src_01_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "WIN",
+              "textIds": [
+                "w_robot_goal",
+                "w_is_goal",
+                "w_win_robot"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "YOU",
+              "textIds": [
+                "w_flag",
+                "w_is_switch",
+                "w_you_f"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "src_02_01_rock",
+                "src_02_02_is",
+                "src_02_03_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "dd2d3d29bccb3d28649fdb9ad38324401e7e0cf682d20f9a23c070256077fc73"
+    },
+    {
+      "id": "L10",
+      "title": "人上去，或者目标下来",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 64,
+        "attempts": 640,
+        "allowedTransitions": 497,
+        "filteredInteractiveTransitions": 12,
+        "rejectedCommands": 131
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "PUSH",
+          "textIds": [
+            "src_03_01_spring",
+            "src_03_02_is",
+            "src_03_03_push",
+            "src_03_04_and",
+            "src_03_05_bouncy"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "PUSH",
+            "AND",
+            "BOUNCY"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "BOUNCY",
+          "textIds": [
+            "src_03_01_spring",
+            "src_03_02_is",
+            "src_03_03_push",
+            "src_03_04_and",
+            "src_03_05_bouncy"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "PUSH",
+            "AND",
+            "BOUNCY"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "HOVER",
+          "textIds": [
+            "w_flag",
+            "w_is",
+            "w_hover"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "HOVER"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 14,
+      "mainAreaWordCount": 3,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 2,
+      "routes": [
+        {
+          "id": "A",
+          "name": "移动弹簧，弹入高空旗标",
+          "family": "bounce-to-target",
+          "passed": true,
+          "commandCount": 5,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": null,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              6,
+              5,
+              0
+            ],
+            "cause": "ApexSteer"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              6,
+              5,
+              0
+            ],
+            "usedBounce": true,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 4,
+            "ActiveInteraction": 2,
+            "Climbed": 1,
+            "JumpApex": 1,
+            "PlayerFell": 1,
+            "BounceStarted": 1,
+            "BounceStep": 3,
+            "LandingBounce": 1,
+            "BounceApexReached": 1,
+            "ApexSteer": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "spring",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                0
+              ],
+              "after": [
+                4,
+                1,
+                0
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "spring",
+              "commandEffect": "Pushed",
+              "before": [
+                4,
+                1,
+                0
+              ],
+              "after": [
+                5,
+                1,
+                0
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "J",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                5,
+                0
+              ],
+              "phase": "BounceApex",
+              "events": [
+                "BounceApexReached",
+                "BounceStarted",
+                "BounceStep",
+                "JumpApex",
+                "LandingBounce",
+                "PlayerFell"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                5,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "ApexSteer",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "spring": "SPRING",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "PUSH",
+              "textIds": [
+                "src_03_01_spring",
+                "src_03_02_is",
+                "src_03_03_push",
+                "src_03_04_and",
+                "src_03_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "BOUNCY",
+              "textIds": [
+                "src_03_01_spring",
+                "src_03_02_is",
+                "src_03_03_push",
+                "src_03_04_and",
+                "src_03_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "HOVER",
+              "textIds": [
+                "w_flag",
+                "w_is",
+                "w_hover"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "HOVER"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "拆除 HOVER，走入下落后的目标",
+          "family": "bring-target-down",
+          "passed": true,
+          "commandCount": 10,
+          "firstInteractionStep": 5,
+          "firstWordInteractionStep": 5,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              6,
+              1,
+              0
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              6,
+              1,
+              0
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Walk": 9,
+            "Pushed": 2,
+            "ActiveInteraction": 1,
+            "RulesChanged": 1,
+            "GravityFall": 4,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_hover",
+              "commandEffect": "Pushed",
+              "before": [
+                4,
+                1,
+                3
+              ],
+              "after": [
+                4,
+                1,
+                4
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                3
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "GravityFall",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 10,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                1,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "spring": "SPRING",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "PUSH",
+              "textIds": [
+                "src_03_01_spring",
+                "src_03_02_is",
+                "src_03_03_push",
+                "src_03_04_and",
+                "src_03_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "BOUNCY",
+              "textIds": [
+                "src_03_01_spring",
+                "src_03_02_is",
+                "src_03_03_push",
+                "src_03_04_and",
+                "src_03_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "96ab69f3150a32e8b5c535e8e3bf1be4ab5b3057b790e9141170467bd4300b12"
+    },
+    {
+      "id": "L11",
+      "title": "同一石台，两种上升",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 46,
+        "attempts": 460,
+        "allowedTransitions": 332,
+        "filteredInteractiveTransitions": 5,
+        "rejectedCommands": 123
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "PUSH",
+          "textIds": [
+            "src_03_01_rock",
+            "src_03_02_is",
+            "src_03_03_push"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "PUSH"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "src_01_01_robot",
+            "src_01_02_is",
+            "src_01_03_you"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_02_01_flag",
+            "src_02_02_is",
+            "src_02_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        }
+      ],
+      "wordCount": 13,
+      "mainAreaWordCount": 4,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 2,
+      "routes": [
+        {
+          "id": "A",
+          "name": "将 BOUNCY 推入句子，在石台上起跳",
+          "family": "bounce-platform",
+          "passed": true,
+          "commandCount": 3,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              5,
+              5,
+              2
+            ],
+            "cause": "ApexSteer"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              5,
+              5,
+              2
+            ],
+            "usedBounce": true,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 2,
+            "ActiveInteraction": 1,
+            "RulesChanged": 1,
+            "JumpApex": 1,
+            "PlayerFell": 1,
+            "BounceStarted": 1,
+            "BounceStep": 3,
+            "LandingBounce": 1,
+            "BounceApexReached": 1,
+            "ApexSteer": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_bouncy",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                2,
+                1
+              ],
+              "after": [
+                6,
+                2,
+                1
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "J",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                5,
+                1
+              ],
+              "phase": "BounceApex",
+              "events": [
+                "BounceApexReached",
+                "BounceStarted",
+                "BounceStep",
+                "JumpApex",
+                "LandingBounce",
+                "PlayerFell"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                5,
+                2
+              ],
+              "phase": "Won",
+              "events": [
+                "ApexSteer",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "rock": "ROCK",
+            "robot_01": "ROBOT",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "src_03_01_rock",
+                "src_03_02_is",
+                "src_03_03_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "BOUNCY",
+              "textIds": [
+                "w_rock",
+                "w_is",
+                "w_bouncy"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "BOUNCY"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "不用起跳，改成 FLY 后搭乘上升",
+          "family": "fly-platform",
+          "passed": true,
+          "commandCount": 10,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": 1,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              5,
+              5,
+              2
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              5,
+              5,
+              2
+            ],
+            "usedBounce": false,
+            "usedLift": true,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 7,
+            "ActiveInteraction": 4,
+            "RulesChanged": 2,
+            "Walk": 7,
+            "FlyOrRide": 6,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_bouncy",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                2,
+                1
+              ],
+              "after": [
+                6,
+                2,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_fly",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                2,
+                0
+              ],
+              "after": [
+                5,
+                2,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_fly",
+              "commandEffect": "Pushed",
+              "before": [
+                5,
+                2,
+                1
+              ],
+              "after": [
+                6,
+                2,
+                1
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_bouncy",
+              "commandEffect": "Pushed",
+              "before": [
+                6,
+                2,
+                1
+              ],
+              "after": [
+                7,
+                2,
+                1
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                -1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                -1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                2,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                5,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "FlyOrRide",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 10,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                5,
+                2
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "rock": "ROCK",
+            "robot_01": "ROBOT",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "PUSH",
+              "textIds": [
+                "src_03_01_rock",
+                "src_03_02_is",
+                "src_03_03_push"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "PUSH"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "src_01_01_robot",
+                "src_01_02_is",
+                "src_01_03_you"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_02_01_flag",
+                "src_02_02_is",
+                "src_02_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "FLY",
+              "textIds": [
+                "w_rock",
+                "w_is",
+                "w_fly"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "FLY"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "e8fbef610e3875f0a1a389320f3b0c271aecb484ce972d2b03e68dedff03266f"
+    },
+    {
+      "id": "L12",
+      "title": "改变道路、终点，或原来的身体",
+      "stableInitial": true,
+      "sameInitialForAllRoutes": true,
+      "undoFullRestore": true,
+      "entityOrderSeeds": [
+        0,
+        1,
+        2,
+        3
+      ],
+      "requiredInteraction": true,
+      "noInteractionAudit": {
+        "status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "states": 75,
+        "attempts": 750,
+        "allowedTransitions": 550,
+        "filteredInteractiveTransitions": 30,
+        "rejectedCommands": 170
+      },
+      "worldTextOnly": true,
+      "initialRuleSources": [
+        {
+          "kind": "Property",
+          "subject": "FLAG",
+          "result": "WIN",
+          "textIds": [
+            "src_01_01_flag",
+            "src_01_02_is",
+            "src_01_03_win"
+          ],
+          "tokens": [
+            "FLAG",
+            "IS",
+            "WIN"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROBOT",
+          "result": "YOU",
+          "textIds": [
+            "w_robot",
+            "w_is_switch",
+            "w_you_r"
+          ],
+          "tokens": [
+            "ROBOT",
+            "IS",
+            "YOU"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "PUSH",
+          "textIds": [
+            "src_02_01_spring",
+            "src_02_02_is",
+            "src_02_03_push",
+            "src_02_04_and",
+            "src_02_05_bouncy"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "PUSH",
+            "AND",
+            "BOUNCY"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "SPRING",
+          "result": "BOUNCY",
+          "textIds": [
+            "src_02_01_spring",
+            "src_02_02_is",
+            "src_02_03_push",
+            "src_02_04_and",
+            "src_02_05_bouncy"
+          ],
+          "tokens": [
+            "SPRING",
+            "IS",
+            "PUSH",
+            "AND",
+            "BOUNCY"
+          ]
+        },
+        {
+          "kind": "Property",
+          "subject": "ROCK",
+          "result": "STOP",
+          "textIds": [
+            "w_rock",
+            "w_is_rock",
+            "w_stop"
+          ],
+          "tokens": [
+            "ROCK",
+            "IS",
+            "STOP"
+          ]
+        }
+      ],
+      "wordCount": 20,
+      "mainAreaWordCount": 12,
+      "anchoredWordCount": 0,
+      "distinctWitnessSignatures": 3,
+      "routes": [
+        {
+          "id": "A",
+          "name": "推弹簧，弹上高台",
+          "family": "move-original-actor",
+          "passed": true,
+          "commandCount": 5,
+          "firstInteractionStep": 1,
+          "firstWordInteractionStep": null,
+          "win": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "cell": [
+              6,
+              5,
+              0
+            ],
+            "cause": "ApexSteer"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "goal",
+            "winCell": [
+              6,
+              5,
+              0
+            ],
+            "usedBounce": true,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": false
+          },
+          "eventCounts": {
+            "Pushed": 4,
+            "ActiveInteraction": 2,
+            "Climbed": 1,
+            "JumpApex": 1,
+            "PlayerFell": 1,
+            "BounceStarted": 1,
+            "BounceStep": 3,
+            "LandingBounce": 1,
+            "BounceApexReached": 1,
+            "ApexSteer": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "spring",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                0
+              ],
+              "after": [
+                4,
+                1,
+                0
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "OBJECT",
+              "id": "spring",
+              "commandEffect": "Pushed",
+              "before": [
+                4,
+                1,
+                0
+              ],
+              "after": [
+                5,
+                1,
+                0
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [],
+          "trace": [
+            {
+              "step": 1,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "PE",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                2,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Climbed"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "J",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                5,
+                0
+              ],
+              "phase": "BounceApex",
+              "events": [
+                "BounceApexReached",
+                "BounceStarted",
+                "BounceStep",
+                "JumpApex",
+                "LandingBounce",
+                "PlayerFell"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                5,
+                0
+              ],
+              "phase": "Won",
+              "events": [
+                "ApexSteer",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "spring": "SPRING",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_01_01_flag",
+                "src_01_02_is",
+                "src_01_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "w_robot",
+                "w_is_switch",
+                "w_you_r"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "PUSH",
+              "textIds": [
+                "src_02_01_spring",
+                "src_02_02_is",
+                "src_02_03_push",
+                "src_02_04_and",
+                "src_02_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "BOUNCY",
+              "textIds": [
+                "src_02_01_spring",
+                "src_02_02_is",
+                "src_02_03_push",
+                "src_02_04_and",
+                "src_02_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "STOP",
+              "textIds": [
+                "w_rock",
+                "w_is_rock",
+                "w_stop"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "STOP"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "B",
+          "name": "把附近岩块真正变为旗标",
+          "family": "transform-nearby-goal",
+          "passed": true,
+          "commandCount": 16,
+          "firstInteractionStep": 8,
+          "firstWordInteractionStep": 8,
+          "win": {
+            "youId": "robot_01",
+            "winId": "rock",
+            "cell": [
+              1,
+              1,
+              1
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "robot_01",
+            "winId": "rock",
+            "winCell": [
+              1,
+              1,
+              1
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": false,
+            "usedTransformation": true
+          },
+          "eventCounts": {
+            "Walk": 15,
+            "Pushed": 3,
+            "ActiveInteraction": 2,
+            "RulesChanged": 1,
+            "Transformed": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_flag_transform_rock",
+              "commandEffect": "Pushed",
+              "before": [
+                8,
+                1,
+                2
+              ],
+              "after": [
+                8,
+                1,
+                3
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_stop",
+              "commandEffect": "Pushed",
+              "before": [
+                8,
+                1,
+                3
+              ],
+              "after": [
+                8,
+                1,
+                4
+              ]
+            }
+          ],
+          "controlChanges": [],
+          "transformations": [
+            {
+              "event": "Transformed",
+              "id": "rock",
+              "beforeSubject": "ROCK",
+              "afterSubject": "FLAG",
+              "cell": [
+                1,
+                1,
+                1
+              ],
+              "sources": [
+                [
+                  "w_rock",
+                  "w_is_rock",
+                  "w_flag_transform_rock"
+                ]
+              ]
+            }
+          ],
+          "trace": [
+            {
+              "step": 1,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                8,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "PN",
+              "actorId": "robot_01",
+              "actorCell": [
+                8,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged",
+                "Transformed"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                7,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 10,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                6,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 11,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                5,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 12,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                4,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 13,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 14,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 15,
+              "command": "S",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 16,
+              "command": "W",
+              "actorId": "robot_01",
+              "actorCell": [
+                1,
+                1,
+                1
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "ROBOT",
+            "spring": "SPRING",
+            "rock": "FLAG",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_01_01_flag",
+                "src_01_02_is",
+                "src_01_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROBOT",
+              "result": "YOU",
+              "textIds": [
+                "w_robot",
+                "w_is_switch",
+                "w_you_r"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "PUSH",
+              "textIds": [
+                "src_02_01_spring",
+                "src_02_02_is",
+                "src_02_03_push",
+                "src_02_04_and",
+                "src_02_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "BOUNCY",
+              "textIds": [
+                "src_02_01_spring",
+                "src_02_02_is",
+                "src_02_03_push",
+                "src_02_04_and",
+                "src_02_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Transformation",
+              "subject": "ROCK",
+              "result": "FLAG",
+              "textIds": [
+                "w_rock",
+                "w_is_rock",
+                "w_flag_transform_rock"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "FLAG"
+              ]
+            }
+          ]
+        },
+        {
+          "id": "C",
+          "name": "先换控弹簧，再把原机器人变为旗标",
+          "family": "transfer-and-transform-former-body",
+          "passed": true,
+          "commandCount": 11,
+          "firstInteractionStep": 4,
+          "firstWordInteractionStep": 4,
+          "win": {
+            "youId": "spring",
+            "winId": "robot_01",
+            "cell": [
+              3,
+              1,
+              3
+            ],
+            "cause": "Walk"
+          },
+          "mechanismSignature": {
+            "youId": "spring",
+            "winId": "robot_01",
+            "winCell": [
+              3,
+              1,
+              3
+            ],
+            "usedBounce": false,
+            "usedLift": false,
+            "transferredControl": true,
+            "usedTransformation": true
+          },
+          "eventCounts": {
+            "Walk": 9,
+            "Pushed": 4,
+            "ActiveInteraction": 2,
+            "RulesChanged": 2,
+            "ControlChanged": 1,
+            "Transformed": 1,
+            "Won": 1
+          },
+          "interactions": [
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_is_switch",
+              "commandEffect": "Pushed",
+              "before": [
+                3,
+                1,
+                3
+              ],
+              "after": [
+                3,
+                1,
+                4
+              ]
+            },
+            {
+              "event": "ActiveInteraction",
+              "entityKind": "TEXT",
+              "id": "w_flag_transform_robot",
+              "commandEffect": "Pushed",
+              "before": [
+                1,
+                1,
+                2
+              ],
+              "after": [
+                0,
+                1,
+                2
+              ]
+            }
+          ],
+          "controlChanges": [
+            {
+              "event": "ControlChanged",
+              "oldId": "robot_01",
+              "newId": "spring"
+            }
+          ],
+          "transformations": [
+            {
+              "event": "Transformed",
+              "id": "robot_01",
+              "beforeSubject": "ROBOT",
+              "afterSubject": "FLAG",
+              "cell": [
+                3,
+                1,
+                3
+              ],
+              "sources": [
+                [
+                  "w_robot_goal",
+                  "w_is_goal",
+                  "w_flag_transform_robot"
+                ]
+              ]
+            }
+          ],
+          "trace": [
+            {
+              "step": 1,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 2,
+              "command": "E",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 3,
+              "command": "N",
+              "actorId": "robot_01",
+              "actorCell": [
+                3,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 4,
+              "command": "PN",
+              "actorId": "spring",
+              "actorCell": [
+                3,
+                1,
+                0
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "ControlChanged",
+                "Pushed",
+                "RulesChanged"
+              ]
+            },
+            {
+              "step": 5,
+              "command": "N",
+              "actorId": "spring",
+              "actorCell": [
+                3,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 6,
+              "command": "W",
+              "actorId": "spring",
+              "actorCell": [
+                2,
+                1,
+                1
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 7,
+              "command": "N",
+              "actorId": "spring",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 8,
+              "command": "PW",
+              "actorId": "spring",
+              "actorCell": [
+                1,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "ActiveInteraction",
+                "Pushed",
+                "RulesChanged",
+                "Transformed"
+              ]
+            },
+            {
+              "step": 9,
+              "command": "E",
+              "actorId": "spring",
+              "actorCell": [
+                2,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 10,
+              "command": "E",
+              "actorId": "spring",
+              "actorCell": [
+                3,
+                1,
+                2
+              ],
+              "phase": "Grounded",
+              "events": [
+                "Walk"
+              ]
+            },
+            {
+              "step": 11,
+              "command": "N",
+              "actorId": "spring",
+              "actorCell": [
+                3,
+                1,
+                3
+              ],
+              "phase": "Won",
+              "events": [
+                "Walk",
+                "Won"
+              ]
+            }
+          ],
+          "finalSubjects": {
+            "robot_01": "FLAG",
+            "spring": "SPRING",
+            "rock": "ROCK",
+            "goal": "FLAG"
+          },
+          "finalRuleSources": [
+            {
+              "kind": "Property",
+              "subject": "FLAG",
+              "result": "WIN",
+              "textIds": [
+                "src_01_01_flag",
+                "src_01_02_is",
+                "src_01_03_win"
+              ],
+              "tokens": [
+                "FLAG",
+                "IS",
+                "WIN"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "YOU",
+              "textIds": [
+                "w_spring_control",
+                "w_is_switch",
+                "w_you_f"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "YOU"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "PUSH",
+              "textIds": [
+                "src_02_01_spring",
+                "src_02_02_is",
+                "src_02_03_push",
+                "src_02_04_and",
+                "src_02_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "SPRING",
+              "result": "BOUNCY",
+              "textIds": [
+                "src_02_01_spring",
+                "src_02_02_is",
+                "src_02_03_push",
+                "src_02_04_and",
+                "src_02_05_bouncy"
+              ],
+              "tokens": [
+                "SPRING",
+                "IS",
+                "PUSH",
+                "AND",
+                "BOUNCY"
+              ]
+            },
+            {
+              "kind": "Property",
+              "subject": "ROCK",
+              "result": "STOP",
+              "textIds": [
+                "w_rock",
+                "w_is_rock",
+                "w_stop"
+              ],
+              "tokens": [
+                "ROCK",
+                "IS",
+                "STOP"
+              ]
+            },
+            {
+              "kind": "Transformation",
+              "subject": "ROBOT",
+              "result": "FLAG",
+              "textIds": [
+                "w_robot_goal",
+                "w_is_goal",
+                "w_flag_transform_robot"
+              ],
+              "tokens": [
+                "ROBOT",
+                "IS",
+                "FLAG"
+              ]
+            }
+          ]
+        }
+      ],
+      "dataSHA256": "08d489063b10b8165cb06c165e40f08f2d7054370e3ddf4c01f61e6cf421cfb1"
+    }
+  ]
+}

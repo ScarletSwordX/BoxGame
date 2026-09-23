@@ -1,0 +1,613 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "id": "L08",
+  "title": "去找旗帜，还是造出旗帜",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -5
+    },
+    "max": {
+      "x": 8,
+      "y": 7,
+      "z": 5
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 5
+      },
+      "id": "t_main_01",
+      "appearance": "Stone"
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 6,
+        "y": 2,
+        "z": 1
+      },
+      "id": "t_main_02",
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": -2
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -2
+      },
+      "max": {
+        "x": 8,
+        "y": 7,
+        "z": -2
+      },
+      "appearance": "TransparentGlass"
+    }
+  ],
+  "entities": [
+    {
+      "id": "src_01_01_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_01_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_03_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_flag_transform_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 2,
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": false
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "推石搭阶，抵达原旗标",
+      "family": "move-actor",
+      "commands": [
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustWinWith": "goal",
+      "mustControlAtWin": "robot_01",
+      "forbidEvents": [
+        "RulesChanged"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            3,
+            0
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          6,
+          3,
+          0
+        ],
+        "cause": "Walk"
+      }
+    },
+    {
+      "id": "B",
+      "name": "将岩块变成旗标，进入新旗标",
+      "family": "transform-nearby-goal",
+      "commands": [
+        "N",
+        "E",
+        "E",
+        "E",
+        "PN",
+        "W",
+        "W",
+        "S",
+        "S"
+      ],
+      "mustWinWith": "rock",
+      "mustControlAtWin": "robot_01",
+      "requireEvents": [
+        "RulesChanged",
+        "Transformed"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            1,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "PN",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged",
+            "Transformed"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "W",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "W",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 8,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 9,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            0
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "rock",
+        "cell": [
+          2,
+          1,
+          0
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "第一次区分“赋予 WIN”与“变成 FLAG”，同时保留传统推石搭阶解法。",
+    "observation": "高台有旗帜；近处 ROCK IS PUSH 的旁边不是 WIN 属性词，而是 FLAG 名词。",
+    "necessity": "不动岩块就无法登上两格高台；不改句子就不会出现近处的新旗帜。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "不改任何句子，把岩块向 +X 推两格，利用它登上高台，进入原旗帜。"
+      },
+      {
+        "solutionId": "B",
+        "text": "把 FLAG 沿 +Z 推进 ROCK IS PUSH 的右侧，整条推链把 PUSH 挤到下一格。所有 ROCK 就地变为 FLAG。本关只有一块岩石，其稳定 ID 仍为 rock；按 FLAG IS WIN 成为新的空心目标。机器人走回原岩块所在格获胜。"
+      }
+    ],
+    "hints": [
+      "一定要走到高台上才有旗帜吗？",
+      "IS 右侧也可以放物品名词；新旗帜同样受 FLAG IS WIN 作用。",
+      "把 FLAG 推入 PUSH 的位置，再回到原岩块位置。"
+    ],
+    "risks": [
+      "必须看到岩块模型实际转为旗帜，不是只给石头添加 WIN 光环。变形后拆掉 ROCK IS FLAG 不会自动还原。写着 ROCK 的词牌不变。"
+    ]
+  },
+  "presentation": {
+    "mainAreaBounds": {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 8,
+        "y": 7,
+        "z": 5
+      }
+    },
+    "worldRuleTextIds": [
+      "w_rock",
+      "w_is",
+      "w_push",
+      "w_flag_transform_rock",
+      "src_01_01_robot",
+      "src_01_02_is",
+      "src_01_03_you",
+      "src_02_01_flag",
+      "src_02_02_is",
+      "src_02_03_win"
+    ],
+    "sourceGroups": [
+      {
+        "id": "source_sentence_01",
+        "textIds": [
+          "src_01_01_robot",
+          "src_01_02_is",
+          "src_01_03_you"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      },
+      {
+        "id": "source_sentence_02",
+        "textIds": [
+          "src_02_01_flag",
+          "src_02_02_is",
+          "src_02_03_win"
+        ],
+        "access": "GeometrySeparated",
+        "note": "仅作者/表现定位；不参与规则求值。"
+      }
+    ],
+    "mustFrameAllWorldWords": true,
+    "minimumReadableWordPixels": 28,
+    "occludingTerrain": "transparent-or-cutaway-only; never hide text",
+    "ruleSummary": "derived-only; highlight live source IDs; no rule creation",
+    "protectedAreaExplanation": "每词是独立三维 Text；隔墙是有格子碰撞的透明 Terrain，不是 UI 规则板。所有词 anchored=false。"
+  },
+  "designNotes": {
+    "revision": "推石搭阶和 ROCK IS FLAG 变形两条路线共享同一套空间规则。",
+    "mainWordsUnlocked": true,
+    "worldSourceOnly": true,
+    "accessNotImmunity": true
+  }
+}

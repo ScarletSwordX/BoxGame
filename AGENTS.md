@@ -2,19 +2,20 @@
 
 ## 玩法合同
 
-- 当前有效规格：`docs/PROTOTYPE_SPEC.md`（RW-v0.8 / schemaVersion = 8）
-- 设计包参考：`RuleWorkshop_Prototype_Codex_v0.8_Pack/`
-- 实施状态：`docs/IMPLEMENTATION_STATUS.md`
+- 当前有效规格：docs/PROTOTYPE_SPEC.md（RW-v0.9 / schemaVersion = 9）
+- 设计包参考：RuleWorkshop_Prototype_Codex_v0.9_Pack/
+- 实施状态：docs/IMPLEMENTATION_STATUS.md
 
 ## 必须加载的项目技能
 
 修改本仓库文本源码或文档时，遵循：
 
-- `.cursor/skills/文本编码约定/SKILL.md`
+- .cursor/skills/文本编码约定/SKILL.md
 
-要点：**UTF-8 无 BOM** + **CRLF 行尾**；提交前按字节检查，不要用会吞掉 `\r` 的文本 API 下结论。
+要点：**UTF-8 无 BOM** + **CRLF 行尾**；提交前按字节检查，不要用会吞掉 
+ 的文本 API 下结论。
 
 ## 提交
 
-- 格式：`feature:` / `chore:` / `fix:` + 中文简述
+- 格式：eature: / chore: / ix: + 中文简述
 - 非必要部分不要使用英文
