@@ -1,6 +1,6 @@
 {
-  "schemaVersion": 8,
-  "mechanicsVersion": "RW-v0.8",
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
   "levels": [
     "levels/L01.json",
     "levels/L02.json",

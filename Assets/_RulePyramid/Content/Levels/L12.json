@@ -1,13 +1,13 @@
 {
-  "schemaVersion": 8,
-  "mechanicsVersion": "RW-v0.8",
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
   "id": "L12",
-  "title": "改路线、造终点、改变原来的自己",
+  "title": "改变道路、终点，或原来的身体",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": -1
+      "z": -5
     },
     "max": {
       "x": 10,
@@ -17,6 +17,7 @@
   },
   "terrain": [
     {
+      "id": "t_main_01",
       "min": {
         "x": 0,
         "y": 0,
@@ -26,9 +27,11 @@
         "x": 10,
         "y": 0,
         "z": 5
-      }
+      },
+      "appearance": "Stone"
     },
     {
+      "id": "t_main_02",
       "min": {
         "x": 6,
         "y": 1,
@@ -38,10 +41,147 @@
         "x": 8,
         "y": 4,
         "z": 0
-      }
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -5
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": -2
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -2
+      },
+      "max": {
+        "x": 10,
+        "y": 8,
+        "z": -2
+      },
+      "appearance": "TransparentGlass"
     }
   ],
   "entities": [
+    {
+      "id": "src_01_01_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_01_spring",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_03_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_04_and",
+      "kind": "Text",
+      "subject": "",
+      "token": "AND",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_05_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": -4
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_robot_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
     {
       "id": "robot_01",
       "kind": "Object",
@@ -67,14 +207,14 @@
       "anchored": false
     },
     {
-      "id": "goal",
-      "kind": "Object",
-      "subject": "FLAG",
-      "token": "",
+      "id": "w_is_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
       "cell": {
-        "x": 6,
-        "y": 5,
-        "z": 0
+        "x": 0,
+        "y": 1,
+        "z": 1
       },
       "anchored": false
     },
@@ -91,6 +231,30 @@
       "anchored": false
     },
     {
+      "id": "w_flag_transform_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_flag_transform_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
       "id": "w_robot",
       "kind": "Text",
       "subject": "",
@@ -100,7 +264,7 @@
         "y": 1,
         "z": 3
       },
-      "anchored": true
+      "anchored": false
     },
     {
       "id": "w_is_switch",
@@ -124,66 +288,6 @@
         "y": 1,
         "z": 3
       },
-      "anchored": true
-    },
-    {
-      "id": "w_flag",
-      "kind": "Text",
-      "subject": "",
-      "token": "SPRING",
-      "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 4
-      },
-      "anchored": true
-    },
-    {
-      "id": "w_you_f",
-      "kind": "Text",
-      "subject": "",
-      "token": "YOU",
-      "cell": {
-        "x": 4,
-        "y": 1,
-        "z": 4
-      },
-      "anchored": true
-    },
-    {
-      "id": "w_robot_goal",
-      "kind": "Text",
-      "subject": "",
-      "token": "ROBOT",
-      "cell": {
-        "x": 0,
-        "y": 1,
-        "z": 0
-      },
-      "anchored": true
-    },
-    {
-      "id": "w_is_goal",
-      "kind": "Text",
-      "subject": "",
-      "token": "IS",
-      "cell": {
-        "x": 0,
-        "y": 1,
-        "z": 1
-      },
-      "anchored": true
-    },
-    {
-      "id": "w_win_robot",
-      "kind": "Text",
-      "subject": "",
-      "token": "FLAG",
-      "cell": {
-        "x": 1,
-        "y": 1,
-        "z": 2
-      },
       "anchored": false
     },
     {
@@ -196,7 +300,7 @@
         "y": 1,
         "z": 3
       },
-      "anchored": true
+      "anchored": false
     },
     {
       "id": "w_is_rock",
@@ -208,7 +312,7 @@
         "y": 1,
         "z": 3
       },
-      "anchored": true
+      "anchored": false
     },
     {
       "id": "w_stop",
@@ -223,36 +327,40 @@
       "anchored": false
     },
     {
-      "id": "w_win",
+      "id": "w_spring_control",
       "kind": "Text",
       "subject": "",
-      "token": "FLAG",
+      "token": "SPRING",
       "cell": {
-        "x": 8,
+        "x": 2,
         "y": 1,
-        "z": 2
+        "z": 4
       },
       "anchored": false
-    }
-  ],
-  "fixedRules": [
-    {
-      "id": "fixed_01",
-      "tokens": [
-        "FLAG",
-        "IS",
-        "WIN"
-      ]
     },
     {
-      "id": "fixed_02",
-      "tokens": [
-        "SPRING",
-        "IS",
-        "PUSH",
-        "AND",
-        "BOUNCY"
-      ]
+      "id": "w_you_f",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 5,
+        "z": 0
+      },
+      "anchored": false
     }
   ],
   "options": {
@@ -264,7 +372,9 @@
     "bounceRiseCells": 3,
     "supportMode": "StrictBelow",
     "controlMode": "SingleYouTransfer_NoControlUndo",
-    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
   },
   "camera": {
     "initialSlot": 0,
@@ -281,7 +391,10 @@
   "designContract": {
     "requireActiveInteraction": true,
     "minimumSolutionFamilies": 3,
-    "interactionIsAuthoringConstraint": true
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": false
   },
   "referenceSolutions": [
     {
@@ -305,7 +418,7 @@
       ],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
-      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。"
     },
     {
       "id": "B",
@@ -341,7 +454,7 @@
       ],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
-      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。"
     },
     {
       "id": "C",
@@ -371,7 +484,7 @@
       ],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
-      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。"
     }
   ],
   "tutorial": {

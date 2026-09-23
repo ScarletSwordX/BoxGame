@@ -1,22 +1,23 @@
 {
-  "schemaVersion": 8,
-  "mechanicsVersion": "RW-v0.8",
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
   "id": "L01",
-  "title": "进入轮廓",
+  "title": "写出终点，再走进去",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": -4
     },
     "max": {
       "x": 5,
       "y": 5,
-      "z": 2
+      "z": 3
     }
   },
   "terrain": [
     {
+      "id": "t_main_01",
       "min": {
         "x": 0,
         "y": 0,
@@ -25,32 +26,85 @@
       "max": {
         "x": 5,
         "y": 0,
-        "z": 2
-      }
+        "z": 3
+      },
+      "appearance": "Stone"
     },
     {
+      "id": "t_source_floor",
       "min": {
-        "x": 3,
-        "y": 1,
-        "z": 0
+        "x": 0,
+        "y": 0,
+        "z": -4
       },
       "max": {
         "x": 5,
+        "y": 0,
+        "z": -1
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
         "y": 1,
-        "z": 2
-      }
+        "z": -1
+      },
+      "max": {
+        "x": 5,
+        "y": 5,
+        "z": -1
+      },
+      "appearance": "TransparentGlass"
     }
   ],
   "entities": [
+    {
+      "id": "src_01_01_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
     {
       "id": "robot_01",
       "kind": "Object",
       "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 0,
+        "x": 2,
         "y": 1,
-        "z": 1
+        "z": 0
       },
       "anchored": false
     },
@@ -61,28 +115,46 @@
       "token": "",
       "cell": {
         "x": 4,
-        "y": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 2,
+        "y": 1,
         "z": 1
       },
       "anchored": false
-    }
-  ],
-  "fixedRules": [
-    {
-      "id": "fixed_01",
-      "tokens": [
-        "ROBOT",
-        "IS",
-        "YOU"
-      ]
     },
     {
-      "id": "fixed_02",
-      "tokens": [
-        "FLAG",
-        "IS",
-        "WIN"
-      ]
+      "id": "w_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
     }
   ],
   "options": {
@@ -94,7 +166,9 @@
     "bounceRiseCells": 3,
     "supportMode": "StrictBelow",
     "controlMode": "SingleYouTransfer_NoControlUndo",
-    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
   },
   "camera": {
     "initialSlot": 0,
@@ -109,28 +183,33 @@
     "orthographic": true
   },
   "designContract": {
-    "requireActiveInteraction": false,
+    "requireActiveInteraction": true,
     "minimumSolutionFamilies": 1,
-    "interactionIsAuthoringConstraint": true
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": true
   },
   "referenceSolutions": [
     {
       "id": "A",
-      "name": "移动、登攀、进入",
-      "family": "locomotion",
+      "name": "把 WIN 写入空间句子并进入旗标",
+      "family": "activate-win",
       "commands": [
-        "E",
-        "E",
+        "PN",
+        "S",
         "E",
         "E"
       ],
       "mustControlAtWin": "",
       "mustWinWith": "",
-      "requireEvents": [],
+      "requireEvents": [
+        "RulesChanged"
+      ],
       "forbidEvents": [],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
-      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。"
     }
   ],
   "tutorial": {

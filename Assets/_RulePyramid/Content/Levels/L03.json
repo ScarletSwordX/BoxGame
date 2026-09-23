@@ -1,13 +1,13 @@
 {
-  "schemaVersion": 8,
-  "mechanicsVersion": "RW-v0.8",
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
   "id": "L03",
-  "title": "石头的权限",
+  "title": "阻挡和可推，可以改写",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": -4
     },
     "max": {
       "x": 10,
@@ -17,6 +17,7 @@
   },
   "terrain": [
     {
+      "id": "t_main_01",
       "min": {
         "x": 0,
         "y": 0,
@@ -26,9 +27,11 @@
         "x": 10,
         "y": 0,
         "z": 5
-      }
+      },
+      "appearance": "Stone"
     },
     {
+      "id": "t_main_02",
       "min": {
         "x": 4,
         "y": 1,
@@ -38,9 +41,11 @@
         "x": 10,
         "y": 1,
         "z": 5
-      }
+      },
+      "appearance": "Stone"
     },
     {
+      "id": "t_main_03",
       "min": {
         "x": 8,
         "y": 2,
@@ -50,10 +55,111 @@
         "x": 10,
         "y": 3,
         "z": 5
-      }
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -4
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": -1
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "t_source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 10,
+        "y": 8,
+        "z": -1
+      },
+      "appearance": "TransparentGlass"
     }
   ],
   "entities": [
+    {
+      "id": "src_01_01_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_01_03_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_01_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_02_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
+    {
+      "id": "src_02_03_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": -3
+      },
+      "anchored": false
+    },
     {
       "id": "robot_01",
       "kind": "Object",
@@ -63,6 +169,54 @@
         "x": 2,
         "y": 1,
         "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
       },
       "anchored": false
     },
@@ -89,72 +243,6 @@
         "z": 1
       },
       "anchored": false
-    },
-    {
-      "id": "w_rock",
-      "kind": "Text",
-      "subject": "",
-      "token": "ROCK",
-      "cell": {
-        "x": 0,
-        "y": 1,
-        "z": 3
-      },
-      "anchored": true
-    },
-    {
-      "id": "w_is",
-      "kind": "Text",
-      "subject": "",
-      "token": "IS",
-      "cell": {
-        "x": 1,
-        "y": 1,
-        "z": 3
-      },
-      "anchored": true
-    },
-    {
-      "id": "w_stop",
-      "kind": "Text",
-      "subject": "",
-      "token": "STOP",
-      "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 3
-      },
-      "anchored": false
-    },
-    {
-      "id": "w_push",
-      "kind": "Text",
-      "subject": "",
-      "token": "PUSH",
-      "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 2
-      },
-      "anchored": false
-    }
-  ],
-  "fixedRules": [
-    {
-      "id": "rule_01",
-      "tokens": [
-        "ROBOT",
-        "IS",
-        "YOU"
-      ]
-    },
-    {
-      "id": "rule_02",
-      "tokens": [
-        "FLAG",
-        "IS",
-        "WIN"
-      ]
     }
   ],
   "options": {
@@ -166,7 +254,9 @@
     "bounceRiseCells": 3,
     "supportMode": "StrictBelow",
     "controlMode": "SingleYouTransfer_NoControlUndo",
-    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
   },
   "camera": {
     "initialSlot": 0,
@@ -183,7 +273,10 @@
   "designContract": {
     "requireActiveInteraction": true,
     "minimumSolutionFamilies": 1,
-    "interactionIsAuthoringConstraint": true
+    "interactionIsAuthoringConstraint": true,
+    "requireVisibleWorldRules": true,
+    "requireReachableMovableWord": true,
+    "requireWordInteractionOnWitness": false
   },
   "referenceSolutions": [
     {
@@ -207,7 +300,7 @@
       "forbidEvents": [],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
-      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。"
     }
   ],
   "tutorial": {
