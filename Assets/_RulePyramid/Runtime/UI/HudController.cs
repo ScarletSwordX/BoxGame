@@ -50,7 +50,9 @@ namespace RulePyramid.Runtime
             if (_turns != null) _turns.text = "回合 " + session.TurnCount;
             if (_rules != null) _rules.text = FormatRules(session.World.Rules);
             if (_objective != null && session.Level.tutorial != null)
-                _objective.text = session.Level.tutorial.objective ?? "";
+                _objective.text = !string.IsNullOrEmpty(session.Level.tutorial.objective)
+                    ? session.Level.tutorial.objective
+                    : (session.Level.tutorial.concept ?? "");
             if (_reject != null) _reject.text = reject ?? "";
             if (_winPanel != null)
             {
@@ -77,12 +79,12 @@ namespace RulePyramid.Runtime
         static string FormatRules(RuleSet rules)
         {
             var sb = new StringBuilder();
-            foreach (var color in new[] { "RED", "BLUE", "PINK" })
+            foreach (var subject in new[] { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG" })
             {
-                var props = new List<string>(rules[color]);
+                var props = new List<string>(rules[subject]);
                 if (props.Count == 0) continue;
                 props.Sort();
-                sb.Append(color).Append(" IS ").Append(string.Join(" AND ", props)).Append('\n');
+                sb.Append(subject).Append(" IS ").Append(string.Join(" AND ", props)).Append('\r\n');
             }
             return sb.ToString();
         }

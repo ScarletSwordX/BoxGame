@@ -58,7 +58,11 @@ namespace RulePyramid.Runtime
             }
             if (dir != Vector2.zero)
             {
-                command = WorldDirections.ToToken(Map(dir));
+                var token = WorldDirections.ToToken(Map(dir));
+                if (phase == MotionPhase.Grounded && (GetKey(KeyCode.LeftShift) || GetKey(KeyCode.RightShift)))
+                    command = "P" + token;
+                else
+                    command = token;
                 return true;
             }
 
@@ -66,6 +70,8 @@ namespace RulePyramid.Runtime
             if (dir != Vector2.zero && phase == MotionPhase.Grounded)
             {
                 string token = WorldDirections.ToToken(Map(dir));
+                if (GetKey(KeyCode.LeftShift) || GetKey(KeyCode.RightShift))
+                    token = "P" + token;
                 if (_held == token)
                 {
                     _repeatTimer += Time.deltaTime;

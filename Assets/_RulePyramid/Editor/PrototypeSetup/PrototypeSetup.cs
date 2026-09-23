@@ -11,6 +11,7 @@ namespace RulePyramid.Editor
     {
         const string Root = "Assets/_RulePyramid";
 
+        [MenuItem("Tools/规则工坊/创建 or Repair Prototype")]
         [MenuItem("Tools/RulePyramid/Create or Repair Prototype")]
         public static void CreateOrRepair()
         {
@@ -19,19 +20,19 @@ namespace RulePyramid.Editor
             var visual = LoadOrCreate<VisualConfig>(Root + "/Config/VisualConfig.asset");
             EnsureMaterials(visual);
             var catalog = LoadOrCreate<LevelCatalog>(Root + "/Config/LevelCatalog.asset");
-            catalog.levels = new[]
+            var levels = new TextAsset[12];
+            for (int i = 0; i < 12; i++)
             {
-                AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/L01.json"),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/L02.json"),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/L03.json"),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/L04.json"),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/L05.json"),
-                AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/L06.json")
-            };
+                var id = "L" + (i + 1).ToString("00");
+                levels[i] = AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/Levels/" + id + ".json");
+                if (levels[i] == null)
+                    Debug.LogError("[规则工坊] Missing level TextAsset " + id);
+            }
+            catalog.levels = levels;
             EditorUtility.SetDirty(catalog);
             EnsureScene(visual, catalog);
             AssetDatabase.SaveAssets();
-            Debug.Log("[RulePyramid] Prototype scene and configs repaired.");
+            Debug.Log("[规则工坊] Prototype 场景与十二关目录已修复。");
         }
 
         static T LoadOrCreate<T>(string path) where T : ScriptableObject

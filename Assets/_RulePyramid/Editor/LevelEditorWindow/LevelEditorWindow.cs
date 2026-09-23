@@ -29,10 +29,11 @@ namespace RulePyramid.Editor
         TextField _colorField;
         GridCanvas _canvas;
 
+        [MenuItem("Tools/规则工坊/关卡编辑器")]
         [MenuItem("Tools/RulePyramid/Level Editor")]
         public static void Open()
         {
-            GetWindow<LevelEditorWindow>("Rule Pyramid Editor");
+            GetWindow<LevelEditorWindow>("规则工坊编辑器");
         }
 
         void CreateGUI()
@@ -69,6 +70,10 @@ namespace RulePyramid.Editor
             rootVisualElement.Q<Button>("validateButton")?.RegisterCallback<ClickEvent>(_ => Validate());
             rootVisualElement.Q<Button>("playtestButton")?.RegisterCallback<ClickEvent>(_ => Playtest());
             rootVisualElement.Q<Button>("stopButton")?.RegisterCallback<ClickEvent>(_ => { _session?.StopPlaytest(); Refresh(); });
+            rootVisualElement.Q<Button>("replayAButton")?.RegisterCallback<ClickEvent>(_ => ReplaySolution(0));
+            rootVisualElement.Q<Button>("replayBButton")?.RegisterCallback<ClickEvent>(_ => ReplaySolution(1));
+            rootVisualElement.Q<Button>("replayCButton")?.RegisterCallback<ClickEvent>(_ => ReplaySolution(2));
+            rootVisualElement.Q<Button>("auditButton")?.RegisterCallback<ClickEvent>(_ => RunInteractionAudit());
 
             var host = rootVisualElement.Q("gridHost");
             _canvas = new GridCanvas(() => _session) { style = { flexGrow = 1 } };
@@ -126,8 +131,40 @@ namespace RulePyramid.Editor
                 _diag.text = error;
                 return;
             }
-            _diag.text = "试玩中：在 Game View 使用 WASD/Space。Stop 返回草稿。";
+            _diag.text = "试玩中：WASD 移动，Shift+方向推动，Space 跳。Stop 返回草稿。";
             PreviewHost.Start(_session);
+        }
+
+        void ReplaySolution(int index)
+        {
+            if (_session?.Draft?.referenceSolutions == null)
+            {
+                _diag.text = "无参考解";
+                return;
+            }
+            if (index < 0 || index >= _session.Draft.referenceSolutions.Length)
+            {
+                _diag.text = "无解法 " + (char)('A' + index);
+                return;
+            }
+            var sol = _session.Draft.referenceSolutions[index];
+            var result = ReplayRunner.Run(_session.Draft, sol);
+            if (result.Won)
+                _diag.text = "解法 " + sol.id + " 回放通关，回合=" + result.Turns + " YOU=" + result.ActorIdAtWin + " WIN=" + result.WinId;
+            else
+                _diag.text = "解法 " + sol.id + " 失败：" + result.FailReason;
+        }
+
+        void RunInteractionAudit()
+        {
+            if (_session?.Draft == null) return;
+            var audit = InteractionAudit.AuditNoInteraction(_session.Draft, 8000);
+            if (audit.Status == "EXHAUSTED_NO_INTERACTION_WIN")
+                _diag.text = "互动审核：无互动子图穷尽，无纯走跳胜利（状态 " + audit.States + "）";
+            else if (audit.Status == "TRAVERSAL_WIN_FOUND")
+                _diag.text = "互动审核失败：发现无互动通关路径 " + string.Join(" ", audit.Path ?? Array.Empty<string>());
+            else
+                _diag.text = "互动审核未决：" + audit.Status + " 状态=" + audit.States;
         }
 
         void OnCellClicked(GridCell cell)
@@ -146,9 +183,9 @@ namespace RulePyramid.Editor
                     {
                         Entity = new EntityDefinition
                         {
-                            id = _session.NextEntityId("c"),
-                            kind = "Color",
-                            color = string.IsNullOrEmpty(_colorField?.value) ? "RED" : _colorField.value,
+                            id = _session.NextEntityId("o"),
+                            kind = "Object",
+                            subject = string.IsNullOrEmpty(_colorField?.value) ? "ROBOT" : _colorField.value.ToUpperInvariant(),
                             token = "",
                             cell = cell
                         }
@@ -161,8 +198,8 @@ namespace RulePyramid.Editor
                         {
                             id = _session.NextEntityId("t"),
                             kind = "Text",
-                            color = "",
-                            token = string.IsNullOrEmpty(_tokenField?.value) ? "WIN" : _tokenField.value,
+                            subject = "",
+                            token = string.IsNullOrEmpty(_tokenField?.value) ? "WIN" : _tokenField.value.ToUpperInvariant(),
                             cell = cell
                         }
                     });
@@ -179,7 +216,7 @@ namespace RulePyramid.Editor
             if (_session?.Draft.entities == null) return cell.ToString();
             var lines = cell.ToString();
             foreach (var e in _session.Draft.entities)
-                if (e.cell.Equals(cell)) lines += "\n" + e.id + " " + e.kind + " " + e.color + e.token;
+                if (e.cell.Equals(cell)) lines += "\r\n" + e.id + " " + e.kind + " " + (e.subject ?? e.color) + e.token;
             return lines;
         }
 
@@ -195,30 +232,30 @@ namespace RulePyramid.Editor
         {
             return new LevelDefinition
             {
-                schemaVersion = 5,
+                schemaVersion = Tokens.SchemaVersion,
                 mechanicsVersion = Tokens.MechanicsVersion,
                 id = "draft",
                 title = "草稿",
                 bounds = new GridCellBox { min = new GridCell(0, 0, 0), max = new GridCell(7, 8, 7) },
                 terrain = new[] { new GridCellBox { min = new GridCell(0, 0, 0), max = new GridCell(7, 0, 7) } },
                 entities = Array.Empty<EntityDefinition>(),
-                fixedRules = new[] { new FixedRuleData { id = "r1", tokens = new[] { "RED", "IS", "YOU" } } },
+                fixedRules = new[] { new FixedRuleData { id = "r1", tokens = new[] { "ROBOT", "IS", "YOU" } } },
                 options = new OptionsData
                 {
-                    supportMode = "StrictBelow",
-                    jumpMode = "LandingBounce3",
-                    bounceRiseCells = 3,
-                    decisionMode = "GroundedOrBounceApex",
-                    ruleAxes = new[] { "PositiveX", "PositiveZ" },
+                    actionMode = "MoveClimbHoldPush",
                     winMode = "DistinctEntitiesSameCell",
-                    winCheckMode = "AfterAtomicLogicChange",
-                    actionMode = "FourWayMoveInPlaceJumpApexSteer",
                     gravityMode = "WorldDownExceptHoverOrFly",
-                    playerBlockMode = "ImplicitFromYou"
+                    collisionMode = "SolidPairsTerrainUniversal",
+                    solidityMode = "YouPushStopOrText",
+                    supportMode = "StrictBelow",
+                    controlMode = "SingleYouTransfer_NoControlUndo",
+                    bounceRiseCells = 3,
+                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
                 },
-                camera = new CameraData { initialSlot = 0, pitchDegrees = 35.264f, yawDegrees = new[] { 45f, 135f, 225f, 315f }, inputMode = "CameraRelativeGrid" },
+                camera = new CameraData { initialSlot = 0, slot = 0, pitchDegrees = 35.264f, yawDegrees = new[] { 45f, 135f, 225f, 315f }, inputMode = "CameraRelativeGrid", orthographic = true },
+                designContract = new DesignContractData { requireActiveInteraction = false, minimumSolutionFamilies = 1, interactionIsAuthoringConstraint = true },
                 tutorial = new TutorialData { objective = "", hints = Array.Empty<string>() },
-                referenceSolution = new ReferenceSolutionData { commands = Array.Empty<string>(), expectedFinalStatus = "Running" }
+                referenceSolutions = new[] { new ReferenceSolutionData { id = "A", name = "草稿", family = "draft", commands = Array.Empty<string>(), expectedFinalStatus = "Running" } }
             };
         }
 
@@ -274,9 +311,9 @@ namespace RulePyramid.Editor
                     {
                         if (!e.cell.Equals(c)) continue;
                         if (e.kind == "Text") fill = new Color(0.9f, 0.85f, 0.5f);
-                        else if (e.color == "RED") fill = new Color(0.85f, 0.3f, 0.25f);
-                        else if (e.color == "BLUE") fill = new Color(0.3f, 0.45f, 0.9f);
-                        else if (e.color == "PINK") fill = new Color(0.9f, 0.45f, 0.75f);
+                        else if (e.subject == "ROBOT" || e.color == "RED") fill = new Color(0.85f, 0.3f, 0.25f);
+                        else if (e.subject == "ROCK" || e.subject == "CLOUD" || e.color == "BLUE") fill = new Color(0.3f, 0.45f, 0.9f);
+                        else if (e.subject == "FLAG" || e.subject == "SPRING" || e.color == "PINK") fill = new Color(0.9f, 0.45f, 0.75f);
                     }
                 }
                 painter.fillColor = fill;

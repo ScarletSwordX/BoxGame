@@ -43,7 +43,7 @@ namespace RulePyramid.Runtime
             var mat = MaterialFor(e, solid, win);
             float scale = e.Kind == EntityKind.Text ? 0.92f : (solid ? 1f : 0.92f);
             var t = CreateCube(e.Id, e.Cell, mat, scale);
-            if (!solid && e.Kind == EntityKind.Color)
+            if (!solid && e.Kind == EntityKind.Object)
             {
                 var rend = t.GetComponent<Renderer>();
                 if (rend != null)
@@ -99,11 +99,13 @@ namespace RulePyramid.Runtime
             if (config == null) return null;
             if (e.Kind == EntityKind.Text)
                 return e.Anchored && config.anchoredTextMaterial != null ? config.anchoredTextMaterial : config.textMaterial;
-            switch (e.Color)
+            switch (e.Subject)
             {
-                case "RED": return config.redMaterial;
-                case "BLUE": return config.blueMaterial;
-                case "PINK": return (!solid && config.pinkHollowMaterial != null) ? config.pinkHollowMaterial : config.pinkMaterial;
+                case "ROBOT": return config.redMaterial;
+                case "ROCK": return config.blueMaterial;
+                case "FLAG": return (!solid && config.pinkHollowMaterial != null) ? config.pinkHollowMaterial : config.pinkMaterial;
+                case "CLOUD": return config.blueMaterial != null ? config.blueMaterial : config.textMaterial;
+                case "SPRING": return config.pinkMaterial != null ? config.pinkMaterial : config.textMaterial;
                 default: return config.textMaterial;
             }
         }
