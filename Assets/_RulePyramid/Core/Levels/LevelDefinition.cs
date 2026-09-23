@@ -12,6 +12,7 @@ namespace RulePyramid.Core
         public GridCellBox bounds;
         public GridCellBox[] terrain;
         public EntityDefinition[] entities;
+        /// <summary>v0.9 禁止；若 JSON 仍含此字段，加载时结构错误。</summary>
         public FixedRuleData[] fixedRules;
         public OptionsData options;
         public CameraData camera;
@@ -30,8 +31,10 @@ namespace RulePyramid.Core
     [Serializable]
     public class GridCellBox
     {
+        public string id;
         public GridCell min;
         public GridCell max;
+        public string appearance;
     }
 
     [Serializable]
@@ -66,6 +69,8 @@ namespace RulePyramid.Core
         public string controlMode;
         public int bounceRiseCells;
         public string transformationMode;
+        public string ruleSourceMode;
+        public string textMobilityMode;
     }
 
     [Serializable]

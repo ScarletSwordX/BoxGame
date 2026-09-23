@@ -31,6 +31,8 @@ namespace RulePyramid.Runtime
         {
             if (level.terrain == null) level.terrain = Array.Empty<GridCellBox>();
             if (level.entities == null) level.entities = Array.Empty<EntityDefinition>();
+            if (level.fixedRules != null && level.fixedRules.Length > 0)
+                throw new InvalidOperationException("Forbidden non-spatial rule source; use world TEXT entities");
             if (level.fixedRules == null) level.fixedRules = Array.Empty<FixedRuleData>();
             if (level.tutorial != null)
             {

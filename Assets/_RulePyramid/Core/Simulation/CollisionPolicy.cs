@@ -11,7 +11,7 @@ namespace RulePyramid.Core
         public bool IsEntity => Entity != null;
     }
 
-    /// <summary>双方均为实体时才互相排斥（RW-v0.8）。</summary>
+    /// <summary>双方均为实体时才互相排斥（RW-v0.9）。</summary>
     public static class CollisionPolicy
     {
         public static bool BlocksPair(EntityState a, EntityState b, RuleSet rules)

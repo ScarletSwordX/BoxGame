@@ -31,7 +31,7 @@ namespace RulePyramid.Core
         static GridCellBox CloneBox(GridCellBox box)
         {
             if (box == null) return null;
-            return new GridCellBox { min = box.min, max = box.max };
+            return new GridCellBox { id = box.id, min = box.min, max = box.max, appearance = box.appearance };
         }
 
         static GridCellBox[] CloneBoxes(GridCellBox[] boxes)
@@ -89,7 +89,9 @@ namespace RulePyramid.Core
                 supportMode = o.supportMode,
                 controlMode = o.controlMode,
                 bounceRiseCells = o.bounceRiseCells,
-                transformationMode = o.transformationMode
+                transformationMode = o.transformationMode,
+                ruleSourceMode = o.ruleSourceMode,
+                textMobilityMode = o.textMobilityMode
             };
         }
 

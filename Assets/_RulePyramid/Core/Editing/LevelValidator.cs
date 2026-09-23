@@ -67,7 +67,9 @@ namespace RulePyramid.Core
             { "solidityMode", "YouPushStopOrText" },
             { "supportMode", "StrictBelow" },
             { "controlMode", "SingleYouTransfer_NoControlUndo" },
-            { "transformationMode", "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand" }
+            { "transformationMode", "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand" },
+            { "ruleSourceMode", "WorldTextOnly" },
+            { "textMobilityMode", "AllWordsMovable_GeometryAccess" }
         };
 
         public static ValidationReport ValidateStructure(LevelDefinition level)
@@ -79,9 +81,11 @@ namespace RulePyramid.Core
                 return report;
             }
             if (level.schemaVersion != Tokens.SchemaVersion)
-                report.Add(ValidationSeverity.StructureError, "SCHEMA", "schemaVersion must be 8");
+                report.Add(ValidationSeverity.StructureError, "SCHEMA", "schemaVersion must be 9");
             if (level.mechanicsVersion != Tokens.MechanicsVersion)
-                report.Add(ValidationSeverity.StructureError, "MECHANICS", "mechanicsVersion must be RW-v0.8");
+                report.Add(ValidationSeverity.StructureError, "MECHANICS", "mechanicsVersion must be RW-v0.9");
+            if (level.fixedRules != null && level.fixedRules.Length > 0)
+                report.Add(ValidationSeverity.StructureError, "FIXED", "fixedRules forbidden; use world TEXT entities");
             if (string.IsNullOrEmpty(level.id))
                 report.Add(ValidationSeverity.StructureError, "ID", "Missing level id");
             if (level.bounds == null)
@@ -100,12 +104,15 @@ namespace RulePyramid.Core
                 AssertOption(report, level.options.supportMode, ExpectedOptions["supportMode"], "supportMode");
                 AssertOption(report, level.options.controlMode, ExpectedOptions["controlMode"], "controlMode");
                 AssertOption(report, level.options.transformationMode, ExpectedOptions["transformationMode"], "transformationMode");
+                AssertOption(report, level.options.ruleSourceMode, ExpectedOptions["ruleSourceMode"], "ruleSourceMode");
+                AssertOption(report, level.options.textMobilityMode, ExpectedOptions["textMobilityMode"], "textMobilityMode");
                 if (level.options.bounceRiseCells != 3)
                     report.Add(ValidationSeverity.StructureError, "BOUNCE", "bounceRiseCells must be 3");
             }
 
             var terrainCells = LevelCloner.ExpandTerrain(level.terrain);
             var ids = new HashSet<string>();
+            int textCount = 0;
             if (level.entities != null)
             {
                 foreach (var e in level.entities)
@@ -123,6 +130,8 @@ namespace RulePyramid.Core
                     bool isText = string.Equals(kind, "Text", StringComparison.OrdinalIgnoreCase);
                     if (!isObject && !isText)
                         report.Add(ValidationSeverity.StructureError, "KIND", e.id + " has illegal kind");
+                    if (e.anchored)
+                        report.Add(ValidationSeverity.StructureError, "ANCHORED", e.id + " v0.9 entities must not be anchored");
                     if (isObject)
                     {
                         var subject = string.IsNullOrEmpty(e.subject) ? e.color : e.subject;
@@ -130,11 +139,10 @@ namespace RulePyramid.Core
                             report.Add(ValidationSeverity.StructureError, "SUBJECT", e.id + " missing legal subject");
                         if (!string.IsNullOrEmpty(e.token))
                             report.Add(ValidationSeverity.Warning, "TOKEN", e.id + " object entity should have empty token");
-                        if (e.anchored)
-                            report.Add(ValidationSeverity.StructureError, "ANCHORED", e.id + " Object cannot be anchored");
                     }
                     else if (isText)
                     {
+                        textCount++;
                         if (!Tokens.IsLegalWord(e.token))
                             report.Add(ValidationSeverity.StructureError, "TOKEN", e.id + " unknown token " + e.token);
                     }
@@ -148,19 +156,8 @@ namespace RulePyramid.Core
                         report.Add(ValidationSeverity.StructureError, "TERRAIN", e.id + " overlaps terrain");
                 }
             }
-
-            if (level.fixedRules != null)
-            {
-                foreach (var rule in level.fixedRules)
-                {
-                    if (rule?.tokens == null) continue;
-                    foreach (var t in rule.tokens)
-                    {
-                        if (!Tokens.IsLegalWord(t))
-                            report.Add(ValidationSeverity.StructureError, "FIXED", "Unknown fixed token " + t);
-                    }
-                }
-            }
+            if (textCount == 0)
+                report.Add(ValidationSeverity.StructureError, "WORDS", "No world TEXT entities; rules must be spatial");
 
             if (level.designContract != null && level.referenceSolutions != null)
             {

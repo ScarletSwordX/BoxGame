@@ -4,7 +4,7 @@ using System.Text;
 
 namespace RulePyramid.Core
 {
-    /// <summary>RW-v0.8 权威模拟；忠实移植 reference_check.py Model。</summary>
+    /// <summary>RW-v0.9 权威模拟；世界 Text 为唯一显式规则来源。</summary>
     public sealed class WorldModel
     {
         public LevelDefinition Spec;
@@ -58,6 +58,8 @@ namespace RulePyramid.Core
         public static WorldModel FromLevel(LevelDefinition level, bool settleInitial = false)
         {
             if (level == null) throw new ArgumentNullException(nameof(level));
+            if (level.fixedRules != null && level.fixedRules.Length > 0)
+                throw new InvalidOperationException("Forbidden non-spatial rule source; use world TEXT entities");
             var world = new WorldModel { Spec = LevelCloner.Clone(level) };
             if (world.Spec.options != null && world.Spec.options.bounceRiseCells > 0)
                 world.BounceRiseCells = world.Spec.options.bounceRiseCells;
@@ -198,15 +200,8 @@ namespace RulePyramid.Core
                     rules[subject].Add(property);
             }
 
-            if (Spec?.fixedRules != null)
-            {
-                for (int idx = 0; idx < Spec.fixedRules.Length; idx++)
-                {
-                    var rule = Spec.fixedRules[idx];
-                    if (rule?.tokens == null || rule.tokens.Length == 0) continue;
-                    Parse(rule.tokens, "fixed:" + idx);
-                }
-            }
+            if (Spec?.fixedRules != null && Spec.fixedRules.Length > 0)
+                throw new RuleConflictException("Forbidden non-spatial rule source; use world TEXT entities");
 
             var textAt = new Dictionary<GridCell, EntityState>();
             foreach (var e in Entities)

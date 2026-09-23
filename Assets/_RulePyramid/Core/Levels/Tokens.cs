@@ -4,8 +4,8 @@ namespace RulePyramid.Core
 {
     public static class Tokens
     {
-        public const string MechanicsVersion = "RW-v0.8";
-        public const int SchemaVersion = 8;
+        public const string MechanicsVersion = "RW-v0.9";
+        public const int SchemaVersion = 9;
 
         public static readonly HashSet<string> Subjects = new HashSet<string>
         {

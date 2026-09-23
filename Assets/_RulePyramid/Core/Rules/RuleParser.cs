@@ -55,9 +55,14 @@ namespace RulePyramid.Core
     /// <summary>薄包装：实际解析在 WorldModel.Refresh；保留供外部查询。</summary>
     public static class RuleParser
     {
+        /// <summary>
+        /// 兼容入口：仍接受 fixedRuleLines 参数以保持编译。
+        /// v0.9 生产路径不得使用 fixedRules / fixedRuleLines 注入；规则只能来自世界 Text。
+        /// 完整语义以 WorldModel.Refresh 为准。
+        /// </summary>
         public static RuleSet Parse(IEnumerable<string> fixedRuleLines, IEnumerable<EntityState> entities)
         {
-            // 无变换诊断的兼容入口；完整语义以 WorldModel.Refresh 为准。
+            // 无变换诊断的兼容入口；v0.9 生产不得传入 fixedRuleLines。
             var rules = new RuleSet();
             if (fixedRuleLines != null)
             {
