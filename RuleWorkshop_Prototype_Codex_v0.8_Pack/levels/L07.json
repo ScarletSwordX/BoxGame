@@ -1,0 +1,383 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L07",
+  "title": "坐上去，再让云飞",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    "max": {
+      "x": 9,
+      "y": 9,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 9,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 6,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 7,
+        "y": 2,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 2
+      },
+      "max": {
+        "x": 9,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 7,
+        "z": 1
+      },
+      "max": {
+        "x": 5,
+        "y": 7,
+        "z": 1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "cloud_a",
+      "kind": "Object",
+      "subject": "CLOUD",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "cloud_b",
+      "kind": "Object",
+      "subject": "CLOUD",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 6,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_cloud",
+      "kind": "Text",
+      "subject": "",
+      "token": "CLOUD",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": -1
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_hover",
+      "kind": "Text",
+      "subject": "",
+      "token": "HOVER",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_fly",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLY",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "rule_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "rule_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "rule_03",
+      "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
+      ]
+    },
+    {
+      "id": "rule_04",
+      "tokens": [
+        "CLOUD",
+        "IS",
+        "STOP"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PE",
+        "E",
+        "E",
+        "PE",
+        "N",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            6,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "FlyOrRide",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            6,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "FlyOrRide",
+            "Walk"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            6,
+            2
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          6,
+          6,
+          2
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "平台的运动改变前，先安排登乘位置。",
+    "observation": "云已有 STOP，空间句让它 HOVER；FLY 词放在能被推入的相邻位置。",
+    "necessity": "初始悬停高度不足以到达出口；推石搭阶才能登乘，然后一次推词完成换属性与站上承运云。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "先推动地面的岩块一格并登上它，接着登到第一朵云顶面；向 +X 推词链，把 FLY 替换进 HOVER 的位置，同时身体进入第二朵云顶面。云带玩家升到头顶限位下，向出口侧移并进入旗标。"
+      }
+    ],
+    "hints": [
+      "如果云先飞走，你还能登上去吗？",
+      "把最后一次推词安排在登乘过程中。",
+      "先推石搭阶，再沿云顶推入 FLY。"
+    ],
+    "risks": [
+      "规则槽下方需要真实支撑，不能让 FLY 推入后自己掉走。",
+      "头顶限位拦住的是平台与乘客整组，不挤压或穿透玩家。"
+    ]
+  }
+}

@@ -2,7 +2,8 @@
 
 ## 玩法合同
 
-- 当前有效规格：`docs/PROTOTYPE_SPEC.md`（RP-v0.5）
+- 当前有效规格：`docs/PROTOTYPE_SPEC.md`（RW-v0.8 / schemaVersion = 8）
+- 设计包参考：`RuleWorkshop_Prototype_Codex_v0.8_Pack/`
 - 实施状态：`docs/IMPLEMENTATION_STATUS.md`
 
 ## 必须加载的项目技能

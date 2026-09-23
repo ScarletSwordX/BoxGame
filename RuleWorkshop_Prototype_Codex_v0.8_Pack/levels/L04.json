@@ -1,0 +1,366 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L04",
+  "title": "给云一个落脚面",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 10,
+      "y": 8,
+      "z": 4
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": 4
+      }
+    },
+    {
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 3,
+        "y": 2,
+        "z": 4
+      }
+    },
+    {
+      "min": {
+        "x": 7,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 2,
+        "z": 4
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "cloud_1",
+      "kind": "Object",
+      "subject": "CLOUD",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "cloud_2",
+      "kind": "Object",
+      "subject": "CLOUD",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "cloud_3",
+      "kind": "Object",
+      "subject": "CLOUD",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_cloud",
+      "kind": "Text",
+      "subject": "",
+      "token": "CLOUD",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "rule_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "rule_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "rule_03",
+      "tokens": [
+        "CLOUD",
+        "IS",
+        "HOVER"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PN",
+        "S",
+        "E",
+        "E",
+        "E",
+        "E",
+        "E",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PN",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            3,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            7,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 8,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            8,
+            3,
+            1
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          8,
+          3,
+          1
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "HOVER 只决定高度，STOP 才让悬云能承托。",
+    "observation": "两岸同高，中间三朵云已经悬停，但云影没有实体顶面。",
+    "necessity": "未实体化时玩家穿过云影并落到下层，不能连续横跨三格缺口，也不能从下层一次登上两格高的岸。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "将 STOP 推入 CLOUD IS ___，让三朵云同时产生承托面；返回岸边，沿三朵云的顶面走到另一岸，进入旗标。"
+      }
+    ],
+    "hints": [
+      "云没有掉落，不等于它能托住你。",
+      "找一条能改变云实体性的句子。",
+      "拼成 CLOUD IS STOP，再走到云的顶面。"
+    ],
+    "risks": [
+      "实体反馈要在第一次踩踏前可见。",
+      "保留实际下层底板；掉下去不触发隐形传送或自动胜利。"
+    ]
+  }
+}

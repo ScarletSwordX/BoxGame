@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "levels": [
+    "levels/L01.json",
+    "levels/L02.json",
+    "levels/L03.json",
+    "levels/L04.json",
+    "levels/L05.json",
+    "levels/L06.json",
+    "levels/L07.json",
+    "levels/L08.json",
+    "levels/L09.json",
+    "levels/L10.json",
+    "levels/L11.json",
+    "levels/L12.json"
+  ]
+}

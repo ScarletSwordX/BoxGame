@@ -1,0 +1,92 @@
+{
+  "mechanicsVersion": "RW-v0.8",
+  "schemaVersion": 8,
+  "files": {
+    "RuleWorkshop_Prototype_Codex_v0.8.md": "75ab89ba1426ae58dfa95f2c08059e32f8f9c6e928a9599d4ddb479433f5e430",
+    "README.md": "d1f2a640b2ef2ee4236bce21df792daeaa892656555a1e286650e8f687fffb84",
+    "CHANGELOG.md": "5fe30ba37278c520fc0f569c1714d175d18f1bf536286a769ade27f92ef6b37c",
+    "catalog.json": "b014a6da0e349c3b757180ed24826329ffef61b7f7a16884548229ca8b0f6fac",
+    "reference_check.py": "a45df8b3a5c78245c89c670462bb50e8d0481bbd204b0b0db4bdba891cb3b77c",
+    "validation_results.json": "94680dc781175408a995976e448e59973ba2da7cda9ce32a8a2859769cdc7550",
+    "VERIFICATION_SUMMARY.md": "f029b1576e79c5ae0112dd6c87afe695bcbbbf6a692284d0ecbc4b4dd623e7dd",
+    "levels/L01.json": "6414c48f7db4872665b01e5c4a8f8e4d67699acae15b217f508bcbfd7fc8da55",
+    "levels/L02.json": "1d8f7de5be3edc5096392ad6f3529ddac80aea2d9de8255995584366a87e6ef5",
+    "levels/L03.json": "11338ee3caafbfea8c6c26389ef124d6b7c072d0ee271d881f3c136cc8e6f5c1",
+    "levels/L04.json": "9ccad8ee5a2594f09b6d370f6fe508ef3fb63806f1d47e4d4a7fa205141e26fc",
+    "levels/L05.json": "d4735654d6d007412f91d22b90f9d9c781d419312ab1bbb674c94b0848e79ef1",
+    "levels/L06.json": "440ef8df340a14e203470709c0292b32f4c9483860c95df437ac7a863e17d4ed",
+    "levels/L07.json": "cef059125eae719b35d9acdf7c13827c5f47b917e1d38f47232917e85fc858c0",
+    "levels/L08.json": "f827107fc6e2aca3766a54c6df984e7d4e56059f2a1caf21d46bf00ef7480ed1",
+    "levels/L09.json": "fe2db15b76eb6ebcb80d9a17b0aa20482b3c040186e676f8e55632ee6e6cc42e",
+    "levels/L10.json": "82c85688f2ceeeb131094a9d7b8bd6335c1f83604cc92c7e16cfdb19a2f15bfb",
+    "levels/L11.json": "5e3bcf710c111a060847cc3d5129f10c5d37af5777c186806bb891037a949b3e",
+    "levels/L12.json": "9979a0fd85fa08e2d698ff1350e3e24127f1f7300a68a1ccb86c1e6ca28e4e39"
+  },
+  "documentDataChecks": [
+    {
+      "levelId": "L01",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L02",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L03",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L04",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L05",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L06",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L07",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L08",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L09",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L10",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L11",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    },
+    {
+      "levelId": "L12",
+      "coordinatesTokensTerrainCommandsTraceMatchDocument": true,
+      "dataHashMatchesReport": true
+    }
+  ],
+  "excludedClaims": [
+    "Unity compilation",
+    "human playtesting",
+    "all-solutions enumeration"
+  ]
+}

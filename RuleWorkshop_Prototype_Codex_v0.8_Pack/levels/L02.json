@@ -1,0 +1,265 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L02",
+  "title": "推过去，爬上去",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 8,
+      "y": 7,
+      "z": 2
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 2,
+        "z": 2
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "rule_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "rule_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "rule_03",
+      "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PE",
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            7,
+            3,
+            1
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          7,
+          3,
+          1
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "同一岩块可以被推，也可以保持原位供玩家登上。",
+    "observation": "出生点附近的岩块离高平台太远；直接爬上去再前进，会回落到低处。",
+    "necessity": "高平台的落脚面在 Y=3，地面身体在 Y=1，普通登攀一次只升一格；必须把可推石搬到平台边。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "按推动意图把岩块从 X=2 推到 X=5；松开 Shift 后登到岩块顶面，再登上 X=6 的平台，走入 X=7 的旗标。"
+      }
+    ],
+    "hints": [
+      "这块石头可以留着当台阶，也可以先搬到别处。",
+      "Shift＋方向负责搬动；松开 Shift 后方向负责登上。",
+      "把岩块推到高台前一格，再松手爬上岩块。"
+    ],
+    "risks": [
+      "推不动时不能自动改成攀爬。",
+      "不按 Shift 登上岩块不算一次有效物品改造；不要因此满足互动记录。"
+    ]
+  }
+}

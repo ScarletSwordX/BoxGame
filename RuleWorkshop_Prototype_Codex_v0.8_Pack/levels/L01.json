@@ -1,0 +1,212 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L01",
+  "title": "进入轮廓",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 5,
+      "y": 5,
+      "z": 2
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 5,
+        "y": 0,
+        "z": 2
+      }
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 5,
+        "y": 1,
+        "z": 2
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "fixed_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "fixed_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": false,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "移动、登攀、进入",
+      "family": "locomotion",
+      "commands": [
+        "E",
+        "E",
+        "E",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            1,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            1
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          4,
+          2,
+          1
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "先认识走、登攀与“进入目标”，不要一上来学习推物或拆句。",
+    "observation": "旗标是一个可进入的一格轮廓；平台高一格，普通方向就能登上。",
+    "necessity": "本关有意允许不改变任何物品的通关，作为后续互动审核的正向对照，不占多解配额。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "从出生点沿 +X 走过低处，登上固定一格台阶，最后真正进入旗标格。四视角切换可随时插入，但不属于逻辑回合。"
+      }
+    ],
+    "hints": [
+      "看看旗标的空心轮廓占的是哪一格。",
+      "普通方向可以登上一格；站在目标旁边还不算进入。",
+      "沿平台继续向 +X 前进，进入旗标，而不是停在它前一格。"
+    ],
+    "risks": [
+      "不要把相邻即胜或“碰到外壳”加回来。",
+      "用地面箭头解释视角切换后的方向，不靠屏幕投影判断高差。"
+    ]
+  }
+}

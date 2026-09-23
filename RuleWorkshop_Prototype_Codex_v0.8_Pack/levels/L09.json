@@ -1,0 +1,575 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L09",
+  "title": "把控制权交给旗帜",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    "max": {
+      "x": 8,
+      "y": 7,
+      "z": 5
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 6,
+        "y": 2,
+        "z": 1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_switch",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_you_r",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_you_f",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_robot_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_win_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "fixed_01",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "fixed_02",
+      "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 2,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "机器人推石登台，进入旗标",
+      "family": "move-original-actor",
+      "commands": [
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustWinWith": "goal",
+      "mustControlAtWin": "robot_01",
+      "forbidEvents": [
+        "ControlChanged"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            3,
+            0
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          6,
+          3,
+          0
+        ],
+        "cause": "Walk"
+      }
+    },
+    {
+      "id": "B",
+      "name": "给原身体 WIN，再把控制权交给旗帜",
+      "family": "transfer-control",
+      "commands": [
+        "N",
+        "E",
+        "N",
+        "PW",
+        "E",
+        "E",
+        "PN",
+        "W",
+        "N",
+        "N",
+        "W",
+        "W",
+        "N"
+      ],
+      "mustWinWith": "robot_01",
+      "mustControlAtWin": "goal",
+      "requireEvents": [
+        "ControlChanged"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            1,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "PW",
+          "actorId": "robot_01",
+          "actorCell": [
+            1,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "PN",
+          "actorId": "goal",
+          "actorCell": [
+            6,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "ControlChanged",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 8,
+          "command": "W",
+          "actorId": "goal",
+          "actorCell": [
+            5,
+            3,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 9,
+          "command": "N",
+          "actorId": "goal",
+          "actorCell": [
+            5,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 10,
+          "command": "N",
+          "actorId": "goal",
+          "actorCell": [
+            5,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "PlayerFell",
+            "Walk"
+          ]
+        },
+        {
+          "step": 11,
+          "command": "W",
+          "actorId": "goal",
+          "actorCell": [
+            4,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 12,
+          "command": "W",
+          "actorId": "goal",
+          "actorCell": [
+            3,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 13,
+          "command": "N",
+          "actorId": "goal",
+          "actorCell": [
+            3,
+            1,
+            3
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "goal",
+        "winId": "robot_01",
+        "cell": [
+          3,
+          1,
+          3
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "控制权与胜利对象可重新分配；一个实例自身 YOU+WIN 不获胜。",
+    "observation": "同一块 IS 可以在 ROBOT 和 FLAG 的 YOU 行之间移动；旁边还有可补全的 ROBOT IS WIN。",
+    "necessity": "不改字时仍必须搬岩块登高；换控时则要先给旧身体 WIN，再移动 IS 使旗帜受控。两类路径都改变世界。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "保持 ROBOT IS YOU，通过推岩块搭阶登上高台，机器人进入原旗标。不必为了“学过换控”再执行另一条路。"
+      },
+      {
+        "solutionId": "B",
+        "text": "先将 WIN 向 -X 推入旁边的 ROBOT IS ___，机器人同时 YOU+WIN 但不会自胜；再把中央 IS 沿 +Z 推入 FLAG 的 YOU 行。此时旗帜受控，旧机器人失去默认实体性、成为空心 WIN。操控旗帜离开高台，下到低处，与旧机器人同格。"
+      }
+    ],
+    "hints": [
+      "谁是“你”，是由外形还是 YOU 句决定？",
+      "给自己 WIN 不会自己获胜；需要另一个受控实例来进入。",
+      "先完成 ROBOT IS WIN，再把 IS 从 ROBOT 的 YOU 行推到 FLAG 行，控制旗帜回到原机器人。"
+    ],
+    "risks": [
+      "不要仍然用 robot_01 的 Transform 接收输入。",
+      "若有显式 ROBOT IS STOP，换控后旧机器人仍是实体；本关没有这条隐藏基础规则。",
+      "不允许用自身 YOU+WIN 短路胜利，或让刚换控的旗帜立刻自胜。"
+    ]
+  }
+}

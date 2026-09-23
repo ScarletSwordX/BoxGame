@@ -1,0 +1,473 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L10",
+  "title": "人上去，目标下来",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    "max": {
+      "x": 8,
+      "y": 8,
+      "z": 5
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 5
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 5,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_hover",
+      "kind": "Text",
+      "subject": "",
+      "token": "HOVER",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "fixed_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "fixed_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "fixed_03",
+      "tokens": [
+        "SPRING",
+        "IS",
+        "PUSH",
+        "AND",
+        "BOUNCY"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 2,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "移动弹簧，弹入高空旗标",
+      "family": "bounce-to-target",
+      "commands": [
+        "PE",
+        "PE",
+        "E",
+        "J",
+        "E"
+      ],
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "LandingBounce"
+      ],
+      "forbidEvents": [
+        "RulesChanged"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            2,
+            0
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "J",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            5,
+            0
+          ],
+          "phase": "BounceApex",
+          "events": [
+            "BounceApexReached",
+            "BounceStarted",
+            "BounceStep",
+            "JumpApex",
+            "LandingBounce",
+            "PlayerFell"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            5,
+            0
+          ],
+          "phase": "Won",
+          "events": [
+            "ApexSteer",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          6,
+          5,
+          0
+        ],
+        "cause": "ApexSteer"
+      }
+    },
+    {
+      "id": "B",
+      "name": "拆除 HOVER，走入下落后的目标",
+      "family": "bring-target-down",
+      "commands": [
+        "N",
+        "E",
+        "E",
+        "N",
+        "PN",
+        "S",
+        "S",
+        "E",
+        "E",
+        "S"
+      ],
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "RulesChanged"
+      ],
+      "forbidEvents": [
+        "LandingBounce"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "N",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "PN",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            3
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "GravityFall",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 8,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 9,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 10,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            1,
+            0
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          6,
+          1,
+          0
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "与其改变自己的高度，也可以改变目标的高度。",
+    "observation": "旗标靠 HOVER 悬在 Y=5；地面弹簧可推、可弹，但初始位置离目标太远。",
+    "necessity": "默认状态没有通往高空目标的纯走跳路径。要么移动弹台到正确位置，要么拆掉维持目标高度的规则。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "把弹簧从 X=3 推到 X=5，登上、原地跳、落地弹至 Y=5，向 +X 侧移进入仍在高处的旗标。"
+      },
+      {
+        "solutionId": "B",
+        "text": "推走 FLAG IS HOVER 的 HOVER。旗标按世界默认重力落到 Y=1；机器人不使用弹跳，走入落地的空心目标。"
+      }
+    ],
+    "hints": [
+      "是你一定要上去，还是只要两者能相遇？",
+      "旗标为什么停在空中？取消哪条例外会恢复下落？",
+      "路线 A 搬弹簧；路线 B 拆掉 FLAG 的 HOVER，再到其落点。"
+    ],
+    "risks": [
+      "HOVER 被拆掉时必须同回合开始下落，不能等一个隐藏计时器。",
+      "目标如果在下降途中与玩家同格，要立即获胜，不能等它落到最终格后忽略穿过。"
+    ]
+  }
+}

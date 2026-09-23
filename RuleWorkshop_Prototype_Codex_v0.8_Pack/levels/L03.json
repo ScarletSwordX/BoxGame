@@ -1,0 +1,363 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L03",
+  "title": "石头的权限",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 10,
+      "y": 8,
+      "z": 5
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 1,
+        "z": 5
+      }
+    },
+    {
+      "min": {
+        "x": 8,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 3,
+        "z": 5
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 4,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "rule_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "rule_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "slot": 0,
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PN",
+        "S",
+        "E",
+        "E",
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions.",
+      "expectedTrace": [
+        {
+          "step": 1,
+          "command": "PN",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            2
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed",
+            "RulesChanged"
+          ]
+        },
+        {
+          "step": 2,
+          "command": "S",
+          "actorId": "robot_01",
+          "actorCell": [
+            2,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 3,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            3,
+            1,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Walk"
+          ]
+        },
+        {
+          "step": 4,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            4,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 5,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            5,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 6,
+          "command": "PE",
+          "actorId": "robot_01",
+          "actorCell": [
+            6,
+            2,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "ActiveInteraction",
+            "Pushed"
+          ]
+        },
+        {
+          "step": 7,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            7,
+            3,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 8,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            8,
+            4,
+            1
+          ],
+          "phase": "Grounded",
+          "events": [
+            "Climbed"
+          ]
+        },
+        {
+          "step": 9,
+          "command": "E",
+          "actorId": "robot_01",
+          "actorCell": [
+            9,
+            4,
+            1
+          ],
+          "phase": "Won",
+          "events": [
+            "Walk",
+            "Won"
+          ]
+        }
+      ],
+      "expectedWin": {
+        "youId": "robot_01",
+        "winId": "goal",
+        "cell": [
+          9,
+          4,
+          1
+        ],
+        "cause": "Walk"
+      }
+    }
+  ],
+  "tutorial": {
+    "concept": "STOP 与 PUSH 的差异来自规则，而非换模型或角色变强。",
+    "observation": "岩块当前为 STOP，不能手动搬动；低处的规则槽旁有一个 PUSH 词。",
+    "necessity": "初始高台不可只靠移动到达；参考解将 STOP 换 PUSH 后才能把上层岩块推到更高出口前。",
+    "narratives": [
+      {
+        "solutionId": "A",
+        "text": "从出生点向 +Z 推动 PUSH 与 STOP 的词链，使 ROCK IS PUSH 取代 ROCK IS STOP；返回主路线，登上低平台，移动岩块两格，再利用它登上出口平台。"
+      }
+    ],
+    "hints": [
+      "看看岩块当前究竟是 STOP 还是 PUSH。",
+      "你需要改变的不是岩块外形，而是它能否被搬动。",
+      "把 PUSH 推进 STOP 的位置，再去推动岩块。"
+    ],
+    "risks": [
+      "PUSH 已经包含实体性，不要要求再加 STOP。",
+      "不要声称所有解法都必须用这一块 PUSH；若玩家合法地改造词牌搭阶，应另评估为新解而非脚本封锁。"
+    ]
+  }
+}
