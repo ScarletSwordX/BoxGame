@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 5,
-  "mechanicsVersion": "RP-v0.5",
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
   "id": "L01",
-  "title": "填入那个位置",
+  "title": "进入轮廓",
   "bounds": {
     "min": {
       "x": 0,
@@ -11,8 +11,8 @@
     },
     "max": {
       "x": 5,
-      "y": 6,
-      "z": 3
+      "y": 5,
+      "z": 2
     }
   },
   "terrain": [
@@ -25,27 +25,27 @@
       "max": {
         "x": 5,
         "y": 0,
-        "z": 3
+        "z": 2
       }
     },
     {
       "min": {
-        "x": 2,
+        "x": 3,
         "y": 1,
         "z": 0
       },
       "max": {
-        "x": 2,
-        "y": 3,
-        "z": 1
+        "x": 5,
+        "y": 1,
+        "z": 2
       }
     }
   ],
   "entities": [
     {
-      "id": "player",
-      "kind": "Color",
-      "color": "RED",
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
       "token": "",
       "cell": {
         "x": 0,
@@ -56,12 +56,12 @@
     },
     {
       "id": "goal",
-      "kind": "Color",
-      "color": "PINK",
+      "kind": "Object",
+      "subject": "FLAG",
       "token": "",
       "cell": {
         "x": 4,
-        "y": 1,
+        "y": 2,
         "z": 1
       },
       "anchored": false
@@ -69,65 +69,83 @@
   ],
   "fixedRules": [
     {
-      "id": "r01",
+      "id": "fixed_01",
       "tokens": [
-        "RED",
+        "ROBOT",
         "IS",
         "YOU"
       ]
     },
     {
-      "id": "r02",
+      "id": "fixed_02",
       "tokens": [
-        "PINK",
+        "FLAG",
         "IS",
         "WIN"
       ]
     }
   ],
   "options": {
-    "supportMode": "StrictBelow",
-    "jumpMode": "LandingBounce3",
-    "bounceRiseCells": 3,
-    "decisionMode": "GroundedOrBounceApex",
-    "ruleAxes": [
-      "PositiveX",
-      "PositiveZ"
-    ],
+    "actionMode": "MoveClimbHoldPush",
     "winMode": "DistinctEntitiesSameCell",
-    "winCheckMode": "AfterAtomicLogicChange",
-    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
     "gravityMode": "WorldDownExceptHoverOrFly",
-    "playerBlockMode": "ImplicitFromYou"
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
   },
   "camera": {
     "initialSlot": 0,
-    "pitchDegrees": 35.264,
+    "pitchDegrees": 35,
     "yawDegrees": [
       45,
       135,
       225,
       315
     ],
-    "inputMode": "CameraRelativeGrid"
+    "inputMode": "ScreenRelative",
+    "orthographic": true
   },
+  "designContract": {
+    "requireActiveInteraction": false,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "移动、登攀、进入",
+      "family": "locomotion",
+      "commands": [
+        "E",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "",
+      "requireEvents": [],
+      "forbidEvents": [],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
   "tutorial": {
-    "objective": "进入空心目标；邻接不算。",
+    "objective": "先认识走、登攀与“进入目标”，不要一上来学习推物或拆句。",
+    "concept": "先认识走、登攀与“进入目标”，不要一上来学习推物或拆句。",
+    "observation": "旗标是一个可进入的一格轮廓；平台高一格，普通方向就能登上。",
+    "necessity": "本关有意允许不改变任何物品的通关，作为后续互动审核的正向对照，不占多解配额。",
     "hints": [
-      "进入发光轮廓。",
-      "中墙后面留有同高通道。",
-      "绕到目标同高处，再走进目标格。"
-    ]
-  },
-  "referenceSolution": {
-    "commands": [
-      "E",
-      "N",
-      "E",
-      "E",
-      "S",
-      "E"
+      "看看旗标的空心轮廓占的是哪一格。",
+      "普通方向可以登上一格；站在目标旁边还不算进入。",
+      "沿平台继续向 +X 前进，进入旗标，而不是停在它前一格。"
     ],
-    "expectedFinalStatus": "Won"
+    "risks": [
+      "不要把相邻即胜或“碰到外壳”加回来。",
+      "用地面箭头解释视角切换后的方向，不靠屏幕投影判断高差。"
+    ]
   }
 }

@@ -1,17 +1,17 @@
 {
-  "schemaVersion": 5,
-  "mechanicsVersion": "RP-v0.5",
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
   "id": "L05",
-  "title": "让脚下成为电梯",
+  "title": "写出弹性，再真正落下",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": -1
+      "z": -2
     },
     "max": {
-      "x": 5,
-      "y": 7,
+      "x": 7,
+      "y": 9,
       "z": 3
     }
   },
@@ -20,233 +20,191 @@
       "min": {
         "x": 0,
         "y": 0,
-        "z": -1
+        "z": -2
       },
       "max": {
-        "x": 5,
+        "x": 7,
         "y": 0,
         "z": 3
       }
     },
     {
       "min": {
-        "x": 4,
+        "x": 3,
         "y": 1,
         "z": 0
       },
       "max": {
-        "x": 5,
+        "x": 7,
         "y": 4,
-        "z": 0
-      }
-    },
-    {
-      "min": {
-        "x": 3,
-        "y": 6,
-        "z": 0
-      },
-      "max": {
-        "x": 3,
-        "y": 6,
-        "z": 1
-      }
-    },
-    {
-      "min": {
-        "x": 3,
-        "y": 1,
-        "z": 2
-      },
-      "max": {
-        "x": 3,
-        "y": 1,
         "z": 3
-      }
-    },
-    {
-      "min": {
-        "x": 0,
-        "y": 1,
-        "z": -1
-      },
-      "max": {
-        "x": 4,
-        "y": 1,
-        "z": -1
       }
     }
   ],
   "entities": [
     {
-      "id": "player",
-      "kind": "Color",
-      "color": "RED",
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 3,
-        "y": 2,
-        "z": 3
-      },
-      "anchored": false
-    },
-    {
-      "id": "goal",
-      "kind": "Color",
-      "color": "PINK",
-      "token": "",
-      "cell": {
-        "x": 5,
-        "y": 5,
-        "z": 0
-      },
-      "anchored": false
-    },
-    {
-      "id": "lift_front",
-      "kind": "Color",
-      "color": "BLUE",
-      "token": "",
-      "cell": {
-        "x": 3,
+        "x": 2,
         "y": 1,
-        "z": 0
+        "z": -1
       },
       "anchored": false
     },
     {
-      "id": "lift_rear",
-      "kind": "Color",
-      "color": "BLUE",
+      "id": "spring",
+      "kind": "Object",
+      "subject": "SPRING",
       "token": "",
       "cell": {
-        "x": 3,
+        "x": 2,
         "y": 1,
         "z": 1
       },
       "anchored": false
     },
     {
-      "id": "t_blue",
-      "kind": "Text",
-      "color": "",
-      "token": "BLUE",
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
       "cell": {
-        "x": 0,
-        "y": 2,
-        "z": -1
-      },
-      "anchored": true
-    },
-    {
-      "id": "t_is",
-      "kind": "Text",
-      "color": "",
-      "token": "IS",
-      "cell": {
-        "x": 1,
-        "y": 2,
-        "z": -1
-      },
-      "anchored": true
-    },
-    {
-      "id": "t_block",
-      "kind": "Text",
-      "color": "",
-      "token": "BLOCK",
-      "cell": {
-        "x": 2,
-        "y": 2,
-        "z": -1
-      },
-      "anchored": true
-    },
-    {
-      "id": "t_and",
-      "kind": "Text",
-      "color": "",
-      "token": "AND",
-      "cell": {
-        "x": 3,
-        "y": 2,
-        "z": 0
+        "x": 4,
+        "y": 5,
+        "z": 1
       },
       "anchored": false
     },
     {
-      "id": "t_fly",
+      "id": "w_spring",
       "kind": "Text",
-      "color": "",
-      "token": "FLY",
+      "subject": "",
+      "token": "SPRING",
       "cell": {
-        "x": 4,
-        "y": 2,
+        "x": 0,
+        "y": 1,
+        "z": -2
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 0,
+        "y": 1,
         "z": -1
       },
       "anchored": true
+    },
+    {
+      "id": "w_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
     }
   ],
   "fixedRules": [
     {
-      "id": "r01",
+      "id": "fixed_01",
       "tokens": [
-        "RED",
+        "ROBOT",
         "IS",
         "YOU"
       ]
     },
     {
-      "id": "r02",
+      "id": "fixed_02",
       "tokens": [
-        "PINK",
+        "FLAG",
         "IS",
         "WIN"
+      ]
+    },
+    {
+      "id": "fixed_03",
+      "tokens": [
+        "SPRING",
+        "IS",
+        "STOP"
       ]
     }
   ],
   "options": {
-    "supportMode": "StrictBelow",
-    "jumpMode": "LandingBounce3",
-    "bounceRiseCells": 3,
-    "decisionMode": "GroundedOrBounceApex",
-    "ruleAxes": [
-      "PositiveX",
-      "PositiveZ"
-    ],
+    "actionMode": "MoveClimbHoldPush",
     "winMode": "DistinctEntitiesSameCell",
-    "winCheckMode": "AfterAtomicLogicChange",
-    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
     "gravityMode": "WorldDownExceptHoverOrFly",
-    "playerBlockMode": "ImplicitFromYou"
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
   },
   "camera": {
     "initialSlot": 0,
-    "pitchDegrees": 35.264,
+    "pitchDegrees": 35,
     "yawDegrees": [
       45,
       135,
       225,
       315
     ],
-    "inputMode": "CameraRelativeGrid"
+    "inputMode": "ScreenRelative",
+    "orthographic": true
   },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "把 BOUNCY 推入句尾，再登簧起跳",
+      "family": "activate-bounce",
+      "commands": [
+        "N",
+        "PW",
+        "N",
+        "E",
+        "J",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "",
+      "requireEvents": [],
+      "forbidEvents": [],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
   "tutorial": {
-    "objective": "AND 合并属性；先登乘再启动 BLOCK+FLY 平台。",
+    "objective": "BOUNCY 是可获得的性质；登上弹簧不等于下落触发。",
+    "concept": "BOUNCY 是可获得的性质；登上弹簧不等于下落触发。",
+    "observation": "弹簧只有 STOP，还没有弹性。BOUNCY 词牌在句尾侧面，可以被推入。",
+    "necessity": "弹簧顶面在 Y=2，普通原地跳只能到 Y=3；出口身体格在 Y=5。先拼出弹性再真正下落，才有足够高度。",
     "hints": [
-      "空槽连接着 BLOCK 与 FLY。",
-      "先走上后平台，再把 AND 推进同一行。",
-      "推入 AND 后，角色站在前平台上；升停后向 +X 出口走。"
-    ]
-  },
-  "referenceSolution": {
-    "commands": [
-      "S",
-      "S",
-      "S",
-      "E",
-      "E"
+      "弹簧顶面现在有没有弹性标记？",
+      "爬上去没有发生下降接触；需要原地跳起再落下。",
+      "先推入 BOUNCY，再登簧按 Space；到顶点后重新按 +X。"
     ],
-    "expectedFinalStatus": "Won"
+    "risks": [
+      "不能因为模型是弹簧就默认 BOUNCY。",
+      "仅做原地跳也不能触发教学通关门；必须靠真实规则与高度成立。"
+    ]
   }
 }

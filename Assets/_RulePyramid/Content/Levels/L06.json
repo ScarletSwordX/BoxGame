@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 5,
-  "mechanicsVersion": "RP-v0.5",
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
   "id": "L06",
-  "title": "借两次落差，迎回塔冠",
+  "title": "把弹性借给石头",
   "bounds": {
     "min": {
       "x": 0,
@@ -11,8 +11,8 @@
     },
     "max": {
       "x": 10,
-      "y": 14,
-      "z": 2
+      "y": 10,
+      "z": 6
     }
   },
   "terrain": [
@@ -25,234 +25,248 @@
       "max": {
         "x": 10,
         "y": 0,
-        "z": 2
+        "z": 6
       }
     },
     {
       "min": {
-        "x": 0,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 1,
-        "y": 2,
-        "z": 0
-      }
-    },
-    {
-      "min": {
-        "x": 0,
-        "y": 1,
-        "z": 1
-      },
-      "max": {
-        "x": 5,
-        "y": 14,
-        "z": 1
-      }
-    },
-    {
-      "min": {
-        "x": 3,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
         "x": 4,
-        "y": 4,
-        "z": 0
-      }
-    },
-    {
-      "min": {
-        "x": 5,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 5,
-        "y": 3,
-        "z": 0
-      }
-    },
-    {
-      "min": {
-        "x": 6,
         "y": 1,
         "z": 0
       },
       "max": {
         "x": 10,
-        "y": 7,
-        "z": 2
+        "y": 1,
+        "z": 6
+      }
+    },
+    {
+      "min": {
+        "x": 8,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 5,
+        "z": 6
       }
     }
   ],
   "entities": [
     {
-      "id": "player",
-      "kind": "Color",
-      "color": "RED",
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring",
+      "kind": "Object",
+      "subject": "SPRING",
       "token": "",
       "cell": {
         "x": 0,
-        "y": 3,
-        "z": 0
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
       },
       "anchored": false
     },
     {
       "id": "goal",
-      "kind": "Color",
-      "color": "PINK",
+      "kind": "Object",
+      "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 10,
-        "y": 13,
-        "z": 0
+        "x": 9,
+        "y": 6,
+        "z": 1
       },
       "anchored": false
     },
     {
-      "id": "spring_low",
-      "kind": "Color",
-      "color": "BLUE",
-      "token": "",
+      "id": "w_spring",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_s",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
       "cell": {
         "x": 2,
         "y": 1,
-        "z": 0
+        "z": 5
       },
       "anchored": false
     },
     {
-      "id": "spring_high",
-      "kind": "Color",
-      "color": "BLUE",
-      "token": "",
-      "cell": {
-        "x": 5,
-        "y": 4,
-        "z": 0
-      },
-      "anchored": false
-    },
-    {
-      "id": "t_pink",
+      "id": "w_rock",
       "kind": "Text",
-      "color": "",
-      "token": "PINK",
+      "subject": "",
+      "token": "ROCK",
       "cell": {
-        "x": 6,
-        "y": 8,
-        "z": 1
+        "x": 0,
+        "y": 1,
+        "z": 3
       },
       "anchored": true
     },
     {
-      "id": "t_is",
+      "id": "w_is_r",
       "kind": "Text",
-      "color": "",
+      "subject": "",
       "token": "IS",
       "cell": {
-        "x": 7,
-        "y": 8,
-        "z": 1
+        "x": 1,
+        "y": 1,
+        "z": 3
       },
       "anchored": true
-    },
-    {
-      "id": "t_hover",
-      "kind": "Text",
-      "color": "",
-      "token": "HOVER",
-      "cell": {
-        "x": 8,
-        "y": 8,
-        "z": 1
-      },
-      "anchored": false
     }
   ],
   "fixedRules": [
     {
-      "id": "r01",
+      "id": "rule_01",
       "tokens": [
-        "RED",
+        "ROBOT",
         "IS",
         "YOU"
       ]
     },
     {
-      "id": "r02",
+      "id": "rule_02",
       "tokens": [
-        "PINK",
+        "FLAG",
         "IS",
         "WIN"
       ]
     },
     {
-      "id": "r03",
+      "id": "rule_03",
       "tokens": [
-        "BLUE",
+        "ROCK",
         "IS",
-        "BLOCK",
-        "AND",
-        "JUMP"
+        "PUSH"
+      ]
+    },
+    {
+      "id": "rule_04",
+      "tokens": [
+        "SPRING",
+        "IS",
+        "STOP"
       ]
     }
   ],
   "options": {
-    "supportMode": "StrictBelow",
-    "jumpMode": "LandingBounce3",
-    "bounceRiseCells": 3,
-    "decisionMode": "GroundedOrBounceApex",
-    "ruleAxes": [
-      "PositiveX",
-      "PositiveZ"
-    ],
+    "actionMode": "MoveClimbHoldPush",
     "winMode": "DistinctEntitiesSameCell",
-    "winCheckMode": "AfterAtomicLogicChange",
-    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
     "gravityMode": "WorldDownExceptHoverOrFly",
-    "playerBlockMode": "ImplicitFromYou"
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
   },
   "camera": {
     "initialSlot": 0,
-    "pitchDegrees": 35.264,
+    "pitchDegrees": 35,
     "yawDegrees": [
       45,
       135,
       225,
       315
     ],
-    "inputMode": "CameraRelativeGrid"
+    "inputMode": "ScreenRelative",
+    "orthographic": true
   },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PS",
+        "PS",
+        "E",
+        "E",
+        "S",
+        "S",
+        "S",
+        "PE",
+        "PE",
+        "E",
+        "J",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "",
+      "requireEvents": [],
+      "forbidEvents": [],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
   "tutorial": {
-    "objective": "两次弹跳利用不同基准高度；取消目标悬停。",
+    "objective": "同一个属性词可以从一种物品转给另一种物品。",
+    "concept": "同一个属性词可以从一种物品转给另一种物品。",
+    "observation": "唯一的 BOUNCY 让低处弹簧有弹性，但高处出口需要靠近出口的岩块发射。",
+    "necessity": "初始弹簧位置与接触高度不够完成出口路线；岩块既要摆位，又需要弹性。",
     "hints": [
-      "第二个弹跳台和脚下同高。",
-      "走上去不会弹；在上面原地跳起再落下。",
-      "到高处把 PINK IS HOVER 拆开，再进入下降后的塔冠。"
-    ]
-  },
-  "referenceSolution": {
-    "commands": [
-      "E",
-      "E",
-      "E",
-      "E",
-      "E",
-      "J",
-      "E",
-      "E",
-      "E",
-      "N",
-      "S",
-      "E",
-      "E"
+      "有弹性的未必必须是弹簧。",
+      "哪个物品既能搬动，又更接近出口？",
+      "把 BOUNCY 从 SPRING 行移到 ROCK 行，再把弹跳石推向高台。"
     ],
-    "expectedFinalStatus": "Won"
+    "risks": [
+      "移走 BOUNCY 后，弹簧必须真的失去弹性。",
+      "岩块获得弹性时保留岩块身份，不替换成弹簧模型。"
+    ]
   }
 }

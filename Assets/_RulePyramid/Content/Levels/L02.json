@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 5,
-  "mechanicsVersion": "RP-v0.5",
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
   "id": "L02",
-  "title": "让文字落进句子",
+  "title": "推过去，爬上去",
   "bounds": {
     "min": {
       "x": 0,
@@ -10,9 +10,9 @@
       "z": 0
     },
     "max": {
-      "x": 7,
-      "y": 6,
-      "z": 4
+      "x": 8,
+      "y": 7,
+      "z": 2
     }
   },
   "terrain": [
@@ -23,137 +23,151 @@
         "z": 0
       },
       "max": {
-        "x": 7,
+        "x": 8,
         "y": 0,
-        "z": 4
+        "z": 2
       }
     },
     {
       "min": {
-        "x": 4,
+        "x": 6,
         "y": 1,
-        "z": 1
+        "z": 0
       },
       "max": {
-        "x": 4,
-        "y": 1,
+        "x": 8,
+        "y": 2,
         "z": 2
       }
     }
   ],
   "entities": [
     {
-      "id": "player",
-      "kind": "Color",
-      "color": "RED",
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 4,
-        "y": 2,
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
         "z": 1
       },
       "anchored": false
     },
     {
       "id": "goal",
-      "kind": "Color",
-      "color": "PINK",
+      "kind": "Object",
+      "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 6,
-        "y": 1,
-        "z": 3
-      },
-      "anchored": false
-    },
-    {
-      "id": "t_pink",
-      "kind": "Text",
-      "color": "",
-      "token": "PINK",
-      "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 3
-      },
-      "anchored": true
-    },
-    {
-      "id": "t_is",
-      "kind": "Text",
-      "color": "",
-      "token": "IS",
-      "cell": {
-        "x": 3,
-        "y": 1,
-        "z": 3
-      },
-      "anchored": true
-    },
-    {
-      "id": "t_win",
-      "kind": "Text",
-      "color": "",
-      "token": "WIN",
-      "cell": {
-        "x": 4,
-        "y": 2,
-        "z": 2
+        "x": 7,
+        "y": 3,
+        "z": 1
       },
       "anchored": false
     }
   ],
   "fixedRules": [
     {
-      "id": "r01",
+      "id": "rule_01",
       "tokens": [
-        "RED",
+        "ROBOT",
         "IS",
         "YOU"
+      ]
+    },
+    {
+      "id": "rule_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "rule_03",
+      "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
       ]
     }
   ],
   "options": {
-    "supportMode": "StrictBelow",
-    "jumpMode": "LandingBounce3",
-    "bounceRiseCells": 3,
-    "decisionMode": "GroundedOrBounceApex",
-    "ruleAxes": [
-      "PositiveX",
-      "PositiveZ"
-    ],
+    "actionMode": "MoveClimbHoldPush",
     "winMode": "DistinctEntitiesSameCell",
-    "winCheckMode": "AfterAtomicLogicChange",
-    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
     "gravityMode": "WorldDownExceptHoverOrFly",
-    "playerBlockMode": "ImplicitFromYou"
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
   },
   "camera": {
     "initialSlot": 0,
-    "pitchDegrees": 35.264,
+    "pitchDegrees": 35,
     "yawDegrees": [
       45,
       135,
       225,
       315
     ],
-    "inputMode": "CameraRelativeGrid"
+    "inputMode": "ScreenRelative",
+    "orthographic": true
   },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PE",
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "",
+      "requireEvents": [],
+      "forbidEvents": [],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
   "tutorial": {
-    "objective": "可动文字也会下落；落到另一高度可以成句。",
+    "objective": "同一岩块可以被推，也可以保持原位供玩家登上。",
+    "concept": "同一岩块可以被推，也可以保持原位供玩家登上。",
+    "observation": "出生点附近的岩块离高平台太远；直接爬上去再前进，会回落到低处。",
+    "necessity": "高平台的落脚面在 Y=3，地面身体在 Y=1，普通登攀一次只升一格；必须把可推石搬到平台边。",
     "hints": [
-      "下层句子还缺最后一个词。",
-      "把上层 WIN 推出台沿，它会落到下层。",
-      "向 +Z 推一次，再沿台边走下去进入目标。"
-    ]
-  },
-  "referenceSolution": {
-    "commands": [
-      "N",
-      "N",
-      "E",
-      "E"
+      "这块石头可以留着当台阶，也可以先搬到别处。",
+      "Shift＋方向负责搬动；松开 Shift 后方向负责登上。",
+      "把岩块推到高台前一格，再松手爬上岩块。"
     ],
-    "expectedFinalStatus": "Won"
+    "risks": [
+      "推不动时不能自动改成攀爬。",
+      "不按 Shift 登上岩块不算一次有效物品改造；不要因此满足互动记录。"
+    ]
   }
 }

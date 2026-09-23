@@ -1,18 +1,18 @@
 {
   "schemaVersion": 8,
   "mechanicsVersion": "RW-v0.8",
-  "id": "L04",
-  "title": "给云一个落脚面",
+  "id": "L08",
+  "title": "去找旗帜，还是造出旗帜",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": -1
     },
     "max": {
-      "x": 10,
-      "y": 8,
-      "z": 4
+      "x": 8,
+      "y": 7,
+      "z": 5
     }
   },
   "terrain": [
@@ -20,36 +20,24 @@
       "min": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": -1
       },
       "max": {
-        "x": 10,
+        "x": 8,
         "y": 0,
-        "z": 4
+        "z": 5
       }
     },
     {
       "min": {
-        "x": 0,
+        "x": 5,
         "y": 1,
         "z": 0
       },
       "max": {
-        "x": 3,
+        "x": 6,
         "y": 2,
-        "z": 4
-      }
-    },
-    {
-      "min": {
-        "x": 7,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 10,
-        "y": 2,
-        "z": 4
+        "z": 1
       }
     }
   ],
@@ -60,45 +48,21 @@
       "subject": "ROBOT",
       "token": "",
       "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
         "x": 2,
-        "y": 3,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
-      "id": "cloud_1",
-      "kind": "Object",
-      "subject": "CLOUD",
-      "token": "",
-      "cell": {
-        "x": 4,
-        "y": 2,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
-      "id": "cloud_2",
-      "kind": "Object",
-      "subject": "CLOUD",
-      "token": "",
-      "cell": {
-        "x": 5,
-        "y": 2,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
-      "id": "cloud_3",
-      "kind": "Object",
-      "subject": "CLOUD",
-      "token": "",
-      "cell": {
-        "x": 6,
-        "y": 2,
-        "z": 1
+        "y": 1,
+        "z": 0
       },
       "anchored": false
     },
@@ -108,20 +72,20 @@
       "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 8,
+        "x": 6,
         "y": 3,
-        "z": 1
+        "z": 0
       },
       "anchored": false
     },
     {
-      "id": "w_cloud",
+      "id": "w_rock",
       "kind": "Text",
       "subject": "",
-      "token": "CLOUD",
+      "token": "ROCK",
       "cell": {
-        "x": 0,
-        "y": 3,
+        "x": 2,
+        "y": 1,
         "z": 3
       },
       "anchored": true
@@ -132,20 +96,32 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
-        "y": 3,
+        "x": 3,
+        "y": 1,
         "z": 3
       },
       "anchored": true
     },
     {
-      "id": "w_stop",
+      "id": "w_push",
       "kind": "Text",
       "subject": "",
-      "token": "STOP",
+      "token": "PUSH",
       "cell": {
-        "x": 2,
-        "y": 3,
+        "x": 4,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 4,
+        "y": 1,
         "z": 2
       },
       "anchored": false
@@ -153,7 +129,7 @@
   ],
   "fixedRules": [
     {
-      "id": "rule_01",
+      "id": "fixed_01",
       "tokens": [
         "ROBOT",
         "IS",
@@ -161,19 +137,11 @@
       ]
     },
     {
-      "id": "rule_02",
+      "id": "fixed_02",
       "tokens": [
         "FLAG",
         "IS",
         "WIN"
-      ]
-    },
-    {
-      "id": "rule_03",
-      "tokens": [
-        "CLOUD",
-        "IS",
-        "HOVER"
       ]
     }
   ],
@@ -202,27 +170,52 @@
   },
   "designContract": {
     "requireActiveInteraction": true,
-    "minimumSolutionFamilies": 1,
+    "minimumSolutionFamilies": 2,
     "interactionIsAuthoringConstraint": true
   },
   "referenceSolutions": [
     {
       "id": "A",
-      "name": "主教学解",
-      "family": "taught-mechanic",
+      "name": "推石搭阶，抵达原旗标",
+      "family": "move-actor",
       "commands": [
-        "PN",
-        "S",
-        "E",
-        "E",
-        "E",
+        "PE",
+        "PE",
         "E",
         "E",
         "E"
       ],
-      "mustControlAtWin": "",
-      "mustWinWith": "",
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
       "requireEvents": [],
+      "forbidEvents": [
+        "RulesChanged"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    },
+    {
+      "id": "B",
+      "name": "将岩块变成旗标，进入新旗标",
+      "family": "transform-nearby-goal",
+      "commands": [
+        "N",
+        "E",
+        "E",
+        "E",
+        "PN",
+        "W",
+        "W",
+        "S",
+        "S"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "rock",
+      "requireEvents": [
+        "RulesChanged",
+        "Transformed"
+      ],
       "forbidEvents": [],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
@@ -230,18 +223,17 @@
     }
   ],
   "tutorial": {
-    "objective": "HOVER 只决定高度，STOP 才让悬云能承托。",
-    "concept": "HOVER 只决定高度，STOP 才让悬云能承托。",
-    "observation": "两岸同高，中间三朵云已经悬停，但云影没有实体顶面。",
-    "necessity": "未实体化时玩家穿过云影并落到下层，不能连续横跨三格缺口，也不能从下层一次登上两格高的岸。",
+    "objective": "第一次区分“赋予 WIN”与“变成 FLAG”，同时保留传统推石搭阶解法。",
+    "concept": "第一次区分“赋予 WIN”与“变成 FLAG”，同时保留传统推石搭阶解法。",
+    "observation": "高台有旗帜；近处 ROCK IS PUSH 的旁边不是 WIN 属性词，而是 FLAG 名词。",
+    "necessity": "不动岩块就无法登上两格高台；不改句子就不会出现近处的新旗帜。",
     "hints": [
-      "云没有掉落，不等于它能托住你。",
-      "找一条能改变云实体性的句子。",
-      "拼成 CLOUD IS STOP，再走到云的顶面。"
+      "一定要走到高台上才有旗帜吗？",
+      "IS 右侧也可以放物品名词；新旗帜同样受 FLAG IS WIN 作用。",
+      "把 FLAG 推入 PUSH 的位置，再回到原岩块位置。"
     ],
     "risks": [
-      "实体反馈要在第一次踩踏前可见。",
-      "保留实际下层底板；掉下去不触发隐形传送或自动胜利。"
+      "必须看到岩块模型实际转为旗帜，不是只给石头添加 WIN 光环。变形后拆掉 ROCK IS FLAG 不会自动还原。写着 ROCK 的词牌不变。"
     ]
   }
 }

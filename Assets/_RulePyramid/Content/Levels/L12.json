@@ -1,0 +1,391 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L12",
+  "title": "改路线、造终点、改变原来的自己",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    "max": {
+      "x": 10,
+      "y": 8,
+      "z": 5
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 10,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 4,
+        "z": 0
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "spring",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 5,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_switch",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_you_r",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_you_f",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_robot_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_win_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "fixed_01",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "fixed_02",
+      "tokens": [
+        "SPRING",
+        "IS",
+        "PUSH",
+        "AND",
+        "BOUNCY"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 3,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "推弹簧，弹上高台",
+      "family": "move-original-actor",
+      "commands": [
+        "PE",
+        "PE",
+        "E",
+        "J",
+        "E"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "LandingBounce"
+      ],
+      "forbidEvents": [
+        "RulesChanged"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    },
+    {
+      "id": "B",
+      "name": "把附近岩块真正变为旗标",
+      "family": "transform-nearby-goal",
+      "commands": [
+        "N",
+        "E",
+        "E",
+        "E",
+        "E",
+        "E",
+        "E",
+        "PN",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "W",
+        "S",
+        "W"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "rock",
+      "requireEvents": [
+        "RulesChanged",
+        "Transformed"
+      ],
+      "forbidEvents": [
+        "ControlChanged",
+        "LandingBounce"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    },
+    {
+      "id": "C",
+      "name": "先换控弹簧，再把原机器人变为旗标",
+      "family": "transfer-and-transform-former-body",
+      "commands": [
+        "N",
+        "E",
+        "N",
+        "PN",
+        "N",
+        "W",
+        "N",
+        "PW",
+        "E",
+        "E",
+        "N"
+      ],
+      "mustControlAtWin": "spring",
+      "mustWinWith": "robot_01",
+      "requireEvents": [
+        "ControlChanged",
+        "Transformed"
+      ],
+      "forbidEvents": [
+        "LandingBounce"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
+  "tutorial": {
+    "objective": "综合比较改路线、把外部物品变成目标、先换控再把原身体变成目标。",
+    "concept": "综合比较改路线、把外部物品变成目标、先换控再把原身体变成目标。",
+    "observation": "高台旗标、可推动弹簧、近处岩块和两套 FLAG 名词槽同时可见；YOU 可从 ROBOT 行移到 SPRING 行。",
+    "necessity": "各分支都需要真实推物或推字。初态弹簧位置不足以直接到达高空旗标；近处岩块仍为 STOP；也不存在初态控制弹簧的隐藏规则。",
+    "hints": [
+      "你可以改路线、改变外部物品，或改变曾经的自己。",
+      "只拼 ROBOT IS FLAG 可能让你失去控制，先看看有没有别的 YOU 来源。",
+      "换控弹簧后再推 FLAG，使原机器人变成旗帜，然后操控弹簧进入它。"
+    ],
+    "risks": [
+      "C 分支必须先换控，不能保留旧版“先 WIN 再换控”的操作序列。不得给变形后的旗帜偷偷保留 YOU。BOUNCY 在弹簧受控后也不让静止或平走触发弹跳。胜利以两个稳定 ID 配对，不按模型名字判断。"
+    ]
+  }
+}

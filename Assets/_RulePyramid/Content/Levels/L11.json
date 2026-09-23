@@ -1,0 +1,311 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L11",
+  "title": "同一块石头，两种上升",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -2
+    },
+    "max": {
+      "x": 8,
+      "y": 8,
+      "z": 3
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -2
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 5,
+        "y": 1,
+        "z": 0
+      }
+    },
+    {
+      "min": {
+        "x": 6,
+        "y": 1,
+        "z": -1
+      },
+      "max": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 2
+      },
+      "max": {
+        "x": 8,
+        "y": 4,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 6,
+        "z": 1
+      },
+      "max": {
+        "x": 5,
+        "y": 6,
+        "z": 1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 5,
+        "z": 2
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 6,
+        "y": 2,
+        "z": -1
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 2,
+        "z": 0
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_fly",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLY",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 0
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "fixed_01",
+      "tokens": [
+        "ROBOT",
+        "IS",
+        "YOU"
+      ]
+    },
+    {
+      "id": "fixed_02",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "fixed_03",
+      "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 2,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "将 BOUNCY 推入句子，在石台上起跳",
+      "family": "bounce-platform",
+      "commands": [
+        "PE",
+        "J",
+        "N"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "LandingBounce"
+      ],
+      "forbidEvents": [
+        "FlyOrRide"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    },
+    {
+      "id": "B",
+      "name": "不用起跳，改成 FLY 后搭乘上升",
+      "family": "fly-platform",
+      "commands": [
+        "PE",
+        "W",
+        "S",
+        "S",
+        "E",
+        "PN",
+        "W",
+        "N",
+        "PE",
+        "N"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "FlyOrRide"
+      ],
+      "forbidEvents": [
+        "LandingBounce"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
+  "tutorial": {
+    "objective": "同一个物品可以通过不同运动性质解决同一个高度问题。",
+    "concept": "同一个物品可以通过不同运动性质解决同一个高度问题。",
+    "observation": "同一石台和同一规则槽旁，既有 BOUNCY 也有 FLY；出口在两种机制都能到达的高度。",
+    "necessity": "未改规则时石台只能提供 Y=2 的站立面，普通跳不够到 Y=5；必须利用一个运动属性。",
+    "hints": [
+      "出口只要求到达这个高度，不要求用某一种上升方式。",
+      "弹性需要落地，上浮则不需要起跳。",
+      "可选择 BOUNCY 后原地跳，或把槽中的词替换成 FLY 后搭乘。"
+    ],
+    "risks": [
+      "不能把两条解法仅标成“左边走和右边走”；必须核对实际弹跳／上浮事件。",
+      "FLY 解法虽然短暂拼出过 BOUNCY，但不发生 LandingBounce；这项反例检查已写入回放。",
+      "不按步数评出唯一标准解，A 更短不代表 B 不算成功。"
+    ]
+  }
+}

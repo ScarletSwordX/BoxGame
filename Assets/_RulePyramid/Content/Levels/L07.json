@@ -1,18 +1,18 @@
 {
   "schemaVersion": 8,
   "mechanicsVersion": "RW-v0.8",
-  "id": "L04",
-  "title": "给云一个落脚面",
+  "id": "L07",
+  "title": "坐上去，再让云飞",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": -1
     },
     "max": {
-      "x": 10,
-      "y": 8,
-      "z": 4
+      "x": 9,
+      "y": 9,
+      "z": 3
     }
   },
   "terrain": [
@@ -20,36 +20,60 @@
       "min": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": -1
       },
       "max": {
-        "x": 10,
+        "x": 9,
         "y": 0,
-        "z": 4
+        "z": 3
       }
     },
     {
       "min": {
-        "x": 0,
+        "x": 6,
         "y": 1,
-        "z": 0
+        "z": -1
       },
       "max": {
-        "x": 3,
+        "x": 6,
         "y": 2,
-        "z": 4
+        "z": 1
       }
     },
     {
       "min": {
         "x": 7,
         "y": 1,
-        "z": 0
+        "z": 1
       },
       "max": {
-        "x": 10,
+        "x": 7,
         "y": 2,
-        "z": 4
+        "z": 1
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 2
+      },
+      "max": {
+        "x": 9,
+        "y": 5,
+        "z": 3
+      }
+    },
+    {
+      "min": {
+        "x": 4,
+        "y": 7,
+        "z": 1
+      },
+      "max": {
+        "x": 5,
+        "y": 7,
+        "z": 1
       }
     }
   ],
@@ -60,14 +84,26 @@
       "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 2,
-        "y": 3,
+        "x": 1,
+        "y": 1,
         "z": 1
       },
       "anchored": false
     },
     {
-      "id": "cloud_1",
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "cloud_a",
       "kind": "Object",
       "subject": "CLOUD",
       "token": "",
@@ -79,7 +115,7 @@
       "anchored": false
     },
     {
-      "id": "cloud_2",
+      "id": "cloud_b",
       "kind": "Object",
       "subject": "CLOUD",
       "token": "",
@@ -91,26 +127,14 @@
       "anchored": false
     },
     {
-      "id": "cloud_3",
-      "kind": "Object",
-      "subject": "CLOUD",
-      "token": "",
-      "cell": {
-        "x": 6,
-        "y": 2,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
       "id": "goal",
       "kind": "Object",
       "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 8,
-        "y": 3,
-        "z": 1
+        "x": 6,
+        "y": 6,
+        "z": 2
       },
       "anchored": false
     },
@@ -120,9 +144,9 @@
       "subject": "",
       "token": "CLOUD",
       "cell": {
-        "x": 0,
+        "x": 6,
         "y": 3,
-        "z": 3
+        "z": -1
       },
       "anchored": true
     },
@@ -132,21 +156,33 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
+        "x": 6,
         "y": 3,
-        "z": 3
+        "z": 0
       },
       "anchored": true
     },
     {
-      "id": "w_stop",
+      "id": "w_hover",
       "kind": "Text",
       "subject": "",
-      "token": "STOP",
+      "token": "HOVER",
       "cell": {
-        "x": 2,
+        "x": 6,
         "y": 3,
-        "z": 2
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_fly",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLY",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 1
       },
       "anchored": false
     }
@@ -171,9 +207,17 @@
     {
       "id": "rule_03",
       "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
+      ]
+    },
+    {
+      "id": "rule_04",
+      "tokens": [
         "CLOUD",
         "IS",
-        "HOVER"
+        "STOP"
       ]
     }
   ],
@@ -211,13 +255,11 @@
       "name": "主教学解",
       "family": "taught-mechanic",
       "commands": [
-        "PN",
-        "S",
+        "PE",
         "E",
         "E",
-        "E",
-        "E",
-        "E",
+        "PE",
+        "N",
         "E"
       ],
       "mustControlAtWin": "",
@@ -230,18 +272,18 @@
     }
   ],
   "tutorial": {
-    "objective": "HOVER 只决定高度，STOP 才让悬云能承托。",
-    "concept": "HOVER 只决定高度，STOP 才让悬云能承托。",
-    "observation": "两岸同高，中间三朵云已经悬停，但云影没有实体顶面。",
-    "necessity": "未实体化时玩家穿过云影并落到下层，不能连续横跨三格缺口，也不能从下层一次登上两格高的岸。",
+    "objective": "平台的运动改变前，先安排登乘位置。",
+    "concept": "平台的运动改变前，先安排登乘位置。",
+    "observation": "云已有 STOP，空间句让它 HOVER；FLY 词放在能被推入的相邻位置。",
+    "necessity": "初始悬停高度不足以到达出口；推石搭阶才能登乘，然后一次推词完成换属性与站上承运云。",
     "hints": [
-      "云没有掉落，不等于它能托住你。",
-      "找一条能改变云实体性的句子。",
-      "拼成 CLOUD IS STOP，再走到云的顶面。"
+      "如果云先飞走，你还能登上去吗？",
+      "把最后一次推词安排在登乘过程中。",
+      "先推石搭阶，再沿云顶推入 FLY。"
     ],
     "risks": [
-      "实体反馈要在第一次踩踏前可见。",
-      "保留实际下层底板；掉下去不触发隐形传送或自动胜利。"
+      "规则槽下方需要真实支撑，不能让 FLY 推入后自己掉走。",
+      "头顶限位拦住的是平台与乘客整组，不挤压或穿透玩家。"
     ]
   }
 }

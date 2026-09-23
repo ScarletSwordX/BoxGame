@@ -1,8 +1,8 @@
 {
-  "schemaVersion": 5,
-  "mechanicsVersion": "RP-v0.5",
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
   "id": "L03",
-  "title": "撤掉例外，桥才落下",
+  "title": "石头的权限",
   "bounds": {
     "min": {
       "x": 0,
@@ -10,9 +10,9 @@
       "z": 0
     },
     "max": {
-      "x": 6,
+      "x": 10,
       "y": 8,
-      "z": 4
+      "z": 5
     }
   },
   "terrain": [
@@ -23,203 +23,206 @@
         "z": 0
       },
       "max": {
-        "x": 6,
+        "x": 10,
         "y": 0,
-        "z": 4
-      }
-    },
-    {
-      "min": {
-        "x": 0,
-        "y": 1,
-        "z": 1
-      },
-      "max": {
-        "x": 2,
-        "y": 2,
-        "z": 3
-      }
-    },
-    {
-      "min": {
-        "x": 2,
-        "y": 1,
-        "z": 4
-      },
-      "max": {
-        "x": 2,
-        "y": 2,
-        "z": 4
+        "z": 5
       }
     },
     {
       "min": {
         "x": 4,
         "y": 1,
-        "z": 1
+        "z": 0
       },
       "max": {
-        "x": 6,
-        "y": 2,
-        "z": 3
+        "x": 10,
+        "y": 1,
+        "z": 5
       }
     },
     {
       "min": {
-        "x": 3,
-        "y": 1,
-        "z": 2
+        "x": 8,
+        "y": 2,
+        "z": 0
       },
       "max": {
-        "x": 3,
-        "y": 1,
-        "z": 2
+        "x": 10,
+        "y": 3,
+        "z": 5
       }
     }
   ],
   "entities": [
     {
-      "id": "player",
-      "kind": "Color",
-      "color": "RED",
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 1,
-        "y": 3,
-        "z": 2
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 2,
+        "z": 1
       },
       "anchored": false
     },
     {
       "id": "goal",
-      "kind": "Color",
-      "color": "PINK",
+      "kind": "Object",
+      "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 5,
-        "y": 3,
-        "z": 2
+        "x": 9,
+        "y": 4,
+        "z": 1
       },
       "anchored": false
     },
     {
-      "id": "bridge",
-      "kind": "Color",
-      "color": "BLUE",
-      "token": "",
-      "cell": {
-        "x": 3,
-        "y": 5,
-        "z": 2
-      },
-      "anchored": false
-    },
-    {
-      "id": "t_blue",
+      "id": "w_rock",
       "kind": "Text",
-      "color": "",
-      "token": "BLUE",
+      "subject": "",
+      "token": "ROCK",
       "cell": {
         "x": 0,
-        "y": 3,
+        "y": 1,
         "z": 3
       },
       "anchored": true
     },
     {
-      "id": "t_is",
+      "id": "w_is",
       "kind": "Text",
-      "color": "",
+      "subject": "",
       "token": "IS",
       "cell": {
         "x": 1,
-        "y": 3,
+        "y": 1,
         "z": 3
       },
       "anchored": true
     },
     {
-      "id": "t_hover",
+      "id": "w_stop",
       "kind": "Text",
-      "color": "",
-      "token": "HOVER",
+      "subject": "",
+      "token": "STOP",
       "cell": {
         "x": 2,
-        "y": 3,
+        "y": 1,
         "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_push",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 2
       },
       "anchored": false
     }
   ],
   "fixedRules": [
     {
-      "id": "r01",
+      "id": "rule_01",
       "tokens": [
-        "RED",
+        "ROBOT",
         "IS",
         "YOU"
       ]
     },
     {
-      "id": "r02",
+      "id": "rule_02",
       "tokens": [
-        "BLUE",
-        "IS",
-        "BLOCK"
-      ]
-    },
-    {
-      "id": "r03",
-      "tokens": [
-        "PINK",
+        "FLAG",
         "IS",
         "WIN"
       ]
     }
   ],
   "options": {
-    "supportMode": "StrictBelow",
-    "jumpMode": "LandingBounce3",
-    "bounceRiseCells": 3,
-    "decisionMode": "GroundedOrBounceApex",
-    "ruleAxes": [
-      "PositiveX",
-      "PositiveZ"
-    ],
+    "actionMode": "MoveClimbHoldPush",
     "winMode": "DistinctEntitiesSameCell",
-    "winCheckMode": "AfterAtomicLogicChange",
-    "actionMode": "FourWayMoveInPlaceJumpApexSteer",
     "gravityMode": "WorldDownExceptHoverOrFly",
-    "playerBlockMode": "ImplicitFromYou"
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
   },
   "camera": {
     "initialSlot": 0,
-    "pitchDegrees": 35.264,
+    "pitchDegrees": 35,
     "yawDegrees": [
       45,
       135,
       225,
       315
     ],
-    "inputMode": "CameraRelativeGrid"
+    "inputMode": "ScreenRelative",
+    "orthographic": true
   },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "主教学解",
+      "family": "taught-mechanic",
+      "commands": [
+        "PN",
+        "S",
+        "E",
+        "E",
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "",
+      "requireEvents": [],
+      "forbidEvents": [],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
   "tutorial": {
-    "objective": "HOVER 是例外；拆句子恢复默认下落。",
+    "objective": "STOP 与 PUSH 的差异来自规则，而非换模型或角色变强。",
+    "concept": "STOP 与 PUSH 的差异来自规则，而非换模型或角色变强。",
+    "observation": "岩块当前为 STOP，不能手动搬动；低处的规则槽旁有一个 PUSH 词。",
+    "necessity": "初始高台不可只靠移动到达；参考解将 STOP 换 PUSH 后才能把上层岩块推到更高出口前。",
     "hints": [
-      "桥块悬得太高。",
-      "它不下落，是因为 BLUE IS HOVER 仍然成立。",
-      "从 HOVER 的 -Z 一侧向 +Z 推走它，再走上落下的桥。"
-    ]
-  },
-  "referenceSolution": {
-    "commands": [
-      "E",
-      "N",
-      "S",
-      "E",
-      "E",
-      "E"
+      "看看岩块当前究竟是 STOP 还是 PUSH。",
+      "你需要改变的不是岩块外形，而是它能否被搬动。",
+      "把 PUSH 推进 STOP 的位置，再去推动岩块。"
     ],
-    "expectedFinalStatus": "Won"
+    "risks": [
+      "PUSH 已经包含实体性，不要要求再加 STOP。",
+      "不要声称所有解法都必须用这一块 PUSH；若玩家合法地改造词牌搭阶，应另评估为新解而非脚本封锁。"
+    ]
   }
 }

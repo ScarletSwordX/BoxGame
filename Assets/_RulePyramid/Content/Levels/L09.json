@@ -1,0 +1,292 @@
+{
+  "schemaVersion": 8,
+  "mechanicsVersion": "RW-v0.8",
+  "id": "L09",
+  "title": "把控制权交给旗帜",
+  "bounds": {
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": -1
+    },
+    "max": {
+      "x": 8,
+      "y": 7,
+      "z": 5
+    }
+  },
+  "terrain": [
+    {
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": -1
+      },
+      "max": {
+        "x": 8,
+        "y": 0,
+        "z": 5
+      }
+    },
+    {
+      "min": {
+        "x": 5,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 6,
+        "y": 2,
+        "z": 1
+      }
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_switch",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false
+    },
+    {
+      "id": "w_you_r",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_flag",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_you_f",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_robot_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_is_goal",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": true
+    },
+    {
+      "id": "w_win_robot",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false
+    }
+  ],
+  "fixedRules": [
+    {
+      "id": "fixed_01",
+      "tokens": [
+        "FLAG",
+        "IS",
+        "WIN"
+      ]
+    },
+    {
+      "id": "fixed_02",
+      "tokens": [
+        "ROCK",
+        "IS",
+        "PUSH"
+      ]
+    }
+  ],
+  "options": {
+    "actionMode": "MoveClimbHoldPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35,
+    "yawDegrees": [
+      45,
+      135,
+      225,
+      315
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 2,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "A",
+      "name": "机器人推石登台，进入旗标",
+      "family": "move-original-actor",
+      "commands": [
+        "PE",
+        "PE",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
+      "requireEvents": [],
+      "forbidEvents": [
+        "ControlChanged"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    },
+    {
+      "id": "B",
+      "name": "给原身体 WIN，再把控制权交给旗帜",
+      "family": "transfer-control",
+      "commands": [
+        "N",
+        "E",
+        "N",
+        "PW",
+        "E",
+        "E",
+        "PN",
+        "W",
+        "N",
+        "N",
+        "W",
+        "W",
+        "N"
+      ],
+      "mustControlAtWin": "goal",
+      "mustWinWith": "robot_01",
+      "requireEvents": [
+        "ControlChanged"
+      ],
+      "forbidEvents": [],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    }
+  ],
+  "tutorial": {
+    "objective": "控制权与胜利对象可重新分配；一个实例自身 YOU+WIN 不获胜。",
+    "concept": "控制权与胜利对象可重新分配；一个实例自身 YOU+WIN 不获胜。",
+    "observation": "同一块 IS 可以在 ROBOT 和 FLAG 的 YOU 行之间移动；旁边还有可补全的 ROBOT IS WIN。",
+    "necessity": "不改字时仍必须搬岩块登高；换控时则要先给旧身体 WIN，再移动 IS 使旗帜受控。两类路径都改变世界。",
+    "hints": [
+      "谁是“你”，是由外形还是 YOU 句决定？",
+      "给自己 WIN 不会自己获胜；需要另一个受控实例来进入。",
+      "先完成 ROBOT IS WIN，再把 IS 从 ROBOT 的 YOU 行推到 FLAG 行，控制旗帜回到原机器人。"
+    ],
+    "risks": [
+      "不要仍然用 robot_01 的 Transform 接收输入。",
+      "若有显式 ROBOT IS STOP，换控后旧机器人仍是实体；本关没有这条隐藏基础规则。",
+      "不允许用自身 YOU+WIN 短路胜利，或让刚换控的旗帜立刻自胜。"
+    ]
+  }
+}

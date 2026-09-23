@@ -1,18 +1,18 @@
 {
   "schemaVersion": 8,
   "mechanicsVersion": "RW-v0.8",
-  "id": "L04",
-  "title": "给云一个落脚面",
+  "id": "L10",
+  "title": "人上去，目标下来",
   "bounds": {
     "min": {
       "x": 0,
       "y": 0,
-      "z": 0
+      "z": -1
     },
     "max": {
-      "x": 10,
+      "x": 8,
       "y": 8,
-      "z": 4
+      "z": 5
     }
   },
   "terrain": [
@@ -20,36 +20,12 @@
       "min": {
         "x": 0,
         "y": 0,
-        "z": 0
+        "z": -1
       },
       "max": {
-        "x": 10,
+        "x": 8,
         "y": 0,
-        "z": 4
-      }
-    },
-    {
-      "min": {
-        "x": 0,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 3,
-        "y": 2,
-        "z": 4
-      }
-    },
-    {
-      "min": {
-        "x": 7,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 10,
-        "y": 2,
-        "z": 4
+        "z": 5
       }
     }
   ],
@@ -61,44 +37,20 @@
       "token": "",
       "cell": {
         "x": 2,
-        "y": 3,
-        "z": 1
+        "y": 1,
+        "z": 0
       },
       "anchored": false
     },
     {
-      "id": "cloud_1",
+      "id": "spring",
       "kind": "Object",
-      "subject": "CLOUD",
+      "subject": "SPRING",
       "token": "",
       "cell": {
-        "x": 4,
-        "y": 2,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
-      "id": "cloud_2",
-      "kind": "Object",
-      "subject": "CLOUD",
-      "token": "",
-      "cell": {
-        "x": 5,
-        "y": 2,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
-      "id": "cloud_3",
-      "kind": "Object",
-      "subject": "CLOUD",
-      "token": "",
-      "cell": {
-        "x": 6,
-        "y": 2,
-        "z": 1
+        "x": 3,
+        "y": 1,
+        "z": 0
       },
       "anchored": false
     },
@@ -108,20 +60,20 @@
       "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 8,
-        "y": 3,
-        "z": 1
+        "x": 6,
+        "y": 5,
+        "z": 0
       },
       "anchored": false
     },
     {
-      "id": "w_cloud",
+      "id": "w_flag",
       "kind": "Text",
       "subject": "",
-      "token": "CLOUD",
+      "token": "FLAG",
       "cell": {
-        "x": 0,
-        "y": 3,
+        "x": 2,
+        "y": 1,
         "z": 3
       },
       "anchored": true
@@ -132,28 +84,28 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
-        "y": 3,
+        "x": 3,
+        "y": 1,
         "z": 3
       },
       "anchored": true
     },
     {
-      "id": "w_stop",
+      "id": "w_hover",
       "kind": "Text",
       "subject": "",
-      "token": "STOP",
+      "token": "HOVER",
       "cell": {
-        "x": 2,
-        "y": 3,
-        "z": 2
+        "x": 4,
+        "y": 1,
+        "z": 3
       },
       "anchored": false
     }
   ],
   "fixedRules": [
     {
-      "id": "rule_01",
+      "id": "fixed_01",
       "tokens": [
         "ROBOT",
         "IS",
@@ -161,7 +113,7 @@
       ]
     },
     {
-      "id": "rule_02",
+      "id": "fixed_02",
       "tokens": [
         "FLAG",
         "IS",
@@ -169,11 +121,13 @@
       ]
     },
     {
-      "id": "rule_03",
+      "id": "fixed_03",
       "tokens": [
-        "CLOUD",
+        "SPRING",
         "IS",
-        "HOVER"
+        "PUSH",
+        "AND",
+        "BOUNCY"
       ]
     }
   ],
@@ -202,46 +156,75 @@
   },
   "designContract": {
     "requireActiveInteraction": true,
-    "minimumSolutionFamilies": 1,
+    "minimumSolutionFamilies": 2,
     "interactionIsAuthoringConstraint": true
   },
   "referenceSolutions": [
     {
       "id": "A",
-      "name": "主教学解",
-      "family": "taught-mechanic",
+      "name": "移动弹簧，弹入高空旗标",
+      "family": "bounce-to-target",
       "commands": [
-        "PN",
-        "S",
+        "PE",
+        "PE",
         "E",
-        "E",
-        "E",
-        "E",
-        "E",
+        "J",
         "E"
       ],
       "mustControlAtWin": "",
-      "mustWinWith": "",
-      "requireEvents": [],
-      "forbidEvents": [],
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "LandingBounce"
+      ],
+      "forbidEvents": [
+        "RulesChanged"
+      ],
+      "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
+      "status": "ReferenceModelPassed_NotUnityVerified",
+      "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
+    },
+    {
+      "id": "B",
+      "name": "拆除 HOVER，走入下落后的目标",
+      "family": "bring-target-down",
+      "commands": [
+        "N",
+        "E",
+        "E",
+        "N",
+        "PN",
+        "S",
+        "S",
+        "E",
+        "E",
+        "S"
+      ],
+      "mustControlAtWin": "",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "RulesChanged"
+      ],
+      "forbidEvents": [
+        "LandingBounce"
+      ],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
       "claim": "Witness of a solution family, not shortest or exhaustive of all solutions."
     }
   ],
   "tutorial": {
-    "objective": "HOVER 只决定高度，STOP 才让悬云能承托。",
-    "concept": "HOVER 只决定高度，STOP 才让悬云能承托。",
-    "observation": "两岸同高，中间三朵云已经悬停，但云影没有实体顶面。",
-    "necessity": "未实体化时玩家穿过云影并落到下层，不能连续横跨三格缺口，也不能从下层一次登上两格高的岸。",
+    "objective": "与其改变自己的高度，也可以改变目标的高度。",
+    "concept": "与其改变自己的高度，也可以改变目标的高度。",
+    "observation": "旗标靠 HOVER 悬在 Y=5；地面弹簧可推、可弹，但初始位置离目标太远。",
+    "necessity": "默认状态没有通往高空目标的纯走跳路径。要么移动弹台到正确位置，要么拆掉维持目标高度的规则。",
     "hints": [
-      "云没有掉落，不等于它能托住你。",
-      "找一条能改变云实体性的句子。",
-      "拼成 CLOUD IS STOP，再走到云的顶面。"
+      "是你一定要上去，还是只要两者能相遇？",
+      "旗标为什么停在空中？取消哪条例外会恢复下落？",
+      "路线 A 搬弹簧；路线 B 拆掉 FLAG 的 HOVER，再到其落点。"
     ],
     "risks": [
-      "实体反馈要在第一次踩踏前可见。",
-      "保留实际下层底板；掉下去不触发隐形传送或自动胜利。"
+      "HOVER 被拆掉时必须同回合开始下落，不能等一个隐藏计时器。",
+      "目标如果在下降途中与玩家同格，要立即获胜，不能等它落到最终格后忽略穿过。"
     ]
   }
 }
