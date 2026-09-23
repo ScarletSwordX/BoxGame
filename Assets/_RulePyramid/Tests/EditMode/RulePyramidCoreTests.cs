@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using RulePyramid.Core;
@@ -7,414 +6,270 @@ using UnityEngine;
 
 namespace RulePyramid.Tests.EditMode
 {
-    public class RulePyramidCoreTests
+    public class RuleWorkshopCoreTests
     {
+        static string LevelsDir
+        {
+            get
+            {
+                var root = Path.GetFullPath(Path.Combine(Application.dataPath, "_RulePyramid/Content/Levels"));
+                return root;
+            }
+        }
+
         static LevelDefinition Load(string id)
         {
-            var path = Path.Combine(Application.dataPath, "_RulePyramid/Content/Levels/" + id + ".json");
+            var path = Path.Combine(LevelsDir, id + ".json");
+            Assert.IsTrue(File.Exists(path), "Missing " + path);
             return LevelJsonSerializer.FromJson(File.ReadAllText(path));
         }
 
-        static EntityDefinition Color(string id, string color, GridCell cell, bool anchored = false)
+        static WorldModel Fixture(GridCell playerPos, EntityDefinition[] extras = null, string[] fixedRules = null)
         {
-            return new EntityDefinition { id = id, kind = "Color", color = color, token = "", cell = cell, anchored = anchored };
-        }
-
-        static EntityDefinition Word(string id, string token, GridCell cell, bool anchored = false)
-        {
-            return new EntityDefinition { id = id, kind = "Text", color = "", token = token, cell = cell, anchored = anchored };
-        }
-
-        static LevelDefinition Fixture(GridCell player, EntityDefinition[] extras = null, string[] extraRules = null, GridCellBox[] boxes = null)
-        {
-            var entities = new List<EntityDefinition> { Color("player", "RED", player) };
+            var entities = new System.Collections.Generic.List<EntityDefinition>
+            {
+                new EntityDefinition
+                {
+                    id = "player", kind = "Object", subject = "ROBOT", token = "", cell = playerPos, anchored = false
+                }
+            };
             if (extras != null) entities.AddRange(extras);
-            var rules = new List<FixedRuleData>
+            var rules = new System.Collections.Generic.List<FixedRuleData>
             {
-                new FixedRuleData { id = "r0", tokens = new[] { "RED", "IS", "YOU" } }
+                new FixedRuleData { id = "f0", tokens = new[] { "ROBOT", "IS", "YOU" } }
             };
-            if (extraRules != null)
+            if (fixedRules != null)
             {
-                for (int i = 0; i < extraRules.Length; i++)
-                    rules.Add(new FixedRuleData { id = "r" + (i + 1), tokens = extraRules[i].Split(' ') });
+                for (int i = 0; i < fixedRules.Length; i++)
+                {
+                    var parts = fixedRules[i].Split(' ');
+                    rules.Add(new FixedRuleData { id = "f" + (i + 1), tokens = parts });
+                }
             }
-            var terrain = new List<GridCellBox>
+            var level = new LevelDefinition
             {
-                new GridCellBox { min = new GridCell(-4, 0, -4), max = new GridCell(7, 0, 4) }
-            };
-            if (boxes != null) terrain.AddRange(boxes);
-            return new LevelDefinition
-            {
-                schemaVersion = 5,
-                mechanicsVersion = "RP-v0.5",
+                schemaVersion = 8,
+                mechanicsVersion = "RW-v0.8",
                 id = "fixture",
                 title = "fixture",
-                bounds = new GridCellBox { min = new GridCell(-4, 0, -4), max = new GridCell(7, 12, 4) },
-                terrain = terrain.ToArray(),
+                bounds = new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(8, 8, 8) },
+                terrain = new[]
+                {
+                    new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(8, 0, 8) }
+                },
                 entities = entities.ToArray(),
                 fixedRules = rules.ToArray(),
-                options = Options()
+                options = new OptionsData
+                {
+                    actionMode = "MoveClimbHoldPush",
+                    winMode = "DistinctEntitiesSameCell",
+                    gravityMode = "WorldDownExceptHoverOrFly",
+                    collisionMode = "SolidPairsTerrainUniversal",
+                    solidityMode = "YouPushStopOrText",
+                    supportMode = "StrictBelow",
+                    controlMode = "SingleYouTransfer_NoControlUndo",
+                    bounceRiseCells = 3,
+                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+                },
+                designContract = new DesignContractData
+                {
+                    requireActiveInteraction = false,
+                    minimumSolutionFamilies = 1,
+                    interactionIsAuthoringConstraint = true
+                },
+                referenceSolutions = new[]
+                {
+                    new ReferenceSolutionData { id = "A", name = "A", family = "A", commands = new string[0] }
+                }
             };
+            return WorldModel.FromLevel(level);
         }
 
-        static OptionsData Options()
+        static EntityDefinition Ob(string id, string subject, GridCell cell)
         {
-            return new OptionsData
+            return new EntityDefinition
             {
-                supportMode = "StrictBelow",
-                jumpMode = "LandingBounce3",
-                bounceRiseCells = 3,
-                decisionMode = "GroundedOrBounceApex",
-                ruleAxes = new[] { "PositiveX", "PositiveZ" },
-                winMode = "DistinctEntitiesSameCell",
-                winCheckMode = "AfterAtomicLogicChange",
-                actionMode = "FourWayMoveInPlaceJumpApexSteer",
-                gravityMode = "WorldDownExceptHoverOrFly",
-                playerBlockMode = "ImplicitFromYou"
+                id = id, kind = "Object", subject = subject, token = "", cell = cell, anchored = false
+            };
+        }
+
+        static EntityDefinition Tx(string id, string token, GridCell cell, bool anchored = false)
+        {
+            return new EntityDefinition
+            {
+                id = id, kind = "Text", subject = "", token = token, cell = cell, anchored = anchored
             };
         }
 
         [Test]
-        public void R01_OnlyExplicitYou_IsSolidAndDown()
+        public void Schema_Tokens_Are_V08()
         {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0)));
-            var p = m.Entity("player");
-            Assert.IsTrue(m.Rules.Has("RED", "YOU"));
-            Assert.IsTrue(PropertyResolver.IsSolid(p, m.Rules));
-            Assert.AreEqual(GravityMode.Down, PropertyResolver.ResolveGravity(p, m.Rules));
+            Assert.AreEqual(8, Tokens.SchemaVersion);
+            Assert.AreEqual("RW-v0.8", Tokens.MechanicsVersion);
+            Assert.IsTrue(Tokens.Commands.Contains("PE"));
+            Assert.IsTrue(Tokens.Subjects.Contains("ROBOT"));
+            Assert.IsTrue(Tokens.Props.Contains("BOUNCY"));
+            Assert.IsFalse(Tokens.Props.Contains("BLOCK"));
         }
 
         [Test]
-        public void R02_MovableTextFallsWithoutFallWord()
+        public void Solid_Requires_YouPushStop_Or_Text()
         {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Word("t", "AND", new GridCell(2, 4, 0)) }));
-            m.Settle();
-            Assert.AreEqual(new GridCell(2, 1, 0), m.Entity("t").Cell);
+            var m = Fixture(new GridCell(0, 1, 0), new[] { Ob("rock", "ROCK", new GridCell(1, 1, 0)) },
+                new[] { "ROCK IS PUSH" });
+            Assert.IsTrue(m.Solid(m.Entity("player")));
+            Assert.IsTrue(m.Solid(m.Entity("rock")));
+            m = Fixture(new GridCell(0, 1, 0), new[] { Ob("rock", "ROCK", new GridCell(1, 1, 0)) });
+            Assert.IsFalse(m.Solid(m.Entity("rock")));
         }
 
         [Test]
-        public void R03_HollowColorFalls()
+        public void Climb_Vs_Push_Are_Distinct()
         {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("h", "PINK", new GridCell(2, 4, 0)) }));
-            m.Settle();
-            Assert.IsFalse(PropertyResolver.IsSolid(m.Entity("h"), m.Rules));
-            Assert.AreEqual(new GridCell(2, 1, 0), m.Entity("h").Cell);
+            var m = Fixture(new GridCell(0, 1, 0), new[] { Ob("rock", "ROCK", new GridCell(1, 1, 0)) },
+                new[] { "ROCK IS PUSH" });
+            Assert.IsTrue(m.TryCommand("E", out _)); // climb onto rock
+            Assert.AreEqual(new GridCell(1, 2, 0), m.Entity("player").Cell);
+
+            m = Fixture(new GridCell(0, 1, 0), new[] { Ob("rock", "ROCK", new GridCell(1, 1, 0)) },
+                new[] { "ROCK IS PUSH" });
+            Assert.IsTrue(m.TryCommand("PE", out _));
+            Assert.AreEqual(new GridCell(1, 1, 0), m.Entity("player").Cell);
+            Assert.AreEqual(new GridCell(2, 1, 0), m.Entity("rock").Cell);
         }
 
         [Test]
-        public void R04_AnchoredTextDoesNotFall()
+        public void Transform_Changes_Subject_Not_Id()
         {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Word("t", "AND", new GridCell(2, 4, 0), true) }));
-            m.Settle();
-            Assert.AreEqual(new GridCell(2, 4, 0), m.Entity("t").Cell);
-            Assert.AreEqual(GravityMode.Anchored, PropertyResolver.ResolveGravity(m.Entity("t"), m.Rules));
+            var m = Fixture(new GridCell(0, 1, 0),
+                new[]
+                {
+                    Ob("rock", "ROCK", new GridCell(3, 1, 0)),
+                    Tx("w_rock", "ROCK", new GridCell(1, 1, 1), true),
+                    Tx("w_is", "IS", new GridCell(2, 1, 1)),
+                    Tx("w_flag", "FLAG", new GridCell(3, 1, 1))
+                },
+                new[] { "FLAG IS WIN" });
+            Assert.AreEqual("ROCK", m.Entity("rock").Subject);
+            try { m.ResolveRules("Test"); }
+            catch (VictoryCommittedException) { }
+            Assert.AreEqual("FLAG", m.Entity("rock").Subject);
+            Assert.AreEqual("rock", m.Entity("rock").Id);
         }
 
         [Test]
-        public void R05_HoverKeepsHeightWithoutBlock()
+        public void AllTwelveLevels_LoadAndValidate()
         {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("h", "BLUE", new GridCell(2, 4, 0)) }, new[] { "BLUE IS HOVER" }));
-            m.Settle();
-            Assert.AreEqual(new GridCell(2, 4, 0), m.Entity("h").Cell);
-            Assert.IsFalse(PropertyResolver.IsSolid(m.Entity("h"), m.Rules));
+            for (int i = 1; i <= 12; i++)
+            {
+                var level = Load("L" + i.ToString("00"));
+                var report = LevelValidator.ValidateStructure(level);
+                Assert.IsFalse(report.HasStructureErrors, level.id + ": " + report);
+                Assert.AreEqual(8, level.schemaVersion);
+                Assert.IsNotNull(level.referenceSolutions);
+                Assert.GreaterOrEqual(level.referenceSolutions.Length, 1);
+            }
         }
 
         [Test]
-        public void R06_FlyOutranksHoverOutranksDown()
+        public void AllEighteenReferenceSolutions_Win()
         {
-            var level = Fixture(new GridCell(0, 1, 0), new[] { Color("h", "BLUE", new GridCell(2, 4, 0)) }, new[] { "BLUE IS HOVER AND FLY" });
+            int total = 0;
+            for (int i = 1; i <= 12; i++)
+            {
+                var level = Load("L" + i.ToString("00"));
+                foreach (var sol in level.referenceSolutions)
+                {
+                    total++;
+                    var result = ReplayRunner.Run(level, sol);
+                    Assert.IsTrue(result.Won, level.id + "/" + sol.id + ": " + result.FailReason);
+                    var session = new GameSession(level);
+                    foreach (var cmd in sol.commands)
+                        Assert.IsTrue(session.TryExecute(cmd), cmd);
+                    Assert.IsTrue(session.Won);
+                    while (session.Undo()) { }
+                    Assert.IsFalse(session.Won);
+                    Assert.AreEqual(0, session.TurnCount);
+                }
+            }
+            Assert.AreEqual(18, total);
+        }
+
+        [Test]
+        public void L02_NoInteractionAudit_Exhausted()
+        {
+            var level = Load("L02");
+            var audit = InteractionAudit.AuditNoInteraction(level, 20000);
+            Assert.AreEqual("EXHAUSTED_NO_INTERACTION_WIN", audit.Status, audit.Status + " states=" + audit.States);
+        }
+
+        [Test]
+        public void L01_AllowsPureTraversalWin()
+        {
+            var level = Load("L01");
+            Assert.IsFalse(level.designContract.requireActiveInteraction);
+            var result = ReplayRunner.Run(level, level.referenceSolutions[0]);
+            Assert.IsTrue(result.Won, result.FailReason);
+        }
+
+        [Test]
+        public void ControlTransfer_Changes_ActorId()
+        {
+            var level = new LevelDefinition
+            {
+                schemaVersion = 8,
+                mechanicsVersion = "RW-v0.8",
+                id = "xfer",
+                title = "xfer",
+                bounds = new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(7, 7, 5) },
+                terrain = new[] { new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(7, 0, 5) } },
+                entities = new[]
+                {
+                    Ob("body_a", "ROBOT", new GridCell(1, 1, 1)),
+                    Ob("body_b", "FLAG", new GridCell(5, 1, 0)),
+                    Tx("subject_a", "ROBOT", new GridCell(0, 1, 2), true),
+                    Tx("connector", "IS", new GridCell(1, 1, 2)),
+                    Tx("you_a", "YOU", new GridCell(2, 1, 2), true),
+                    Tx("subject_b", "FLAG", new GridCell(0, 1, 3), true),
+                    Tx("you_b", "YOU", new GridCell(2, 1, 3), true)
+                },
+                fixedRules = new[]
+                {
+                    new FixedRuleData { id = "f0", tokens = new[] { "ROBOT", "IS", "WIN" } },
+                    new FixedRuleData { id = "f1", tokens = new[] { "FLAG", "IS", "WIN" } }
+                },
+                options = new OptionsData
+                {
+                    actionMode = "MoveClimbHoldPush",
+                    winMode = "DistinctEntitiesSameCell",
+                    gravityMode = "WorldDownExceptHoverOrFly",
+                    collisionMode = "SolidPairsTerrainUniversal",
+                    solidityMode = "YouPushStopOrText",
+                    supportMode = "StrictBelow",
+                    controlMode = "SingleYouTransfer_NoControlUndo",
+                    bounceRiseCells = 3,
+                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+                }
+            };
             var m = WorldModel.FromLevel(level);
-            Assert.AreEqual(GravityMode.Up, PropertyResolver.ResolveGravity(m.Entity("h"), m.Rules));
-            m.Spec.fixedRules = new[]
-            {
-                new FixedRuleData { id = "r0", tokens = new[] { "RED", "IS", "YOU" } },
-                new FixedRuleData { id = "r1", tokens = new[] { "BLUE", "IS", "HOVER" } }
-            };
-            m.Refresh();
-            Assert.AreEqual(GravityMode.Hover, PropertyResolver.ResolveGravity(m.Entity("h"), m.Rules));
-            m.Spec.fixedRules = new[] { new FixedRuleData { id = "r0", tokens = new[] { "RED", "IS", "YOU" } } };
-            m.Refresh();
-            Assert.AreEqual(GravityMode.Down, PropertyResolver.ResolveGravity(m.Entity("h"), m.Rules));
-        }
-
-        [Test]
-        public void R07_ImplicitBlockFollowsYouNotColor()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0)));
-            var p = m.Entity("player");
-            m.Spec.fixedRules = new FixedRuleData[0];
-            m.Refresh();
-            Assert.IsFalse(PropertyResolver.IsSolid(p, m.Rules));
-            m.Spec.fixedRules = new[] { new FixedRuleData { id = "r", tokens = new[] { "RED", "IS", "BLOCK" } } };
-            m.Refresh();
-            Assert.IsTrue(PropertyResolver.IsSolid(p, m.Rules));
-        }
-
-        [Test]
-        public void R08_IncompleteAndKeepsPrefix()
-        {
-            var extras = new[]
-            {
-                Word("a", "BLUE", new GridCell(0, 2, 2), true),
-                Word("b", "IS", new GridCell(1, 2, 2), true),
-                Word("c", "BLOCK", new GridCell(2, 2, 2), true),
-                Word("d", "FLY", new GridCell(4, 2, 2), true)
-            };
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), extras));
-            Assert.IsTrue(m.Rules["BLUE"].SetEquals(new[] { "BLOCK" }));
-            m.Entities.Add(new EntityState { Id = "e", Kind = EntityKind.Text, Token = "AND", Cell = new GridCell(3, 2, 2), Anchored = true });
-            m.Refresh();
-            Assert.IsTrue(m.Rules["BLUE"].SetEquals(new[] { "BLOCK", "FLY" }));
-        }
-
-        [Test]
-        public void R09_OnlyPositiveXAndZParse()
-        {
-            var axes = new[]
-            {
-                (new GridCell(1, 0, 0), true),
-                (new GridCell(0, 0, 1), true),
-                (new GridCell(-1, 0, 0), false),
-                (new GridCell(0, 1, 0), false),
-                (new GridCell(1, 1, 0), false)
-            };
-            foreach (var (vector, expected) in axes)
-            {
-                var baseCell = new GridCell(2, 4, 2);
-                var words = new[] { "BLUE", "IS", "BLOCK" };
-                var extras = new List<EntityDefinition>();
-                for (int i = 0; i < words.Length; i++)
-                {
-                    extras.Add(Word(i.ToString(), words[i], new GridCell(
-                        baseCell.x + i * vector.x, baseCell.y + i * vector.y, baseCell.z + i * vector.z), true));
-                }
-                var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), extras.ToArray()));
-                Assert.AreEqual(expected, m.Rules.Has("BLUE", "BLOCK"), vector.ToString());
-            }
-        }
-
-        [Test]
-        public void R10_HeadBumpedTextFallsBack()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Word("t", "AND", new GridCell(0, 2, 0)) }));
-            Assert.IsTrue(m.TryCommand("J", out _));
-            Assert.AreEqual(new GridCell(0, 1, 0), m.Entity("player").Cell);
-            Assert.AreEqual(new GridCell(0, 2, 0), m.Entity("t").Cell);
-            Assert.IsTrue(m.Log.Exists(e => e.Kind == "HeadBump"));
-            Assert.IsTrue(m.Log.Exists(e => e.Kind == "GravityFall" && e.EntityId == "t"));
-        }
-
-        [Test]
-        public void R11_HeadBumpedHoverKeepsHeight()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("h", "BLUE", new GridCell(0, 2, 0)) }, new[] { "BLUE IS BLOCK AND HOVER" }));
-            Assert.IsTrue(m.TryCommand("J", out _));
-            Assert.AreEqual(new GridCell(0, 3, 0), m.Entity("h").Cell);
-            Assert.AreEqual(new GridCell(0, 1, 0), m.Entity("player").Cell);
-        }
-
-        [Test]
-        public void R12_LandingPressMovesHoverSolid()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 5, 0), new[] { Color("h", "BLUE", new GridCell(0, 2, 0)) }, new[] { "BLUE IS BLOCK AND HOVER" }));
-            m.Settle();
-            Assert.AreEqual(new GridCell(0, 1, 0), m.Entity("h").Cell);
-            Assert.AreEqual(1, m.Log.FindAll(e => e.Kind == "LandingPress" && e.EntityId == "player").Count);
-        }
-
-        [Test]
-        public void R13_JumpBeatsPressAndRisesThree()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 5, 0), new[] { Color("h", "BLUE", new GridCell(0, 2, 0)) }, new[] { "BLUE IS BLOCK AND HOVER AND JUMP" }));
-            m.Settle();
-            Assert.AreEqual(new GridCell(0, 2, 0), m.Entity("h").Cell);
-            Assert.AreEqual(new GridCell(0, 6, 0), m.Entity("player").Cell);
-            Assert.AreEqual(MotionPhase.BounceApex, m.Phase);
-            Assert.IsFalse(m.Log.Exists(e => e.Kind == "LandingPress"));
-        }
-
-        [Test]
-        public void R14_NoAutoClimbAndJumpStaysInPlace()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), null, null, new[]
-            {
-                new GridCellBox { min = new GridCell(1, 1, 0), max = new GridCell(1, 1, 0) }
-            }));
-            var before = m.Fingerprint();
-            Assert.IsFalse(m.TryCommand("E", out _));
-            Assert.AreEqual(before, m.Fingerprint());
-            Assert.IsTrue(m.TryCommand("J", out _));
-            Assert.AreEqual(new GridCell(0, 1, 0), m.Entity("player").Cell);
-        }
-
-        [Test]
-        public void R15_LegacyJumpsRejected()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0)));
-            var before = m.Fingerprint();
-            foreach (var c in new[] { "JE", "JW", "JN", "JS" })
-                Assert.IsFalse(m.TryCommand(c, out _));
-            Assert.AreEqual(before, m.Fingerprint());
-            Assert.AreEqual(0, m.History.Count);
-        }
-
-        [Test]
-        public void R16_NeighborsDoNotWin()
-        {
-            var deltas = new[]
-            {
-                GridCell.East, GridCell.West, GridCell.North, GridCell.South, GridCell.Up, GridCell.Down, new GridCell(1, 1, 1)
-            };
-            foreach (var d in deltas)
-            {
-                var goal = new GridCell(0, 3, 0).Add(d);
-                var m = WorldModel.FromLevel(Fixture(new GridCell(0, 3, 0), new[] { Color("goal", "PINK", goal) }, new[] { "PINK IS WIN" }));
-                Assert.IsFalse(m.WonLatched, d.ToString());
-            }
-        }
-
-        [Test]
-        public void R17_EnterHollowWinAndUndo()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("goal", "PINK", new GridCell(1, 1, 0)) }, new[] { "PINK IS WIN" }));
-            Assert.IsTrue(m.TryCommand("E", out _));
-            Assert.IsTrue(m.WonLatched);
-            Assert.IsTrue(m.Undo());
-            Assert.IsFalse(m.WonLatched);
-            Assert.AreEqual(new GridCell(0, 1, 0), m.Entity("player").Cell);
-        }
-
-        [Test]
-        public void R18_HollowWinCanFallOntoPlayer()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("goal", "PINK", new GridCell(0, 4, 0)) }, new[] { "PINK IS WIN" }));
-            m.Settle();
-            Assert.IsTrue(m.WonLatched);
-            Assert.AreEqual(new GridCell(0, 1, 0), m.WinRecord.Cell);
-        }
-
-        [Test]
-        public void R19_InactiveAndSelfWinDoNotCount()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("goal", "PINK", new GridCell(1, 1, 0)) }));
-            Assert.IsTrue(m.TryCommand("E", out _));
-            Assert.IsFalse(m.WonLatched);
-            m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), extraRules: new[] { "RED IS WIN" }));
+            Assert.AreEqual("body_a", m.ActorId);
+            Assert.IsTrue(m.TryCommand("PN", out _), m.LastRejection);
+            Assert.AreEqual("body_b", m.ActorId);
             Assert.IsFalse(m.WonLatched);
         }
 
         [Test]
-        public void R20_WinDoesNotCancelBlock()
+        public void EditSession_Playtest_DoesNotMutateDraft()
         {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 1, 0), new[] { Color("goal", "PINK", new GridCell(1, 1, 0)) }, new[] { "PINK IS BLOCK AND WIN" }));
-            Assert.IsFalse(m.TryCommand("E", out _));
-            Assert.IsFalse(m.WonLatched);
-        }
-
-        [Test]
-        public void R21_MidBounceWinStopsBeforeApex()
-        {
-            var m = WorldModel.FromLevel(Fixture(new GridCell(0, 3, 0), new[]
-            {
-                Color("spring", "BLUE", new GridCell(0, 1, 0)),
-                Color("goal", "PINK", new GridCell(0, 4, 0))
-            }, new[] { "BLUE IS BLOCK AND JUMP", "PINK IS HOVER AND WIN" }));
-            m.Settle();
-            Assert.IsTrue(m.WonLatched);
-            Assert.AreEqual(new GridCell(0, 4, 0), m.Entity("player").Cell);
-            Assert.IsFalse(m.Apex.ContainsKey("player"));
-        }
-
-        [Test]
-        public void R22_RejectedApexSteerPreservesApex()
-        {
-            var m = WorldModel.FromLevel(Load("L04"));
-            Assert.IsTrue(m.TryCommand("N", out _));
-            Assert.IsTrue(m.TryCommand("E", out _));
-            Assert.AreEqual(MotionPhase.BounceApex, m.Phase);
-            m.Terrain.Add(new GridCell(4, 5, 1));
-            var before = m.Fingerprint();
-            int n = m.History.Count;
-            Assert.IsFalse(m.TryCommand("E", out _));
-            Assert.AreEqual(before, m.Fingerprint());
-            Assert.AreEqual(n, m.History.Count);
-        }
-
-        [Test]
-        public void R23_BreakingHoverRestoresFallAndUndo()
-        {
-            var m = WorldModel.FromLevel(Load("L03"));
-            Assert.AreEqual(new GridCell(3, 5, 2), m.Entity("bridge").Cell);
-            Assert.IsTrue(m.TryCommand("E", out _));
-            Assert.IsTrue(m.TryCommand("N", out _));
-            Assert.IsFalse(m.Rules.Has("BLUE", "HOVER"));
-            Assert.AreEqual(new GridCell(3, 2, 2), m.Entity("bridge").Cell);
-            Assert.IsTrue(m.Undo());
-            Assert.AreEqual(new GridCell(3, 5, 2), m.Entity("bridge").Cell);
-            Assert.IsTrue(m.Rules.Has("BLUE", "HOVER"));
-        }
-
-        [Test]
-        public void R24_AndSupportedWhileFlyCarriesPlayer()
-        {
-            var spec = Load("L05");
-            var m = WorldModel.FromLevel(spec);
-            foreach (var c in spec.referenceSolution.commands)
-            {
-                if (c == spec.referenceSolution.commands[3]) break;
-                Assert.IsTrue(m.TryCommand(c, out var msg), msg);
-            }
-            Assert.AreEqual(new GridCell(3, 4, 0), m.Entity("lift_front").Cell);
-            Assert.AreEqual(new GridCell(3, 5, 0), m.Entity("player").Cell);
-            Assert.AreEqual(new GridCell(3, 2, -1), m.Entity("t_and").Cell);
-            Assert.IsTrue(m.Rules.Has("BLUE", "FLY"));
-        }
-
-        [Test]
-        public void SixLevels_ReferenceSolutionsWinAndUndo()
-        {
-            foreach (var id in new[] { "L01", "L02", "L03", "L04", "L05", "L06" })
-            {
-                var spec = Load(id);
-                var report = LevelValidator.ValidateForPlaytest(spec);
-                Assert.IsTrue(report.CanPlaytest, id + " " + report);
-                var m = WorldModel.FromLevel(spec);
-                var before = m.Fingerprint();
-                m.Settle();
-                Assert.AreEqual(before, m.Fingerprint(), id + " unstable");
-                Assert.IsFalse(m.WonLatched, id + " already won");
-                foreach (var cmd in spec.referenceSolution.commands)
-                {
-                    Assert.IsFalse(m.WonLatched, id + " early win before " + cmd);
-                    Assert.IsTrue(m.TryCommand(cmd, out var msg), id + " " + cmd + " " + msg);
-                }
-                Assert.IsTrue(m.WonLatched, id + " not won");
-                Assert.IsTrue(m.Undo(), id + " undo");
-                Assert.IsFalse(m.WonLatched, id + " undo win");
-            }
-        }
-
-        [Test]
-        public void JsonRoundtrip_L01()
-        {
-            var spec = Load("L01");
-            var json = LevelJsonSerializer.ToJson(spec);
-            var again = LevelJsonSerializer.FromJson(json);
-            Assert.AreEqual(spec.id, again.id);
-            Assert.AreEqual(spec.entities.Length, again.entities.Length);
-            Assert.AreEqual(spec.entities[0].cell, again.entities[0].cell);
-        }
-
-        [Test]
-        public void EditSession_StopDoesNotMutateDraft()
-        {
-            var spec = Load("L01");
-            var edit = new LevelEditSession(spec);
-            Assert.IsTrue(edit.TryStartPlaytest(out var session, out var error), error);
-            session.TryExecute("E");
-            Assert.AreNotEqual(spec.entities[0].cell, session.World.Entity("player").Cell);
-            edit.StopPlaytest();
-            Assert.AreEqual(spec.entities[0].cell, edit.Draft.entities[0].cell);
+            var level = Load("L01");
+            var session = new LevelEditSession(level);
+            var before = session.Draft.entities[0].cell;
+            Assert.IsTrue(session.TryStartPlaytest(out var play, out var err), err);
+            foreach (var cmd in level.referenceSolutions[0].commands)
+                play.TryExecute(cmd);
+            Assert.IsTrue(play.Won);
+            session.StopPlaytest();
+            Assert.AreEqual(before, session.Draft.entities[0].cell);
         }
     }
 }
