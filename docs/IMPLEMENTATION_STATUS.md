@@ -1,25 +1,29 @@
-# Implementation Status — Rule Pyramid RP-v0.5
+# Implementation Status — Rule Workshop RW-v0.8
 
-阶段状态标记：已编写 / Python 设计模型通过（包内既有） / Unity C# 测试 / Game View 试玩 / 构建。
+阶段状态：已编写 / Python 设计模型 / Unity C# 测试 / Game View 试玩 / 编辑器 / 构建。
 
-| 阶段 | 已编写 | Python 模型 | C# 测试 | 试玩 | 构建 |
-|---|---|---|---|---|---|
-| A 骨架 | 是 | 通过 | 通过 | L01 场景可加载 | 未做独立构建 |
-| B 移动闭环 | 是 | 通过 | 通过（R01/R14/R16/R17） | L01 Play Mode 加载 Grounded (0,1,1) | 未做 |
-| C 规则/推字 | 是 | 通过 | 通过（R08/R09/L02） | 未逐关人手 | 未做 |
-| D 跳跃弹跳 | 是 | 通过 | 通过（R10–R15/R21/R22/L04/L06） | 未逐关人手 | 未做 |
-| E 结算完整 | 是 | 通过 | 通过（R02–R07/R12/R18/R23/R24/L03/L05） | 未逐关人手 | 未做 |
-| F HUD/镜头 | 是 | n/a | PlayMode 烟测通过 | HUD 已进 Prototype 场景 | 未做 |
-| G 编辑器 | 是 | n/a | 草稿隔离测试通过 | 窗口菜单可用 | 未做 |
+| 阶段 | 已编写 | Python | C# 测试 | 试玩 | 编辑器 | 构建 |
+|---|---|---|---|---|---|---|
+| A 模拟核（变形／换控／推爬） | 是 | PASS | 已编写待跑 | — | — | — |
+| B Runtime + L01–L07 | 是 | PASS | 已编写待跑 | 待本机 Play | 菜单／HUD 已改 | — |
+| C L08–L12 + 18 解 | 是 | PASS | 18 解用例已写 | 待本机 Play | 回放 A/B/C | — |
+| D 审核与验收 | 是 | PASS | 互动审核用例已写 | 待本机 | 互动审核按钮 | 待本机 |
 
 ## 实际执行
 
-- EditMode：`RulePyramid.Tests.EditMode` **27/27 Passed**（R01–R24 + 六关 referenceSolution 回放与 Undo + JSON 往返 + 编辑试玩隔离）
-- PlayMode：`RulePyramid.Tests.PlayMode` **1/1 Passed**
-- Play Mode：打开 `Assets/_RulePyramid/Scenes/Prototype.unity`，L01 会话 `Grounded you=(0,1,1) won=False entities=2`
-- 初始化菜单：`Tools/RulePyramid/Create or Repair Prototype` 已执行并写日志成功
+- 规格：`docs/PROTOTYPE_SPEC.md` = RW-v0.8；`AGENTS.md` 已更新
+- Core：`WorldModel` 移植 Pack `reference_check.py`；Transformation／Control／双方实体碰撞／Shift 推／登攀
+- Content：L01–L12（JsonUtility 友好裁剪）+ `LevelCatalog` 十二关引用
+- Runtime：Shift→`P*`；按 `subject` 选材质
+- Editor：`Tools/规则工坊/…`；解法回放；互动审核
+- Tests：`RuleWorkshopCoreTests`（schema／推爬／变形／换控／十八解／L02 审核／编辑隔离）
+- Python：`reference_check.py` **PASS**（12 关／18 见证／80 局部／11 无互动穷尽）
 
-## 未验证
+## 未在本机关闭的验收项
 
-- 六关 Game View 完整人手走关、遮挡可读性、独立 Player 构建
-- 编辑器 SceneView 点击落点与四槽镜头手感未做完整 UX 验收
+当前会话 Unity MCP（`127.0.0.1:8080`）不可用，且 Hub 未检出 2022.3.51f1 可执行文件，因此下列项需在打开本工程的编辑器中完成：
+
+1. `Tools/规则工坊/Create or Repair Prototype`
+2. EditMode 跑 `RulePyramid.Tests.EditMode`
+3. Play Mode 打开 Prototype，Bootstrap 回放或人手试玩
+4. Windows 开发构建冒烟
