@@ -1,3 +1,5 @@
+using System;
+using System.Collections.Generic;
 using System.IO;
 using NUnit.Framework;
 using RulePyramid.Core;
@@ -24,32 +26,44 @@ namespace RulePyramid.Tests.EditMode
             return LevelJsonSerializer.FromJson(File.ReadAllText(path));
         }
 
-        static WorldModel Fixture(GridCell playerPos, EntityDefinition[] extras = null, string[] fixedRules = null)
+        /// <summary>
+        /// v0.9 Fixture：规则仅来自世界 Text（含 ROBOT IS YOU），禁止 fixedRules。
+        /// </summary>
+        static WorldModel Fixture(GridCell playerPos, EntityDefinition[] extras = null, string[] extraSentences = null)
         {
-            var entities = new System.Collections.Generic.List<EntityDefinition>
+            var entities = new List<EntityDefinition>
             {
                 new EntityDefinition
                 {
                     id = "player", kind = "Object", subject = "ROBOT", token = "", cell = playerPos, anchored = false
                 }
             };
+
+            // 预留区放置 ROBOT IS YOU（沿 +X）
+            const int ruleX = -2;
+            const int ruleY = 1;
+            const int ruleZ = -2;
+            entities.Add(Tx("fx_you_s", "ROBOT", new GridCell(ruleX, ruleY, ruleZ)));
+            entities.Add(Tx("fx_you_is", "IS", new GridCell(ruleX + 1, ruleY, ruleZ)));
+            entities.Add(Tx("fx_you_p", "YOU", new GridCell(ruleX + 2, ruleY, ruleZ)));
+
             if (extras != null) entities.AddRange(extras);
-            var rules = new System.Collections.Generic.List<FixedRuleData>
+
+            if (extraSentences != null)
             {
-                new FixedRuleData { id = "f0", tokens = new[] { "ROBOT", "IS", "YOU" } }
-            };
-            if (fixedRules != null)
-            {
-                for (int i = 0; i < fixedRules.Length; i++)
+                for (int s = 0; s < extraSentences.Length; s++)
                 {
-                    var parts = fixedRules[i].Split(' ');
-                    rules.Add(new FixedRuleData { id = "f" + (i + 1), tokens = parts });
+                    var parts = extraSentences[s].Split(new[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+                    int z = ruleZ + 1 + s;
+                    for (int t = 0; t < parts.Length; t++)
+                        entities.Add(Tx("fx_s" + s + "_" + t, parts[t], new GridCell(ruleX + t, ruleY, z)));
                 }
             }
+
             var level = new LevelDefinition
             {
-                schemaVersion = 8,
-                mechanicsVersion = "RW-v0.8",
+                schemaVersion = 9,
+                mechanicsVersion = "RW-v0.9",
                 id = "fixture",
                 title = "fixture",
                 bounds = new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(8, 8, 8) },
@@ -58,7 +72,7 @@ namespace RulePyramid.Tests.EditMode
                     new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(8, 0, 8) }
                 },
                 entities = entities.ToArray(),
-                fixedRules = rules.ToArray(),
+                fixedRules = Array.Empty<FixedRuleData>(),
                 options = new OptionsData
                 {
                     actionMode = "MoveClimbHoldPush",
@@ -69,7 +83,9 @@ namespace RulePyramid.Tests.EditMode
                     supportMode = "StrictBelow",
                     controlMode = "SingleYouTransfer_NoControlUndo",
                     bounceRiseCells = 3,
-                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+                    ruleSourceMode = "WorldTextOnly",
+                    textMobilityMode = "AllWordsMovable_GeometryAccess"
                 },
                 designContract = new DesignContractData
                 {
@@ -102,10 +118,10 @@ namespace RulePyramid.Tests.EditMode
         }
 
         [Test]
-        public void Schema_Tokens_Are_V08()
+        public void Schema_Tokens_Are_V09()
         {
-            Assert.AreEqual(8, Tokens.SchemaVersion);
-            Assert.AreEqual("RW-v0.8", Tokens.MechanicsVersion);
+            Assert.AreEqual(9, Tokens.SchemaVersion);
+            Assert.AreEqual("RW-v0.9", Tokens.MechanicsVersion);
             Assert.IsTrue(Tokens.Commands.Contains("PE"));
             Assert.IsTrue(Tokens.Subjects.Contains("ROBOT"));
             Assert.IsTrue(Tokens.Props.Contains("BOUNCY"));
@@ -145,7 +161,7 @@ namespace RulePyramid.Tests.EditMode
                 new[]
                 {
                     Ob("rock", "ROCK", new GridCell(3, 1, 0)),
-                    Tx("w_rock", "ROCK", new GridCell(1, 1, 1), true),
+                    Tx("w_rock", "ROCK", new GridCell(1, 1, 1)),
                     Tx("w_is", "IS", new GridCell(2, 1, 1)),
                     Tx("w_flag", "FLAG", new GridCell(3, 1, 1))
                 },
@@ -165,7 +181,8 @@ namespace RulePyramid.Tests.EditMode
                 var level = Load("L" + i.ToString("00"));
                 var report = LevelValidator.ValidateStructure(level);
                 Assert.IsFalse(report.HasStructureErrors, level.id + ": " + report);
-                Assert.AreEqual(8, level.schemaVersion);
+                Assert.AreEqual(9, level.schemaVersion);
+                Assert.AreEqual("RW-v0.9", level.mechanicsVersion);
                 Assert.IsNotNull(level.referenceSolutions);
                 Assert.GreaterOrEqual(level.referenceSolutions.Length, 1);
             }
@@ -196,18 +213,28 @@ namespace RulePyramid.Tests.EditMode
         }
 
         [Test]
-        public void L02_NoInteractionAudit_Exhausted()
+        public void L01_NoInteractionAudit_Exhausted()
         {
-            var level = Load("L02");
+            var level = Load("L01");
+            Assert.IsTrue(level.designContract.requireActiveInteraction);
             var audit = InteractionAudit.AuditNoInteraction(level, 20000);
             Assert.AreEqual("EXHAUSTED_NO_INTERACTION_WIN", audit.Status, audit.Status + " states=" + audit.States);
         }
 
         [Test]
-        public void L01_AllowsPureTraversalWin()
+        public void L02_NoInteractionAudit_Exhausted()
+        {
+            var level = Load("L02");
+            Assert.IsTrue(level.designContract.requireActiveInteraction);
+            var audit = InteractionAudit.AuditNoInteraction(level, 20000);
+            Assert.AreEqual("EXHAUSTED_NO_INTERACTION_WIN", audit.Status, audit.Status + " states=" + audit.States);
+        }
+
+        [Test]
+        public void L01_RequiresActiveInteraction_AndReferenceWins()
         {
             var level = Load("L01");
-            Assert.IsFalse(level.designContract.requireActiveInteraction);
+            Assert.IsTrue(level.designContract.requireActiveInteraction);
             var result = ReplayRunner.Run(level, level.referenceSolutions[0]);
             Assert.IsTrue(result.Won, result.FailReason);
         }
@@ -217,8 +244,8 @@ namespace RulePyramid.Tests.EditMode
         {
             var level = new LevelDefinition
             {
-                schemaVersion = 8,
-                mechanicsVersion = "RW-v0.8",
+                schemaVersion = 9,
+                mechanicsVersion = "RW-v0.9",
                 id = "xfer",
                 title = "xfer",
                 bounds = new GridCellBox { min = new GridCell(-2, 0, -2), max = new GridCell(7, 7, 5) },
@@ -227,17 +254,19 @@ namespace RulePyramid.Tests.EditMode
                 {
                     Ob("body_a", "ROBOT", new GridCell(1, 1, 1)),
                     Ob("body_b", "FLAG", new GridCell(5, 1, 0)),
-                    Tx("subject_a", "ROBOT", new GridCell(0, 1, 2), true),
+                    Tx("subject_a", "ROBOT", new GridCell(0, 1, 2)),
                     Tx("connector", "IS", new GridCell(1, 1, 2)),
-                    Tx("you_a", "YOU", new GridCell(2, 1, 2), true),
-                    Tx("subject_b", "FLAG", new GridCell(0, 1, 3), true),
-                    Tx("you_b", "YOU", new GridCell(2, 1, 3), true)
+                    Tx("you_a", "YOU", new GridCell(2, 1, 2)),
+                    Tx("subject_b", "FLAG", new GridCell(0, 1, 3)),
+                    Tx("you_b", "YOU", new GridCell(2, 1, 3)),
+                    Tx("win_flag_s", "FLAG", new GridCell(4, 1, 4)),
+                    Tx("win_flag_is", "IS", new GridCell(5, 1, 4)),
+                    Tx("win_flag_p", "WIN", new GridCell(6, 1, 4)),
+                    Tx("win_robot_s", "ROBOT", new GridCell(4, 1, 5)),
+                    Tx("win_robot_is", "IS", new GridCell(5, 1, 5)),
+                    Tx("win_robot_p", "WIN", new GridCell(6, 1, 5))
                 },
-                fixedRules = new[]
-                {
-                    new FixedRuleData { id = "f0", tokens = new[] { "ROBOT", "IS", "WIN" } },
-                    new FixedRuleData { id = "f1", tokens = new[] { "FLAG", "IS", "WIN" } }
-                },
+                fixedRules = Array.Empty<FixedRuleData>(),
                 options = new OptionsData
                 {
                     actionMode = "MoveClimbHoldPush",
@@ -248,7 +277,9 @@ namespace RulePyramid.Tests.EditMode
                     supportMode = "StrictBelow",
                     controlMode = "SingleYouTransfer_NoControlUndo",
                     bounceRiseCells = 3,
-                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand"
+                    transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+                    ruleSourceMode = "WorldTextOnly",
+                    textMobilityMode = "AllWordsMovable_GeometryAccess"
                 }
             };
             var m = WorldModel.FromLevel(level);

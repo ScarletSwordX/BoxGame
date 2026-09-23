@@ -84,7 +84,7 @@ namespace RulePyramid.Runtime
                 var props = new List<string>(rules[subject]);
                 if (props.Count == 0) continue;
                 props.Sort();
-                sb.Append(subject).Append(" IS ").Append(string.Join(" AND ", props)).Append('\r\n');
+                sb.Append(subject).Append(" IS ").Append(string.Join(" AND ", props)).Append("\r\n");
             }
             return sb.ToString();
         }

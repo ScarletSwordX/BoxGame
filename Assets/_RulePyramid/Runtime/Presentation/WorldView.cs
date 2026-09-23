@@ -17,8 +17,38 @@ namespace RulePyramid.Runtime
         {
             Clear();
             if (world == null) return;
-            foreach (var cell in world.Terrain)
-                _terrain.Add(CreateCube("Terrain " + cell, cell, TerrainMat(), 1f));
+            if (world.Spec?.terrain != null)
+            {
+                foreach (var box in world.Spec.terrain)
+                {
+                    if (box == null) continue;
+                    bool glass = string.Equals(box.appearance, "TransparentGlass", System.StringComparison.OrdinalIgnoreCase);
+                    var mat = glass ? GlassMat() : TerrainMat();
+                    for (int x = box.min.x; x <= box.max.x; x++)
+                    for (int y = box.min.y; y <= box.max.y; y++)
+                    for (int z = box.min.z; z <= box.max.z; z++)
+                    {
+                        var cell = new GridCell(x, y, z);
+                        var t = CreateCube("Terrain " + cell, cell, mat, 1f);
+                        if (glass)
+                        {
+                            var rend = t.GetComponent<Renderer>();
+                            if (rend != null)
+                            {
+                                var c = rend.material.color;
+                                c = new Color(0.55f, 0.75f, 0.95f, 0.28f);
+                                rend.material.color = c;
+                            }
+                        }
+                        _terrain.Add(t);
+                    }
+                }
+            }
+            else
+            {
+                foreach (var cell in world.Terrain)
+                    _terrain.Add(CreateCube("Terrain " + cell, cell, TerrainMat(), 1f));
+            }
             foreach (var e in world.Entities)
                 _views[e.Id] = CreateEntity(e, world);
             _generation++;
@@ -93,6 +123,12 @@ namespace RulePyramid.Runtime
         }
 
         Material TerrainMat() => config != null ? config.terrainMaterial : null;
+
+        Material GlassMat()
+        {
+            if (config != null && config.pinkHollowMaterial != null) return config.pinkHollowMaterial;
+            return TerrainMat();
+        }
 
         Material MaterialFor(EntityState e, bool solid, bool win)
         {
