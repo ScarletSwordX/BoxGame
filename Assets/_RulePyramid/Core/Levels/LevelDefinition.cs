@@ -15,8 +15,11 @@ namespace RulePyramid.Core
         public FixedRuleData[] fixedRules;
         public OptionsData options;
         public CameraData camera;
-        public TutorialData tutorial;
+        public DesignContractData designContract;
+        public ReferenceSolutionData[] referenceSolutions;
+        /// <summary>旧单数字段；Normalize 时可迁入 referenceSolutions。</summary>
         public ReferenceSolutionData referenceSolution;
+        public TutorialData tutorial;
 
         public LevelDefinition Clone()
         {
@@ -36,10 +39,12 @@ namespace RulePyramid.Core
     {
         public string id;
         public string kind;
-        public string color;
+        public string subject;
         public string token;
         public GridCell cell;
         public bool anchored;
+        /// <summary>遗留字段；加载后忽略。</summary>
+        public string color;
     }
 
     [Serializable]
@@ -52,38 +57,61 @@ namespace RulePyramid.Core
     [Serializable]
     public class OptionsData
     {
-        public string supportMode;
-        public string jumpMode;
-        public int bounceRiseCells;
-        public string decisionMode;
-        public string[] ruleAxes;
-        public string winMode;
-        public string winCheckMode;
         public string actionMode;
+        public string winMode;
         public string gravityMode;
-        public string playerBlockMode;
+        public string collisionMode;
+        public string solidityMode;
+        public string supportMode;
+        public string controlMode;
+        public int bounceRiseCells;
+        public string transformationMode;
     }
 
     [Serializable]
     public class CameraData
     {
         public int initialSlot;
+        /// <summary>Pack JSON 字段名；Normalize 复制到 initialSlot。</summary>
+        public int slot;
         public float pitchDegrees;
         public float[] yawDegrees;
         public string inputMode;
+        public bool orthographic;
+    }
+
+    [Serializable]
+    public class DesignContractData
+    {
+        public bool requireActiveInteraction;
+        public int minimumSolutionFamilies;
+        public bool interactionIsAuthoringConstraint;
     }
 
     [Serializable]
     public class TutorialData
     {
         public string objective;
+        public string concept;
+        public string observation;
+        public string necessity;
         public string[] hints;
+        public string[] risks;
     }
 
     [Serializable]
     public class ReferenceSolutionData
     {
+        public string id;
+        public string name;
+        public string family;
         public string[] commands;
+        public string mustControlAtWin;
+        public string mustWinWith;
+        public string[] requireEvents;
+        public string[] forbidEvents;
         public string expectedFinalStatus;
+        public string status;
+        public string claim;
     }
 }

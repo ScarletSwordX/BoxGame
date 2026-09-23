@@ -20,8 +20,10 @@ namespace RulePyramid.Core
                 fixedRules = CloneRules(source.fixedRules),
                 options = CloneOptions(source.options),
                 camera = CloneCamera(source.camera),
-                tutorial = CloneTutorial(source.tutorial),
-                referenceSolution = CloneSolution(source.referenceSolution)
+                designContract = CloneDesignContract(source.designContract),
+                referenceSolutions = CloneSolutions(source.referenceSolutions),
+                referenceSolution = CloneSolution(source.referenceSolution),
+                tutorial = CloneTutorial(source.tutorial)
             };
             return clone;
         }
@@ -51,10 +53,11 @@ namespace RulePyramid.Core
                 {
                     id = e.id,
                     kind = e.kind,
-                    color = e.color ?? "",
+                    subject = e.subject ?? "",
                     token = e.token ?? "",
                     cell = e.cell,
-                    anchored = e.anchored
+                    anchored = e.anchored,
+                    color = e.color ?? ""
                 };
             }
             return result;
@@ -78,16 +81,15 @@ namespace RulePyramid.Core
             if (o == null) return null;
             return new OptionsData
             {
-                supportMode = o.supportMode,
-                jumpMode = o.jumpMode,
-                bounceRiseCells = o.bounceRiseCells,
-                decisionMode = o.decisionMode,
-                ruleAxes = o.ruleAxes == null ? Array.Empty<string>() : (string[])o.ruleAxes.Clone(),
-                winMode = o.winMode,
-                winCheckMode = o.winCheckMode,
                 actionMode = o.actionMode,
+                winMode = o.winMode,
                 gravityMode = o.gravityMode,
-                playerBlockMode = o.playerBlockMode
+                collisionMode = o.collisionMode,
+                solidityMode = o.solidityMode,
+                supportMode = o.supportMode,
+                controlMode = o.controlMode,
+                bounceRiseCells = o.bounceRiseCells,
+                transformationMode = o.transformationMode
             };
         }
 
@@ -97,9 +99,22 @@ namespace RulePyramid.Core
             return new CameraData
             {
                 initialSlot = c.initialSlot,
+                slot = c.slot,
                 pitchDegrees = c.pitchDegrees,
                 yawDegrees = c.yawDegrees == null ? Array.Empty<float>() : (float[])c.yawDegrees.Clone(),
-                inputMode = c.inputMode
+                inputMode = c.inputMode,
+                orthographic = c.orthographic
+            };
+        }
+
+        static DesignContractData CloneDesignContract(DesignContractData d)
+        {
+            if (d == null) return null;
+            return new DesignContractData
+            {
+                requireActiveInteraction = d.requireActiveInteraction,
+                minimumSolutionFamilies = d.minimumSolutionFamilies,
+                interactionIsAuthoringConstraint = d.interactionIsAuthoringConstraint
             };
         }
 
@@ -109,7 +124,11 @@ namespace RulePyramid.Core
             return new TutorialData
             {
                 objective = t.objective,
-                hints = t.hints == null ? Array.Empty<string>() : (string[])t.hints.Clone()
+                concept = t.concept,
+                observation = t.observation,
+                necessity = t.necessity,
+                hints = t.hints == null ? Array.Empty<string>() : (string[])t.hints.Clone(),
+                risks = t.risks == null ? Array.Empty<string>() : (string[])t.risks.Clone()
             };
         }
 
@@ -118,9 +137,27 @@ namespace RulePyramid.Core
             if (s == null) return null;
             return new ReferenceSolutionData
             {
+                id = s.id,
+                name = s.name,
+                family = s.family,
                 commands = s.commands == null ? Array.Empty<string>() : (string[])s.commands.Clone(),
-                expectedFinalStatus = s.expectedFinalStatus
+                mustControlAtWin = s.mustControlAtWin,
+                mustWinWith = s.mustWinWith,
+                requireEvents = s.requireEvents == null ? Array.Empty<string>() : (string[])s.requireEvents.Clone(),
+                forbidEvents = s.forbidEvents == null ? Array.Empty<string>() : (string[])s.forbidEvents.Clone(),
+                expectedFinalStatus = s.expectedFinalStatus,
+                status = s.status,
+                claim = s.claim
             };
+        }
+
+        static ReferenceSolutionData[] CloneSolutions(ReferenceSolutionData[] solutions)
+        {
+            if (solutions == null) return Array.Empty<ReferenceSolutionData>();
+            var result = new ReferenceSolutionData[solutions.Length];
+            for (int i = 0; i < solutions.Length; i++)
+                result[i] = CloneSolution(solutions[i]);
+            return result;
         }
 
         public static HashSet<GridCell> ExpandTerrain(IEnumerable<GridCellBox> boxes)

@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Generic;
 
 namespace RulePyramid.Core
 {
@@ -23,7 +22,7 @@ namespace RulePyramid.Core
         public bool TryExecute(string command)
         {
             LastRejectReason = null;
-            if (World.WonLatched && command != null && command != "WAIT")
+            if (World.WonLatched && command != null && command != "WAIT" && command != "CAM+" && command != "CAM-")
             {
                 LastRejectReason = "Already won";
                 return false;
@@ -31,10 +30,11 @@ namespace RulePyramid.Core
             bool ok = World.TryCommand(command, out var message);
             if (!ok)
             {
-                LastRejectReason = message ?? "Rejected";
+                LastRejectReason = message ?? World.LastRejection ?? "Rejected";
                 return false;
             }
-            TurnCount++;
+            if (command != "CAM+" && command != "CAM-")
+                TurnCount++;
             return true;
         }
 

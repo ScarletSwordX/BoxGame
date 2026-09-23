@@ -51,6 +51,7 @@ namespace RulePyramid.Core
             {
                 id = e.id,
                 kind = e.kind,
+                subject = e.subject,
                 color = e.color,
                 token = e.token,
                 cell = e.cell,

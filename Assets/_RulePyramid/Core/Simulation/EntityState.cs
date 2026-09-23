@@ -5,7 +5,7 @@ namespace RulePyramid.Core
 {
     public enum EntityKind
     {
-        Color,
+        Object,
         Text
     }
 
@@ -21,6 +21,7 @@ namespace RulePyramid.Core
     {
         Grounded,
         BounceApex,
+        NoControl,
         Won
     }
 
@@ -28,7 +29,7 @@ namespace RulePyramid.Core
     {
         public string Id;
         public EntityKind Kind;
-        public string Color;
+        public string Subject;
         public string Token;
         public GridCell Cell;
         public bool Anchored;
@@ -39,7 +40,7 @@ namespace RulePyramid.Core
             {
                 Id = Id,
                 Kind = Kind,
-                Color = Color,
+                Subject = Subject,
                 Token = Token,
                 Cell = Cell,
                 Anchored = Anchored
@@ -49,7 +50,9 @@ namespace RulePyramid.Core
         public static EntityKind ParseKind(string kind)
         {
             if (string.Equals(kind, "Text", StringComparison.OrdinalIgnoreCase)) return EntityKind.Text;
-            if (string.Equals(kind, "Color", StringComparison.OrdinalIgnoreCase)) return EntityKind.Color;
+            if (string.Equals(kind, "Object", StringComparison.OrdinalIgnoreCase)) return EntityKind.Object;
+            // 遗留 Color 视为 Object
+            if (string.Equals(kind, "Color", StringComparison.OrdinalIgnoreCase)) return EntityKind.Object;
             throw new ArgumentException("Unknown entity kind: " + kind);
         }
     }
@@ -86,6 +89,13 @@ namespace RulePyramid.Core
         {
             return new WinRecord { YouId = YouId, WinId = WinId, Cell = Cell, Cause = Cause };
         }
+    }
+
+    public sealed class TransformSource
+    {
+        public string Source;
+        public string Target;
+        public object Origin;
     }
 
     public sealed class WorldSnapshot

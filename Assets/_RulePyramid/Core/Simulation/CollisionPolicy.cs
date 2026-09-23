@@ -11,18 +11,13 @@ namespace RulePyramid.Core
         public bool IsEntity => Entity != null;
     }
 
+    /// <summary>双方均为实体时才互相排斥（RW-v0.8）。</summary>
     public static class CollisionPolicy
     {
         public static bool BlocksPair(EntityState a, EntityState b, RuleSet rules)
         {
             if (a == null || b == null) return false;
-            if (a.Kind == EntityKind.Text || b.Kind == EntityKind.Text) return true;
-            bool youA = PropertyResolver.HasYou(a, rules);
-            bool youB = PropertyResolver.HasYou(b, rules);
-            bool solidA = PropertyResolver.IsSolid(a, rules);
-            bool solidB = PropertyResolver.IsSolid(b, rules);
-            if ((youA && !solidB) || (youB && !solidA)) return false;
-            return solidA || solidB;
+            return PropertyResolver.IsSolid(a, rules) && PropertyResolver.IsSolid(b, rules);
         }
 
         public static bool CanShareCell(EntityState a, EntityState b, RuleSet rules)

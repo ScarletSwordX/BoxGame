@@ -58,6 +58,18 @@ namespace RulePyramid.Core
 
     public static class LevelValidator
     {
+        static readonly Dictionary<string, string> ExpectedOptions = new Dictionary<string, string>
+        {
+            { "actionMode", "MoveClimbHoldPush" },
+            { "winMode", "DistinctEntitiesSameCell" },
+            { "gravityMode", "WorldDownExceptHoverOrFly" },
+            { "collisionMode", "SolidPairsTerrainUniversal" },
+            { "solidityMode", "YouPushStopOrText" },
+            { "supportMode", "StrictBelow" },
+            { "controlMode", "SingleYouTransfer_NoControlUndo" },
+            { "transformationMode", "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand" }
+        };
+
         public static ValidationReport ValidateStructure(LevelDefinition level)
         {
             var report = new ValidationReport();
@@ -67,9 +79,9 @@ namespace RulePyramid.Core
                 return report;
             }
             if (level.schemaVersion != Tokens.SchemaVersion)
-                report.Add(ValidationSeverity.StructureError, "SCHEMA", "schemaVersion must be 5");
+                report.Add(ValidationSeverity.StructureError, "SCHEMA", "schemaVersion must be 8");
             if (level.mechanicsVersion != Tokens.MechanicsVersion)
-                report.Add(ValidationSeverity.StructureError, "MECHANICS", "mechanicsVersion must be RP-v0.5");
+                report.Add(ValidationSeverity.StructureError, "MECHANICS", "mechanicsVersion must be RW-v0.8");
             if (string.IsNullOrEmpty(level.id))
                 report.Add(ValidationSeverity.StructureError, "ID", "Missing level id");
             if (level.bounds == null)
@@ -80,18 +92,19 @@ namespace RulePyramid.Core
             }
             else
             {
-                AssertOption(report, level.options.supportMode, "StrictBelow", "supportMode");
-                AssertOption(report, level.options.jumpMode, "LandingBounce3", "jumpMode");
-                AssertOption(report, level.options.decisionMode, "GroundedOrBounceApex", "decisionMode");
-                AssertOption(report, level.options.winMode, "DistinctEntitiesSameCell", "winMode");
-                AssertOption(report, level.options.winCheckMode, "AfterAtomicLogicChange", "winCheckMode");
-                AssertOption(report, level.options.actionMode, "FourWayMoveInPlaceJumpApexSteer", "actionMode");
-                AssertOption(report, level.options.gravityMode, "WorldDownExceptHoverOrFly", "gravityMode");
-                AssertOption(report, level.options.playerBlockMode, "ImplicitFromYou", "playerBlockMode");
+                AssertOption(report, level.options.actionMode, ExpectedOptions["actionMode"], "actionMode");
+                AssertOption(report, level.options.winMode, ExpectedOptions["winMode"], "winMode");
+                AssertOption(report, level.options.gravityMode, ExpectedOptions["gravityMode"], "gravityMode");
+                AssertOption(report, level.options.collisionMode, ExpectedOptions["collisionMode"], "collisionMode");
+                AssertOption(report, level.options.solidityMode, ExpectedOptions["solidityMode"], "solidityMode");
+                AssertOption(report, level.options.supportMode, ExpectedOptions["supportMode"], "supportMode");
+                AssertOption(report, level.options.controlMode, ExpectedOptions["controlMode"], "controlMode");
+                AssertOption(report, level.options.transformationMode, ExpectedOptions["transformationMode"], "transformationMode");
                 if (level.options.bounceRiseCells != 3)
                     report.Add(ValidationSeverity.StructureError, "BOUNCE", "bounceRiseCells must be 3");
             }
 
+            var terrainCells = LevelCloner.ExpandTerrain(level.terrain);
             var ids = new HashSet<string>();
             if (level.entities != null)
             {
@@ -105,19 +118,22 @@ namespace RulePyramid.Core
                     if (!ids.Add(e.id))
                         report.Add(ValidationSeverity.StructureError, "DUP_ID", "Duplicate entity id " + e.id);
                     var kind = e.kind ?? "";
-                    if (!string.Equals(kind, "Color", StringComparison.OrdinalIgnoreCase)
-                        && !string.Equals(kind, "Text", StringComparison.OrdinalIgnoreCase))
+                    bool isObject = string.Equals(kind, "Object", StringComparison.OrdinalIgnoreCase)
+                                    || string.Equals(kind, "Color", StringComparison.OrdinalIgnoreCase);
+                    bool isText = string.Equals(kind, "Text", StringComparison.OrdinalIgnoreCase);
+                    if (!isObject && !isText)
                         report.Add(ValidationSeverity.StructureError, "KIND", e.id + " has illegal kind");
-                    if (string.Equals(kind, "Color", StringComparison.OrdinalIgnoreCase))
+                    if (isObject)
                     {
-                        if (!Tokens.IsColor(e.color))
-                            report.Add(ValidationSeverity.StructureError, "COLOR", e.id + " missing legal color");
+                        var subject = string.IsNullOrEmpty(e.subject) ? e.color : e.subject;
+                        if (!Tokens.IsSubject(subject))
+                            report.Add(ValidationSeverity.StructureError, "SUBJECT", e.id + " missing legal subject");
                         if (!string.IsNullOrEmpty(e.token))
-                            report.Add(ValidationSeverity.Warning, "TOKEN", e.id + " color entity should have empty token");
+                            report.Add(ValidationSeverity.Warning, "TOKEN", e.id + " object entity should have empty token");
                         if (e.anchored)
-                            report.Add(ValidationSeverity.StructureError, "ANCHORED", e.id + " Color cannot be anchored in P0");
+                            report.Add(ValidationSeverity.StructureError, "ANCHORED", e.id + " Object cannot be anchored");
                     }
-                    else
+                    else if (isText)
                     {
                         if (!Tokens.IsLegalWord(e.token))
                             report.Add(ValidationSeverity.StructureError, "TOKEN", e.id + " unknown token " + e.token);
@@ -128,6 +144,8 @@ namespace RulePyramid.Core
                         if (!bounds.Contains(e.cell))
                             report.Add(ValidationSeverity.StructureError, "OOB", e.id + " outside bounds");
                     }
+                    if (terrainCells.Contains(e.cell))
+                        report.Add(ValidationSeverity.StructureError, "TERRAIN", e.id + " overlaps terrain");
                 }
             }
 
@@ -144,16 +162,30 @@ namespace RulePyramid.Core
                 }
             }
 
-            if (level.referenceSolution?.commands != null)
+            if (level.designContract != null && level.referenceSolutions != null)
             {
-                foreach (var c in level.referenceSolution.commands)
+                if (level.referenceSolutions.Length < level.designContract.minimumSolutionFamilies)
+                    report.Add(ValidationSeverity.StructureError, "SOLUTIONS", "referenceSolutions fewer than minimumSolutionFamilies");
+            }
+
+            void CheckCommands(string[] commands, string label)
+            {
+                if (commands == null) return;
+                foreach (var c in commands)
                 {
                     if (Tokens.LegacyJumps.Contains(c))
-                        report.Add(ValidationSeverity.PlaytestError, "LEGACY", "Reference solution contains removed jump " + c);
-                    else if (!Tokens.SupportedCommands.Contains(c))
-                        report.Add(ValidationSeverity.PlaytestError, "CMD", "Unknown reference command " + c);
+                        report.Add(ValidationSeverity.PlaytestError, "LEGACY", label + " contains removed jump " + c);
+                    else if (!Tokens.Commands.Contains(c))
+                        report.Add(ValidationSeverity.PlaytestError, "CMD", label + " unknown command " + c);
                 }
             }
+
+            if (level.referenceSolutions != null)
+            {
+                foreach (var sol in level.referenceSolutions)
+                    CheckCommands(sol?.commands, "referenceSolutions");
+            }
+            CheckCommands(level.referenceSolution?.commands, "referenceSolution");
             return report;
         }
 
