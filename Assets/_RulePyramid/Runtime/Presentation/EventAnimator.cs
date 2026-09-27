@@ -43,7 +43,7 @@ namespace RulePyramid.Runtime
                 foreach (var ev in events)
                 {
                     if (worldView != null && worldView.Generation != gen) yield break;
-                    if (ev.Kind == "Melted" && worldView != null)
+                    if ((ev.Kind == "Melted" || ev.Kind == "Defeated") && worldView != null)
                         worldView.HideEntity(ev.EntityId);
                     if (IsMove(ev.Kind) && worldView != null && worldView.TryGetView(ev.EntityId, out var t))
                     {

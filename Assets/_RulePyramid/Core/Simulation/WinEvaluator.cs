@@ -19,7 +19,8 @@ namespace RulePyramid.Core
             foreach (var a in actors)
             foreach (var b in goals)
             {
-                if (a.Id != b.Id && a.Cell == b.Cell)
+                // YOU 与 WIN 可以来自同一实例；不同实例仍须合法同格。
+                if (a.Cell == b.Cell)
                 {
                     record = new WinRecord { YouId = a.Id, WinId = b.Id, Cell = a.Cell };
                     return true;

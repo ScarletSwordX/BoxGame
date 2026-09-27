@@ -25,7 +25,7 @@ namespace RulePyramid.Editor
                 options = new OptionsData
                 {
                     actionMode = "MoveAutoPush",
-                    winMode = "DistinctEntitiesSameCell",
+                    winMode = "YouAndWinSameCell",
                     gravityMode = "WorldDownExceptHoverOrFly",
                     collisionMode = "SolidPairsTerrainUniversal",
                     solidityMode = "YouPushStopOrText",

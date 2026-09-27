@@ -14,7 +14,7 @@ namespace RulePyramid.Core
 
         public static readonly HashSet<string> Props = new HashSet<string>
         {
-            "YOU", "PUSH", "STOP", "HOVER", "FLY", "WIN", "BOUNCY", "HOT", "MELT"
+            "YOU", "PUSH", "STOP", "HOVER", "FLY", "WIN", "BOUNCY", "HOT", "MELT", "DEFEAT"
         };
 
         public static readonly HashSet<string> Operators = new HashSet<string>

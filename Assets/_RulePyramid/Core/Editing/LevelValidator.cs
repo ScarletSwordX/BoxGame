@@ -196,7 +196,7 @@ namespace RulePyramid.Core
         static readonly Dictionary<string, string> ExpectedOptions = new Dictionary<string, string>
         {
             { "actionMode", "MoveAutoPush" },
-            { "winMode", "DistinctEntitiesSameCell" },
+            { "winMode", "YouAndWinSameCell" },
             { "gravityMode", "WorldDownExceptHoverOrFly" },
             { "collisionMode", "SolidPairsTerrainUniversal" },
             { "solidityMode", "YouPushStopOrText" },
@@ -235,7 +235,9 @@ namespace RulePyramid.Core
                 // 旧标签仅兼容加载，不能恢复 Shift 推动或登攀。
                 if (level.options.actionMode != "MoveClimbHoldPush")
                     AssertOption(report, level.options.actionMode, ExpectedOptions["actionMode"], "actionMode");
-                AssertOption(report, level.options.winMode, ExpectedOptions["winMode"], "winMode");
+                // 旧标签兼容读取，统一执行含自身 YOU+WIN 的同格胜利语义。
+                if (level.options.winMode != "DistinctEntitiesSameCell")
+                    AssertOption(report, level.options.winMode, ExpectedOptions["winMode"], "winMode");
                 AssertOption(report, level.options.gravityMode, ExpectedOptions["gravityMode"], "gravityMode");
                 AssertOption(report, level.options.collisionMode, ExpectedOptions["collisionMode"], "collisionMode");
                 AssertOption(report, level.options.solidityMode, ExpectedOptions["solidityMode"], "solidityMode");

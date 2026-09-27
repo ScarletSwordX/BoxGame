@@ -18,9 +18,9 @@ namespace RulePyramid.Editor
             foreach(var entity in selected)
             {
                 GUILayout.Label(entity.Id,EditorStyles.miniLabel);
-                GUILayout.Label((entity.Kind==EntityKind.Text?"词牌 "+entity.Token:"物体 "+entity.Subject)+"  "+DisplayCell(entity.Cell));
+                GUILayout.Label((entity.Kind==EntityKind.Text?WordCategories[WordCategory(entity.Token)]+"词牌 · "+entity.Token:"物体 "+entity.Subject)+"  "+DisplayCell(entity.Cell));
                 if(entity.Kind==EntityKind.Object && Inspect!=null)
-                    GUILayout.Label("当前性质："+string.Join(" / ",Inspect.Props(entity)),EditorStyles.wordWrappedLabel);
+                    GUILayout.Label("当前属性："+string.Join(" / ",Inspect.Props(entity)),EditorStyles.wordWrappedLabel);
             }
             using(new EditorGUI.DisabledScope(Playing || selected.Length+_selectedTerrain.Count==0))
             {
@@ -31,10 +31,10 @@ namespace RulePyramid.Editor
                     var pos=EditorGUILayout.Vector3IntField("整数格坐标",Vec(DisplayCell(e.Cell)));
                     if(EditorGUI.EndChangeCheck()) MoveSelectionToDisplay(Cell(pos));
                     string value=e.Kind==EntityKind.Text?e.Token:e.Subject;
-                    string[] choices=e.Kind==EntityKind.Text?Words:Subjects;
-                    int current=Math.Max(0,Array.IndexOf(choices,value));
-                    int next=EditorGUILayout.Popup(e.Kind==EntityKind.Text?"文字内容":"初始身份",current,choices);
-                    if(next!=current) Edit("修改选中对象",d=> { var target=d.entities.First(x=>x.id==e.Id); if(e.Kind==EntityKind.Text) target.token=choices[next]; else target.subject=choices[next]; });
+                    string next=e.Kind==EntityKind.Text
+                        ?DrawWordSelector(value)
+                        :Subjects[EditorGUILayout.Popup("物体类型",Math.Max(0,Array.IndexOf(Subjects,value)),Subjects)];
+                    if(next!=value) Edit("修改选中对象",d=> { var target=d.entities.First(x=>x.id==e.Id); if(e.Kind==EntityKind.Text) target.token=next; else target.subject=next; });
                 }
                 _moveOffset=Cell(EditorGUILayout.Vector3IntField("整组偏移 / 复制",Vec(_moveOffset)));
                 using(new EditorGUILayout.HorizontalScope())

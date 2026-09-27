@@ -65,8 +65,32 @@ namespace RulePyramid.Editor
         bool Playing => _session?.Playtest != null;
         bool Dirty => _session != null && (_session.Dirty || _recoveredDirty);
         WorldModel Inspect => Playing ? _session.Playtest.World : _inspection;
-        static readonly string[] Words = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA", "IS", "AND", "YOU", "PUSH", "STOP", "HOVER", "FLY", "BOUNCY", "WIN", "HOT", "MELT" };
+        static readonly string[] Words = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA", "IS", "AND", "YOU", "PUSH", "STOP", "HOVER", "FLY", "BOUNCY", "WIN", "HOT", "MELT", "DEFEAT" };
         static readonly string[] Subjects = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA" };
+        static readonly string[] WordCategories = { "名词", "属性", "运算符" };
+        static readonly string[][] WordsByCategory =
+        {
+            Words.Where(Tokens.IsSubject).ToArray(),
+            Words.Where(Tokens.IsProp).ToArray(),
+            Words.Where(Tokens.IsOperator).ToArray()
+        };
+
+        static int WordCategory(string token)
+        {
+            if (Tokens.IsSubject(token)) return 0;
+            if (Tokens.IsProp(token)) return 1;
+            return 2;
+        }
+
+        static string DrawWordSelector(string token)
+        {
+            GUILayout.Label("词牌类别", EditorStyles.miniLabel);
+            int category = EditorGUILayout.Popup(WordCategory(token), WordCategories);
+            var choices = WordsByCategory[category];
+            GUILayout.Label(WordCategories[category] + "内容", EditorStyles.miniLabel);
+            int current = Math.Max(0, Array.IndexOf(choices, token));
+            return choices[EditorGUILayout.Popup(current, choices)];
+        }
 
         [MenuItem("Tools/规则工坊/关卡编辑器")]
         public static void Open() => GetWindow<LevelEditorWindow>("规则工坊编辑器");
@@ -232,7 +256,11 @@ namespace RulePyramid.Editor
                     _subtract = GUILayout.Toggle(_subtract, "挖除地形");
                     _appearance = EditorGUILayout.Popup("外观", _appearance == "Stone" ? 0 : 1, new[] { "石质", "透明隔墙" }) == 0 ? "Stone" : "TransparentGlass";
                 }
-                if (_brush == EditorBrush.Object) _subject = Subjects[EditorGUILayout.Popup(Array.IndexOf(Subjects, _subject), Subjects)];
+                if (_brush == EditorBrush.Object)
+                {
+                    GUILayout.Label("物体类型", EditorStyles.miniLabel);
+                    _subject = Subjects[EditorGUILayout.Popup(Array.IndexOf(Subjects, _subject), Subjects)];
+                }
                 if (_brush == EditorBrush.Object) GUILayout.Label("左键拖动连续绘制；每格一个物体。占用格会使整次笔画取消。", EditorStyles.wordWrappedMiniLabel);
                 if (_brush == EditorBrush.Object && _subject == "WALL")
                 {
@@ -243,7 +271,7 @@ namespace RulePyramid.Editor
                         _brush = EditorBrush.Sentence;
                     }
                 }
-                if (_brush == EditorBrush.Text) _word = Words[EditorGUILayout.Popup(Array.IndexOf(Words, _word), Words)];
+                if (_brush == EditorBrush.Text) _word = DrawWordSelector(_word);
                 if (_brush == EditorBrush.Box || _brush == EditorBrush.Region) _topY = EditorGUILayout.IntField("最高 Y", _topY);
                 if (_brush == EditorBrush.Sentence)
                 {
@@ -252,7 +280,8 @@ namespace RulePyramid.Editor
                     {
                         using (new EditorGUILayout.HorizontalScope())
                         {
-                            _sentence[i] = Words[EditorGUILayout.Popup(Math.Max(0, Array.IndexOf(Words, _sentence[i])), Words)];
+                            using (new EditorGUILayout.VerticalScope())
+                                _sentence[i] = DrawWordSelector(_sentence[i]);
                             if (GUILayout.Button("−", GUILayout.Width(24))) { _sentence.RemoveAt(i); break; }
                         }
                     }

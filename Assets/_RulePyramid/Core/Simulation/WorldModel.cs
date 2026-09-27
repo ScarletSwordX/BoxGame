@@ -313,7 +313,7 @@ namespace RulePyramid.Core
             }
             var changes = PendingTransforms();
             TransformationResolver.Apply(changes, TransformedThisTurn);
-            ResolveHeat(entrants);
+            ResolveEntryHazards(entrants);
             ValidateState();
             foreach (var change in changes)
             {
@@ -348,32 +348,45 @@ namespace RulePyramid.Core
             CheckWin(reason);
         }
 
-        // Only an actual entrant with MELT is destroyed. A HOT body moving into a
-        // stationary MELT body does not count as the latter entering the HOT cell.
-        void ResolveHeat(HashSet<string> entrants)
+        // 仅结算实际进入者：YOU 进入 DEFEAT，或 MELT 进入 HOT。
+        // 危险源进入静止对象、相邻接触或仅改写规则，都不视为该对象入格。
+        void ResolveEntryHazards(HashSet<string> entrants)
         {
             if (entrants == null || entrants.Count == 0) return;
             var ordered = new List<string>(entrants);
             ordered.Sort(StringComparer.Ordinal);
-            var melted = new List<(EntityState mover, EntityState heat)>();
+            var destroyed = new List<(EntityState mover, EntityState source, string kind)>();
             foreach (var id in ordered)
             {
                 var mover = Entity(id);
-                if (mover == null || !Props(mover).Contains("MELT")) continue;
+                if (mover == null) continue;
+                var properties = Props(mover);
+                bool isYou = properties.Contains("YOU");
+                bool melts = properties.Contains("MELT");
+                if (!isYou && !melts) continue;
+                EntityState defeat = null;
                 EntityState heat = null;
                 foreach (var other in Entities)
-                    if (other.Id != id && other.Cell == mover.Cell && Props(other).Contains("HOT")
+                {
+                    if (other.Id == id || other.Cell != mover.Cell) continue;
+                    var otherProperties = Props(other);
+                    if (isYou && otherProperties.Contains("DEFEAT")
+                        && (defeat == null || string.CompareOrdinal(other.Id, defeat.Id) < 0))
+                        defeat = other;
+                    if (melts && otherProperties.Contains("HOT")
                         && (heat == null || string.CompareOrdinal(other.Id, heat.Id) < 0))
                         heat = other;
-                if (heat != null) melted.Add((mover, heat));
+                }
+                if (defeat != null) destroyed.Add((mover, defeat, "Defeated"));
+                else if (heat != null) destroyed.Add((mover, heat, "Melted"));
             }
-            foreach (var pair in melted)
+            foreach (var pair in destroyed)
             {
                 Entities.Remove(pair.mover);
                 Apex.Remove(pair.mover.Id);
                 ForcedFall.Remove(pair.mover.Id);
                 Pressed.Remove(pair.mover.Id);
-                Log.Add(new SimEvent { Kind = "Melted", EntityId = pair.mover.Id, Cell = pair.mover.Cell, SurfaceId = pair.heat.Id });
+                Log.Add(new SimEvent { Kind = pair.kind, EntityId = pair.mover.Id, Cell = pair.mover.Cell, SurfaceId = pair.source.Id });
             }
         }
 

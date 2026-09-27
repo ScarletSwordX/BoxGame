@@ -44,8 +44,9 @@ namespace RulePyramid.Tests.PlayMode
             };
         }
 
-        [Test]
-        public void LavaFallbackMarksEveryYouAndUndoRestoresMeltedView()
+        [TestCase("HOT")]
+        [TestCase("DEFEAT")]
+        public void LavaFallbackMarksEveryYouAndUndoRestoresDestroyedView(string hazardProperty)
         {
             var config = ScriptableObject.CreateInstance<VisualConfig>();
             var host = new GameObject("L03 表现测试");
@@ -57,7 +58,7 @@ namespace RulePyramid.Tests.PlayMode
                     {
                         Object("first", "ROBOT", 1), Object("second", "ROBOT", 5),
                         Object("lava", "LAVA", 2)
-                    }, "ROBOT IS YOU", "ROBOT IS MELT", "LAVA IS HOT"));
+                    }, "ROBOT IS YOU", "ROBOT IS MELT", "LAVA IS " + hazardProperty));
                 view.Rebuild(world);
                 Assert.IsTrue(view.TryGetView("lava", out var lava));
                 var lavaMaterial = lava.GetComponent<Renderer>().sharedMaterial;

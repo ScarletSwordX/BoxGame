@@ -452,13 +452,7 @@ namespace RulePyramid.Tests.EditMode
                     Tx("connector", "IS", new GridCell(1, 1, 2)),
                     Tx("you_a", "YOU", new GridCell(2, 1, 2)),
                     Tx("subject_b", "FLAG", new GridCell(0, 1, 3)),
-                    Tx("you_b", "YOU", new GridCell(2, 1, 3)),
-                    Tx("win_flag_s", "FLAG", new GridCell(4, 1, 4)),
-                    Tx("win_flag_is", "IS", new GridCell(5, 1, 4)),
-                    Tx("win_flag_p", "WIN", new GridCell(6, 1, 4)),
-                    Tx("win_robot_s", "ROBOT", new GridCell(4, 1, 5)),
-                    Tx("win_robot_is", "IS", new GridCell(5, 1, 5)),
-                    Tx("win_robot_p", "WIN", new GridCell(6, 1, 5))
+                    Tx("you_b", "YOU", new GridCell(2, 1, 3))
                 },
                 fixedRules = Array.Empty<FixedRuleData>(),
                 options = new OptionsData
