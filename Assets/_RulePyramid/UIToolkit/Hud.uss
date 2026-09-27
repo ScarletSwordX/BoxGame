@@ -78,3 +78,130 @@
     font-size: 22px;
     -unity-font-style: bold;
 }
+
+.game-hud {
+    flex-grow: 1;
+}
+
+.menu-screen {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    align-items: center;
+    justify-content: center;
+    color: rgb(66, 57, 73);
+}
+
+.main-menu {
+    background-color: rgb(237, 223, 201);
+}
+
+.menu-card {
+    width: 480px;
+    max-width: 90%;
+    padding: 32px 54px;
+    align-items: stretch;
+    background-color: rgb(250, 241, 225);
+    border-radius: 16px;
+    border-width: 2px;
+    border-bottom-width: 8px;
+    border-color: rgb(200, 184, 166);
+}
+
+.word-tiles {
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 22px;
+}
+
+.word-tile {
+    width: 90px;
+    height: 64px;
+    margin-left: 5px;
+    margin-right: 5px;
+    border-radius: 8px;
+    border-bottom-width: 5px;
+    border-bottom-color: rgba(66, 57, 73, 0.23);
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    font-size: 21px;
+    color: rgb(53, 51, 62);
+}
+
+.noun-tile { background-color: rgb(172, 203, 210); }
+.operator-tile { background-color: rgb(210, 196, 224); }
+.property-tile { background-color: rgb(239, 197, 141); }
+
+.menu-title {
+    -unity-text-align: middle-center;
+    -unity-font-style: bold;
+    font-size: 38px;
+    letter-spacing: 0;
+    margin-bottom: 8px;
+}
+
+.menu-subtitle {
+    -unity-text-align: middle-center;
+    white-space: normal;
+    font-size: 18px;
+    color: rgb(116, 100, 99);
+}
+
+.menu-divider {
+    height: 2px;
+    background-color: rgb(224, 209, 188);
+    margin-top: 24px;
+    margin-bottom: 20px;
+}
+
+.menu-button {
+    height: 54px;
+    margin: 5px 0;
+    border-radius: 8px;
+    border-width: 2px;
+    border-bottom-width: 4px;
+    font-size: 21px;
+    -unity-font-style: bold;
+    color: rgb(66, 57, 73);
+}
+
+.primary-button {
+    background-color: rgb(210, 196, 224);
+    border-color: rgb(168, 148, 187);
+}
+
+.secondary-button {
+    background-color: rgb(245, 231, 210);
+    border-color: rgb(210, 189, 165);
+}
+
+.menu-button:hover {
+    background-color: rgb(232, 216, 244);
+    border-color: rgb(139, 116, 158);
+}
+
+.menu-button:focus {
+    border-color: rgb(114, 86, 141);
+}
+
+.menu-button:active {
+    background-color: rgb(194, 172, 212);
+    border-bottom-width: 2px;
+}
+
+.pause-menu { background-color: rgba(60, 49, 67, 0.56); }
+.pause-card { width: 440px; }
+.pause-title {
+    font-size: 42px;
+    -unity-font-style: bold;
+    -unity-text-align: middle-center;
+    margin-bottom: 12px;
+}
+.pause-footer {
+    margin-top: 18px;
+    font-size: 14px;
+    color: rgb(116, 100, 99);
+    -unity-text-align: middle-center;
+}

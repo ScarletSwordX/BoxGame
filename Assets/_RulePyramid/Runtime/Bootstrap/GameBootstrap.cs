@@ -15,6 +15,12 @@ namespace RulePyramid.Runtime
         public HudController hud;
         public int startIndex;
 
+        public bool IsMainMenu { get; private set; }
+        public bool IsPaused { get; private set; }
+        public bool IsMenuOpen => IsMainMenu || IsPaused;
+        float _timeScaleBeforePause = 1f;
+        int _resumeFrame = -1;
+
         BounceApexFeedback _bounceFeedback;
         GameSession _session;
         RegionTutorialSession _regionTutorial;
@@ -45,11 +51,23 @@ namespace RulePyramid.Runtime
                 _bounceFeedback.bootstrap = this;
                 _bounceFeedback.config = visualConfig;
             }
-            LoadIndex(startIndex);
+            // 无 HUD 的作者预览与测试仍可直接加载地图。
+            if (hud != null && hud.HasMenus)
+            {
+                IsMainMenu = true;
+                hud.RefreshMenus();
+            }
+            else LoadIndex(startIndex);
         }
 
         void Update()
         {
+            if (UnityEngine.Input.GetKeyDown(KeyCode.Escape) && !IsMainMenu && _session != null)
+            {
+                TogglePause();
+                return;
+            }
+            if (IsMenuOpen || Time.frameCount == _resumeFrame) return;
             if (_session == null || IsStageTransitioning) return;
             if (_regionTutorial != null && _regionTutorial.Tick(Time.unscaledDeltaTime))
                 hud?.Refresh(_session, _reject, _regionTutorial);
@@ -70,6 +88,7 @@ namespace RulePyramid.Runtime
 
         public void LoadIndex(int index)
         {
+            if (IsMenuOpen) return;
             if (catalog == null || catalog.Count == 0)
             {
                 Debug.LogError("LevelCatalog is empty");
@@ -107,9 +126,9 @@ namespace RulePyramid.Runtime
             try { next = new GameSession(catalog.LoadStage(_index, _stageIndex + 1)); }
             catch (System.Exception ex)
             {
-                _reject = "无法加载下一阶段：" + ex.Message;
+                _reject = "Could not load the next stage.";
                 hud?.Refresh(_session, _reject, _regionTutorial);
-                Debug.LogError(_reject);
+                Debug.LogError(_reject + " " + ex.Message);
                 return;
             }
             IsStageTransitioning = true;
@@ -121,16 +140,19 @@ namespace RulePyramid.Runtime
         {
             // 至少跨一帧，确保协程句柄在零时长或无视图时也能正确清理。
             yield return null;
+            while (IsPaused) yield return null;
             hud?.Refresh(_session, _reject, _regionTutorial);
             while (animator != null && animator.IsPlaying) yield return null;
-            if (stageWinPause > 0f) yield return new WaitForSecondsRealtime(stageWinPause);
+            if (stageWinPause > 0f) yield return new WaitForSeconds(stageWinPause);
+            while (IsPaused) yield return null;
             _bounceFeedback?.ResetFeedback();
             animator?.Stop();
             cameraSlots?.FrameLevel(next.Level.bounds, false);
             if (worldView != null)
                 yield return worldView.ExpandTo(next.World, Mathf.Max(0f, stageExpansionDuration));
             else if (stageExpansionDuration > 0f)
-                yield return new WaitForSecondsRealtime(stageExpansionDuration);
+                yield return new WaitForSeconds(stageExpansionDuration);
+            while (IsPaused) yield return null;
             IsStageTransitioning = false;
             _stageTransition = null;
             ActivateStage(next, nextStage, false);
@@ -152,6 +174,7 @@ namespace RulePyramid.Runtime
 
         void OnDisable()
         {
+            ResumeGame();
             bool interrupted = IsStageTransitioning;
             CancelStageTransition();
             if (interrupted && _session != null) worldView?.Rebuild(_session.World);
@@ -159,7 +182,7 @@ namespace RulePyramid.Runtime
 
         public void Submit(string command)
         {
-            if (_session == null || IsStageTransitioning) return;
+            if (IsMenuOpen || _session == null || IsStageTransitioning) return;
             int logFrom = _session.World.Log.Count;
             bool ok = _session.TryExecute(command);
             _reject = ok ? null : _session.LastRejectReason;
@@ -176,7 +199,7 @@ namespace RulePyramid.Runtime
 
         public void Undo()
         {
-            if (_session == null || IsStageTransitioning) return;
+            if (IsMenuOpen || _session == null || IsStageTransitioning) return;
             if (_session.Undo())
             {
                 _bounceFeedback?.ResetFeedback();
@@ -190,7 +213,7 @@ namespace RulePyramid.Runtime
 
         public void Restart()
         {
-            if (_session == null || IsStageTransitioning) return;
+            if (IsMenuOpen || _session == null || IsStageTransitioning) return;
             _bounceFeedback?.ResetFeedback();
             _session.Restart();
             animator?.CancelAndSnap(_session.World);
@@ -202,9 +225,49 @@ namespace RulePyramid.Runtime
 
         public void NextLevel()
         {
-            if (IsStageTransitioning || _session == null || !_session.Won) return;
+            if (IsMenuOpen || IsStageTransitioning || _session == null || !_session.Won) return;
             if (HasNextStage) { BeginStageTransition(); return; }
             if (HasNextLevel) LoadIndex(_index + 1);
+        }
+
+        public void StartGame()
+        {
+            if (!IsMainMenu || catalog == null || catalog.Count == 0) return;
+            IsMainMenu = false;
+            LoadIndex(startIndex);
+            _resumeFrame = Time.frameCount;
+            hud?.RefreshMenus();
+        }
+
+        public void TogglePause()
+        {
+            if (IsMainMenu || _session == null) return;
+            if (IsPaused) { ResumeGame(); return; }
+            _timeScaleBeforePause = Time.timeScale;
+            IsPaused = true;
+            Time.timeScale = 0f;
+            inputAdapter?.ResetRepeat();
+            hud?.RefreshMenus();
+        }
+
+        public void ResumeGame()
+        {
+            if (!IsPaused) return;
+            Time.timeScale = _timeScaleBeforePause;
+            IsPaused = false;
+            _resumeFrame = Time.frameCount;
+            inputAdapter?.ResetRepeat();
+            hud?.RefreshMenus();
+        }
+
+        public void QuitGame()
+        {
+            ResumeGame();
+#if UNITY_EDITOR
+            UnityEditor.EditorApplication.isPlaying = false;
+#else
+            Application.Quit();
+#endif
         }
     }
 }

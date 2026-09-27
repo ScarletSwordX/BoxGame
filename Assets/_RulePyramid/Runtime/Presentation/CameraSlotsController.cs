@@ -74,7 +74,7 @@ namespace RulePyramid.Runtime
             slot = 0;
             if (_framed)
             {
-                float t = 1f - Mathf.Exp(-Time.unscaledDeltaTime * 7f);
+                float t = 1f - Mathf.Exp(-Time.deltaTime * 7f);
                 _frameCenter = Vector3.Lerp(_frameCenter, _desiredCenter, t);
                 _frameSize = Mathf.Lerp(_frameSize, _desiredSize, t);
             }

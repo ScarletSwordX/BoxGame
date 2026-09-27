@@ -1,32 +1,58 @@
 <ui:UXML xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements">
-    <ui:Style src="Hud.uss"/>
+    <ui:Style src="Hud.uss" />
     <ui:VisualElement name="root" class="hud-root">
-        <ui:VisualElement name="top" class="hud-top">
-            <ui:Label name="levelTitle" text="L01" class="title"/>
-            <ui:Label name="phaseLabel" text="Grounded" class="phase"/>
-            <ui:Label name="turnLabel" text="0" class="turns"/>
-        </ui:VisualElement>
-        <ui:VisualElement name="left" class="hud-left">
-            <ui:Label text="规则" class="section"/>
-            <ui:Label name="rulesLabel" text="" class="rules"/>
-            <ui:Label name="objectiveLabel" text="" class="objective"/>
-        </ui:VisualElement>
-        <ui:VisualElement name="bottom" class="hud-bottom">
-            <ui:Label name="hintLabel" text="" class="hint"/>
-            <ui:Label name="rejectLabel" text="" class="reject"/>
-            <ui:VisualElement class="row">
-                <ui:Button name="hintButton" text="提示"/>
-                <ui:Button name="undoButton" text="撤销 Z"/>
-                <ui:Button name="restartButton" text="重开 R"/>
+        <ui:VisualElement name="gameHud" class="game-hud">
+            <ui:VisualElement name="top" class="hud-top">
+                <ui:Label name="levelTitle" text="L01" class="title" />
+                <ui:Label name="phaseLabel" text="Grounded" class="phase" />
+                <ui:Label name="turnLabel" text="0" class="turns" />
+            </ui:VisualElement>
+            <ui:VisualElement name="left" class="hud-left">
+                <ui:Label text="Rules" class="section" />
+                <ui:Label name="rulesLabel" text="" class="rules" />
+                <ui:Label name="objectiveLabel" text="" class="objective" />
+            </ui:VisualElement>
+            <ui:VisualElement name="bottom" class="hud-bottom">
+                <ui:Label name="hintLabel" text="" class="hint" />
+                <ui:Label name="rejectLabel" text="" class="reject" />
+                <ui:VisualElement class="row">
+                    <ui:Button name="hintButton" text="Hint" />
+                    <ui:Button name="undoButton" text="Undo Z" />
+                    <ui:Button name="restartButton" text="Restart R" />
+                    <ui:Button name="pauseButton" text="Pause Esc" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:Label name="stageTransition" text="Stage clear" class="stage-transition hidden" />
+            <ui:VisualElement name="winPanel" class="win-panel hidden">
+                <ui:Label text="Level clear" class="title" />
+                <ui:VisualElement class="row">
+                    <ui:Button name="winUndoButton" text="Undo" />
+                    <ui:Button name="winRestartButton" text="Restart" />
+                    <ui:Button name="nextButton" text="Next" />
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:Label name="stageTransition" text="阶段完成 · 地图正在展开" class="stage-transition hidden"/>
-        <ui:VisualElement name="winPanel" class="win-panel hidden">
-            <ui:Label text="通关" class="title"/>
-            <ui:VisualElement class="row">
-                <ui:Button name="winUndoButton" text="撤销"/>
-                <ui:Button name="winRestartButton" text="重开"/>
-                <ui:Button name="nextButton" text="下一关"/>
+        <ui:VisualElement name="mainMenu" class="menu-screen main-menu">
+            <ui:VisualElement class="menu-card">
+                <ui:VisualElement class="word-tiles">
+                    <ui:Label text="ROBOT" class="word-tile noun-tile" />
+                    <ui:Label text="IS" class="word-tile operator-tile" />
+                    <ui:Label text="YOU" class="word-tile property-tile" />
+                </ui:VisualElement>
+                <ui:Label text="Rule Workshop" class="menu-title" />
+                <ui:VisualElement class="menu-divider" />
+                <ui:Button name="startButton" text="Play" class="menu-button primary-button" />
+                <ui:Button name="quitButton" text="Quit" class="menu-button secondary-button" />
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="pauseMenu" class="menu-screen pause-menu hidden">
+            <ui:VisualElement class="menu-card pause-card">
+                <ui:Label text="Paused" class="pause-title" />
+                <ui:Label name="pauseContext" text="" class="menu-subtitle" />
+                <ui:VisualElement class="menu-divider" />
+                <ui:Button name="resumeButton" text="Resume" class="menu-button primary-button" />
+                <ui:Button name="pauseQuitButton" text="Quit" class="menu-button secondary-button" />
+                <ui:Label text="Esc to resume" class="pause-footer" />
             </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>

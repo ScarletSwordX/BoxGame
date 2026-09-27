@@ -118,6 +118,7 @@ namespace RulePyramid.Runtime
             while (elapsed < duration)
             {
                 if (version != _expansionVersion) yield break;
+                if (Time.timeScale == 0f) { yield return null; continue; }
                 int currentRing = Mathf.Min(highestRing, Mathf.FloorToInt(elapsed / batchDuration));
                 while (nextTile < added.Count && added[nextTile].Ring <= currentRing)
                 {
@@ -139,10 +140,11 @@ namespace RulePyramid.Runtime
                     float rise = Mathf.Clamp01((elapsed - tile.StartedAt) / Mathf.Max(0.001f, riseDuration));
                     tile.Transform.position = tile.Target + Vector3.down * (CellSize * (1f - Mathf.SmoothStep(0f, 1f, rise)));
                 }
-                elapsed += Time.unscaledDeltaTime;
+                elapsed += Time.deltaTime;
                 yield return null;
             }
             if (version != _expansionVersion) yield break;
+            while (Time.timeScale == 0f) yield return null;
             _expansionPreviousWorld = null;
             Rebuild(next);
         }

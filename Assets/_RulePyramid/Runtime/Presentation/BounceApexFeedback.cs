@@ -25,13 +25,14 @@ namespace RulePyramid.Runtime
 
         void LateUpdate()
         {
+            if (bootstrap != null && bootstrap.IsMenuOpen) return;
             if (bootstrap == null || !bootstrap.isActiveAndEnabled)
             {
                 ResetFeedback();
                 return;
             }
             _state.Tick(bootstrap.Session, bootstrap.animator != null && bootstrap.animator.IsPlaying,
-                Time.unscaledDeltaTime, config != null ? config.bounceHintDelay : 1.5f);
+                Time.deltaTime, config != null ? config.bounceHintDelay : 1.5f);
             if (!_state.Waiting) return;
             var world = bootstrap.Session.World;
             var actor = world.Entity(_state.ActorId);
@@ -75,6 +76,7 @@ namespace RulePyramid.Runtime
 
         void OnGUI()
         {
+            if (bootstrap != null && bootstrap.IsMenuOpen) return;
             if (Event.current.type != EventType.Repaint || !_state.Waiting || _state.HintAlpha <= 0f
                 || !_hasFocus || _camera == null || !_camera.isActiveAndEnabled
                 || bootstrap == null || bootstrap.Session == null
@@ -102,7 +104,7 @@ namespace RulePyramid.Runtime
             GUI.color = new Color(0.06f, 0.09f, 0.13f, 0.82f * _state.HintAlpha);
             GUI.DrawTexture(rect, Texture2D.whiteTexture);
             GUI.color = new Color(1f, 1f, 1f, _state.HintAlpha);
-            GUI.Label(rect, "顶点时停\nWASD 侧移一格后下落 · Space 原地下落", _hintStyle);
+            GUI.Label(rect, "At the top\nWASD to move and drop / Space to drop", _hintStyle);
             GUI.color = oldColor;
         }
 
