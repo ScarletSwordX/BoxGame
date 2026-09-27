@@ -9,96 +9,97 @@ namespace RulePyramid.Runtime
         public Transform focus;
         public int slot;
         public float distance = 18f;
-        public bool transitioning;
-        float _blend;
-        int _fromSlot;
-        int _toSlot;
-        const float Duration = 0.18f;
 
-        public int Slot => slot;
-        public bool BlocksWorldInput => transitioning;
+        bool _framed;
+        Vector3 _frameCenter, _desiredCenter;
+        float _frameSize, _desiredSize;
+
+        public void FrameLevel(GridCellBox bounds, bool immediate)
+        {
+            if (bounds == null) return;
+            var min = GridMap.ToWorld(bounds.min, config);
+            var max = GridMap.ToWorld(bounds.max, config);
+            _desiredCenter = (min + max) * .5f;
+            var inverse = Quaternion.Inverse(ViewRotation());
+            float cell = config != null ? config.cellSize : 1f;
+            var extents = (max - min) * .5f + Vector3.one * cell * .5f;
+            float width = 0f, height = 0f;
+            for (int x = -1; x <= 1; x += 2)
+            for (int y = -1; y <= 1; y += 2)
+            for (int z = -1; z <= 1; z += 2)
+            {
+                var corner = inverse * Vector3.Scale(extents, new Vector3(x, y, z));
+                width = Mathf.Max(width, Mathf.Abs(corner.x));
+                height = Mathf.Max(height, Mathf.Abs(corner.y));
+            }
+            var cam = GetComponent<Camera>();
+            float aspect = cam != null ? Mathf.Max(.1f, cam.aspect) : 1.6f;
+            _desiredSize = Mathf.Max(3f, Mathf.Max(height, width / aspect) * 1.25f + .5f);
+            if (immediate || !_framed)
+            {
+                _frameCenter = _desiredCenter;
+                _frameSize = _desiredSize;
+            }
+            _framed = true;
+            ApplyPose();
+        }
+
+        Quaternion ViewRotation()
+        {
+            float pitch = config != null ? config.cameraPitch : 35.264f;
+            float[] yaws = config != null && config.cameraYaws != null && config.cameraYaws.Length == 4
+                ? config.cameraYaws : new[] { 45f, 135f, 225f, 315f };
+            return Quaternion.Euler(pitch, yaws[0], 0f);
+        }
+
+        public int Slot => 0;
+        public bool BlocksWorldInput => false;
 
         public void ConfigureFromLevel(CameraData data)
         {
+            slot = 0;
             if (data == null) return;
-            slot = data.initialSlot;
             if (data.pitchDegrees > 0 && config != null) config.cameraPitch = data.pitchDegrees;
-        }
-
-        public void Rotate(int delta)
-        {
-            if (transitioning) return;
-            _fromSlot = slot;
-            _toSlot = (slot + delta) & 3;
-            transitioning = true;
-            _blend = 0f;
         }
 
         public WorldDirection ScreenToWorld(Vector2 screen)
         {
-            // WASD relative to camera yaw slot: spec 12.1
-            int s = transitioning ? _toSlot : slot;
             if (Mathf.Abs(screen.y) >= Mathf.Abs(screen.x))
-            {
-                bool forward = screen.y > 0f;
-                switch (s)
-                {
-                    case 0: return forward ? WorldDirection.North : WorldDirection.South;
-                    case 1: return forward ? WorldDirection.East : WorldDirection.West;
-                    case 2: return forward ? WorldDirection.South : WorldDirection.North;
-                    default: return forward ? WorldDirection.West : WorldDirection.East;
-                }
-            }
-            bool right = screen.x > 0f;
-            switch (s)
-            {
-                case 0: return right ? WorldDirection.East : WorldDirection.West;
-                case 1: return right ? WorldDirection.South : WorldDirection.North;
-                case 2: return right ? WorldDirection.West : WorldDirection.East;
-                default: return right ? WorldDirection.North : WorldDirection.South;
-            }
+                return screen.y > 0f ? WorldDirection.North : WorldDirection.South;
+            return screen.x > 0f ? WorldDirection.East : WorldDirection.West;
         }
 
         void LateUpdate()
         {
-            if (transitioning)
+            slot = 0;
+            if (_framed)
             {
-                _blend += Time.deltaTime / Duration;
-                if (_blend >= 1f)
-                {
-                    _blend = 1f;
-                    transitioning = false;
-                    slot = _toSlot;
-                }
+                float t = 1f - Mathf.Exp(-Time.unscaledDeltaTime * 7f);
+                _frameCenter = Vector3.Lerp(_frameCenter, _desiredCenter, t);
+                _frameSize = Mathf.Lerp(_frameSize, _desiredSize, t);
             }
             ApplyPose();
         }
 
         public void Snap()
         {
-            transitioning = false;
+            slot = 0;
             ApplyPose();
         }
 
         void ApplyPose()
         {
-            float pitch = config != null ? config.cameraPitch : 35.264f;
             float dist = config != null ? config.cameraDistance : distance;
-            float[] yaws = config != null && config.cameraYaws != null && config.cameraYaws.Length == 4
-                ? config.cameraYaws
-                : new[] { 45f, 135f, 225f, 315f };
-            int a = transitioning ? _fromSlot : slot;
-            int b = transitioning ? _toSlot : slot;
-            float yaw = Mathf.LerpAngle(yaws[a], yaws[b], transitioning ? _blend : 1f);
-            Vector3 target = focus != null ? focus.position : Vector3.zero;
-            Quaternion rot = Quaternion.Euler(pitch, yaw, 0f);
+            if (_framed) dist = Mathf.Max(dist, _frameSize * 3f);
+            Vector3 target = _framed ? _frameCenter : focus != null ? focus.position : Vector3.zero;
+            Quaternion rot = ViewRotation();
             transform.position = target - rot * Vector3.forward * dist;
             transform.rotation = rot;
             var cam = GetComponent<Camera>();
             if (cam != null)
             {
                 cam.orthographic = true;
-                cam.orthographicSize = Mathf.Max(6f, dist * 0.35f);
+                cam.orthographicSize = _framed ? _frameSize : Mathf.Max(6f, dist * 0.35f);
             }
         }
     }

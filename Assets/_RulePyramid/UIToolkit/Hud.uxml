@@ -20,6 +20,7 @@
                 <ui:Button name="restartButton" text="重开 R"/>
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:Label name="stageTransition" text="阶段完成 · 地图正在展开" class="stage-transition hidden"/>
         <ui:VisualElement name="winPanel" class="win-panel hidden">
             <ui:Label text="通关" class="title"/>
             <ui:VisualElement class="row">

@@ -67,3 +67,14 @@
 .section {
     -unity-font-style: bold;
 }
+
+.stage-transition {
+    position: absolute;
+    top: 18%;
+    align-self: center;
+    padding: 12px 24px;
+    background-color: rgba(20, 20, 30, 0.85);
+    color: rgb(255, 220, 160);
+    font-size: 22px;
+    -unity-font-style: bold;
+}

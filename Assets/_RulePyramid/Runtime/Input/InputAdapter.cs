@@ -10,21 +10,17 @@ namespace RulePyramid.Runtime
         float _repeatTimer;
         string _held;
 
+        public void ResetRepeat()
+        {
+            _held = null;
+            _repeatTimer = 0f;
+        }
+
         public bool TryPoll(MotionPhase phase, out string command)
         {
             command = null;
             if (cameraSlots != null && cameraSlots.BlocksWorldInput) return false;
 
-            if (GetKeyDown(KeyCode.Q))
-            {
-                cameraSlots?.Rotate(-1);
-                return false;
-            }
-            if (GetKeyDown(KeyCode.E))
-            {
-                cameraSlots?.Rotate(1);
-                return false;
-            }
             if (GetKeyDown(KeyCode.Z))
             {
                 command = "UNDO";
@@ -58,11 +54,7 @@ namespace RulePyramid.Runtime
             }
             if (dir != Vector2.zero)
             {
-                var token = WorldDirections.ToToken(Map(dir));
-                if (phase == MotionPhase.Grounded && (GetKey(KeyCode.LeftShift) || GetKey(KeyCode.RightShift)))
-                    command = "P" + token;
-                else
-                    command = token;
+                command = WorldDirections.ToToken(Map(dir));
                 return true;
             }
 
@@ -70,8 +62,6 @@ namespace RulePyramid.Runtime
             if (dir != Vector2.zero && phase == MotionPhase.Grounded)
             {
                 string token = WorldDirections.ToToken(Map(dir));
-                if (GetKey(KeyCode.LeftShift) || GetKey(KeyCode.RightShift))
-                    token = "P" + token;
                 if (_held == token)
                 {
                     _repeatTimer += Time.deltaTime;

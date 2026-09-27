@@ -17,7 +17,10 @@ namespace RulePyramid.Runtime
         Label _hint;
         Label _reject;
         VisualElement _winPanel;
+        VisualElement _root, _stageTransition;
+        Button _hintButton;
         int _hintIndex;
+        string _manualHint;
         GameBootstrap _bootstrap;
 
         public void Bind(GameBootstrap bootstrap)
@@ -26,6 +29,8 @@ namespace RulePyramid.Runtime
             if (document == null) document = GetComponent<UIDocument>();
             var root = document != null ? document.rootVisualElement : null;
             if (root == null) return;
+            _root = root;
+            _stageTransition = root.Q("stageTransition");
             _title = root.Q<Label>("levelTitle");
             _phase = root.Q<Label>("phaseLabel");
             _turns = root.Q<Label>("turnLabel");
@@ -34,7 +39,8 @@ namespace RulePyramid.Runtime
             _hint = root.Q<Label>("hintLabel");
             _reject = root.Q<Label>("rejectLabel");
             _winPanel = root.Q("winPanel");
-            root.Q<Button>("hintButton")?.RegisterCallback<ClickEvent>(_ => ShowNextHint());
+            _hintButton = root.Q<Button>("hintButton");
+            _hintButton?.RegisterCallback<ClickEvent>(_ => ShowNextHint());
             root.Q<Button>("undoButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Undo());
             root.Q<Button>("restartButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Restart());
             root.Q<Button>("winUndoButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Undo());
@@ -42,11 +48,22 @@ namespace RulePyramid.Runtime
             root.Q<Button>("nextButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.NextLevel());
         }
 
-        public void Refresh(GameSession session, string reject)
+        public void Refresh(GameSession session, string reject, RegionTutorialSession regionTutorial = null)
         {
             if (session == null) return;
             if (_title != null) _title.text = session.Level.title + "  (" + session.Level.id + ")";
-            if (_phase != null) _phase.text = session.Phase.ToString();
+            bool transitioning = _bootstrap != null && _bootstrap.IsStageTransitioning;
+            if (_phase != null) _phase.text = _bootstrap != null && _bootstrap.CurrentStageCount > 1
+                ? "阶段 " + (_bootstrap.CurrentStageIndex + 1) + " / " + _bootstrap.CurrentStageCount
+                : session.Phase.ToString();
+            if (_stageTransition != null)
+            {
+                if (transitioning) _stageTransition.RemoveFromClassList("hidden");
+                else _stageTransition.AddToClassList("hidden");
+            }
+            foreach (var id in new[] { "undoButton", "restartButton", "winUndoButton", "winRestartButton", "hintButton" })
+                _root?.Q<Button>(id)?.SetEnabled(!transitioning);
+            _root?.Q<Button>("nextButton")?.SetEnabled(!transitioning && (_bootstrap == null || _bootstrap.HasNextLevel));
             if (_turns != null) _turns.text = "回合 " + session.TurnCount;
             if (_rules != null) _rules.text = FormatRules(session.World.Rules);
             if (_objective != null && session.Level.tutorial != null)
@@ -54,9 +71,15 @@ namespace RulePyramid.Runtime
                     ? session.Level.tutorial.objective
                     : (session.Level.tutorial.concept ?? "");
             if (_reject != null) _reject.text = reject ?? "";
+            if (_hintButton != null)
+                _hintButton.style.display = (regionTutorial != null && regionTutorial.Count > 0)
+                    || session.Level.tutorial?.hints == null || session.Level.tutorial.hints.Length == 0
+                    ? DisplayStyle.None : DisplayStyle.Flex;
+            if (_hint != null)
+                _hint.text = GlobalStatusHint.DisplayText(session, regionTutorial?.Current?.text, _manualHint);
             if (_winPanel != null)
             {
-                if (session.Won) _winPanel.RemoveFromClassList("hidden");
+                if (session.Won && !transitioning && (_bootstrap == null || !_bootstrap.HasNextStage)) _winPanel.RemoveFromClassList("hidden");
                 else _winPanel.AddToClassList("hidden");
             }
         }
@@ -64,6 +87,7 @@ namespace RulePyramid.Runtime
         public void ResetHints()
         {
             _hintIndex = 0;
+            _manualHint = null;
             if (_hint != null) _hint.text = "";
         }
 
@@ -72,14 +96,17 @@ namespace RulePyramid.Runtime
             var tutorial = _bootstrap != null ? _bootstrap.Session?.Level.tutorial : null;
             if (tutorial?.hints == null || tutorial.hints.Length == 0) return;
             if (_hintIndex >= tutorial.hints.Length) _hintIndex = tutorial.hints.Length - 1;
-            if (_hint != null) _hint.text = tutorial.hints[_hintIndex];
+            _manualHint = tutorial.hints[_hintIndex];
+            if (_hint != null)
+                _hint.text = GlobalStatusHint.DisplayText(_bootstrap?.Session,
+                    _bootstrap?.RegionTutorial?.Current?.text, _manualHint);
             if (_hintIndex < tutorial.hints.Length - 1) _hintIndex++;
         }
 
         static string FormatRules(RuleSet rules)
         {
             var sb = new StringBuilder();
-            foreach (var subject in new[] { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG" })
+            foreach (var subject in new[] { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL" })
             {
                 var props = new List<string>(rules[subject]);
                 if (props.Count == 0) continue;

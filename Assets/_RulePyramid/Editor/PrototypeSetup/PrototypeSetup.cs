@@ -11,8 +11,7 @@ namespace RulePyramid.Editor
     {
         const string Root = "Assets/_RulePyramid";
 
-        [MenuItem("Tools/规则工坊/创建 or Repair Prototype")]
-        [MenuItem("Tools/RulePyramid/Create or Repair Prototype")]
+        [MenuItem("Tools/规则工坊/创建或修复原型")]
         public static void CreateOrRepair()
         {
             Directory.CreateDirectory("Assets/_RulePyramid/Config");
@@ -28,7 +27,15 @@ namespace RulePyramid.Editor
                 if (levels[i] == null)
                     Debug.LogError("[规则工坊] Missing level TextAsset " + id);
             }
+            var stages = new TextAsset[3];
+            for (int i = 0; i < stages.Length; i++)
+            {
+                stages[i] = AssetDatabase.LoadAssetAtPath<TextAsset>(Root + "/Content/LevelDrafts/L1P" + (i + 1) + ".json");
+                if (stages[i] == null) throw new System.InvalidOperationException("缺少 L01 阶段地图 " + (i + 1));
+            }
+            levels[0] = stages[0];
             catalog.levels = levels;
+            catalog.stageSequences = new[] { new LevelStageSequence { id = "L01", maps = stages } };
             EditorUtility.SetDirty(catalog);
             EnsureScene(visual, catalog);
             AssetDatabase.SaveAssets();

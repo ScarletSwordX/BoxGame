@@ -2,7 +2,7 @@
   "schemaVersion": 9,
   "mechanicsVersion": "RW-v0.9",
   "levels": [
-    "levels/L01.json",
+    "LevelDrafts/L1P1.json",
     "levels/L02.json",
     "levels/L03.json",
     "levels/L04.json",
@@ -14,5 +14,15 @@
     "levels/L10.json",
     "levels/L11.json",
     "levels/L12.json"
+  ],
+  "stageSequences": [
+    {
+      "id": "L01",
+      "maps": [
+        "LevelDrafts/L1P1.json",
+        "LevelDrafts/L1P2.json",
+        "LevelDrafts/L1P3.json"
+      ]
+    }
   ]
 }

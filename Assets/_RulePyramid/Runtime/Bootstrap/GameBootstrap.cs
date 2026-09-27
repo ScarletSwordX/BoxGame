@@ -1,3 +1,4 @@
+using System.Collections;
 using RulePyramid.Core;
 using UnityEngine;
 
@@ -14,23 +15,45 @@ namespace RulePyramid.Runtime
         public HudController hud;
         public int startIndex;
 
+        BounceApexFeedback _bounceFeedback;
         GameSession _session;
+        RegionTutorialSession _regionTutorial;
         int _index;
         string _reject;
+        int _stageIndex;
+        Coroutine _stageTransition;
+        public float stageWinPause = 0.35f;
+        public float stageExpansionDuration = 1.1f;
+        public int CurrentStageIndex => _stageIndex;
+        public int CurrentStageCount => catalog != null && catalog.Count > 0 ? catalog.StageCount(_index) : 1;
+        public bool IsStageTransitioning { get; private set; }
+        public bool HasNextStage => _session != null && _stageIndex + 1 < CurrentStageCount;
+        public bool HasNextLevel => catalog != null && _index + 1 < catalog.Count;
 
         public GameSession Session => _session;
+        public RegionTutorialSession RegionTutorial => _regionTutorial;
 
         void Start()
         {
             if (worldView != null) worldView.config = visualConfig;
             if (cameraSlots != null) cameraSlots.config = visualConfig;
             if (hud != null) hud.Bind(this);
+            var camera = cameraSlots != null ? cameraSlots.GetComponent<Camera>() : Camera.main;
+            if (camera != null)
+            {
+                _bounceFeedback = camera.GetComponent<BounceApexFeedback>() ?? camera.gameObject.AddComponent<BounceApexFeedback>();
+                _bounceFeedback.bootstrap = this;
+                _bounceFeedback.config = visualConfig;
+            }
             LoadIndex(startIndex);
         }
 
         void Update()
         {
-            if (_session == null || inputAdapter == null) return;
+            if (_session == null || IsStageTransitioning) return;
+            if (_regionTutorial != null && _regionTutorial.Tick(Time.unscaledDeltaTime))
+                hud?.Refresh(_session, _reject, _regionTutorial);
+            if (inputAdapter == null) return;
             if (!inputAdapter.TryPoll(_session.Phase, out var command)) return;
             if (command == "UNDO")
             {
@@ -52,62 +75,136 @@ namespace RulePyramid.Runtime
                 Debug.LogError("LevelCatalog is empty");
                 return;
             }
+            CancelStageTransition();
             _index = Mathf.Clamp(index, 0, catalog.Count - 1);
-            var level = catalog.Load(_index);
-            _session = new GameSession(level);
+            ActivateStage(new GameSession(catalog.LoadStage(_index, 0)), 0, true);
+        }
+
+        void ActivateStage(GameSession session, int stage, bool rebuild)
+        {
+            _bounceFeedback?.ResetFeedback();
+            _stageIndex = stage;
+            _session = session;
+            _regionTutorial = new RegionTutorialSession(_session.Level.tutorial);
+            _regionTutorial.Observe(_session);
             _reject = null;
-            if (worldView != null) worldView.Rebuild(_session.World);
-            if (animator != null) animator.CancelAndSnap(_session.World);
+            animator?.Stop();
+            if (rebuild) worldView?.Rebuild(_session.World);
             if (cameraSlots != null)
             {
-                cameraSlots.ConfigureFromLevel(level.camera);
-                cameraSlots.Snap();
+                cameraSlots.ConfigureFromLevel(_session.Level.camera);
+                cameraSlots.FrameLevel(_session.Level.bounds, rebuild);
             }
+            inputAdapter?.ResetRepeat();
             hud?.ResetHints();
-            hud?.Refresh(_session, _reject);
+            hud?.Refresh(_session, _reject, _regionTutorial);
+        }
+
+        void BeginStageTransition()
+        {
+            if (IsStageTransitioning || _session == null || !_session.Won || !HasNextStage) return;
+            GameSession next;
+            try { next = new GameSession(catalog.LoadStage(_index, _stageIndex + 1)); }
+            catch (System.Exception ex)
+            {
+                _reject = "无法加载下一阶段：" + ex.Message;
+                hud?.Refresh(_session, _reject, _regionTutorial);
+                Debug.LogError(_reject);
+                return;
+            }
+            IsStageTransitioning = true;
+            inputAdapter?.ResetRepeat();
+            _stageTransition = StartCoroutine(AdvanceStage(next, _stageIndex + 1));
+        }
+
+        IEnumerator AdvanceStage(GameSession next, int nextStage)
+        {
+            // 至少跨一帧，确保协程句柄在零时长或无视图时也能正确清理。
+            yield return null;
+            hud?.Refresh(_session, _reject, _regionTutorial);
+            while (animator != null && animator.IsPlaying) yield return null;
+            if (stageWinPause > 0f) yield return new WaitForSecondsRealtime(stageWinPause);
+            _bounceFeedback?.ResetFeedback();
+            animator?.Stop();
+            cameraSlots?.FrameLevel(next.Level.bounds, false);
+            if (worldView != null)
+                yield return worldView.ExpandTo(next.World, Mathf.Max(0f, stageExpansionDuration));
+            else if (stageExpansionDuration > 0f)
+                yield return new WaitForSecondsRealtime(stageExpansionDuration);
+            IsStageTransitioning = false;
+            _stageTransition = null;
+            ActivateStage(next, nextStage, false);
+        }
+
+        void CancelStageTransition()
+        {
+            if (_stageTransition != null) StopCoroutine(_stageTransition);
+            _stageTransition = null;
+            IsStageTransitioning = false;
+            worldView?.CancelExpansion();
+            animator?.Stop();
+        }
+
+        void OnEnable()
+        {
+            if (_session != null && _session.Won && HasNextStage) BeginStageTransition();
+        }
+
+        void OnDisable()
+        {
+            bool interrupted = IsStageTransitioning;
+            CancelStageTransition();
+            if (interrupted && _session != null) worldView?.Rebuild(_session.World);
         }
 
         public void Submit(string command)
         {
-            if (_session == null) return;
+            if (_session == null || IsStageTransitioning) return;
             int logFrom = _session.World.Log.Count;
             bool ok = _session.TryExecute(command);
             _reject = ok ? null : _session.LastRejectReason;
             if (ok)
             {
+                _regionTutorial?.Observe(_session);
                 var events = _session.World.Log.GetRange(logFrom, _session.World.Log.Count - logFrom);
                 if (animator != null) animator.Play(events, _session.World);
                 else worldView?.AlignToState(_session.World);
             }
-            hud?.Refresh(_session, _reject);
+            if (ok && _session.Won && HasNextStage) BeginStageTransition();
+            hud?.Refresh(_session, _reject, _regionTutorial);
         }
 
         public void Undo()
         {
-            if (_session == null) return;
+            if (_session == null || IsStageTransitioning) return;
             if (_session.Undo())
             {
+                _bounceFeedback?.ResetFeedback();
                 animator?.CancelAndSnap(_session.World);
                 worldView?.Rebuild(_session.World);
                 _reject = null;
+                _regionTutorial?.Observe(_session);
             }
-            hud?.Refresh(_session, _reject);
+            hud?.Refresh(_session, _reject, _regionTutorial);
         }
 
         public void Restart()
         {
-            if (_session == null) return;
+            if (_session == null || IsStageTransitioning) return;
+            _bounceFeedback?.ResetFeedback();
             _session.Restart();
             animator?.CancelAndSnap(_session.World);
             worldView?.Rebuild(_session.World);
             _reject = null;
-            hud?.ResetHints();
-            hud?.Refresh(_session, _reject);
+            _regionTutorial?.Observe(_session);
+            hud?.Refresh(_session, _reject, _regionTutorial);
         }
 
         public void NextLevel()
         {
-            LoadIndex(_index + 1);
+            if (IsStageTransitioning || _session == null || !_session.Won) return;
+            if (HasNextStage) { BeginStageTransition(); return; }
+            if (HasNextLevel) LoadIndex(_index + 1);
         }
     }
 }
