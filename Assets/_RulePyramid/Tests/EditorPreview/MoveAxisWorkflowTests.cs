@@ -40,7 +40,7 @@ namespace RulePyramid.Tests.EditorPreview
         public void TearDown() { window.DiscardChanges(); UnityEngine.Object.DestroyImmediate(window); }
         void Begin(EditorMoveAxis axis,bool copy=false)
         {
-            Call(window,"BeginAxisDrag",axis,new Vector2(100,100),new Vector2(10,0),new Vector3(2,1,1.5f),Anchor,copy);
+            Call(window,"BeginAxisDrag",axis,new Vector2(100,100),new Vector2(axis==EditorMoveAxis.Y?10:-10,0),new Vector3(2,1,1.5f),Anchor,copy);
         }
 
         [TestCase(EditorMoveAxis.X)]
@@ -61,6 +61,18 @@ namespace RulePyramid.Tests.EditorPreview
             Assert.IsTrue(session.Undo());
             Assert.AreEqual(Anchor,session.Draft.entities[0].cell);
             Assert.IsFalse(session.CanUndo);
+        }
+
+        [Test]
+        public void PositiveDisplayedXAxisDragMovesLeftAndIncreasesDisplayedX()
+        {
+            int before = EditorCoordinates.Display(session.Draft.bounds, Anchor).x;
+            Begin(EditorMoveAxis.X);
+            Call(window,"UpdateAxisDrag",new Vector2(90,100),true);
+            Assert.IsTrue((bool)Get(window,"_dropValid"));
+            Call(window,"FinishAxisDrag",true);
+            Assert.AreEqual(new GridCell(0,1,1),session.Draft.entities[0].cell);
+            Assert.AreEqual(before+1,EditorCoordinates.Display(session.Draft.bounds,session.Draft.entities[0].cell).x);
         }
 
         [Test]
@@ -130,9 +142,9 @@ namespace RulePyramid.Tests.EditorPreview
                     var origin=preview.ProjectWorldPoint(pivot);
                     foreach(var axis in new[]{EditorMoveAxis.X,EditorMoveAxis.Y,EditorMoveAxis.Z})
                     {
-                        var unit=preview.ProjectWorldPoint(pivot+EditorAxisHandleMath.Direction(axis))-origin;
+                        var unit=preview.ProjectWorldPoint(pivot+EditorCoordinates.Direction(EditorAxisHandleMath.Direction(axis)))-origin;
                         Call(window,"BeginAxisDrag",axis,origin,unit,pivot,Anchor,false);
-                        Call(window,"UpdateAxisDrag",origin+unit*2,true);
+                        Call(window,"UpdateAxisDrag",origin+unit*(axis==EditorMoveAxis.Y?2:-2),true);
                         Assert.IsTrue((bool)Get(window,"_dropValid"));
                         var predicted=((List<EntityState>)Get(window,"_movePreview")).Single(e=>e.Id=="rock").Cell;
                         Assert.AreEqual(Anchor.Add(EditorAxisHandleMath.Offset(axis,2)),predicted);

@@ -102,7 +102,13 @@ namespace RulePyramid.Editor
                         Outline(r,tint);
                     }
             }
-            GUI.Label(new Rect(6,3,rect.width-12,20),"二维 XZ · +Z ↑  +X → · Y="+_session.CurrentY,headerStyle);
+            GUI.Label(new Rect(6,3,rect.width-12,20),"二维 XZ · +Z ↓  +X ← · Y="+_session.CurrentY,headerStyle);
+            var corner=CellRect(new GridCell(b.max.x,_session.CurrentY,b.max.z));
+            if(inner.Overlaps(corner))
+            {
+                Outline(corner,Color.cyan);
+                GUI.Label(new Rect(corner.xMax-112,corner.yMax+2,112,18),"(0,"+_session.CurrentY+",0)",EditorStyles.miniBoldLabel);
+            }
             var ev=Event.current;
             var mouse=ev.mousePosition;
             var picked=new GridCell(b.min.x+Mathf.FloorToInt((mouse.x-origin.x)/_zoom),_session.CurrentY,b.max.z-Mathf.FloorToInt((mouse.y-origin.y)/_zoom));
@@ -159,7 +165,7 @@ namespace RulePyramid.Editor
                 {
                     _start=cell; UpdateGhost();
                     if (LevelCloner.ExpandTerrain(_session.Draft.terrain).Contains(cell) && (_brush==EditorBrush.Object || _brush==EditorBrush.Text || _brush==EditorBrush.Sentence))
-                        _message="目标格被地形占据："+cell;
+                        _message="目标格被地形占据："+DisplayCell(cell);
                     else if ((_brush==EditorBrush.Text || _brush==EditorBrush.Sentence) && Inspect!=null && !Inspect.Terrain.Contains(cell.Add(GridCell.Down)) && !Inspect.Entities.Any(e=>e.Cell==cell.Add(GridCell.Down)&&Inspect.Solid(e)))
                         _message="提示：落点下方缺少实体支撑，保存草稿后仍需修正才能试玩。";
                 }
@@ -233,7 +239,7 @@ namespace RulePyramid.Editor
             }
             if (_brush==EditorBrush.Sentence)
                 _ghost=Box(_hover,_hover.Add((_sentenceAxis==0 ? GridCell.East : GridCell.South).x*Math.Max(0,_sentence.Count-1),0,(_sentenceAxis==1 ? -1 : 0)*Math.Max(0,_sentence.Count-1)));
-            _message=DescribeCell(_hover)+" · 预览 "+_ghost.min+" → "+_ghost.max+" · 松开提交，Esc 取消";
+            _message=DescribeCell(_hover)+" · 预览 "+DisplayCell(_ghost.min)+" → "+DisplayCell(_ghost.max)+" · 松开提交，Esc 取消";
         }
 
         void CommitGesture(string pickedId)
@@ -337,7 +343,7 @@ namespace RulePyramid.Editor
             }
             catch(Exception ex) { _dropValid=false; _dropError=ex.Message; }
             _preview?.SetSelectionPreview(_movePreview,_terrainPreview,_dropValid);
-            _message=(_gestureCopy?"复制":"移动")+"偏移 "+delta+(_dropValid?" · 松开放置，Esc 取消":" · 无法放置："+_dropError);
+            _message=(_gestureCopy?"复制":"移动")+"偏移 "+EditorCoordinates.Delta(delta)+(_dropValid?" · 松开放置，Esc 取消":" · 无法放置："+_dropError);
         }
         void UpdateObjectBrushPreview()
         {
@@ -350,7 +356,7 @@ namespace RulePyramid.Editor
             {
                 _movePreview.Add(new EntityState { Id="",Kind=EntityKind.Object,Subject=_subject,Cell=cell });
                 if(_dropValid && (!Contains(_session.Draft.bounds,cell) || occupied.Contains(cell)))
-                { _dropValid=false; _dropError="目标格已有方块或超出边界："+cell; }
+                { _dropValid=false; _dropError="目标格已有方块或超出边界："+DisplayCell(cell); }
             }
             _preview?.SetSelectionPreview(_movePreview,_terrainPreview,_dropValid);
             _message=_dropValid?"物体笔刷："+_subject+" · "+cells.Length+" 格 · 拖动连续绘制，松开提交，Esc 取消"

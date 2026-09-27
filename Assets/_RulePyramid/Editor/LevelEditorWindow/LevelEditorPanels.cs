@@ -11,13 +11,14 @@ namespace RulePyramid.Editor
     {
         void DrawInspector()
         {
+            GUILayout.Label("坐标原点：右上角 0 层；+X 向左，+Z 向下。",EditorStyles.wordWrappedMiniLabel);
             GUILayout.Label("选择详情 · " + (_selected.Count + _selectedTerrain.Count),EditorStyles.boldLabel);
             var selected=VisibleEntities.Where(e=>_selected.Contains(e.Id)).ToArray();
             if(_selectedTerrain.Count>0) GUILayout.Label("地形格："+_selectedTerrain.Count+" 个",EditorStyles.miniLabel);
             foreach(var entity in selected)
             {
                 GUILayout.Label(entity.Id,EditorStyles.miniLabel);
-                GUILayout.Label((entity.Kind==EntityKind.Text?"词牌 "+entity.Token:"物体 "+entity.Subject)+"  "+entity.Cell);
+                GUILayout.Label((entity.Kind==EntityKind.Text?"词牌 "+entity.Token:"物体 "+entity.Subject)+"  "+DisplayCell(entity.Cell));
                 if(entity.Kind==EntityKind.Object && Inspect!=null)
                     GUILayout.Label("当前性质："+string.Join(" / ",Inspect.Props(entity)),EditorStyles.wordWrappedLabel);
             }
@@ -27,8 +28,8 @@ namespace RulePyramid.Editor
                 {
                     var e=selected[0];
                     EditorGUI.BeginChangeCheck();
-                    var pos=EditorGUILayout.Vector3IntField("整数格坐标",Vec(e.Cell));
-                    if(EditorGUI.EndChangeCheck()) MoveSelection(new GridCell(pos.x-e.Cell.x,pos.y-e.Cell.y,pos.z-e.Cell.z),false);
+                    var pos=EditorGUILayout.Vector3IntField("整数格坐标",Vec(DisplayCell(e.Cell)));
+                    if(EditorGUI.EndChangeCheck()) MoveSelectionToDisplay(Cell(pos));
                     string value=e.Kind==EntityKind.Text?e.Token:e.Subject;
                     string[] choices=e.Kind==EntityKind.Text?Words:Subjects;
                     int current=Math.Max(0,Array.IndexOf(choices,value));
@@ -38,8 +39,8 @@ namespace RulePyramid.Editor
                 _moveOffset=Cell(EditorGUILayout.Vector3IntField("整组偏移 / 复制",Vec(_moveOffset)));
                 using(new EditorGUILayout.HorizontalScope())
                 {
-                    if(GUILayout.Button("移动")) MoveSelection(_moveOffset,false);
-                    if(GUILayout.Button("复制")) MoveSelection(_moveOffset,true);
+                    if(GUILayout.Button("移动")) MoveSelection(EditorCoordinates.Delta(_moveOffset),false);
+                    if(GUILayout.Button("复制")) MoveSelection(EditorCoordinates.Delta(_moveOffset),true);
                     if(GUILayout.Button(new GUIContent("删除 [Shift+E]", "删除选区：Shift+E / Delete / Backspace"))) ExecuteEditorCommand(EditorCommand.Delete);
                 }
                 if(selected.Length>0 && GUILayout.Button("锁定选择（仅编辑）")) foreach(var id in _selected) _locked.Add(id);
@@ -96,7 +97,7 @@ namespace RulePyramid.Editor
                     if(Inspect.Gravity(entity)!=GravityMode.Down) continue;
                     var below=entity.Cell.Add(GridCell.Down);
                     bool support=Inspect.Terrain.Contains(below)||Inspect.Entities.Any(e=>e.Cell==below && e.Id!=entity.Id && Inspect.Solid(e)&&Inspect.Solid(entity));
-                    if(!support && GUILayout.Button("缺少支撑："+entity.Id+" "+entity.Cell+" · 点击定位")) FocusIds(new[]{entity.Id});
+                    if(!support && GUILayout.Button("缺少支撑："+entity.Id+" "+DisplayCell(entity.Cell)+" · 点击定位")) FocusIds(new[]{entity.Id});
                 }
             }
             var regions=_session.Draft.tutorial?.regions??Array.Empty<RegionTutorialData>();
@@ -110,7 +111,7 @@ namespace RulePyramid.Editor
             {
                 GUILayout.Label("最近事件：");
                 foreach(var ev in _session.Playtest.World.Log.Skip(Math.Max(0,_session.Playtest.World.Log.Count-12)))
-                    GUILayout.Label(ev.Kind+" · "+ev.EntityId+" "+ev.From+" → "+ev.To+" "+ev.Message,EditorStyles.miniLabel);
+                    GUILayout.Label(ev.Kind+" · "+ev.EntityId+" "+DisplayCell(ev.From)+" → "+DisplayCell(ev.To)+" "+ev.Message,EditorStyles.miniLabel);
             }
         }
 
@@ -156,12 +157,12 @@ namespace RulePyramid.Editor
                         string text=EditorGUILayout.TextArea(r.text??"",GUILayout.Height(45));
                         float seconds=EditorGUILayout.DelayedFloatField("展示秒数",r.durationSeconds);
                         bool enabled=EditorGUILayout.Toggle("启用",r.enabled);
-                        var min=EditorGUILayout.Vector3IntField("区域最小格",Vec(r.bounds.min));
-                        var max=EditorGUILayout.Vector3IntField("区域最大格",Vec(r.bounds.max));
+                        var min=EditorGUILayout.Vector3IntField("区域右上 / 最低格",Vec(DisplayCell(new GridCell(r.bounds.max.x,r.bounds.min.y,r.bounds.max.z))));
+                        var max=EditorGUILayout.Vector3IntField("区域左下 / 最高格",Vec(DisplayCell(new GridCell(r.bounds.min.x,r.bounds.max.y,r.bounds.min.z))));
                         if(EditorGUI.EndChangeCheck()) Edit("修改教学提示",d=>
                         {
                             if(seconds<=0||float.IsNaN(seconds)||float.IsInfinity(seconds))throw new InvalidOperationException("展示秒数必须大于零。");
-                            var target=d.tutorial.regions[index]; target.name=name; target.text=text; target.durationSeconds=seconds; target.enabled=enabled; target.bounds=Box(Cell(min),Cell(max));
+                            var target=d.tutorial.regions[index]; target.name=name; target.text=text; target.durationSeconds=seconds; target.enabled=enabled; target.bounds=Box(StoredCell(Cell(min)),StoredCell(Cell(max)));
                         });
                         using(new EditorGUILayout.HorizontalScope())
                         {
@@ -239,7 +240,7 @@ namespace RulePyramid.Editor
                 var d=_session.Draft;
                 if(!_resizeEditing)
                 {
-                    _resizeOrigin=Vec(d.bounds.min);
+                    _resizeOrigin=Vec(new GridCell(d.bounds.max.x,d.bounds.min.y,d.bounds.max.z));
                     _resizeSize=new Vector3Int(d.bounds.max.x-d.bounds.min.x+1,d.bounds.max.y-d.bounds.min.y+1,d.bounds.max.z-d.bounds.min.z+1);
                 }
                 GUILayout.Label("地图大小",EditorStyles.boldLabel);
@@ -249,7 +250,8 @@ namespace RulePyramid.Editor
                 int y=EditorGUILayout.IntSlider("高度 Y",_resizeSize.y,1,MapResize.MaxAxisSize);
                 int z=EditorGUILayout.IntSlider("宽度 Z",_resizeSize.z,1,MapResize.MaxAxisSize);
                 _resizeSize=new Vector3Int(x,y,z);
-                _resizeOrigin=EditorGUILayout.Vector3IntField("最小格坐标",_resizeOrigin);
+                _resizeOrigin.y=EditorGUILayout.IntField("底层高度 Y",_resizeOrigin.y);
+                GUILayout.Label("右上角固定；增加 X 向左扩展，增加 Z 向下扩展。",EditorStyles.wordWrappedMiniLabel);
                 if(EditorGUI.EndChangeCheck())_resizeEditing=true;
                 GUILayout.Label("待应用："+_resizeSize.x+" × "+_resizeSize.y+" × "+_resizeSize.z+" 格；扩展后可继续绘制地形。缩小时检查实体、地形与教学区域。",EditorStyles.wordWrappedMiniLabel);
                 using(new EditorGUILayout.HorizontalScope())
@@ -259,7 +261,7 @@ namespace RulePyramid.Editor
                         if(GUILayout.Button("应用地图大小"))
                         {
                             bool applied=false;
-                            Edit("调整地图大小",draft=> { MapResize.Resize(draft,Cell(_resizeOrigin),Cell(_resizeSize)); applied=true; });
+                            Edit("调整地图大小",draft=> { MapResize.Resize(draft,EditorCoordinates.ResizeMinimum(Cell(_resizeOrigin),Cell(_resizeSize)),Cell(_resizeSize)); applied=true; });
                             if(applied)
                             {
                                 _resizeEditing=false;

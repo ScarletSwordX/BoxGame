@@ -36,7 +36,7 @@ namespace RulePyramid.Editor
             var origin=_preview.ProjectWorldPoint(pivot);
             var units=new Vector2[3];
             for(int i=0;i<3;i++)
-                units[i]=_preview.ProjectWorldPoint(pivot+EditorAxisHandleMath.Direction((EditorMoveAxis)i))-origin;
+                units[i]=_preview.ProjectWorldPoint(pivot+EditorCoordinates.Direction(EditorAxisHandleMath.Direction((EditorMoveAxis)i)))-origin;
             var ends=MoveAxisEnds(origin,units);
             var ev=Event.current;
             var hovered=rect.Contains(ev.mousePosition)?PickMoveAxis(ev.mousePosition,origin,units,ends):EditorMoveAxis.None;
@@ -158,7 +158,7 @@ namespace RulePyramid.Editor
         void UpdateAxisDrag(Vector2 mouse,bool inside)
         {
             int steps=EditorAxisHandleMath.DragSteps(mouse-_axisStartMouse,_axisProjectedUnit);
-            var offset=EditorAxisHandleMath.Offset(_moveAxis,steps);
+            var offset=EditorCoordinates.Delta(EditorAxisHandleMath.Offset(_moveAxis,steps));
             _hover=_start.Add(offset);
             UpdateDragPreview();
             if(!inside)

@@ -29,9 +29,24 @@ namespace RulePyramid.Editor
                 }
                 if(GUILayout.Button("全部",GUILayout.Width(42))) mask=EditorCategory.All;
                 if(mask!=_categories) SetCategories(mask);
+                if(GUILayout.Button(new GUIContent("全选地块","选中当前阶段地图所有高度层的地形、物体和词牌（跳过已锁定物体），并切换到选择工具。"),GUILayout.Width(76))) SelectAllMap();
             }
         }
 
+        void SelectAllMap()
+        {
+            if(Playing || _dragging || _session==null) return;
+            SetBrush(EditorBrush.Select);
+            _categories=EditorCategory.All;
+            _selected.Clear();
+            _selected.UnionWith(VisibleEntities.Where(Eligible).Select(e=>e.Id));
+            _selectedTerrain.Clear();
+            _selectedTerrain.UnionWith(LevelCloner.ExpandTerrain(_session.Draft.terrain));
+            int lockedCount=VisibleEntities.Count(e=>_locked.Contains(e.Id));
+            _message="已全选当前地图：地形 "+_selectedTerrain.Count+" 格，物体 / 词牌 "+_selected.Count+" 个。可拖动三维坐标轴，或使用右侧整组偏移移动。";
+            if(lockedCount>0) _message+=" 已跳过 "+lockedCount+" 个锁定对象。";
+            Repaint();
+        }
         void SetCategories(EditorCategory mask)
         {
             _categories=mask & EditorCategory.All;
@@ -90,7 +105,7 @@ namespace RulePyramid.Editor
         void SampleCell(GridCell cell)
         {
             var candidates=EditorPicking.Candidates(_session.Draft,cell,_categories,_locked).ToArray();
-            if(candidates.Length==0) { _message="此格没有可取样内容："+cell; return; }
+            if(candidates.Length==0) { _message="此格没有可取样内容："+DisplayCell(cell); return; }
             if(candidates.Length==1) { ApplySample(candidates[0]); return; }
             var menu=new GenericMenu();
             foreach(var candidate in candidates)
@@ -128,7 +143,7 @@ namespace RulePyramid.Editor
         {
             var parts=VisibleEntities.Where(e=>e.Cell==cell).Select(e=>(e.Kind==EntityKind.Text?e.Token:e.Subject)+(_locked.Contains(e.Id)?"（锁定）":"")).ToList();
             if(Inspect?.Terrain.Contains(cell)==true) parts.Insert(0,"地形");
-            return cell+" · "+(parts.Count==0?"空白":string.Join(" / ",parts));
+            return DisplayCell(cell)+" · "+(parts.Count==0?"空白":string.Join(" / ",parts));
         }
 
         void FitGrid(GridCellBox target)

@@ -247,7 +247,7 @@ namespace RulePyramid.Editor
                 if (_brush == EditorBrush.Box || _brush == EditorBrush.Region) _topY = EditorGUILayout.IntField("最高 Y", _topY);
                 if (_brush == EditorBrush.Sentence)
                 {
-                    _sentenceAxis = GUILayout.Toolbar(_sentenceAxis, new[] { "向右 +X", "向下 -Z" });
+                    _sentenceAxis = GUILayout.Toolbar(_sentenceAxis, new[] { "向右 −X", "向下 +Z" });
                     for (int i = 0; i < _sentence.Count; i++)
                     {
                         using (new EditorGUILayout.HorizontalScope())
@@ -351,10 +351,22 @@ namespace RulePyramid.Editor
             if (string.IsNullOrEmpty(path)) return false;
             try
             {
-                WriteDraftFile(path, _session.Draft);
+                var sequence = FindLinkedStages(path, _session.Draft.id, Path.Combine(Application.dataPath, "_RulePyramid", "Content")).Select(s => s.Path).ToArray();
+                var saves = StageMapInheritance.BuildSave(path, _session.Draft, sequence);
+                CheckOpenStageWindows(saves.Keys);
+                StageMapInheritance.WriteBatch(saves);
+                var saved = saves[Path.GetFullPath(path)];
+                if (JsonUtility.ToJson(saved) != JsonUtility.ToJson(_session.Draft))
+                    _session.Edit("同步父阶段修改", d =>
+                    {
+                        d.bounds = saved.bounds; d.terrain = saved.terrain; d.entities = saved.entities;
+                        d.referenceSolutions = saved.referenceSolutions;
+                    });
+                _session.Draft.authoringSourceJson = LevelJsonSerializer.ToJson(saved);
+                ReloadSavedStageWindows(saves.Keys);
                 _session.SourcePath = path; _session.MarkSaved(); _recoveredDirty = false;
                 _linkedStages = null;
-                CaptureRecovery(); hasUnsavedChanges = false; _message = "已保存作者初态：" + path;
+                CaptureRecovery(); hasUnsavedChanges = false; _message = "已保存作者初态：" + path + "；更新地图 " + saves.Count + " 张。";
                 AssetDatabase.Refresh(); return true;
             }
             catch (Exception ex) { _message = "保存失败，原文件保留：" + ex.Message; return false; }

@@ -587,6 +587,10 @@ namespace RulePyramid.Editor
                 };
                 DrawWire(layer, new Color(0.3f, 0.8f, 1f, 0.8f), 1.3f);
             }
+            var originCell = new GridCell(bounds.max.x, 0, bounds.max.z);
+            DrawWire(new GridCellBox { min = originCell, max = originCell }, Color.cyan, 2f);
+            var originLabel = Project(Center(originCell));
+            GUI.Label(new Rect(originLabel.x - 35f, originLabel.y, 130f, 18f), "原点 (0,0,0)", EditorStyles.miniBoldLabel);
             DrawWire(region, new Color(0.35f, 0.88f, 0.5f), 2f);
             DrawWire(ghost, erase ? new Color(1f, 0.3f, 0.28f) : new Color(1f, 0.87f, 0.3f), 2.5f);
             if (SelectedTerrainCells != null)

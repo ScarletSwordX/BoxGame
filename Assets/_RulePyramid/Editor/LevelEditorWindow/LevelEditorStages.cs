@@ -52,9 +52,17 @@ namespace RulePyramid.Editor
         {
             GUILayout.Label("每个游玩阶段使用一张独立地图，例如 L1P1.json、L1P2.json。", EditorStyles.boldLabel);
             GUILayout.Label("每张地图独立保存尺寸、地形、物件、词牌、教学提示与参考解。", EditorStyles.wordWrappedLabel);
-            GUILayout.Label("下一阶段保留哪些结构由设计决定，可另存当前地图后扩建和重新布置；地图之间不自动共享编辑，也不继承玩家残局。", EditorStyles.wordWrappedLabel);
+            GUILayout.Label("启用继承后，保存父阶段会自动更新后续阶段的地图尺寸、地形和实体；子阶段的局部修改保留。名称、提示与参考解各阶段独立，玩家残局不继承。", EditorStyles.wordWrappedLabel);
             using (new EditorGUI.DisabledScope(Playing || _dragging))
                 if (GUILayout.Button("刷新关联阶段")) { RefreshLinkedStages(); _message = "已刷新关联阶段。"; }
+            if (Stages.Length == 0)
+            {
+                string parent = StageMapInheritance.Parent(_session.Draft);
+                GUILayout.Label(string.IsNullOrEmpty(parent) ? "当前阶段：无父阶段" : "继承自：" + parent, EditorStyles.wordWrappedLabel);
+                using (new EditorGUI.DisabledScope(Playing || _dragging || Dirty))
+                    if (GUILayout.Button("建立整组顺序继承（保留各图现状）")) EnableStageInheritance();
+                if (Dirty) GUILayout.Label("请先保存当前地图，再建立继承。", EditorStyles.wordWrappedMiniLabel);
+            }
             if (Stages.Length == 0)
             {
                 if (_linkedStages == null) RefreshLinkedStages();
@@ -64,6 +72,60 @@ namespace RulePyramid.Editor
             EditorGUILayout.HelpBox("当前打开的是旧版多阶段草稿。可在上方切换阶段，并将当前阶段导出为独立地图。导出使用该阶段原有边界，不修改旧草稿。", MessageType.Info);
             using (new EditorGUI.DisabledScope(Playing || _dragging))
                 if (GUILayout.Button("导出当前阶段为独立地图")) ExportStageMap();
+        }
+
+        void EnableStageInheritance()
+        {
+            try
+            {
+                RefreshLinkedStages();
+                if (_linkedStages.Length < 2) throw new InvalidOperationException("至少需要两张关联阶段地图");
+                var maps = new System.Collections.Generic.Dictionary<string, LevelDefinition>();
+                LevelDefinition parent = null;
+                string previous = null;
+                foreach (var linked in _linkedStages)
+                {
+                    var map = LevelJsonSerializer.FromDraftJson(File.ReadAllText(linked.Path, Encoding.UTF8));
+                    if (previous != null && !SamePath(Path.GetDirectoryName(previous), Path.GetDirectoryName(linked.Path)))
+                        throw new InvalidOperationException("建立顺序继承需要阶段地图位于同一目录");
+                    if (parent != null && string.IsNullOrEmpty(StageMapInheritance.Parent(map)))
+                        map = StageMapInheritance.Link(parent, map, Path.GetFileName(previous));
+                    maps[linked.Path] = map;
+                    parent = map; previous = linked.Path;
+                }
+                CheckOpenStageWindows(maps.Keys);
+                StageMapInheritance.WriteBatch(maps);
+                ReloadSavedStageWindows(maps.Keys);
+                AssetDatabase.Refresh();
+                _message = "已建立阶段顺序继承；当前各图布局保留，后续保存自动向子阶段传播。";
+            }
+            catch (Exception ex) { _message = "建立继承失败：" + ex.Message; }
+        }
+
+        void CheckOpenStageWindows(System.Collections.Generic.IEnumerable<string> paths)
+        {
+            foreach (var window in Resources.FindObjectsOfTypeAll<LevelEditorWindow>())
+                if (window != this && paths.Any(p => SamePath(p, window._session?.SourcePath)) && (window.Dirty || window.Playing))
+                    throw new InvalidOperationException("关联阶段窗口有未保存编辑或正在试玩，请先保存或退出：" + window._session.SourcePath);
+        }
+
+        void ReloadSavedStageWindows(System.Collections.Generic.IEnumerable<string> paths)
+        {
+            foreach (var window in Resources.FindObjectsOfTypeAll<LevelEditorWindow>())
+            {
+                if (!paths.Any(p => SamePath(p, window._session?.SourcePath))) continue;
+                string path = window._session.SourcePath;
+                string json = File.ReadAllText(path, Encoding.UTF8);
+                if (window == this)
+                {
+                    // 保留本窗口撤销历史，同时更新持久化的继承元数据。
+                    window._session.Draft.authoringSourceJson = json;
+                    continue;
+                }
+                window._session = new LevelEditSession(LevelJsonSerializer.FromDraftJson(json), path);
+                window._recoveredDirty = false;
+                window.ResetWorkspace();
+            }
         }
 
         static bool SamePath(string a, string b) => !string.IsNullOrEmpty(a) && !string.IsNullOrEmpty(b)
