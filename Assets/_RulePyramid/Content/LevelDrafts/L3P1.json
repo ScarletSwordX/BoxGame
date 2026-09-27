@@ -120,174 +120,6 @@
       "appearance": "Stone"
     },
     {
-      "id": "parking_north",
-      "min": {
-        "x": 4,
-        "y": 3,
-        "z": 11
-      },
-      "max": {
-        "x": 8,
-        "y": 3,
-        "z": 11
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "control_guard_0",
-      "min": {
-        "x": 5,
-        "y": 3,
-        "z": 6
-      },
-      "max": {
-        "x": 5,
-        "y": 3,
-        "z": 6
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "control_guard_1",
-      "min": {
-        "x": 7,
-        "y": 3,
-        "z": 6
-      },
-      "max": {
-        "x": 7,
-        "y": 3,
-        "z": 6
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "control_guard_4",
-      "min": {
-        "x": 5,
-        "y": 3,
-        "z": 4
-      },
-      "max": {
-        "x": 5,
-        "y": 3,
-        "z": 4
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "control_guard_6",
-      "min": {
-        "x": 6,
-        "y": 3,
-        "z": 3
-      },
-      "max": {
-        "x": 6,
-        "y": 3,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "control_guard_7",
-      "min": {
-        "x": 7,
-        "y": 3,
-        "z": 7
-      },
-      "max": {
-        "x": 7,
-        "y": 3,
-        "z": 7
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "control_guard_8",
-      "min": {
-        "x": 7,
-        "y": 3,
-        "z": 8
-      },
-      "max": {
-        "x": 7,
-        "y": 3,
-        "z": 8
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "rule_guard_0",
-      "min": {
-        "x": 14,
-        "y": 1,
-        "z": 5
-      },
-      "max": {
-        "x": 14,
-        "y": 3,
-        "z": 5
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "rule_guard_1",
-      "min": {
-        "x": 13,
-        "y": 3,
-        "z": 6
-      },
-      "max": {
-        "x": 13,
-        "y": 3,
-        "z": 6
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "rule_guard_2",
-      "min": {
-        "x": 13,
-        "y": 3,
-        "z": 4
-      },
-      "max": {
-        "x": 13,
-        "y": 3,
-        "z": 4
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "rule_guard_3",
-      "min": {
-        "x": 12,
-        "y": 3,
-        "z": 7
-      },
-      "max": {
-        "x": 12,
-        "y": 3,
-        "z": 7
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "rule_guard_4",
-      "min": {
-        "x": 12,
-        "y": 3,
-        "z": 3
-      },
-      "max": {
-        "x": 12,
-        "y": 3,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
       "id": "divider_south",
       "min": {
         "x": 9,
@@ -296,7 +128,7 @@
       },
       "max": {
         "x": 9,
-        "y": 5,
+        "y": 2,
         "z": 1
       },
       "appearance": "Stone"
@@ -310,7 +142,7 @@
       },
       "max": {
         "x": 9,
-        "y": 5,
+        "y": 2,
         "z": 11
       },
       "appearance": "Stone"
@@ -326,34 +158,6 @@
         "x": 9,
         "y": 2,
         "z": 2
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "divider_door_lintel",
-      "min": {
-        "x": 9,
-        "y": 4,
-        "z": 2
-      },
-      "max": {
-        "x": 9,
-        "y": 5,
-        "z": 2
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "temporary_bridge",
-      "min": {
-        "x": 14,
-        "y": 1,
-        "z": 8
-      },
-      "max": {
-        "x": 14,
-        "y": 2,
-        "z": 8
       },
       "appearance": "Stone"
     }
@@ -560,9 +364,9 @@
       "subject": "",
       "token": "FLAG",
       "cell": {
-        "x": 5,
+        "x": 9,
         "y": 3,
-        "z": 5
+        "z": 4
       },
       "anchored": false,
       "color": ""
@@ -576,6 +380,19 @@
         "x": 9,
         "y": 3,
         "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_1",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 15,
+        "y": 3,
+        "z": 8
       },
       "anchored": false,
       "color": ""

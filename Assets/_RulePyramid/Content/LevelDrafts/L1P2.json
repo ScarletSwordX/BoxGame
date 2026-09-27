@@ -348,5 +348,818 @@
     "stage": 2,
     "readingDirection": "同高度 +X（左到右）或 -Z（上到下），不随镜头改变",
     "runtimeStageProgression": "各阶段独立试玩，自动推进未接入"
+  },
+  "editorInheritance": {
+    "version": 2,
+    "coordinateSystem": "UpperRightXZ_YUnchanged",
+    "parent": "L1P1.json",
+    "overrides": [
+      {
+        "path": [
+          "bounds",
+          "max",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "goal",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "text_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "text_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "text_3",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "text_4",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "text_5",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "text_6",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "wall_1_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_1_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 6,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "wall_2_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_2_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "wall_3_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_3_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 4,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "wall_4_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_4_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "wall_5_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_5_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "wall_6_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_6_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "wall_7_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "wall_7_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "text_7"
+        ],
+        "remove": false,
+        "value": {
+          "id": "text_7",
+          "kind": "Text",
+          "subject": "",
+          "token": "WALL",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "text_8"
+        ],
+        "remove": false,
+        "value": {
+          "id": "text_8",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "text_9"
+        ],
+        "remove": false,
+        "value": {
+          "id": "text_9",
+          "kind": "Text",
+          "subject": "",
+          "token": "STOP",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "terrain",
+          "6,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "4,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "4,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "4,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "4,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "1,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "1,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "1,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "1,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "0,0,6"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "0,0,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "0,0,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "0,0,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      }
+    ],
+    "resolved": {
+      "bounds": {
+        "id": "",
+        "min": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "max": {
+          "x": 6,
+          "y": 1,
+          "z": 6
+        },
+        "appearance": "Stone"
+      },
+      "entities": {
+        "robot_01": {
+          "id": "robot_01",
+          "kind": "Object",
+          "subject": "ROBOT",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "goal": {
+          "id": "goal",
+          "kind": "Object",
+          "subject": "FLAG",
+          "token": "",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_1_4": {
+          "id": "wall_1_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 6,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_2_4": {
+          "id": "wall_2_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_3_4": {
+          "id": "wall_3_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 4,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_4_4": {
+          "id": "wall_4_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_5_4": {
+          "id": "wall_5_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_6_4": {
+          "id": "wall_6_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "wall_7_4": {
+          "id": "wall_7_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_1": {
+          "id": "text_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROBOT",
+          "cell": {
+            "x": 6,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_2": {
+          "id": "text_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 6,
+            "y": 1,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_3": {
+          "id": "text_3",
+          "kind": "Text",
+          "subject": "",
+          "token": "YOU",
+          "cell": {
+            "x": 6,
+            "y": 1,
+            "z": 6
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_4": {
+          "id": "text_4",
+          "kind": "Text",
+          "subject": "",
+          "token": "FLAG",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_5": {
+          "id": "text_5",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_6": {
+          "id": "text_6",
+          "kind": "Text",
+          "subject": "",
+          "token": "WIN",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 6
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_7": {
+          "id": "text_7",
+          "kind": "Text",
+          "subject": "",
+          "token": "WALL",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_8": {
+          "id": "text_8",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "text_9": {
+          "id": "text_9",
+          "kind": "Text",
+          "subject": "",
+          "token": "STOP",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      "terrain": {
+        "6,0,6": "Stone",
+        "6,0,5": "Stone",
+        "6,0,4": "Stone",
+        "6,0,3": "Stone",
+        "6,0,2": "Stone",
+        "6,0,1": "Stone",
+        "6,0,0": "Stone",
+        "5,0,6": "Stone",
+        "5,0,5": "Stone",
+        "5,0,4": "Stone",
+        "5,0,3": "Stone",
+        "5,0,2": "Stone",
+        "5,0,1": "Stone",
+        "5,0,0": "Stone",
+        "4,0,6": "Stone",
+        "4,0,5": "Stone",
+        "4,0,4": "Stone",
+        "4,0,3": "Stone",
+        "4,0,2": "Stone",
+        "4,0,1": "Stone",
+        "4,0,0": "Stone",
+        "3,0,6": "Stone",
+        "3,0,5": "Stone",
+        "3,0,4": "Stone",
+        "3,0,3": "Stone",
+        "3,0,2": "Stone",
+        "3,0,1": "Stone",
+        "3,0,0": "Stone",
+        "2,0,6": "Stone",
+        "2,0,5": "Stone",
+        "2,0,4": "Stone",
+        "2,0,3": "Stone",
+        "2,0,2": "Stone",
+        "2,0,1": "Stone",
+        "2,0,0": "Stone",
+        "1,0,6": "Stone",
+        "1,0,5": "Stone",
+        "1,0,4": "Stone",
+        "1,0,3": "Stone",
+        "1,0,2": "Stone",
+        "1,0,1": "Stone",
+        "1,0,0": "Stone",
+        "0,0,6": "Stone",
+        "0,0,5": "Stone",
+        "0,0,4": "Stone",
+        "0,0,3": "Stone",
+        "0,0,2": "Stone",
+        "0,0,1": "Stone",
+        "0,0,0": "Stone"
+      }
+    }
   }
 }

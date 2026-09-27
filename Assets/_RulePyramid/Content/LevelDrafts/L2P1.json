@@ -932,20 +932,6 @@
       "appearance": "Stone"
     },
     {
-      "id": "terrain_73",
-      "min": {
-        "x": 7,
-        "y": 2,
-        "z": 0
-      },
-      "max": {
-        "x": 7,
-        "y": 2,
-        "z": 0
-      },
-      "appearance": "Stone"
-    },
-    {
       "id": "terrain_74",
       "min": {
         "x": 11,
@@ -982,20 +968,6 @@
       },
       "max": {
         "x": 13,
-        "y": 2,
-        "z": 0
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_77",
-      "min": {
-        "x": 14,
-        "y": 2,
-        "z": 0
-      },
-      "max": {
-        "x": 14,
         "y": 2,
         "z": 0
       },
@@ -1123,6 +1095,34 @@
       "max": {
         "x": 14,
         "y": 1,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_32",
+      "min": {
+        "x": 7,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 7,
+        "y": 2,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_34",
+      "min": {
+        "x": 14,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 14,
+        "y": 2,
         "z": 0
       },
       "appearance": "Stone"
@@ -1461,123 +1461,6 @@
       "token": "",
       "cell": {
         "x": 5,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_12",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 6,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_13",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 7,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_14",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 8,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_15",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 9,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_16",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 10,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_17",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 11,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_18",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 12,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_19",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 13,
-        "y": 3,
-        "z": 0
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "object_20",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 14,
         "y": 3,
         "z": 0
       },

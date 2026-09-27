@@ -1,0 +1,94 @@
+{
+  "date": "2026-09-27",
+  "coordinateSystem": "UpperRightXZ_YUnchanged",
+  "backup": "upper-right-inheritance-migration-source.zip",
+  "testJob": "2c180150bb4941f1bc5a5e30e4f63432",
+  "tests": {
+    "passed": 21,
+    "failed": 0
+  },
+  "noOpCascadeValidation": "All three groups passed BuildSave and preserved serialized runtime data; no gameplay solutions rerun.",
+  "maps": [
+    {
+      "file": "L1P1.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": true,
+      "inheritanceVersion": null,
+      "parent": null,
+      "beforeSha256": "26d18bd87f973d90d2b15641a554c300df3fe499635e091202d01409bd2b0f55",
+      "afterSha256": "26d18bd87f973d90d2b15641a554c300df3fe499635e091202d01409bd2b0f55"
+    },
+    {
+      "file": "L1P2.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": false,
+      "inheritanceVersion": 2,
+      "parent": "L1P1.json",
+      "beforeSha256": "e29be53cdd682c4417acf6a6ae51fa623e32c59fc937033513f26d106c99650d",
+      "afterSha256": "bf84bb74f942fae71788e77a908785685bbb75ce1ca3b101e245490f5284aa11"
+    },
+    {
+      "file": "L1P3.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": false,
+      "inheritanceVersion": 2,
+      "parent": "L1P2.json",
+      "beforeSha256": "a12da45f489af54aa03db1a7bccd8474a31f30311af4721976b2f543a24c6483",
+      "afterSha256": "c6f87fee556e4fa1ae80dc9bb3e60e068978af7dbd41692721dcae0d4ecfbbbd"
+    },
+    {
+      "file": "L2P1.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": true,
+      "inheritanceVersion": null,
+      "parent": null,
+      "beforeSha256": "c557a6032dec3efa73bb0491a65ace874e9a138ef56b57d3600a0672a53e3b3f",
+      "afterSha256": "c557a6032dec3efa73bb0491a65ace874e9a138ef56b57d3600a0672a53e3b3f"
+    },
+    {
+      "file": "L2P2.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": false,
+      "inheritanceVersion": 2,
+      "parent": "L2P1.json",
+      "beforeSha256": "30c84ece4bc8a53d3c9880dca9fe390a9c56e27a25285b13c420ed718a7fb22c",
+      "afterSha256": "5b70c0f11f29e4033deae1283998da25465a093394dca1a054eb2bef01afb755"
+    },
+    {
+      "file": "L2P3.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": false,
+      "inheritanceVersion": 2,
+      "parent": "L2P2.json",
+      "beforeSha256": "ea95fa234765b418d69dc7565c13e3c56531c8a59d9727ae46de8da8ceb89bdf",
+      "afterSha256": "f34776a1859599282a2c867dcd4d2c20f99c9d77e4168bff996542e2f50ecca8"
+    },
+    {
+      "file": "L3P1.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": true,
+      "inheritanceVersion": null,
+      "parent": null,
+      "beforeSha256": "e8627fa93c600e54fe4d692204348aabfa772529aeb27555b69bbdaa95b840d8",
+      "afterSha256": "e8627fa93c600e54fe4d692204348aabfa772529aeb27555b69bbdaa95b840d8"
+    },
+    {
+      "file": "L3P2.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": false,
+      "inheritanceVersion": 2,
+      "parent": "L3P1.json",
+      "beforeSha256": "35fff4aedfc06e3c4be94d00c4448384a6eb029299998b7b072d5bf362a1d806",
+      "afterSha256": "51cb8e4b33cef3f222fb231c2d56597c815f4746f5793186b4a54a4082a4c2f9"
+    },
+    {
+      "file": "L3P3.json",
+      "runtimeDataUnchanged": true,
+      "rootBytesUnchanged": false,
+      "inheritanceVersion": 2,
+      "parent": "L3P2.json",
+      "beforeSha256": "d8a31eb18e9d74f9a483da75f3ecd74aafcc0a4852509cf46be52cedbed11b63",
+      "afterSha256": "147e7a8a1438c777f72192e9e4db5467d8fb61c078168413e58c33a1af416789"
+    }
+  ]
+}
