@@ -38,7 +38,8 @@ namespace RulePyramid.Runtime
         [Range(0f, 3f)] public float bounceDispersionPixels = 1.1f;
 
         public float cameraDistance = 18f;
-        public float cameraPitch = 35.264f;
+        [Range(60f, 80f), Tooltip("玩家镜头相对水平地面的俯角；所有关卡共用。")]
+        public float cameraPitch = 75f;
         public float[] cameraYaws = { 45f, 135f, 225f, 315f };
     }
 }

@@ -34,7 +34,7 @@ namespace RulePyramid.Runtime
             }
             var cam = GetComponent<Camera>();
             float aspect = cam != null ? Mathf.Max(.1f, cam.aspect) : 1.6f;
-            _desiredSize = Mathf.Max(3f, Mathf.Max(height, width / aspect) * 1.25f + .5f);
+            _desiredSize = Mathf.Max(3f, Mathf.Max(height, width / aspect) * 1.35f + .5f);
             if (immediate || !_framed)
             {
                 _frameCenter = _desiredCenter;
@@ -46,7 +46,7 @@ namespace RulePyramid.Runtime
 
         Quaternion ViewRotation()
         {
-            float pitch = config != null ? config.cameraPitch : 35.264f;
+            float pitch = config != null ? config.cameraPitch : 75f;
             float[] yaws = config != null && config.cameraYaws != null && config.cameraYaws.Length == 4
                 ? config.cameraYaws : new[] { 45f, 135f, 225f, 315f };
             return Quaternion.Euler(pitch, yaws[0], 0f);
@@ -58,8 +58,7 @@ namespace RulePyramid.Runtime
         public void ConfigureFromLevel(CameraData data)
         {
             slot = 0;
-            if (data == null) return;
-            if (data.pitchDegrees > 0 && config != null) config.cameraPitch = data.pitchDegrees;
+            // 玩家视角由全局视觉配置决定，旧地图的低俯角不再覆盖它。
         }
 
         public WorldDirection ScreenToWorld(Vector2 screen)

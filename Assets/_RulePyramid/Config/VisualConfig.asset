@@ -38,7 +38,7 @@ MonoBehaviour:
   bouncePeripheralDarkness: 0.38
   bounceDispersionPixels: 1.1
   cameraDistance: 18
-  cameraPitch: 35.264
+  cameraPitch: 75
   cameraYaws:
   - 45
   - 135
