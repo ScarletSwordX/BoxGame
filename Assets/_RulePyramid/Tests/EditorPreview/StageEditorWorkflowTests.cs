@@ -13,7 +13,94 @@ namespace RulePyramid.Tests.EditorPreview
     public class StageEditorWorkflowTests
     {
         const BindingFlags StaticFlags = BindingFlags.Static | BindingFlags.NonPublic;
+        const BindingFlags InstanceFlags = BindingFlags.Instance | BindingFlags.NonPublic | BindingFlags.Public;
         static LevelDefinition Blank() => (LevelDefinition)typeof(LevelEditorWindow).GetMethod("CreateEmpty", StaticFlags).Invoke(null, null);
+
+        static string[] LinkedPaths(string source, string id, string contentRoot)
+        {
+            var method = typeof(LevelEditorWindow).GetMethod("FindLinkedStages", StaticFlags);
+            var linked = (Array)method.Invoke(null, new object[] { source, id, contentRoot });
+            return linked.Cast<object>().Select(x => (string)x.GetType().GetField("Path", InstanceFlags).GetValue(x)).ToArray();
+        }
+
+        [Test]
+        public void CatalogLinksL02MapsInDeclaredOrderAndExcludesL01()
+        {
+            string root = Path.Combine(Application.dataPath, "_RulePyramid/Content");
+            string source = Path.Combine(root, "LevelDrafts/L2P1.json");
+            var paths = LinkedPaths(source, "L2P1", root);
+            CollectionAssert.AreEqual(new[] { "L2P1.json", "L2P2.json", "L2P3.json" }, paths.Select(Path.GetFileName).ToArray());
+        }
+
+        [Test]
+        public void UnlistedDraftLinksExactChapterAndSortsNumericStages()
+        {
+            string root = Path.Combine(Path.GetTempPath(), Guid.NewGuid().ToString("N"));
+            string directory = Path.Combine(root, "LevelDrafts");
+            Directory.CreateDirectory(directory);
+            try
+            {
+                foreach (string name in new[] { "L2P10", "L2P1", "L2P2", "L20P1", "L2P2backup" })
+                {
+                    var map = Blank();
+                    map.id = name;
+                    File.WriteAllText(Path.Combine(directory, name + ".json"), LevelJsonSerializer.ToJson(map));
+                }
+                var paths = LinkedPaths(Path.Combine(directory, "L2P1.json"), "L2P1", root);
+                CollectionAssert.AreEqual(new[] { "L2P1.json", "L2P2.json", "L2P10.json" }, paths.Select(Path.GetFileName).ToArray());
+                Assert.IsEmpty(LinkedPaths(Path.Combine(directory, "L2P1.json"), "wrong-id", root));
+            }
+            finally
+            {
+                string temp = Path.GetFullPath(Path.GetTempPath()).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                string target = Path.GetFullPath(root);
+                Assert.IsTrue(target.StartsWith(temp, StringComparison.OrdinalIgnoreCase));
+                Directory.Delete(target, true);
+            }
+        }
+
+        [Test]
+        public void LinkedStageSwitchLoadsSeparateMapAndSourcePath()
+        {
+            string root = Path.Combine(Application.dataPath, "_RulePyramid/Content/LevelDrafts");
+            string first = Path.Combine(root, "L2P1.json");
+            string second = Path.Combine(root, "L2P2.json");
+            var window = ScriptableObject.CreateInstance<LevelEditorWindow>();
+            try
+            {
+                var sessionField = typeof(LevelEditorWindow).GetField("_session", InstanceFlags);
+                sessionField.SetValue(window, new LevelEditSession(LevelJsonSerializer.FromDraftJson(File.ReadAllText(first)), first));
+                typeof(LevelEditorWindow).GetField("_recoveredDirty", InstanceFlags).SetValue(window, false);
+                typeof(LevelEditorWindow).GetMethod("SwitchLinkedStage", InstanceFlags).Invoke(window, new object[] { second });
+                var session = (LevelEditSession)sessionField.GetValue(window);
+                Assert.AreEqual("L2P2", session.Draft.id);
+                Assert.AreEqual(second, session.SourcePath);
+                Assert.IsFalse(session.Dirty);
+                Assert.IsNull(session.Draft.stagePlan);
+            }
+            finally { UnityEngine.Object.DestroyImmediate(window); }
+        }
+
+        [Test]
+        public void LinkedStageSwitchDuringPlaytestKeepsCurrentSession()
+        {
+            string root = Path.Combine(Application.dataPath, "_RulePyramid/Content/LevelDrafts");
+            string first = Path.Combine(root, "L2P1.json");
+            string second = Path.Combine(root, "L2P2.json");
+            var session = new LevelEditSession(Blank(), first);
+            Assert.IsTrue(session.TryStartPlaytest(out var playtest, out var error), error);
+            var window = ScriptableObject.CreateInstance<LevelEditorWindow>();
+            try
+            {
+                var sessionField = typeof(LevelEditorWindow).GetField("_session", InstanceFlags);
+                sessionField.SetValue(window, session);
+                typeof(LevelEditorWindow).GetMethod("SwitchLinkedStage", InstanceFlags).Invoke(window, new object[] { second });
+                Assert.AreSame(session, sessionField.GetValue(window));
+                Assert.AreSame(playtest, session.Playtest);
+                Assert.AreEqual(first, session.SourcePath);
+            }
+            finally { session.StopPlaytest(); UnityEngine.Object.DestroyImmediate(window); }
+        }
 
         [Test]
         public void IndependentMapRoundTripEditsUndoAndPlaytestDoNotCreateStagePlan()

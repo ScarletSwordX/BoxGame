@@ -3,17 +3,7 @@
   "mechanicsVersion": "RW-v0.9",
   "levels": [
     "LevelDrafts/L1P1.json",
-    "levels/L02.json",
-    "levels/L03.json",
-    "levels/L04.json",
-    "levels/L05.json",
-    "levels/L06.json",
-    "levels/L07.json",
-    "levels/L08.json",
-    "levels/L09.json",
-    "levels/L10.json",
-    "levels/L11.json",
-    "levels/L12.json"
+    "LevelDrafts/L2P1.json"
   ],
   "stageSequences": [
     {
@@ -22,6 +12,14 @@
         "LevelDrafts/L1P1.json",
         "LevelDrafts/L1P2.json",
         "LevelDrafts/L1P3.json"
+      ]
+    },
+    {
+      "id": "L02",
+      "maps": [
+        "LevelDrafts/L2P1.json",
+        "LevelDrafts/L2P2.json",
+        "LevelDrafts/L2P3.json"
       ]
     }
   ]

@@ -60,10 +60,10 @@ namespace RulePyramid.Tests.PlayMode
                 Assert.IsNull(host.transform.Find("Expanded Terrain (4,0,0)"),
                     "The outer ring should appear after the inner ring.");
 
-                int frames = 0;
+                float deadline = Time.realtimeSinceStartup + 3f;
                 while (expansion.MoveNext())
                 {
-                    Assert.Less(++frames, 120, "Expansion should finish within its allotted duration.");
+                    Assert.Less(Time.realtimeSinceStartup, deadline, "Expansion should finish within its allotted duration.");
                     yield return expansion.Current;
                 }
                 yield return null;

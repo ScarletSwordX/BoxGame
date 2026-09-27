@@ -65,8 +65,8 @@ namespace RulePyramid.Editor
         bool Playing => _session?.Playtest != null;
         bool Dirty => _session != null && (_session.Dirty || _recoveredDirty);
         WorldModel Inspect => Playing ? _session.Playtest.World : _inspection;
-        static readonly string[] Words = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "IS", "AND", "YOU", "PUSH", "STOP", "HOVER", "FLY", "BOUNCY", "WIN" };
-        static readonly string[] Subjects = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL" };
+        static readonly string[] Words = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA", "IS", "AND", "YOU", "PUSH", "STOP", "HOVER", "FLY", "BOUNCY", "WIN", "HOT", "MELT" };
+        static readonly string[] Subjects = { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA" };
 
         [MenuItem("Tools/规则工坊/关卡编辑器")]
         public static void Open() => GetWindow<LevelEditorWindow>("规则工坊编辑器");
@@ -260,7 +260,7 @@ namespace RulePyramid.Editor
                 }
             }
             GUILayout.Space(12);
-            GUILayout.Label("左键编辑 · 中键平移\n滚轮缩放 · Esc 取消\nCtrl+Z 撤销 · Shift+E 删除\nF 聚焦 · Shift+F 全图\n三维 Alt+拖动旋转\nShift+拖动复制\nCtrl+拖空白框选", EditorStyles.wordWrappedMiniLabel);
+            GUILayout.Label("左键编辑 · 中键平移\r\n滚轮缩放 · Esc 取消\r\nCtrl+Z 撤销 · Shift+E 删除\r\nF 聚焦 · Shift+F 全图\r\n三维 Alt+拖动旋转\r\nShift+拖动复制\r\nCtrl+拖空白框选", EditorStyles.wordWrappedMiniLabel);
         }
 
         void DrawViewToolbar()
@@ -353,6 +353,7 @@ namespace RulePyramid.Editor
             {
                 WriteDraftFile(path, _session.Draft);
                 _session.SourcePath = path; _session.MarkSaved(); _recoveredDirty = false;
+                _linkedStages = null;
                 CaptureRecovery(); hasUnsavedChanges = false; _message = "已保存作者初态：" + path;
                 AssetDatabase.Refresh(); return true;
             }
@@ -360,6 +361,7 @@ namespace RulePyramid.Editor
         }
         void ResetWorkspace()
         {
+            _linkedStages = null;
             _savedStageId = _session.ActiveStageId;
             _resizeEditing = false;
             CancelDrag();
