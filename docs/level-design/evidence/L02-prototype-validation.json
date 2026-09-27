@@ -1,0 +1,524 @@
+{
+  "revision": "v0.5_ground",
+  "scope": "Unity 实际核心回放、编辑器会话与布局不变量检查；不代表盲测或完整绕解证明",
+  "engineVersion": "Unity 2022.3.51f1",
+  "results": [
+    {
+      "id": "L2P1",
+      "valid": true,
+      "validation": "OK",
+      "occupancyOk": true,
+      "editorPlaytestStarts": true,
+      "editorError": null,
+      "replayWon": true,
+      "replayReason": null,
+      "turns": 4,
+      "actorAtWin": "robot_01",
+      "winId": "goal",
+      "eventKinds": [
+        "Walk",
+        "PlayerFell",
+        "BounceStarted",
+        "BounceStep",
+        "LandingBounce",
+        "BounceApexReached",
+        "ApexSteer",
+        "Won"
+      ],
+      "undoEveryStep": true,
+      "restartRestoresInitial": true,
+      "withoutBouncyReferenceWins": false,
+      "withoutBouncyReason": "Rejected E: Rejected",
+      "noInteractionAudit": null,
+      "trace": [
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 2
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 9,
+            "y": 5,
+            "z": 2
+          },
+          "phase": "BounceApex"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 10,
+            "y": 5,
+            "z": 2
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 11,
+            "y": 5,
+            "z": 2
+          },
+          "phase": "Won"
+        }
+      ]
+    },
+    {
+      "id": "L2P2",
+      "valid": true,
+      "validation": "OK",
+      "occupancyOk": true,
+      "editorPlaytestStarts": true,
+      "editorError": null,
+      "replayWon": true,
+      "replayReason": null,
+      "turns": 18,
+      "actorAtWin": "robot_01",
+      "winId": "goal",
+      "eventKinds": [
+        "Pushed",
+        "ActiveInteraction",
+        "Walk",
+        "RulesChanged",
+        "PlayerFell",
+        "BounceStarted",
+        "BounceStep",
+        "LandingBounce",
+        "BounceApexReached",
+        "ApexSteer",
+        "Won"
+      ],
+      "undoEveryStep": true,
+      "restartRestoresInitial": true,
+      "withoutBouncyReferenceWins": false,
+      "withoutBouncyReason": "Rejected E: Rejected",
+      "noInteractionAudit": {
+        "Status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "States": 84,
+        "Attempts": 504,
+        "Path": null
+      },
+      "trace": [
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 1
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "S",
+          "actor": "robot_01",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 0
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 6,
+            "y": 3,
+            "z": 0
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 7,
+            "y": 3,
+            "z": 0
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 0
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 1
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 2
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 3
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 9,
+            "y": 3,
+            "z": 3
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 9,
+            "y": 3,
+            "z": 4
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "W",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 4
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 5
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 6
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 7
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "robot_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 8
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 9,
+            "y": 5,
+            "z": 8
+          },
+          "phase": "BounceApex"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 10,
+            "y": 5,
+            "z": 8
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "robot_01",
+          "cell": {
+            "x": 11,
+            "y": 5,
+            "z": 8
+          },
+          "phase": "Won"
+        }
+      ]
+    },
+    {
+      "id": "L2P3",
+      "valid": true,
+      "validation": "OK",
+      "occupancyOk": true,
+      "editorPlaytestStarts": true,
+      "editorError": null,
+      "replayWon": true,
+      "replayReason": null,
+      "turns": 13,
+      "actorAtWin": "rock_01",
+      "winId": "goal",
+      "eventKinds": [
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "ControlChanged",
+        "Walk",
+        "PlayerFell",
+        "BounceStarted",
+        "BounceStep",
+        "LandingBounce",
+        "BounceApexReached",
+        "ApexSteer",
+        "Won"
+      ],
+      "undoEveryStep": true,
+      "restartRestoresInitial": true,
+      "withoutBouncyReferenceWins": false,
+      "withoutBouncyReason": "Rejected E: Rejected",
+      "noInteractionAudit": {
+        "Status": "EXHAUSTED_NO_INTERACTION_WIN",
+        "States": 6,
+        "Attempts": 36,
+        "Path": null
+      },
+      "trace": [
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 3
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "S",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 2
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "W",
+          "actor": "rock_01",
+          "cell": {
+            "x": 7,
+            "y": 3,
+            "z": 2
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 7,
+            "y": 3,
+            "z": 3
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 3
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 4
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 5
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 6
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 7
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "N",
+          "actor": "rock_01",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 8
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "rock_01",
+          "cell": {
+            "x": 9,
+            "y": 5,
+            "z": 8
+          },
+          "phase": "BounceApex"
+        },
+        {
+          "command": "E",
+          "actor": "rock_01",
+          "cell": {
+            "x": 10,
+            "y": 5,
+            "z": 8
+          },
+          "phase": "Grounded"
+        },
+        {
+          "command": "E",
+          "actor": "rock_01",
+          "cell": {
+            "x": 11,
+            "y": 5,
+            "z": 8
+          },
+          "phase": "Won"
+        }
+      ]
+    }
+  ],
+  "layoutChecks": {
+    "sharedRulePositionsIdentical": true,
+    "sharedIds": [
+      "source_flag_0",
+      "source_flag_1",
+      "source_flag_2",
+      "source_spring_0",
+      "source_spring_1",
+      "source_spring_2",
+      "source_you_0",
+      "source_you_1",
+      "source_you_2"
+    ],
+    "leftRuleY": 1,
+    "directFloorSupport": true,
+    "p3Spawn": {
+      "x": 1,
+      "y": 1,
+      "z": 1
+    },
+    "sideWallContinuous": true,
+    "staticPartitionContinuous": true
+  },
+  "mapHashes": {
+    "Assets/_RulePyramid/Content/LevelDrafts/L2P1.json": "636d9b3e491a1f1297599be3297c6a8a13bfd2608b0b11bcae1589a7860a66b1",
+    "Assets/_RulePyramid/Content/LevelDrafts/L2P2.json": "bd9998ca05c3def7f10c123562937c42e8711b11ef0284d08e9ed8adef0d6e90",
+    "Assets/_RulePyramid/Content/LevelDrafts/L2P3.json": "e95ca80f75b455a56ec323a22fc07a8f72e0a36160dacc2745a68fba22a22917"
+  },
+  "coreHashes": {
+    "Assets/_RulePyramid/Core/Simulation/WorldModel.cs": "b578af582eb4c3efe9e871fc7b3f5b220c548f444064e9d323d0d9a961dece0f",
+    "Assets/_RulePyramid/Core/Editing/ReplayRunner.cs": "11740d8cf5ce863e63819aa214bc874570bfc886023010e040b16ffe287a7705"
+  },
+  "limitations": [
+    "无互动搜索排除了推动与规则变化，不能证明所有交互绕解不存在",
+    "BOUNCY 移除实验只证明参考路线依赖弹性",
+    "未执行真人盲测或固定视角画面验收；几何墙的视觉遮挡仍需查看"
+  ],
+  "terrainTransitions": [
+    {
+      "transition": "P1->P2",
+      "retained": 273,
+      "added": 93,
+      "removed": 0,
+      "removedCells": []
+    },
+    {
+      "transition": "P2->P3",
+      "retained": 365,
+      "added": 0,
+      "removed": 1,
+      "removedCells": [
+        [
+          7,
+          3,
+          3
+        ]
+      ]
+    }
+  ],
+  "editorObservation": "刷新脚本时控制台记录 WorldView.cs:21 的 MaterialPropertyBlock 字段初始化异常（CreateImpl 不允许构造期间调用）。本任务未改 WorldView；独立 L2P3 窗口打开成功，不据此声称运行画面无错误。"
+}
