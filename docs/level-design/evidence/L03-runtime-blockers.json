@@ -1,0 +1,82 @@
+{
+  "scope": "Actual Unity validation of L03 new-mechanic drafts; expected blockers retained",
+  "result": [
+    {
+      "id": "L3P2",
+      "jsonRead": true,
+      "canPlaytest": false,
+      "issues": [
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "src_robot_melt_2 unknown token MELT"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "lava_hot_0 unknown token LAVA"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "lava_hot_2 unknown token HOT"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "branch_lava unknown token LAVA"
+        },
+        {
+          "Severity": 0,
+          "Code": "SUBJECT",
+          "Message": "lava_01 missing legal subject"
+        }
+      ],
+      "occupancyValid": true
+    },
+    {
+      "id": "L3P3",
+      "jsonRead": true,
+      "canPlaytest": false,
+      "issues": [
+        {
+          "Severity": 0,
+          "Code": "OPTION",
+          "Message": "controlMode must be SingleYouTransfer_NoControlUndo"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "src_robot_melt_2 unknown token MELT"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "src_rock_melt_2 unknown token MELT"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "lava_hot_0 unknown token LAVA"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "lava_hot_2 unknown token HOT"
+        },
+        {
+          "Severity": 0,
+          "Code": "TOKEN",
+          "Message": "branch_lava unknown token LAVA"
+        },
+        {
+          "Severity": 0,
+          "Code": "SUBJECT",
+          "Message": "lava_01 missing legal subject"
+        }
+      ],
+      "occupancyValid": true
+    }
+  ],
+  "compiler": "codedom"
+}

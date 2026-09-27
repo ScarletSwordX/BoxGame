@@ -1,0 +1,308 @@
+{
+  "date": "2026-09-27",
+  "runtime": "Unity 2022.3.51f1 / RW-v0.9",
+  "replay": [
+    {
+      "id": "L1P1",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P1-A",
+      "won": true,
+      "reason": null,
+      "turns": 4,
+      "actor": "robot_01",
+      "goal": "goal",
+      "events": [
+        "Walk",
+        "Won"
+      ]
+    },
+    {
+      "id": "L1P2",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P2-A",
+      "won": true,
+      "reason": null,
+      "turns": 12,
+      "actor": "robot_01",
+      "goal": "goal",
+      "events": [
+        "Walk",
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "Won"
+      ]
+    },
+    {
+      "id": "L1P3",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P3-A",
+      "won": true,
+      "reason": null,
+      "turns": 46,
+      "actor": "robot_01",
+      "goal": "wall_7_7",
+      "events": [
+        "Walk",
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "Won"
+      ]
+    },
+    {
+      "id": "L1P3",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P3-B",
+      "won": true,
+      "reason": null,
+      "turns": 39,
+      "actor": "robot_01",
+      "goal": "goal",
+      "events": [
+        "Walk",
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "Won"
+      ]
+    },
+    {
+      "id": "L2P1",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P1-A",
+      "won": false,
+      "reason": "Rejected E: Rejected",
+      "turns": 0,
+      "actor": null,
+      "goal": null,
+      "events": [
+        "Walk",
+        "PlayerFell"
+      ]
+    },
+    {
+      "id": "L2P2",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P2-A",
+      "won": false,
+      "reason": "Rejected E: Rejected",
+      "turns": 0,
+      "actor": null,
+      "goal": null,
+      "events": [
+        "Walk",
+        "PlayerFell"
+      ]
+    },
+    {
+      "id": "L2P3",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P3-A",
+      "won": true,
+      "reason": null,
+      "turns": 13,
+      "actor": "rock_01",
+      "goal": "goal",
+      "events": [
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "ControlChanged",
+        "Walk",
+        "PlayerFell",
+        "BounceStarted",
+        "BounceStep",
+        "LandingBounce",
+        "BounceApexReached",
+        "ApexSteer",
+        "Won"
+      ]
+    },
+    {
+      "id": "L3P1",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P1-A",
+      "won": true,
+      "reason": null,
+      "turns": 32,
+      "actor": "robot_01",
+      "goal": "goal",
+      "events": [
+        "Walk",
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "Won"
+      ]
+    },
+    {
+      "id": "L3P2",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P2-A",
+      "won": true,
+      "reason": null,
+      "turns": 22,
+      "actor": "robot_01",
+      "goal": "goal",
+      "events": [
+        "Pushed",
+        "ActiveInteraction",
+        "Walk",
+        "RulesChanged",
+        "PlayerFell",
+        "BounceStarted",
+        "BounceStep",
+        "LandingBounce",
+        "BounceApexReached",
+        "ApexSteer",
+        "Won"
+      ]
+    },
+    {
+      "id": "L3P3",
+      "canPlaytest": true,
+      "issues": "OK",
+      "solution": "P3-A",
+      "won": true,
+      "reason": null,
+      "turns": 20,
+      "actor": "rock_01",
+      "goal": "goal",
+      "events": [
+        "Pushed",
+        "ActiveInteraction",
+        "RulesChanged",
+        "Walk",
+        "PlayerFell",
+        "BounceStarted",
+        "BounceStep",
+        "LandingBounce",
+        "BounceApexReached",
+        "ApexSteer",
+        "Won"
+      ]
+    }
+  ],
+  "editMode": {
+    "job_id": "78696c8dfce34eefa0205d2fe45eaa60",
+    "status": "failed",
+    "mode": "EditMode",
+    "started_unix_ms": 1790500316726,
+    "finished_unix_ms": 1790500321055,
+    "last_update_unix_ms": 1790500321055,
+    "progress": {
+      "completed": 44,
+      "total": 244,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790500320985,
+      "last_finished_test_full_name": "RulePyramid.Tests.EditMode.WallRulesTests.WallWithoutRuleHasNoHiddenCollision",
+      "last_finished_unix_ms": 1790500320986,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [
+        {
+          "full_name": "RulePyramid.Tests.EditMode.L03MechanicsTests.DraftReferenceWins(\"L2P1\")",
+          "message": "  L2P1/P1-A step 3 E: Rejected\r\n  Expected: True\r\n  But was:  False\r\n"
+        },
+        {
+          "full_name": "RulePyramid.Tests.EditMode.L03MechanicsTests.DraftReferenceWins(\"L2P2\")",
+          "message": "  L2P2/P2-A step 5 E: Rejected\r\n  Expected: True\r\n  But was:  False\r\n"
+        }
+      ],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": null
+  },
+  "playMode": {
+    "job_id": "c62fdbff22de43819f483a44dcee6f0f",
+    "status": "succeeded",
+    "mode": "PlayMode",
+    "started_unix_ms": 1790500349316,
+    "finished_unix_ms": 1790500351522,
+    "last_update_unix_ms": 1790500351522,
+    "progress": {
+      "completed": 29,
+      "total": 244,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790500351450,
+      "last_finished_test_full_name": "RulePyramid.Tests.PlayMode.WorldViewRuntimeTests.RuleVisualsAndTerrainBoxesUpdateWithoutChangingSourceMaterials",
+      "last_finished_unix_ms": 1790500351470,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": {
+      "mode": "PlayMode",
+      "summary": {
+        "total": 29,
+        "passed": 29,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 1.2114376,
+        "resultState": "Passed"
+      },
+      "results": []
+    }
+  },
+  "mapSha256": {
+    "Assets/_RulePyramid/Content/LevelDrafts/L1P1.json": "26d18bd87f973d90d2b15641a554c300df3fe499635e091202d01409bd2b0f55",
+    "Assets/_RulePyramid/Content/LevelDrafts/L1P2.json": "e29be53cdd682c4417acf6a6ae51fa623e32c59fc937033513f26d106c99650d",
+    "Assets/_RulePyramid/Content/LevelDrafts/L1P3.json": "a12da45f489af54aa03db1a7bccd8474a31f30311af4721976b2f543a24c6483",
+    "Assets/_RulePyramid/Content/LevelDrafts/L2P1.json": "7104face0dee492625a1b0df8d4124585629fe2cdbe82186a592de2696d79a89",
+    "Assets/_RulePyramid/Content/LevelDrafts/L2P2.json": "6f3dd32561ac5648a38b5f9d9cd0ce0a08154df12f06567476c994b2d921f603",
+    "Assets/_RulePyramid/Content/LevelDrafts/L2P3.json": "e95ca80f75b455a56ec323a22fc07a8f72e0a36160dacc2745a68fba22a22917",
+    "Assets/_RulePyramid/Content/LevelDrafts/L3P1.json": "b81a08051652e27c86e3d78832b9130a26720bc70582e30144b6138d9390e0c5",
+    "Assets/_RulePyramid/Content/LevelDrafts/L3P2.json": "57b16b8ecdbda69cf9df850bfae489253b4a7901730da15065234db4b83d26a7",
+    "Assets/_RulePyramid/Content/LevelDrafts/L3P3.json": "ca422ef701f45f460cf3713982e611d6072f789c1c91e2f67ef387e132cabf20"
+  },
+  "knownUnrelatedFailures": [
+    {
+      "map": "L2P1",
+      "step": 3,
+      "command": "E",
+      "from": [
+        9,
+        1,
+        2
+      ],
+      "blockedCell": [
+        10,
+        1,
+        2
+      ],
+      "terrain": "old_landing_1"
+    },
+    {
+      "map": "L2P2",
+      "step": 5,
+      "command": "E",
+      "from": [
+        9,
+        1,
+        3
+      ],
+      "blockedCell": [
+        10,
+        1,
+        3
+      ],
+      "terrain": "old_landing_1"
+    }
+  ],
+  "scope": "Actual Unity mechanics and independent map replay; not full campaign, blind playtest or release build validation. L02 layout/reference mismatch was recorded before this change."
+}

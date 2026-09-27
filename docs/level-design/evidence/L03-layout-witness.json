@@ -1,0 +1,1308 @@
+{
+  "tool": "l03_layout_witness.py",
+  "scope": "Bounded Python design witness; NOT Unity runtime validation or exhaustive search",
+  "assumptions": [
+    "New YOU receives input starting next command",
+    "Separate actor regions; no shared destination/push conflicts",
+    "Cardinal route only; J, FLY, HOVER and transformations not modelled",
+    "Top bounce intercepts descent above even a non-solid LAVA before entry"
+  ],
+  "results": [
+    {
+      "id": "L3P2",
+      "sha256": "35fff4aedfc06e3c4be94d00c4448384a6eb029299998b7b072d5bf362a1d806",
+      "dimensions": [
+        18,
+        6,
+        12
+      ],
+      "staticChecks": {
+        "uniqueIds": true,
+        "distinctInitialCells": true,
+        "insideBounds": true,
+        "initialTerrainSupport": true,
+        "ordinaryMovableWords": true
+      },
+      "witnessRouteReachedGoal": true,
+      "turns": 16,
+      "winner": [
+        "robot_01",
+        "goal"
+      ],
+      "reverseActorIterationSame": true,
+      "withoutBouncyReferenceFails": true,
+      "withoutAndReferenceFails": null,
+      "trace": [
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              11,
+              3,
+              6
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [
+            {
+              "kind": "pushed",
+              "ids": [
+                "branch_lava"
+              ]
+            }
+          ],
+          "winner": null
+        },
+        {
+          "command": "W",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              6
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "S",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "S",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              11,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [
+            {
+              "kind": "pushed",
+              "ids": [
+                "branch_bouncy"
+              ]
+            }
+          ],
+          "winner": null
+        },
+        {
+          "command": "W",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              6
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              7
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              10,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              11,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              12,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              13,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              14,
+              5,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [
+            {
+              "kind": "bounce",
+              "id": "robot_01",
+              "surface": "lava_01",
+              "contact": [
+                14,
+                2,
+                8
+              ],
+              "apex": [
+                14,
+                5,
+                8
+              ]
+            }
+          ],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              15,
+              5,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              16,
+              5,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": [
+            "robot_01",
+            "goal"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L3P3",
+      "sha256": "d8a31eb18e9d74f9a483da75f3ecd74aafcc0a4852509cf46be52cedbed11b63",
+      "dimensions": [
+        18,
+        6,
+        12
+      ],
+      "staticChecks": {
+        "uniqueIds": true,
+        "distinctInitialCells": true,
+        "insideBounds": true,
+        "initialTerrainSupport": true,
+        "ordinaryMovableWords": true
+      },
+      "witnessRouteReachedGoal": true,
+      "turns": 20,
+      "winner": [
+        "rock_01",
+        "goal"
+      ],
+      "reverseActorIterationSame": true,
+      "withoutBouncyReferenceFails": true,
+      "withoutAndReferenceFails": true,
+      "trace": [
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              5,
+              3,
+              7
+            ],
+            "rock_01": [
+              10,
+              3,
+              2
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [
+            {
+              "kind": "pushed",
+              "ids": [
+                "prefix_and"
+              ]
+            }
+          ],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              5,
+              3,
+              8
+            ],
+            "rock_01": [
+              10,
+              3,
+              3
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              5,
+              3,
+              9
+            ],
+            "rock_01": [
+              10,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              5,
+              3,
+              10
+            ],
+            "rock_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              6,
+              3,
+              10
+            ],
+            "rock_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              7,
+              3,
+              10
+            ],
+            "rock_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "S",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              9
+            ],
+            "rock_01": [
+              10,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              9
+            ],
+            "rock_01": [
+              11,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [
+            {
+              "kind": "pushed",
+              "ids": [
+                "branch_bouncy"
+              ]
+            }
+          ],
+          "winner": null
+        },
+        {
+          "command": "W",
+          "actors": {
+            "robot_01": [
+              7,
+              3,
+              9
+            ],
+            "rock_01": [
+              10,
+              3,
+              4
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              7,
+              3,
+              10
+            ],
+            "rock_01": [
+              10,
+              3,
+              5
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              7,
+              3,
+              10
+            ],
+            "rock_01": [
+              10,
+              3,
+              6
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              11,
+              3,
+              6
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              11,
+              3,
+              7
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "N",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              11,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              12,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              13,
+              3,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              14,
+              5,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [
+            {
+              "kind": "bounce",
+              "id": "rock_01",
+              "surface": "lava_01",
+              "contact": [
+                14,
+                2,
+                8
+              ],
+              "apex": [
+                14,
+                5,
+                8
+              ]
+            }
+          ],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              15,
+              5,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": null
+        },
+        {
+          "command": "E",
+          "actors": {
+            "robot_01": [
+              8,
+              3,
+              10
+            ],
+            "rock_01": [
+              16,
+              5,
+              8
+            ]
+          },
+          "rules": {
+            "LAVA": [
+              "BOUNCY",
+              "HOT"
+            ],
+            "ROBOT": [
+              "MELT",
+              "YOU"
+            ],
+            "ROCK": [
+              "MELT",
+              "YOU"
+            ],
+            "WALL": [
+              "STOP"
+            ],
+            "FLAG": [
+              "WIN"
+            ]
+          },
+          "events": [],
+          "winner": [
+            "rock_01",
+            "goal"
+          ]
+        }
+      ]
+    }
+  ]
+}

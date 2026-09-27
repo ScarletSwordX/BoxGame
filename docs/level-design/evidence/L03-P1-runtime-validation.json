@@ -1,0 +1,26 @@
+{
+  "date": "2026-09-27",
+  "tool": "Unity execute_code / existing runtime",
+  "result": {
+    "id": "L3P1",
+    "canPlaytest": true,
+    "issues": "OK",
+    "won": true,
+    "reason": null,
+    "turns": 32,
+    "actor": "robot_01",
+    "goal": "goal",
+    "events": [
+      "Walk",
+      "Pushed",
+      "ActiveInteraction",
+      "RulesChanged",
+      "Won"
+    ],
+    "undoEveryStep": true,
+    "restartRestoresInitial": true
+  },
+  "scope": "Prototype smoke check only; not workflow stage 6 approval",
+  "file": "Assets/_RulePyramid/Content/LevelDrafts/L3P1.json",
+  "sha256": "ca148594a76c3faa580218a516894fb02a4e6aea416a8ae416a614711b1726cf"
+}

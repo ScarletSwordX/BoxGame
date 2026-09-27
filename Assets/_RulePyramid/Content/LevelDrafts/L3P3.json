@@ -1,0 +1,859 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "options": {
+    "actionMode": "MoveAutoPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "MultiYouIndependentBlocking_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.0,
+    "yawDegrees": [
+      45.0,
+      135.0,
+      225.0,
+      315.0
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true,
+    "slot": 0
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "id": "L3P3",
+  "title": "回到左室：两个主体共用一句",
+  "bounds": {
+    "id": "",
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 17,
+      "y": 5,
+      "z": 11
+    },
+    "appearance": "Stone"
+  },
+  "terrain": [
+    {
+      "id": "floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 17,
+        "y": 0,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_ledge",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 2,
+        "y": 2,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_ledge",
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 2,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "divider",
+      "min": {
+        "x": 9,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 9,
+        "y": 5,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "work_ledge",
+      "min": {
+        "x": 10,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 13,
+        "y": 2,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "goal_platform",
+      "min": {
+        "x": 15,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 17,
+        "y": 4,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "parking_north",
+      "min": {
+        "x": 4,
+        "y": 3,
+        "z": 11
+      },
+      "max": {
+        "x": 8,
+        "y": 3,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_0",
+      "min": {
+        "x": 5,
+        "y": 3,
+        "z": 6
+      },
+      "max": {
+        "x": 5,
+        "y": 3,
+        "z": 6
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_1",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 6
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 6
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_2",
+      "min": {
+        "x": 5,
+        "y": 3,
+        "z": 5
+      },
+      "max": {
+        "x": 5,
+        "y": 3,
+        "z": 5
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_3",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 5
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 5
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_4",
+      "min": {
+        "x": 5,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 5,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_5",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_6",
+      "min": {
+        "x": 6,
+        "y": 3,
+        "z": 3
+      },
+      "max": {
+        "x": 6,
+        "y": 3,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_7",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 7
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 7
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "control_guard_8",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 8
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_0",
+      "min": {
+        "x": 14,
+        "y": 1,
+        "z": 5
+      },
+      "max": {
+        "x": 14,
+        "y": 3,
+        "z": 5
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_1",
+      "min": {
+        "x": 13,
+        "y": 3,
+        "z": 6
+      },
+      "max": {
+        "x": 13,
+        "y": 3,
+        "z": 6
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_2",
+      "min": {
+        "x": 13,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 13,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_3",
+      "min": {
+        "x": 12,
+        "y": 3,
+        "z": 7
+      },
+      "max": {
+        "x": 12,
+        "y": 3,
+        "z": 7
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_4",
+      "min": {
+        "x": 12,
+        "y": 3,
+        "z": 3
+      },
+      "max": {
+        "x": 12,
+        "y": 3,
+        "z": 3
+      },
+      "appearance": "Stone"
+    }
+  ],
+  "entities": [
+    {
+      "id": "src_wall_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "WALL",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_wall_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_wall_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_flag_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_flag_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_flag_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_robot_melt_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_robot_melt_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_robot_melt_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "MELT",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_rock_melt_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_rock_melt_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_rock_melt_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "MELT",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "control_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "control_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "control_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "prefix_rock",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "prefix_and",
+      "kind": "Text",
+      "subject": "",
+      "token": "AND",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_hot_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "LAVA",
+      "cell": {
+        "x": 11,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_hot_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 12,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_hot_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "HOT",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "branch_lava",
+      "kind": "Text",
+      "subject": "",
+      "token": "LAVA",
+      "cell": {
+        "x": 12,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "branch_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 11,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock_01",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_01",
+      "kind": "Object",
+      "subject": "LAVA",
+      "token": "",
+      "cell": {
+        "x": 14,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 16,
+        "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_0",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 15,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_1",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 16,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_2",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 17,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_3",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 17,
+        "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 17,
+        "y": 5,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_5",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 16,
+        "y": 5,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_6",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 15,
+        "y": 5,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    }
+  ],
+  "tutorial": {
+    "objective": "",
+    "concept": "",
+    "observation": "",
+    "necessity": "",
+    "hints": [],
+    "risks": [],
+    "regions": []
+  },
+  "referenceSolutions": [
+    {
+      "id": "P3-A",
+      "name": "原地形双对象接力",
+      "family": "P3-A",
+      "commands": [
+        "E",
+        "N",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E",
+        "S",
+        "E",
+        "W",
+        "N",
+        "N",
+        "E",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "rock_01",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "RulesChanged",
+        "LandingBounce",
+        "ApexSteer"
+      ],
+      "forbidEvents": [],
+      "status": "UnityReplayPassed_SharedTerrain_v1",
+      "expectedFinalStatus": "Won",
+      "claim": "本版实际 Unity 回放获胜；每步撤销/重放与重开通过。不是唯一解证明或真人盲测。"
+    }
+  ],
+  "authoringDesign": {
+    "designCard": "docs/level-design/L03.md",
+    "stage": 3,
+    "status": "v0.6共同地形原型；Unity初态/参考解/逐步撤销/重开通过",
+    "readingDirection": "同高度 +X 或 -Z",
+    "runtimeCompatibility": "Supported_UnityReplayPassed",
+    "requiredMechanics": [
+      "LAVA",
+      "HOT_MELT_EntryDestruction",
+      "TopContactBounceBeforeEntry",
+      "MultipleYOU_IndependentBlocking"
+    ],
+    "schemaNote": "schemaVersion 9；新旧controlMode名称均使用多YOU独立受阻语义。",
+    "requiresNextCommandForNewYou": true,
+    "witnessEvidence": "docs/level-design/evidence/L03-layout-witness.json",
+    "runtimeEvidence": "docs/level-design/evidence/L03-inheritance-validation.json",
+    "layoutRevision": "L03-shared-terrain-v1",
+    "inheritance": {
+      "sharedLayout": "L03-shared-terrain-v1",
+      "anchors": [
+        "source_ledge",
+        "control_ledge",
+        "divider",
+        "work_ledge",
+        "goal_platform"
+      ],
+      "previousStage": "L3P2",
+      "changes": [
+        "Terrain完全不变；角色与世界词牌按阶段初态重布"
+      ]
+    }
+  }
+}

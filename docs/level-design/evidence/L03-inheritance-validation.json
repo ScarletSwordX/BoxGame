@@ -1,0 +1,108 @@
+{
+  "date": "2026-09-27",
+  "scope": "Actual Unity prototype replay and route-specific negative checks; not exhaustive solution or blind playtest validation",
+  "replay": [
+    {
+      "id": "L3P1",
+      "canPlaytest": true,
+      "issues": "OK",
+      "won": true,
+      "failedStep": 0,
+      "reason": null,
+      "turns": 32,
+      "undoEveryStep": true,
+      "restart": true,
+      "winner": "robot_01",
+      "goal": "goal"
+    },
+    {
+      "id": "L3P2",
+      "canPlaytest": true,
+      "issues": "OK",
+      "won": true,
+      "failedStep": 0,
+      "reason": null,
+      "turns": 16,
+      "undoEveryStep": true,
+      "restart": true,
+      "winner": "robot_01",
+      "goal": "goal"
+    },
+    {
+      "id": "L3P3",
+      "canPlaytest": true,
+      "issues": "OK",
+      "won": true,
+      "failedStep": 0,
+      "reason": null,
+      "turns": 20,
+      "undoEveryStep": true,
+      "restart": true,
+      "winner": "rock_01",
+      "goal": "goal"
+    }
+  ],
+  "negativeRoutes": [
+    {
+      "id": "L3P1",
+      "removedToken": "WIN",
+      "won": false,
+      "rejectedCommands": 0,
+      "phase": "Grounded"
+    },
+    {
+      "id": "L3P2",
+      "removedToken": "BOUNCY",
+      "won": false,
+      "rejectedCommands": 2,
+      "phase": "NoControl"
+    },
+    {
+      "id": "L3P3",
+      "removedToken": "AND",
+      "won": false,
+      "rejectedCommands": 9,
+      "phase": "Grounded"
+    }
+  ],
+  "continuousPlayMode": {
+    "job_id": "756e979321d842bb876609d49a49d357",
+    "status": "succeeded",
+    "mode": "PlayMode",
+    "started_unix_ms": 1790503187557,
+    "finished_unix_ms": 1790503189048,
+    "last_update_unix_ms": 1790503189048,
+    "progress": {
+      "completed": 1,
+      "total": 43,
+      "current_test_full_name": null,
+      "current_test_started_unix_ms": 1790503188696,
+      "last_finished_test_full_name": "RulePyramid.Tests.PlayMode.L03InheritanceFlowTests.ThreeDraftStagesAdvanceWithIndependentStateAndSharedFinalTerrain",
+      "last_finished_unix_ms": 1790503188974,
+      "stuck_suspected": false,
+      "editor_is_focused": false,
+      "blocked_reason": null,
+      "failures_so_far": [],
+      "failures_capped": false
+    },
+    "error": null,
+    "result": {
+      "mode": "PlayMode",
+      "summary": {
+        "total": 1,
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0,
+        "durationSeconds": 0.3263042,
+        "resultState": "Passed"
+      },
+      "results": []
+    }
+  },
+  "mapSha256": {
+    "L3P1": "cac94c71b64fb78799ced34bc1af3ab484d5c74419d8e8e67fb7bbcea119ba15",
+    "L3P2": "35fff4aedfc06e3c4be94d00c4448384a6eb029299998b7b072d5bf362a1d806",
+    "L3P3": "d8a31eb18e9d74f9a483da75f3ecd74aafcc0a4852509cf46be52cedbed11b63"
+  },
+  "continuousFlowScope": "Temporary three-stage LevelCatalog + actual GameBootstrap/WorldView, 0.15-second expansion, authored-state reset and same-stage restart; does not modify the production catalog."
+}

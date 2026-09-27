@@ -1,0 +1,173 @@
+{
+  "scope": "Terrain occupancy, not terrain-box IDs or object WALL counts; non-floor excludes Y=0.",
+  "maps": [
+    {
+      "id": "L3P1",
+      "sha256": "cac94c71b64fb78799ced34bc1af3ab484d5c74419d8e8e67fb7bbcea119ba15",
+      "terrainCells": 601,
+      "nonFloorCells": 385
+    },
+    {
+      "id": "L3P2",
+      "sha256": "35fff4aedfc06e3c4be94d00c4448384a6eb029299998b7b072d5bf362a1d806",
+      "terrainCells": 621,
+      "nonFloorCells": 405
+    },
+    {
+      "id": "L3P3",
+      "sha256": "d8a31eb18e9d74f9a483da75f3ecd74aafcc0a4852509cf46be52cedbed11b63",
+      "terrainCells": 621,
+      "nonFloorCells": 405
+    }
+  ],
+  "transitions": [
+    {
+      "from": "L3P1",
+      "to": "L3P2",
+      "retained": 599,
+      "previousTotal": 601,
+      "retentionPercent": 99.6672,
+      "retainedNonFloor": 383,
+      "previousNonFloor": 385,
+      "nonFloorRetentionPercent": 99.4805,
+      "addedCells": [
+        [
+          5,
+          3,
+          5
+        ],
+        [
+          7,
+          3,
+          4
+        ],
+        [
+          7,
+          3,
+          5
+        ],
+        [
+          9,
+          3,
+          2
+        ],
+        [
+          15,
+          3,
+          7
+        ],
+        [
+          15,
+          3,
+          8
+        ],
+        [
+          15,
+          3,
+          9
+        ],
+        [
+          15,
+          4,
+          7
+        ],
+        [
+          15,
+          4,
+          8
+        ],
+        [
+          15,
+          4,
+          9
+        ],
+        [
+          16,
+          3,
+          7
+        ],
+        [
+          16,
+          3,
+          8
+        ],
+        [
+          16,
+          3,
+          9
+        ],
+        [
+          16,
+          4,
+          7
+        ],
+        [
+          16,
+          4,
+          8
+        ],
+        [
+          16,
+          4,
+          9
+        ],
+        [
+          17,
+          3,
+          7
+        ],
+        [
+          17,
+          3,
+          8
+        ],
+        [
+          17,
+          3,
+          9
+        ],
+        [
+          17,
+          4,
+          7
+        ],
+        [
+          17,
+          4,
+          8
+        ],
+        [
+          17,
+          4,
+          9
+        ]
+      ],
+      "removedCells": [
+        [
+          14,
+          1,
+          8
+        ],
+        [
+          14,
+          2,
+          8
+        ]
+      ]
+    },
+    {
+      "from": "L3P2",
+      "to": "L3P3",
+      "retained": 621,
+      "previousTotal": 621,
+      "retentionPercent": 100.0,
+      "retainedNonFloor": 405,
+      "previousNonFloor": 405,
+      "nonFloorRetentionPercent": 100.0,
+      "addedCells": [],
+      "removedCells": []
+    }
+  ],
+  "p2p3IdenticalTerrain": true,
+  "p2p3SameLavaAndGoalCoordinates": true
+}
