@@ -14,7 +14,7 @@ namespace RulePyramid.Tests.PlayMode
     public class StagedCampaignRuntimeTests
     {
         [UnityTest]
-        public IEnumerator BothRealChaptersPlayAllSixStagesWithoutLeakingState()
+        public IEnumerator AllRealChaptersPlayEveryStageWithoutLeakingState()
         {
             var manifest = JsonUtility.FromJson<LevelCatalogManifest>(File.ReadAllText(
                 Path.Combine(Application.dataPath, "_RulePyramid/Content/Levels/catalog.json")));
@@ -34,10 +34,10 @@ namespace RulePyramid.Tests.PlayMode
             bootstrap.stageExpansionDuration = 0.02f;
             try
             {
-                Assert.AreEqual(2, catalog.Count, "正式游戏只包含两关分阶段地图");
+                Assert.AreEqual(3, catalog.Count, "正式游戏包含三关分阶段地图");
                 host.SetActive(true);
                 yield return null;
-                for (int chapter = 0; chapter < 2; chapter++)
+                for (int chapter = 0; chapter < catalog.Count; chapter++)
                 {
                     Assert.AreEqual(3, catalog.StageCount(chapter));
                     for (int stage = 0; stage < 3; stage++)
@@ -82,13 +82,13 @@ namespace RulePyramid.Tests.PlayMode
                         {
                             Assert.IsFalse(bootstrap.HasNextStage);
                             Assert.IsFalse(bootstrap.IsStageTransitioning);
-                            Assert.AreEqual(chapter == 0, bootstrap.HasNextLevel);
+                            Assert.AreEqual(chapter + 1 < catalog.Count, bootstrap.HasNextLevel);
                             if (chapter == 1) Assert.AreEqual("rock_01", bootstrap.Session.World.WinRecord.YouId);
                         }
                     }
                     bootstrap.NextLevel();
                 }
-                Assert.AreEqual("L2P3", bootstrap.Session.Level.id, "完成最后一关不循环回旧关卡");
+                Assert.AreEqual("L3P3", bootstrap.Session.Level.id, "完成最后一关不循环回旧关卡");
                 Assert.IsTrue(bootstrap.Session.Won);
             }
             finally

@@ -15,6 +15,7 @@ MonoBehaviour:
   levels:
   - {fileID: 4900000, guid: 890ac29cb092466f8a662d2e0184b299, type: 3}
   - {fileID: 4900000, guid: 932f9dbe1e61cc844b356b274e62f45f, type: 3}
+  - {fileID: 4900000, guid: 6a4b2a4cd1ccd7141be70e2c50107917, type: 3}
   stageSequences:
   - id: L01
     maps:
@@ -26,3 +27,8 @@ MonoBehaviour:
     - {fileID: 4900000, guid: 932f9dbe1e61cc844b356b274e62f45f, type: 3}
     - {fileID: 4900000, guid: 097f70b453ba2ad499438f4d4c5051ec, type: 3}
     - {fileID: 4900000, guid: 2056b92c32c4713489c9790e695b606d, type: 3}
+  - id: L03
+    maps:
+    - {fileID: 4900000, guid: 6a4b2a4cd1ccd7141be70e2c50107917, type: 3}
+    - {fileID: 4900000, guid: 820d825b094eb9e419866b8f47f35cdf, type: 3}
+    - {fileID: 4900000, guid: 7f4b5f2195ba4384fa13808d2fb4c720, type: 3}
