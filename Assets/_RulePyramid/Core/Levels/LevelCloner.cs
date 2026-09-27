@@ -23,7 +23,9 @@ namespace RulePyramid.Core
                 designContract = CloneDesignContract(source.designContract),
                 referenceSolutions = CloneSolutions(source.referenceSolutions),
                 referenceSolution = CloneSolution(source.referenceSolution),
-                tutorial = CloneTutorial(source.tutorial)
+                tutorial = CloneTutorial(source.tutorial),
+                stagePlan = CloneStagePlan(source.stagePlan),
+                authoringSourceJson = source.authoringSourceJson
             };
             return clone;
         }
@@ -42,7 +44,7 @@ namespace RulePyramid.Core
             return result;
         }
 
-        static EntityDefinition[] CloneEntities(EntityDefinition[] entities)
+        public static EntityDefinition[] CloneEntities(EntityDefinition[] entities)
         {
             if (entities == null) return Array.Empty<EntityDefinition>();
             var result = new EntityDefinition[entities.Length];
@@ -120,7 +122,7 @@ namespace RulePyramid.Core
             };
         }
 
-        static TutorialData CloneTutorial(TutorialData t)
+        public static TutorialData CloneTutorial(TutorialData t)
         {
             if (t == null) return null;
             return new TutorialData
@@ -130,8 +132,30 @@ namespace RulePyramid.Core
                 observation = t.observation,
                 necessity = t.necessity,
                 hints = t.hints == null ? Array.Empty<string>() : (string[])t.hints.Clone(),
-                risks = t.risks == null ? Array.Empty<string>() : (string[])t.risks.Clone()
+                risks = t.risks == null ? Array.Empty<string>() : (string[])t.risks.Clone(),
+                regions = CloneRegions(t.regions)
             };
+        }
+
+        static RegionTutorialData[] CloneRegions(RegionTutorialData[] regions)
+        {
+            if (regions == null) return Array.Empty<RegionTutorialData>();
+            var result = new RegionTutorialData[regions.Length];
+            for (int i = 0; i < regions.Length; i++)
+            {
+                var region = regions[i];
+                if (region == null) continue;
+                result[i] = new RegionTutorialData
+                {
+                    id = region.id,
+                    name = region.name,
+                    text = region.text,
+                    bounds = CloneBox(region.bounds),
+                    durationSeconds = region.durationSeconds,
+                    enabled = region.enabled
+                };
+            }
+            return result;
         }
 
         static ReferenceSolutionData CloneSolution(ReferenceSolutionData s)
@@ -153,13 +177,36 @@ namespace RulePyramid.Core
             };
         }
 
-        static ReferenceSolutionData[] CloneSolutions(ReferenceSolutionData[] solutions)
+        public static ReferenceSolutionData[] CloneSolutions(ReferenceSolutionData[] solutions)
         {
             if (solutions == null) return Array.Empty<ReferenceSolutionData>();
             var result = new ReferenceSolutionData[solutions.Length];
             for (int i = 0; i < solutions.Length; i++)
                 result[i] = CloneSolution(solutions[i]);
             return result;
+        }
+
+        public static StagePlanData CloneStagePlan(StagePlanData plan)
+        {
+            if (plan == null) return null;
+            var stages = plan.stages ?? Array.Empty<StageDefinition>();
+            var regions = plan.regions ?? Array.Empty<StageRegion>();
+            var copy = new StagePlanData { boundaryMode = plan.boundaryMode,
+                stages = new StageDefinition[stages.Length], regions = new StageRegion[regions.Length] };
+            for (int i = 0; i < stages.Length; i++)
+            {
+                var s = stages[i];
+                if (s == null) continue;
+                copy.stages[i] = new StageDefinition { id = s.id, name = s.name, lesson = s.lesson,
+                    entities = CloneEntities(s.entities), tutorial = CloneTutorial(s.tutorial),
+                    referenceSolutions = CloneSolutions(s.referenceSolutions) };
+            }
+            for (int i = 0; i < regions.Length; i++)
+            {
+                var r = regions[i];
+                if (r != null) copy.regions[i] = new StageRegion { id = r.id, stageId = r.stageId, bounds = CloneBox(r.bounds) };
+            }
+            return copy;
         }
 
         public static HashSet<GridCell> ExpandTerrain(IEnumerable<GridCellBox> boxes)
@@ -169,10 +216,12 @@ namespace RulePyramid.Core
             foreach (var box in boxes)
             {
                 if (box == null) continue;
-                for (int x = box.min.x; x <= box.max.x; x++)
-                for (int y = box.min.y; y <= box.max.y; y++)
-                for (int z = box.min.z; z <= box.max.z; z++)
-                    set.Add(new GridCell(x, y, z));
+                if (!MapResize.TryValidateBounds(box, out var error))
+                    throw new ArgumentException("地形盒无效：" + error);
+                for (long x = box.min.x; x <= box.max.x; x++)
+                for (long y = box.min.y; y <= box.max.y; y++)
+                for (long z = box.min.z; z <= box.max.z; z++)
+                    set.Add(new GridCell((int)x, (int)y, (int)z));
             }
             return set;
         }

@@ -130,7 +130,7 @@ namespace RulePyramid.Core
             queue.Enqueue((model.Snapshot(), new List<string>()));
             var seen = new HashSet<string> { model.Fingerprint() };
             int attempts = 0;
-            var commands = new[] { "E", "W", "N", "S", "PE", "PW", "PN", "PS", "J", "WAIT" };
+            var commands = new[] { "E", "W", "N", "S", "J", "WAIT" };
             while (queue.Count > 0)
             {
                 var (snap, path) = queue.Dequeue();

@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 
 namespace RulePyramid.Core
 {
@@ -8,6 +9,7 @@ namespace RulePyramid.Core
         public WorldModel World { get; private set; }
         public int TurnCount { get; private set; }
         public string LastRejectReason { get; private set; }
+        public IReadOnlyList<GridCell> LastControlledCells { get; private set; } = Array.Empty<GridCell>();
 
         public GameSession(LevelDefinition level)
         {
@@ -22,24 +24,32 @@ namespace RulePyramid.Core
         public bool TryExecute(string command)
         {
             LastRejectReason = null;
-            if (World.WonLatched && command != null && command != "WAIT" && command != "CAM+" && command != "CAM-")
+            LastControlledCells = Array.Empty<GridCell>();
+            if (World.WonLatched && command != null && command != "WAIT")
             {
                 LastRejectReason = "Already won";
                 return false;
             }
-            bool ok = World.TryCommand(command, out var message);
+            var visited = new List<GridCell>();
+            void Record(GridCell cell) => visited.Add(cell);
+            World.ControlledCellVisited += Record;
+            bool ok;
+            string message;
+            try { ok = World.TryCommand(command, out message); }
+            finally { World.ControlledCellVisited -= Record; }
             if (!ok)
             {
                 LastRejectReason = message ?? World.LastRejection ?? "Rejected";
                 return false;
             }
-            if (command != "CAM+" && command != "CAM-")
-                TurnCount++;
+            TurnCount++;
+            LastControlledCells = visited.ToArray();
             return true;
         }
 
         public bool Undo()
         {
+            LastControlledCells = Array.Empty<GridCell>();
             if (!World.Undo()) return false;
             if (TurnCount > 0) TurnCount--;
             LastRejectReason = null;
@@ -48,6 +58,7 @@ namespace RulePyramid.Core
 
         public void Restart()
         {
+            LastControlledCells = Array.Empty<GridCell>();
             World = WorldModel.FromLevel(Level);
             TurnCount = 0;
             LastRejectReason = null;

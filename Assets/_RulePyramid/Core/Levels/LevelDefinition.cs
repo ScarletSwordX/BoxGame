@@ -21,11 +21,40 @@ namespace RulePyramid.Core
         /// <summary>旧单数字段；Normalize 时可迁入 referenceSolutions。</summary>
         public ReferenceSolutionData referenceSolution;
         public TutorialData tutorial;
+        public StagePlanData stagePlan;
+        [NonSerialized] public string authoringSourceJson;
 
         public LevelDefinition Clone()
         {
             return LevelCloner.Clone(this);
         }
+    }
+
+    [Serializable]
+    public class StagePlanData
+    {
+        public string boundaryMode;
+        public StageDefinition[] stages;
+        public StageRegion[] regions;
+    }
+
+    [Serializable]
+    public class StageDefinition
+    {
+        public string id;
+        public string name;
+        public string lesson;
+        public EntityDefinition[] entities;
+        public TutorialData tutorial;
+        public ReferenceSolutionData[] referenceSolutions;
+    }
+
+    [Serializable]
+    public class StageRegion
+    {
+        public string id;
+        public string stageId;
+        public GridCellBox bounds;
     }
 
     [Serializable]
@@ -102,6 +131,18 @@ namespace RulePyramid.Core
         public string necessity;
         public string[] hints;
         public string[] risks;
+        public RegionTutorialData[] regions;
+    }
+
+    [Serializable]
+    public class RegionTutorialData
+    {
+        public string id;
+        public string name;
+        public string text;
+        public GridCellBox bounds;
+        public float durationSeconds;
+        public bool enabled;
     }
 
     [Serializable]

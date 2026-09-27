@@ -9,7 +9,7 @@ namespace RulePyramid.Core
 
         public static readonly HashSet<string> Subjects = new HashSet<string>
         {
-            "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG"
+            "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL"
         };
 
         public static readonly HashSet<string> Props = new HashSet<string>
@@ -27,6 +27,7 @@ namespace RulePyramid.Core
             "E", "W", "N", "S", "PE", "PW", "PN", "PS", "J", "WAIT"
         };
 
+        // 旧参考解的兼容别名；实际执行和新录制统一为方向命令。
         public static readonly HashSet<string> PushCommands = new HashSet<string>
         {
             "PE", "PW", "PN", "PS"
@@ -39,6 +40,9 @@ namespace RulePyramid.Core
 
         /// <summary>兼容旧名；等同 Commands。</summary>
         public static readonly HashSet<string> SupportedCommands = Commands;
+
+        public static string NormalizeCommand(string command) =>
+            command != null && PushCommands.Contains(command) ? command.Substring(1) : command;
 
         public static bool IsSubject(string token) => !string.IsNullOrEmpty(token) && Subjects.Contains(token);
         public static bool IsProp(string token) => !string.IsNullOrEmpty(token) && Props.Contains(token);

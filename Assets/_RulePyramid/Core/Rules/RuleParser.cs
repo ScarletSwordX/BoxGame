@@ -84,7 +84,8 @@ namespace RulePyramid.Core
             foreach (var kv in tokens)
             {
                 if (!Tokens.IsSubject(kv.Value)) continue;
-                foreach (var axis in new[] { GridCell.East, GridCell.North })
+                // 俯视图中 +Z 朝上；句子只从左向右或从上向下读取。
+                foreach (var axis in new[] { GridCell.East, GridCell.South })
                 {
                     var ts = new List<string>();
                     var q = kv.Key;

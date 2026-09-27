@@ -38,11 +38,9 @@ namespace RulePyramid.Core
     public enum CommandKind
     {
         Move,
-        PushMove,
         JumpInPlace,
         ResumeBounceDescent,
-        Wait,
-        Camera
+        Wait
     }
 
     public sealed class SimCommand
@@ -50,7 +48,6 @@ namespace RulePyramid.Core
         public CommandKind Kind;
         public WorldDirection Direction;
         public string Raw;
-        public bool IsPush;
 
         public static bool TryParse(string token, out SimCommand command, out string error)
         {
@@ -68,26 +65,10 @@ namespace RulePyramid.Core
             }
             if (token == "CAM+" || token == "CAM-")
             {
-                command = new SimCommand { Kind = CommandKind.Camera, Raw = token };
-                return true;
+                error = "Player camera is fixed";
+                return false;
             }
-            if (Tokens.PushCommands.Contains(token))
-            {
-                var dirToken = token.Substring(1);
-                if (!WorldDirections.TryParse(dirToken, out var pushDir))
-                {
-                    error = "Unknown command: " + token;
-                    return false;
-                }
-                command = new SimCommand
-                {
-                    Kind = CommandKind.PushMove,
-                    Direction = pushDir,
-                    Raw = token,
-                    IsPush = true
-                };
-                return true;
-            }
+            token = Tokens.NormalizeCommand(token);
             if (WorldDirections.TryParse(token, out var dir))
             {
                 command = new SimCommand { Kind = CommandKind.Move, Direction = dir, Raw = token };

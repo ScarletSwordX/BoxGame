@@ -11,6 +11,7 @@ namespace RulePyramid.Core
         public List<EntityState> Entities = new List<EntityState>();
         public HashSet<GridCell> Terrain = new HashSet<GridCell>();
         public RuleSet Rules = new RuleSet();
+        public List<PropertyRuleSource> PropertySources = new List<PropertyRuleSource>();
         public Dictionary<string, string> Transforms = new Dictionary<string, string>();
         public List<TransformSource> TransformSources = new List<TransformSource>();
         public Dictionary<string, BounceApexState> Apex = new Dictionary<string, BounceApexState>();
@@ -21,8 +22,9 @@ namespace RulePyramid.Core
         public WinRecord WinRecord;
         public readonly List<SimEvent> Log = new List<SimEvent>();
         public readonly List<WorldSnapshot> History = new List<WorldSnapshot>();
+        /// <summary>Fired after each valid atomic rule resolution with the current YOU cell.</summary>
+        public event Action<GridCell> ControlledCellVisited;
         public int BounceRiseCells = 3;
-        public int CameraSlot;
         public string LastRejection;
 
         public MotionPhase Phase
@@ -64,8 +66,6 @@ namespace RulePyramid.Core
             if (world.Spec.options != null && world.Spec.options.bounceRiseCells > 0)
                 world.BounceRiseCells = world.Spec.options.bounceRiseCells;
             world.Terrain = LevelCloner.ExpandTerrain(world.Spec.terrain);
-            if (world.Spec.camera != null)
-                world.CameraSlot = world.Spec.camera.initialSlot;
             if (world.Spec.entities != null)
             {
                 var ids = new HashSet<string>();
@@ -110,8 +110,7 @@ namespace RulePyramid.Core
                 BounceRiseCells = BounceRiseCells,
                 Terrain = Terrain,
                 WonLatched = WonLatched,
-                WinRecord = WinRecord == null ? null : WinRecord.Clone(),
-                CameraSlot = CameraSlot
+                WinRecord = WinRecord == null ? null : WinRecord.Clone()
             };
             foreach (var e in Entities) clone.Entities.Add(e.Clone());
             foreach (var kv in Apex) clone.Apex[kv.Key] = kv.Value.Clone();
@@ -156,6 +155,7 @@ namespace RulePyramid.Core
             var targets = new Dictionary<string, HashSet<string>>();
             foreach (var s in Tokens.Subjects) targets[s] = new HashSet<string>();
             var sources = new List<TransformSource>();
+            var propertySources = new List<PropertyRuleSource>();
 
             void Parse(IList<string> ts, object source)
             {
@@ -197,7 +197,10 @@ namespace RulePyramid.Core
                 }
                 foreach (var subject in subjects)
                 foreach (var property in properties)
+                {
                     rules[subject].Add(property);
+                    propertySources.Add(new PropertyRuleSource { Subject = subject, Property = property, TextIds = new List<string>((IEnumerable<string>)source).ToArray() });
+                }
             }
 
             if (Spec?.fixedRules != null && Spec.fixedRules.Length > 0)
@@ -222,7 +225,8 @@ namespace RulePyramid.Core
             {
                 var word = textAt[pos];
                 if (!Tokens.IsSubject(word.Token)) continue;
-                foreach (var d in new[] { GridCell.East, GridCell.North })
+                // 俯视图中 +Z 朝上；名词须位于 IS 的左侧或上侧。
+                foreach (var d in new[] { GridCell.East, GridCell.South })
                 {
                     var ts = new List<string>();
                     var ids = new List<string>();
@@ -263,6 +267,7 @@ namespace RulePyramid.Core
                 foreach (var t in kv.Value) { Transforms[kv.Key] = t; break; }
             }
             TransformSources = sources;
+            PropertySources = propertySources;
         }
 
         string RuleSignature()
@@ -331,6 +336,8 @@ namespace RulePyramid.Core
                     NewId = newActor
                 });
             }
+            if (newActor != null)
+                ControlledCellVisited?.Invoke(Entity(newActor).Cell);
             CheckWin(reason);
         }
 
@@ -730,12 +737,14 @@ namespace RulePyramid.Core
 
         public bool TryCommand(string cmd, out string message)
         {
+            cmd = Tokens.NormalizeCommand(cmd);
             message = null;
             LastRejection = null;
             if (cmd == "CAM+" || cmd == "CAM-")
             {
-                CameraSlot = (CameraSlot + (cmd == "CAM+" ? 1 : -1) + 4) % 4;
-                return true;
+                message = "Player camera is fixed";
+                LastRejection = message;
+                return false;
             }
             if (Tokens.LegacyJumps.Contains(cmd))
             {
@@ -813,43 +822,29 @@ namespace RulePyramid.Core
                         success = true;
                     }
                 }
-                else if (Tokens.PushCommands.Contains(cmd) || WorldDirections.TryParse(cmd, out _))
+                else if (WorldDirections.TryParse(cmd, out var walkDir))
                 {
-                    bool pushing = Tokens.PushCommands.Contains(cmd);
-                    string dirToken = pushing ? cmd.Substring(1) : cmd;
-                    WorldDirections.TryParse(dirToken, out var walkDir);
                     var d = WorldDirections.ToOffset(walkDir);
                     var dest = player.Cell.Add(d);
                     var hit = Occupant(dest, null, player);
                     if (hit.IsEmpty)
                     {
-                        Shift(player, d, pushing ? "PushModeWalk" : "Walk");
+                        Shift(player, d, "Walk");
                         success = true;
                     }
-                    else if (pushing)
+                    else if (hit.IsEntity)
                     {
-                        if (hit.IsEntity)
+                        var chain = PlanPush(hit.Entity, d);
+                        if (chain != null)
                         {
-                            var chain = PlanPush(hit.Entity, d);
-                            if (chain != null)
-                            {
-                                var moves = new List<(EntityState, GridCell)>();
-                                foreach (var e in chain) moves.Add((e, e.Cell.Add(d)));
-                                moves.Add((player, dest));
-                                Commit(moves, "Pushed");
-                                success = true;
-                            }
+                            var moves = new List<(EntityState, GridCell)>();
+                            foreach (var e in chain) moves.Add((e, e.Cell.Add(d)));
+                            moves.Add((player, dest));
+                            Commit(moves, "Pushed");
+                            success = true;
                         }
                     }
-                    else if (Free(player.Cell.Add(GridCell.Up), new HashSet<string> { actorId }, player)
-                             && Free(dest.Add(GridCell.Up), new HashSet<string> { actorId }, player))
-                    {
-                        Commit(new List<(EntityState, GridCell)>
-                        {
-                            (player, dest.Add(GridCell.Up))
-                        }, "Climbed");
-                        success = true;
-                    }
+                    // 方向输入统一尝试平移或推动；不可推、推链堵塞时失败，绝不自动登攀。
                 }
 
                 if (!success)
