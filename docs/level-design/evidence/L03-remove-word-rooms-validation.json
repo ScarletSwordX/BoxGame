@@ -1,0 +1,54 @@
+{
+  "scope": "Word rooms removed; actual Unity initial state, old route diagnostics, undo/restart and inheritance preflight. No transformation implementation or gameplay completion claimed.",
+  "maps": [
+    {
+      "id": "L3P2",
+      "sha256": "4e7e0b22cba795b09c5956f33f91457f03409acfc3eb45e1e55a637906a44b06",
+      "initial": "OK",
+      "won": false,
+      "blocked": "15 E Rejected",
+      "stoppedAt": [
+        {
+          "Id": "robot_01",
+          "Cell": {
+            "x": 14,
+            "y": 5,
+            "z": 8
+          }
+        }
+      ],
+      "undoBeforeBlock": true,
+      "restart": true,
+      "cascadeSame": true
+    },
+    {
+      "id": "L3P3",
+      "sha256": "5b0b45bc58080f586a89e50b8c9daa3410fe6f02c852114d68c186949735d493",
+      "initial": "OK",
+      "won": false,
+      "blocked": "19 E Rejected",
+      "stoppedAt": [
+        {
+          "Id": "robot_01",
+          "Cell": {
+            "x": 8,
+            "y": 3,
+            "z": 10
+          }
+        },
+        {
+          "Id": "rock_01",
+          "Cell": {
+            "x": 14,
+            "y": 5,
+            "z": 8
+          }
+        }
+      ],
+      "undoBeforeBlock": true,
+      "restart": true,
+      "cascadeSame": true
+    }
+  ],
+  "warnings": []
+}

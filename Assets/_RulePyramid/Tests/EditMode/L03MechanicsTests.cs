@@ -60,6 +60,39 @@ namespace RulePyramid.Tests.EditMode
             Assert.IsTrue(world.TryCommand(command, out var reason), command + ": " + reason);
         }
 
+        [Test]
+        public void FormingSelfWinWinsImmediatelyAndUndoRestoresRuleAndControl()
+        {
+            var level = Level(new[] { Object("robot", "ROBOT", C(2, 1, 3)), Word("loose_win", "WIN", C(2, 1, 2)) },
+                "ROBOT IS YOU", "ROBOT IS");
+            var session = new GameSession(level);
+            var initial = session.World.Fingerprint();
+            Assert.IsFalse(session.Won);
+            Assert.IsTrue(session.TryExecute("S"));
+            Assert.IsTrue(session.Won);
+            Assert.AreEqual("robot", session.World.WinRecord.YouId);
+            Assert.AreEqual("robot", session.World.WinRecord.WinId);
+            session.Undo();
+            Assert.AreEqual(initial, session.World.Fingerprint());
+            Assert.IsTrue(session.TryExecute("S"));
+            Assert.IsTrue(session.Won);
+            session.Restart();
+            Assert.AreEqual(initial, session.World.Fingerprint());
+        }
+
+        [Test]
+        public void InitialSelfWinIsDetectedForBothOptionLabels()
+        {
+            var level = Level(new[] { Object("robot", "ROBOT", C(5)) }, "ROBOT IS YOU", "ROBOT IS WIN");
+            foreach (var label in new[] { "DistinctEntitiesSameCell", "YouAndWinSameCell" })
+            {
+                level.options.winMode = label;
+                var world = WorldModel.FromLevel(level);
+                Assert.IsTrue(world.WonLatched, label);
+                Assert.AreEqual(world.WinRecord.YouId, world.WinRecord.WinId);
+            }
+        }
+
         [TestCase(false, true)]
         [TestCase(true, false)]
         public void SideEntryNeedsBothHotAndMelt(bool melt, bool survives)
@@ -254,6 +287,99 @@ namespace RulePyramid.Tests.EditMode
             Assert.AreEqual(2, world.Actors().Count);
             Move(world, "E");
             Assert.AreEqual(C(10), world.Entity("rock").Cell);
+        }
+
+        static LevelDefinition RuleDesignDraft(int stage) => LevelJsonSerializer.FromJson(File.ReadAllText(
+            Path.Combine(Application.dataPath, "_RulePyramid/Content/LevelDrafts/L3P" + stage + ".json")));
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void RuleDesignCannotWinBeforeRequiredRule(int stage)
+        {
+            var initial = WorldModel.FromLevel(RuleDesignDraft(stage));
+            var pending = new Queue<WorldModel>();
+            var seen = new HashSet<string> { initial.Fingerprint() };
+            pending.Enqueue(initial);
+            int targetTransitions = 0;
+            while (pending.Count > 0)
+            {
+                Assert.Less(seen.Count, 20000, "搜索必须穷尽；超出预算不能当作无绕解证明");
+                var current = pending.Dequeue();
+                foreach (string command in new[] { "N", "E", "S", "W", "J", "WAIT" })
+                {
+                    var next = current.CloneLive();
+                    if (!next.TryCommand(command, out _)) continue;
+                    bool learned = stage == 1
+                        ? next.Rules.Has("ROBOT", "YOU") && next.Rules.Has("ROBOT", "WIN")
+                        : stage == 2 ? next.Rules.Has("LAVA", "HOT") && next.Rules.Has("LAVA", "BOUNCY")
+                        : next.Entities.Count(e => e.Kind == EntityKind.Object && e.Id.StartsWith("wall_") && e.Subject == "ROBOT") == 8;
+                    if (learned) { targetTransitions++; continue; }
+                    Assert.IsFalse(next.WonLatched, "存在未使用目标规则的胜利路径");
+                    if (next.Phase != MotionPhase.NoControl && seen.Add(next.Fingerprint())) pending.Enqueue(next);
+                }
+            }
+            Assert.Greater(targetTransitions, 0, "目标规则必须可达");
+        }
+
+        [TestCase(1)]
+        [TestCase(2)]
+        [TestCase(3)]
+        public void RuleDesignReplayUndoRestartAndRuleSources(int stage)
+        {
+            var level = RuleDesignDraft(stage);
+            Assert.AreEqual("OK", LevelValidator.ValidateForPlaytest(level).ToString());
+            var session = new GameSession(level);
+            string initial = session.World.Fingerprint();
+            var fingerprints = new List<string> { initial };
+            foreach (var command in level.referenceSolutions[0].commands)
+            {
+                Assert.IsTrue(session.TryExecute(command), session.LastRejectReason);
+                fingerprints.Add(session.World.Fingerprint());
+            }
+            Assert.IsTrue(session.Won);
+            if (stage < 3)
+            {
+                string subject = stage == 1 ? "ROBOT" : "LAVA";
+                string first = stage == 1 ? "YOU" : "HOT";
+                string second = stage == 1 ? "WIN" : "BOUNCY";
+                var left = session.World.PropertySources.Single(s => s.Subject == subject && s.Property == first);
+                var right = session.World.PropertySources.Single(s => s.Subject == subject && s.Property == second);
+                CollectionAssert.AreEquivalent(new[] { stage == 1 ? "control_robot" : "lava_hot_1" }, left.TextIds.Intersect(right.TextIds));
+            }
+            for (int step = fingerprints.Count - 2; step >= 0; step--)
+            {
+                Assert.IsTrue(session.Undo());
+                Assert.AreEqual(fingerprints[step], session.World.Fingerprint());
+            }
+            Assert.IsFalse(session.Undo());
+            foreach (var command in level.referenceSolutions[0].commands) Assert.IsTrue(session.TryExecute(command));
+            session.Restart();
+            Assert.AreEqual(initial, session.World.Fingerprint());
+        }
+
+        [Test]
+        public void WholeWallRingTransformsInPlaceAndAllNineBodiesAreYou()
+        {
+            var session = new GameSession(RuleDesignDraft(3));
+            var walls = session.World.Entities.Where(e => e.Subject == "WALL" && e.Kind == EntityKind.Object)
+                .ToDictionary(e => e.Id, e => e.Cell);
+            Assert.AreEqual(8, walls.Count);
+            Assert.IsTrue(session.TryExecute("N"));
+            Assert.IsFalse(session.Won, "转换当步新角色保持原位，下一次输入才移动");
+            Assert.AreEqual(9, session.World.Actors().Count);
+            foreach (var pair in walls)
+            {
+                var converted = session.World.Entity(pair.Key);
+                Assert.AreEqual("ROBOT", converted.Subject);
+                Assert.AreEqual(pair.Value, converted.Cell);
+                Assert.IsTrue(session.World.Actors().Any(e => e.Id == pair.Key));
+                Assert.IsFalse(session.World.Rules.Has(converted.Subject, "STOP"));
+            }
+            Assert.IsTrue(session.TryExecute("S"));
+            Assert.IsTrue(session.Won);
+            Assert.IsTrue(walls.ContainsKey(session.World.WinRecord.YouId));
+            Assert.AreEqual("goal", session.World.WinRecord.WinId);
         }
 
         [TestCase("L1P1")]

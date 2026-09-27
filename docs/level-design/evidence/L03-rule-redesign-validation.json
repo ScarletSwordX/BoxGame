@@ -1,0 +1,582 @@
+{
+  "date": "2026-09-27",
+  "revision": "L03-rule-changes-v1",
+  "engine": "Unity 2022.3.51f1",
+  "maps": [
+    {
+      "file": "Assets/_RulePyramid/Content/LevelDrafts/L3P1.json",
+      "sha256": "06cdc77329b8b6aa9970eb6e293f085accc71289490baafb36180645bda0ef0c"
+    },
+    {
+      "file": "Assets/_RulePyramid/Content/LevelDrafts/L3P2.json",
+      "sha256": "243ceec7c8b230d3d77a1fc2f9c4574d08e997cd3ab6b21e1d0b1b5a14f05e38"
+    },
+    {
+      "file": "Assets/_RulePyramid/Content/LevelDrafts/L3P3.json",
+      "sha256": "dc9eabd729c3148530a575212e0431d991754b015c08adfa40e9a25a4abbce0a"
+    }
+  ],
+  "replays": [
+    {
+      "stage": 1,
+      "validation": "OK",
+      "commands": [
+        "E",
+        "W",
+        "S",
+        "E"
+      ],
+      "won": true,
+      "win": {
+        "YouId": "robot_01",
+        "WinId": "robot_01",
+        "Cell": {
+          "x": 5,
+          "y": 3,
+          "z": 4
+        },
+        "Cause": "AfterManualPhase"
+      },
+      "undo": true,
+      "restart": true,
+      "trace": [
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 5,
+            "y": 3,
+            "z": 5
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction"
+          ]
+        },
+        {
+          "command": "W",
+          "actors": 1,
+          "robot": {
+            "x": 4,
+            "y": 3,
+            "z": 5
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "S",
+          "actors": 1,
+          "robot": {
+            "x": 4,
+            "y": 3,
+            "z": 4
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 5,
+            "y": 3,
+            "z": 4
+          },
+          "won": true,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged",
+            "Won"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 2,
+      "validation": "OK",
+      "commands": [
+        "E",
+        "W",
+        "N",
+        "N",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E",
+        "S",
+        "E",
+        "S",
+        "W",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E"
+      ],
+      "won": true,
+      "win": {
+        "YouId": "robot_01",
+        "WinId": "goal",
+        "Cell": {
+          "x": 16,
+          "y": 5,
+          "z": 8
+        },
+        "Cause": "AfterManualPhase"
+      },
+      "undo": true,
+      "restart": true,
+      "trace": [
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 11,
+            "y": 3,
+            "z": 4
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction"
+          ]
+        },
+        {
+          "command": "W",
+          "actors": 1,
+          "robot": {
+            "x": 10,
+            "y": 3,
+            "z": 4
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "N",
+          "actors": 1,
+          "robot": {
+            "x": 10,
+            "y": 3,
+            "z": 5
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "N",
+          "actors": 1,
+          "robot": {
+            "x": 10,
+            "y": 3,
+            "z": 6
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "N",
+          "actors": 1,
+          "robot": {
+            "x": 10,
+            "y": 3,
+            "z": 7
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "N",
+          "actors": 1,
+          "robot": {
+            "x": 10,
+            "y": 3,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 11,
+            "y": 3,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 12,
+            "y": 3,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 13,
+            "y": 3,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "S",
+          "actors": 1,
+          "robot": {
+            "x": 13,
+            "y": 3,
+            "z": 7
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 14,
+            "y": 3,
+            "z": 7
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "S",
+          "actors": 1,
+          "robot": {
+            "x": 14,
+            "y": 3,
+            "z": 6
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk"
+          ]
+        },
+        {
+          "command": "W",
+          "actors": 1,
+          "robot": {
+            "x": 13,
+            "y": 3,
+            "z": 6
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged"
+          ]
+        },
+        {
+          "command": "N",
+          "actors": 1,
+          "robot": {
+            "x": 13,
+            "y": 3,
+            "z": 7
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged"
+          ]
+        },
+        {
+          "command": "N",
+          "actors": 1,
+          "robot": {
+            "x": 13,
+            "y": 3,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 14,
+            "y": 5,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged",
+            "PlayerFell",
+            "BounceStarted",
+            "BounceStep",
+            "LandingBounce",
+            "BounceApexReached"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 15,
+            "y": 5,
+            "z": 8
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged",
+            "PlayerFell",
+            "BounceStarted",
+            "BounceStep",
+            "LandingBounce",
+            "BounceApexReached",
+            "ApexSteer"
+          ]
+        },
+        {
+          "command": "E",
+          "actors": 1,
+          "robot": {
+            "x": 16,
+            "y": 5,
+            "z": 8
+          },
+          "won": true,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "Walk",
+            "RulesChanged",
+            "PlayerFell",
+            "BounceStarted",
+            "BounceStep",
+            "LandingBounce",
+            "BounceApexReached",
+            "ApexSteer",
+            "Won"
+          ]
+        }
+      ]
+    },
+    {
+      "stage": 3,
+      "validation": "OK",
+      "commands": [
+        "N",
+        "S"
+      ],
+      "won": true,
+      "win": {
+        "YouId": "wall_5",
+        "WinId": "goal",
+        "Cell": {
+          "x": 16,
+          "y": 5,
+          "z": 8
+        },
+        "Cause": "AfterManualPhase"
+      },
+      "undo": true,
+      "restart": true,
+      "trace": [
+        {
+          "command": "N",
+          "actors": 9,
+          "robot": {
+            "x": 8,
+            "y": 3,
+            "z": 5
+          },
+          "won": false,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "RulesChanged",
+            "Transformed"
+          ]
+        },
+        {
+          "command": "S",
+          "actors": 9,
+          "robot": {
+            "x": 8,
+            "y": 3,
+            "z": 4
+          },
+          "won": true,
+          "events": [
+            "Pushed",
+            "ActiveInteraction",
+            "RulesChanged",
+            "Transformed",
+            "Walk",
+            "Won"
+          ]
+        }
+      ]
+    }
+  ],
+  "inheritance": {
+    "warnings": [],
+    "checks": [
+      {
+        "stage": 1,
+        "unchanged": true
+      },
+      {
+        "stage": 2,
+        "unchanged": true
+      },
+      {
+        "stage": 3,
+        "unchanged": true
+      }
+    ]
+  },
+  "necessitySearch": {
+    "method": "真实 WorldModel.CloneLive/TryCommand 广度优先搜索 N/E/S/W/J/WAIT；到达目标规则即截断该分支，穷尽所有尚未使用目标规则的可达状态；NoControl 为仅撤销/重开可恢复的终态，Undo/Restart 不增加新的可达状态。",
+    "targetRules": [
+      "ROBOT IS YOU 与 ROBOT IS WIN 同时成立",
+      "LAVA IS HOT 与 LAVA IS BOUNCY 同时成立",
+      "八个原 WALL 实体全部变为 ROBOT"
+    ],
+    "results": [
+      {
+        "i": 1,
+        "examined": 125,
+        "discovered": 125,
+        "pending": 0,
+        "targets": 2,
+        "bypass": null,
+        "exhausted": true,
+        "milliseconds": 402
+      },
+      {
+        "i": 2,
+        "examined": 182,
+        "discovered": 182,
+        "pending": 0,
+        "targets": 2,
+        "bypass": null,
+        "exhausted": true,
+        "milliseconds": 818
+      },
+      {
+        "i": 3,
+        "examined": 44,
+        "discovered": 44,
+        "pending": 0,
+        "targets": 1,
+        "bypass": null,
+        "exhausted": true,
+        "milliseconds": 192
+      }
+    ],
+    "regression": "Assets/_RulePyramid/Tests/EditMode/L03MechanicsTests.cs: RuleDesignCannotWinBeforeRequiredRule"
+  },
+  "tests": [
+    {
+      "job": "901cc9c21f7b43358a7332db5a627aa9",
+      "mode": "EditMode",
+      "passed": 24,
+      "failed": 0,
+      "scope": "规则必要性、实际回放/词牌来源/撤销/重开、整圈八墙/九 YOU、全局自身胜利兼容、控制转移、DEFEAT"
+    },
+    {
+      "job": "1ed1a04447ab4c7dbd197efc09c024c0",
+      "mode": "PlayMode",
+      "passed": 2,
+      "failed": 0,
+      "scope": "L3 三阶段独立初态与连续切换"
+    },
+    {
+      "job": "48b725f2a86040bd9cf6b4ca2bd25110",
+      "mode": "EditMode",
+      "passed": 5,
+      "failed": 0,
+      "scope": "正式目录及 L2→L3 跳转、HOT/BOUNCY 与先销毁后获胜"
+    }
+  ],
+  "limitations": [
+    "未执行真人盲测、固定视角人工验收或发布构建。",
+    "扩展旧参考路线检查中 L1P3 第40步 S NoControl、L2P2 第20步 E Rejected、L2P3 第10步 E Rejected；这些关卡本轮未改动。初轮测试读取旧 L3 文件的失败已被本轮实际文件回放测试覆盖。",
+    "必要性证明限定当前地图、规则引擎及有效玩家命令；不证明唯一路线或教学理解。"
+  ]
+}

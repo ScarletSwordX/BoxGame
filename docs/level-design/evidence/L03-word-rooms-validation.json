@@ -1,0 +1,5653 @@
+{
+  "tool": "Unity execute_code: actual GameSession / ReplayRunner / LevelValidator",
+  "date": "2026-09-27",
+  "scope": "P2/P3 initial state, replay, per-step undo and restart; negative tests cover authored routes only",
+  "results": [
+    {
+      "id": "L3P2",
+      "sha256": "65a59ff8fd0dc9623aab2c58a6f602400618043714e3fa5415e70f1c22c1d731",
+      "validation": "OK",
+      "replay": {
+        "SolutionId": "P2-A",
+        "Won": true,
+        "FailReason": null,
+        "ActorIdAtWin": "robot_01",
+        "WinId": "goal",
+        "EventKinds": [
+          "Walk",
+          "Pushed",
+          "ActiveInteraction",
+          "RulesChanged",
+          "PlayerFell",
+          "BounceStarted",
+          "BounceStep",
+          "LandingBounce",
+          "BounceApexReached",
+          "ApexSteer",
+          "Won"
+        ],
+        "Turns": 64
+      },
+      "perStepUndoReplay": true,
+      "restart": true,
+      "hotAndBouncy": true,
+      "survivingYou": 1,
+      "melted": false,
+      "negativeReferenceTests": [
+        {
+          "removed": "BOUNCY",
+          "referenceWon": false
+        }
+      ],
+      "trace": [
+        {
+          "turn": 1,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 2,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 3,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 4,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 5,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 6,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 7,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 8,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 9,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 10,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 11,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 12,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 13,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 14,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 15,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 16,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 17,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 18,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 19,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 20,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 21,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 22,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 23,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 24,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 25,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 26,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 27,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 28,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 29,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ]
+        },
+        {
+          "turn": 30,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 31,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 32,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 33,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 34,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 35,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 36,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 37,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 38,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 39,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 40,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 41,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 42,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 43,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 44,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 45,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 46,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 2
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 47,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 3
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 48,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 49,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 50,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ]
+        },
+        {
+          "turn": 51,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ]
+        },
+        {
+          "turn": 52,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ]
+        },
+        {
+          "turn": 53,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 54,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 9,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 55,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 9,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 56,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 57,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 58,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 59,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 60,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 61,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 62,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 14,
+                "y": 5,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 63,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 15,
+                "y": 5,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 64,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 16,
+                "y": 5,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "L3P3",
+      "sha256": "35fca218007244c974c86729e30e8b8abeda4fb73188935b3a3f3d9cc9bf7c89",
+      "validation": "OK",
+      "replay": {
+        "SolutionId": "P3-A",
+        "Won": true,
+        "FailReason": null,
+        "ActorIdAtWin": "rock_01",
+        "WinId": "goal",
+        "EventKinds": [
+          "Walk",
+          "Pushed",
+          "ActiveInteraction",
+          "RulesChanged",
+          "PlayerFell",
+          "BounceStarted",
+          "BounceStep",
+          "LandingBounce",
+          "BounceApexReached",
+          "ApexSteer",
+          "Won"
+        ],
+        "Turns": 69
+      },
+      "perStepUndoReplay": true,
+      "restart": true,
+      "hotAndBouncy": true,
+      "survivingYou": 2,
+      "melted": false,
+      "negativeReferenceTests": [
+        {
+          "removed": "BOUNCY",
+          "referenceWon": false
+        },
+        {
+          "removed": "AND",
+          "referenceWon": false
+        }
+      ],
+      "trace": [
+        {
+          "turn": 1,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 2,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 3,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 4,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 5,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 6,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 7,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 8,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 9,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 10,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 11,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 12,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 2
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 13,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 3
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 14,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 15,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 5
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 16,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 17,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 18,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 4,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 19,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 4,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 20,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 21,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 22,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 23,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 24,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 25,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 26,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 27,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 28,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 29,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 30,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 31,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 32,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 33,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 34,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 35,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 36,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 37,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 38,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 39,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 40,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": -1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ]
+        },
+        {
+          "turn": 41,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 0
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ]
+        },
+        {
+          "turn": 42,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 1
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ]
+        },
+        {
+          "turn": 43,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 2
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ]
+        },
+        {
+          "turn": 44,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ]
+        },
+        {
+          "turn": 45,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ]
+        },
+        {
+          "turn": 46,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ]
+        },
+        {
+          "turn": 47,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ]
+        },
+        {
+          "turn": 48,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 49,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 4,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 50,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 4,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 51,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 8
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 3
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 52,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 9
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 53,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 5,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 54,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 55,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 56,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 57,
+          "command": "S",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 9
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 58,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 9
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 59,
+          "command": "W",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": 9
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 4
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 60,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 5
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 61,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 7,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 10,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 62,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 6
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 63,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 7
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 64,
+          "command": "N",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 11,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 65,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 66,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 13,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 67,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 14,
+                "y": 5,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 68,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 15,
+                "y": 5,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        },
+        {
+          "turn": 69,
+          "command": "E",
+          "actors": [
+            {
+              "Id": "robot_01",
+              "Cell": {
+                "x": 8,
+                "y": 3,
+                "z": 10
+              }
+            },
+            {
+              "Id": "rock_01",
+              "Cell": {
+                "x": 16,
+                "y": 5,
+                "z": 8
+              }
+            }
+          ],
+          "words": [
+            {
+              "Id": "branch_bouncy",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 4
+              }
+            },
+            {
+              "Id": "branch_lava",
+              "Cell": {
+                "x": 12,
+                "y": 3,
+                "z": 6
+              }
+            },
+            {
+              "Id": "prefix_and",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 7
+              }
+            },
+            {
+              "Id": "prefix_rock",
+              "Cell": {
+                "x": 6,
+                "y": 3,
+                "z": 8
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "noInteractionSearch": [
+    {
+      "id": "L3P2",
+      "scope": "N/E/S/W/J/WAIT without pushing, changing rules or active interaction",
+      "visited": 49,
+      "expanded": 49,
+      "queueRemaining": 0,
+      "exhausted": true,
+      "foundWin": false,
+      "cap": 5000
+    },
+    {
+      "id": "L3P3",
+      "scope": "N/E/S/W/J/WAIT without pushing, changing rules or active interaction",
+      "visited": 52,
+      "expanded": 52,
+      "queueRemaining": 0,
+      "exhausted": true,
+      "foundWin": false,
+      "cap": 5000
+    }
+  ],
+  "inheritanceSavePreflight": {
+    "warnings": [],
+    "stages": [
+      {
+        "id": "L3P1",
+        "entitiesSame": true,
+        "boundsSame": true,
+        "terrainSame": true
+      },
+      {
+        "id": "L3P2",
+        "entitiesSame": true,
+        "boundsSame": true,
+        "terrainSame": true
+      },
+      {
+        "id": "L3P3",
+        "entitiesSame": true,
+        "boundsSame": true,
+        "terrainSame": true
+      }
+    ]
+  },
+  "p2p3PlayModeFlow": {
+    "job": "ff9b18b3fcda4469b6411dbf34783e4e",
+    "passed": 1,
+    "failed": 0,
+    "test": "WordRoomStagesAdvanceWithIndependentStateAndSharedTerrain",
+    "scope": "Temporary two-stage catalog; actual GameBootstrap/WorldView transition, fixed initial state, history isolation, restart, identical terrain; no P1 certification"
+  }
+}

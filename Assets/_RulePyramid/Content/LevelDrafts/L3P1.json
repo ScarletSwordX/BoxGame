@@ -3,7 +3,7 @@
   "mechanicsVersion": "RW-v0.9",
   "options": {
     "actionMode": "MoveAutoPush",
-    "winMode": "DistinctEntitiesSameCell",
+    "winMode": "YouAndWinSameCell",
     "gravityMode": "WorldDownExceptHoverOrFly",
     "collisionMode": "SolidPairsTerrainUniversal",
     "solidityMode": "YouPushStopOrText",
@@ -33,7 +33,7 @@
     "interactionIsAuthoringConstraint": true
   },
   "id": "L3P1",
-  "title": "同一间规则室：共用 IS",
+  "title": "同一个名词，两条规则",
   "bounds": {
     "id": "",
     "min": {
@@ -92,6 +92,20 @@
       "appearance": "Stone"
     },
     {
+      "id": "divider",
+      "min": {
+        "x": 9,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 9,
+        "y": 2,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
       "id": "work_ledge",
       "min": {
         "x": 10,
@@ -106,11 +120,81 @@
       "appearance": "Stone"
     },
     {
-      "id": "goal_platform",
+      "id": "goal_ledge",
+      "min": {
+        "x": 17,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 17,
+        "y": 1,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "goal_ledge_4",
+      "min": {
+        "x": 16,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 16,
+        "y": 1,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "goal_ledge_1",
       "min": {
         "x": 15,
         "y": 1,
         "z": 7
+      },
+      "max": {
+        "x": 15,
+        "y": 1,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_1",
+      "min": {
+        "x": 15,
+        "y": 2,
+        "z": 9
+      },
+      "max": {
+        "x": 15,
+        "y": 2,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_2",
+      "min": {
+        "x": 16,
+        "y": 2,
+        "z": 9
+      },
+      "max": {
+        "x": 16,
+        "y": 2,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_3",
+      "min": {
+        "x": 17,
+        "y": 2,
+        "z": 9
       },
       "max": {
         "x": 17,
@@ -120,44 +204,86 @@
       "appearance": "Stone"
     },
     {
-      "id": "divider_south",
+      "id": "terrain_4",
       "min": {
-        "x": 9,
-        "y": 1,
-        "z": 0
+        "x": 17,
+        "y": 2,
+        "z": 8
       },
       "max": {
-        "x": 9,
+        "x": 17,
         "y": 2,
-        "z": 1
+        "z": 8
       },
       "appearance": "Stone"
     },
     {
-      "id": "divider_north",
+      "id": "terrain_5",
       "min": {
-        "x": 9,
-        "y": 1,
-        "z": 3
+        "x": 17,
+        "y": 2,
+        "z": 7
       },
       "max": {
-        "x": 9,
+        "x": 17,
         "y": 2,
-        "z": 11
+        "z": 7
       },
       "appearance": "Stone"
     },
     {
-      "id": "divider_door_base",
+      "id": "terrain_6",
       "min": {
-        "x": 9,
-        "y": 1,
-        "z": 2
+        "x": 16,
+        "y": 2,
+        "z": 7
       },
       "max": {
-        "x": 9,
+        "x": 16,
         "y": 2,
-        "z": 2
+        "z": 7
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_7",
+      "min": {
+        "x": 15,
+        "y": 2,
+        "z": 8
+      },
+      "max": {
+        "x": 15,
+        "y": 2,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_8",
+      "min": {
+        "x": 16,
+        "y": 2,
+        "z": 8
+      },
+      "max": {
+        "x": 16,
+        "y": 2,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_9",
+      "min": {
+        "x": 15,
+        "y": 2,
+        "z": 7
+      },
+      "max": {
+        "x": 15,
+        "y": 2,
+        "z": 7
       },
       "appearance": "Stone"
     }
@@ -203,7 +329,7 @@
       "color": ""
     },
     {
-      "id": "control_0",
+      "id": "control_robot",
       "kind": "Text",
       "subject": "",
       "token": "ROBOT",
@@ -216,25 +342,51 @@
       "color": ""
     },
     {
-      "id": "control_1",
+      "id": "control_is",
       "kind": "Text",
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 6,
+        "x": 7,
         "y": 3,
-        "z": 5
+        "z": 6
       },
       "anchored": false,
       "color": ""
     },
     {
-      "id": "control_2",
+      "id": "control_you",
       "kind": "Text",
       "subject": "",
       "token": "YOU",
       "cell": {
-        "x": 6,
+        "x": 8,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "branch_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "branch_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 8,
         "y": 3,
         "z": 4
       },
@@ -247,124 +399,20 @@
       "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 8,
+        "x": 10,
         "y": 3,
-        "z": 2
+        "z": 5
       },
       "anchored": false,
       "color": ""
     },
     {
-      "id": "goal",
-      "kind": "Object",
-      "subject": "FLAG",
-      "token": "",
-      "cell": {
-        "x": 16,
-        "y": 3,
-        "z": 8
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_0",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 15,
-        "y": 3,
-        "z": 7
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_1",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 16,
-        "y": 3,
-        "z": 7
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_2",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 17,
-        "y": 3,
-        "z": 7
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_3",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 17,
-        "y": 3,
-        "z": 8
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_4",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 17,
-        "y": 3,
-        "z": 9
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_5",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 16,
-        "y": 3,
-        "z": 9
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "wall_6",
-      "kind": "Object",
-      "subject": "WALL",
-      "token": "",
-      "cell": {
-        "x": 15,
-        "y": 3,
-        "z": 9
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "flag_word",
+      "id": "524ad1a74c41436fa32f72fa424b6612",
       "kind": "Text",
       "subject": "",
       "token": "FLAG",
       "cell": {
-        "x": 9,
+        "x": 6,
         "y": 3,
         "z": 4
       },
@@ -372,14 +420,157 @@
       "color": ""
     },
     {
-      "id": "gate_win_word",
-      "kind": "Text",
-      "subject": "",
-      "token": "WIN",
+      "id": "object_2",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
       "cell": {
-        "x": 9,
+        "x": 4,
+        "y": 3,
+        "z": 11
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_3",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 10
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_5",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_6",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_7",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_8",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_9",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_10",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_11",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
         "y": 3,
         "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_12",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_13",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 0
       },
       "anchored": false,
       "color": ""
@@ -392,7 +583,267 @@
       "cell": {
         "x": 15,
         "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_14",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 16,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_15",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 17,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_16",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 17,
+        "y": 3,
         "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_17",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 17,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_18",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 16,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_19",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 15,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_20",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 15,
+        "y": 3,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_21",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 16,
+        "y": 3,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_22",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 11
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_23",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 10
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_24",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_25",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_26",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_27",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_28",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_29",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_30",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_31",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_32",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_34",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 0
       },
       "anchored": false,
       "color": ""
@@ -409,70 +860,44 @@
   },
   "referenceSolutions": [
     {
-      "id": "P1-A",
-      "name": "搬回门洞 WIN，交叉保留控制",
-      "family": "P1-A",
+      "id": "rules",
+      "name": "规则变化参考解",
+      "family": "目标规则",
       "commands": [
         "E",
-        "E",
-        "S",
-        "E",
-        "E",
-        "N",
-        "W",
-        "W",
-        "W",
         "W",
         "S",
-        "W",
-        "N",
-        "N",
-        "N",
-        "E",
-        "S",
-        "S",
-        "E",
-        "E",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "N",
-        "E",
-        "E",
-        "E",
-        "E",
-        "E",
         "E"
       ],
-      "mustControlAtWin": "robot_01",
-      "mustWinWith": "goal",
-      "requireEvents": [
-        "RulesChanged"
-      ],
-      "forbidEvents": [
-        "LandingBounce"
-      ],
-      "status": "UnityReplayPassed_SharedTerrain_v1",
+      "mustWinWith": "robot_01",
       "expectedFinalStatus": "Won",
-      "claim": "本版实际 Unity 回放获胜；每步撤销/重放与重开通过。不是唯一解证明或真人盲测。"
+      "status": "UnityReplayPassed",
+      "requireEvents": [
+        "Pushed",
+        "RulesChanged",
+        "Won"
+      ],
+      "mustControlAtWin": "",
+      "forbidEvents": [],
+      "claim": ""
     }
   ],
   "authoringDesign": {
     "designCard": "docs/level-design/L03.md",
     "stage": 1,
-    "status": "v0.6共同地形原型；Unity初态/参考解/逐步撤销/重开通过",
+    "status": "v0.9 规则变化原型：实际回放及规则必要性搜索通过，待盲测",
     "readingDirection": "同高度 +X 或 -Z",
-    "runtimeCompatibility": "Supported_UnityReplayPassed",
-    "requiredMechanics": [],
+    "runtimeCompatibility": "UnityReplayPassed_Prototype_v0.9",
+    "requiredMechanics": [
+      "SharedNounAcrossSentences",
+      "SelfYouWin"
+    ],
     "schemaNote": "schemaVersion 9；新旧controlMode名称均使用多YOU独立受阻语义。",
     "requiresNextCommandForNewYou": false,
-    "witnessEvidence": "docs/level-design/evidence/L03-layout-witness.json",
-    "runtimeEvidence": "docs/level-design/evidence/L03-inheritance-validation.json",
-    "layoutRevision": "L03-shared-terrain-v1",
+    "runtimeEvidence": "docs/level-design/evidence/L03-rule-redesign-validation.json",
+    "layoutRevision": "L03-rule-changes-v1",
     "inheritance": {
-      "sharedLayout": "L03-shared-terrain-v1",
+      "sharedLayout": "L03-rule-changes-v1",
       "anchors": [
         "source_ledge",
         "control_ledge",
@@ -482,7 +907,7 @@
       ],
       "previousStage": null,
       "changes": [
-        "初始完整左右室、单门洞、低旗台与临时桥"
+        "共享 ROBOT，保留两个 IS；移除其他 WIN 路径"
       ]
     }
   }

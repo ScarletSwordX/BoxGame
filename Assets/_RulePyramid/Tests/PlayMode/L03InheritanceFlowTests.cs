@@ -16,7 +16,17 @@ namespace RulePyramid.Tests.PlayMode
         [UnityTest]
         public IEnumerator ThreeDraftStagesAdvanceWithIndependentStateAndSharedFinalTerrain()
         {
-            var names = new[] { "L3P1", "L3P2", "L3P3" };
+            return RunStages(new[] { "L3P1", "L3P2", "L3P3" });
+        }
+
+        [UnityTest]
+        public IEnumerator RuleFocusedStagesAdvanceWithIndependentStateAndSharedTerrain()
+        {
+            return RunStages(new[] { "L3P2", "L3P3" });
+        }
+
+        IEnumerator RunStages(string[] names)
+        {
             var maps = new TextAsset[names.Length];
             for (int i = 0; i < names.Length; i++)
                 maps[i] = new TextAsset(File.ReadAllText(Path.Combine(
@@ -39,7 +49,7 @@ namespace RulePyramid.Tests.PlayMode
                 host.SetActive(true);
                 yield return null;
                 Assert.AreEqual(1, catalog.Count);
-                Assert.AreEqual(3, catalog.StageCount(0));
+                Assert.AreEqual(names.Length, catalog.StageCount(0));
                 HashSet<GridCell> secondStageTerrain = null;
 
                 for (int stage = 0; stage < names.Length; stage++)
@@ -52,9 +62,9 @@ namespace RulePyramid.Tests.PlayMode
                     Assert.AreEqual(0, bootstrap.Session.TurnCount);
                     Assert.IsFalse(bootstrap.Session.Undo(), "A new stage must have no inherited undo history");
 
-                    if (stage == 1)
+                    if (names[stage] == "L3P2")
                         secondStageTerrain = new HashSet<GridCell>(bootstrap.Session.World.Terrain);
-                    if (stage == 2)
+                    if (names[stage] == "L3P3")
                     {
                         Assert.IsNotNull(secondStageTerrain);
                         Assert.AreEqual(secondStageTerrain.Count, bootstrap.Session.World.Terrain.Count);
