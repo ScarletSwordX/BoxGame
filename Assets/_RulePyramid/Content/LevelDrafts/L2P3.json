@@ -888,6 +888,90 @@
         "y": 4,
         "z": 12
       }
+    },
+    {
+      "id": "terrain_1",
+      "min": {
+        "x": 12,
+        "y": 4,
+        "z": 8
+      },
+      "max": {
+        "x": 12,
+        "y": 4,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_2",
+      "min": {
+        "x": 13,
+        "y": 4,
+        "z": 8
+      },
+      "max": {
+        "x": 13,
+        "y": 4,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_3",
+      "min": {
+        "x": 14,
+        "y": 4,
+        "z": 8
+      },
+      "max": {
+        "x": 14,
+        "y": 4,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_4",
+      "min": {
+        "x": 12,
+        "y": 5,
+        "z": 12
+      },
+      "max": {
+        "x": 12,
+        "y": 5,
+        "z": 12
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_5",
+      "min": {
+        "x": 12,
+        "y": 5,
+        "z": 11
+      },
+      "max": {
+        "x": 12,
+        "y": 5,
+        "z": 11
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_6",
+      "min": {
+        "x": 12,
+        "y": 5,
+        "z": 10
+      },
+      "max": {
+        "x": 12,
+        "y": 5,
+        "z": 10
+      },
+      "appearance": "Stone"
     }
   ],
   "entities": [
@@ -1017,19 +1101,6 @@
         "x": 8,
         "y": 3,
         "z": 5
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "spring_01",
-      "kind": "Object",
-      "subject": "SPRING",
-      "token": "",
-      "cell": {
-        "x": 11,
-        "y": 1,
-        "z": 11
       },
       "anchored": false,
       "color": ""
@@ -1191,32 +1262,6 @@
       "color": ""
     },
     {
-      "id": "source_rock_0",
-      "kind": "Text",
-      "subject": "",
-      "token": "ROCK",
-      "cell": {
-        "x": 1,
-        "y": 1,
-        "z": 4
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "source_rock_1",
-      "kind": "Text",
-      "subject": "",
-      "token": "IS",
-      "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 4
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
       "id": "new_bounce_0",
       "kind": "Text",
       "subject": "",
@@ -1224,7 +1269,7 @@
       "cell": {
         "x": 7,
         "y": 3,
-        "z": 7
+        "z": 12
       },
       "anchored": false,
       "color": ""
@@ -1237,20 +1282,7 @@
       "cell": {
         "x": 12,
         "y": 5,
-        "z": 5
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "222a4c3495014023a8c0462c8c948cc8",
-      "kind": "Text",
-      "subject": "",
-      "token": "PUSH",
-      "cell": {
-        "x": 3,
-        "y": 1,
-        "z": 4
+        "z": 7
       },
       "anchored": false,
       "color": ""
@@ -1263,7 +1295,7 @@
       "cell": {
         "x": 8,
         "y": 3,
-        "z": 7
+        "z": 12
       },
       "anchored": false,
       "color": ""
@@ -1276,20 +1308,7 @@
       "cell": {
         "x": 9,
         "y": 3,
-        "z": 7
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "spring_01_copy_1",
-      "kind": "Object",
-      "subject": "SPRING",
-      "token": "",
-      "cell": {
-        "x": 11,
-        "y": 1,
-        "z": 6
+        "z": 12
       },
       "anchored": false,
       "color": ""
@@ -1407,6 +1426,97 @@
         "x": 14,
         "y": 3,
         "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_18",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_19",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 1,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_20",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 14,
+        "y": 1,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_18_copy_1",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 11
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "d55679c40e644b14bc620b32234009c4",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 14,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "fa433630cb97456a9bce4eee079a4ee4",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 13,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "812c297ff5f14aa7a96fd5dcdfad199d",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 4
       },
       "anchored": false,
       "color": ""
@@ -2430,6 +2540,230 @@
         ],
         "remove": false,
         "value": 8
+      },
+      {
+        "path": [
+          "entities",
+          "spring_01"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "entities",
+          "object_18"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_18",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_19"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_19",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_20"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_20",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_18_copy_1"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_18_copy_1",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 2
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "terrain",
+          "2,4,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "1,4,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "0,4,5"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,5,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,5,2"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,5,3"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "entities",
+          "rock_01",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "d55679c40e644b14bc620b32234009c4",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "fa433630cb97456a9bce4eee079a4ee4",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "new_bounce_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "new_bounce_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "bounce_word",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "812c297ff5f14aa7a96fd5dcdfad199d"
+        ],
+        "remove": false,
+        "value": {
+          "id": "812c297ff5f14aa7a96fd5dcdfad199d",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROCK",
+          "cell": {
+            "x": 13,
+            "y": 1,
+            "z": 9
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "spring_01_copy_1"
+        ],
+        "remove": true,
+        "value": null
       }
     ],
     "resolved": {
@@ -2574,19 +2908,6 @@
             "x": 6,
             "y": 3,
             "z": 8
-          },
-          "anchored": false,
-          "color": ""
-        },
-        "spring_01": {
-          "id": "spring_01",
-          "kind": "Object",
-          "subject": "SPRING",
-          "token": "",
-          "cell": {
-            "x": 3,
-            "y": 1,
-            "z": 2
           },
           "anchored": false,
           "color": ""
@@ -2747,32 +3068,6 @@
           "anchored": false,
           "color": ""
         },
-        "source_rock_0": {
-          "id": "source_rock_0",
-          "kind": "Text",
-          "subject": "",
-          "token": "ROCK",
-          "cell": {
-            "x": 13,
-            "y": 1,
-            "z": 9
-          },
-          "anchored": false,
-          "color": ""
-        },
-        "source_rock_1": {
-          "id": "source_rock_1",
-          "kind": "Text",
-          "subject": "",
-          "token": "IS",
-          "cell": {
-            "x": 12,
-            "y": 1,
-            "z": 9
-          },
-          "anchored": false,
-          "color": ""
-        },
         "new_bounce_0": {
           "id": "new_bounce_0",
           "kind": "Text",
@@ -2781,7 +3076,7 @@
           "cell": {
             "x": 7,
             "y": 3,
-            "z": 6
+            "z": 1
           },
           "anchored": false,
           "color": ""
@@ -2794,20 +3089,46 @@
           "cell": {
             "x": 2,
             "y": 5,
-            "z": 8
+            "z": 6
           },
           "anchored": false,
           "color": ""
         },
-        "222a4c3495014023a8c0462c8c948cc8": {
-          "id": "222a4c3495014023a8c0462c8c948cc8",
+        "d55679c40e644b14bc620b32234009c4": {
+          "id": "d55679c40e644b14bc620b32234009c4",
           "kind": "Text",
           "subject": "",
           "token": "PUSH",
           "cell": {
-            "x": 11,
-            "y": 1,
-            "z": 9
+            "x": 0,
+            "y": 5,
+            "z": 6
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "fa433630cb97456a9bce4eee079a4ee4": {
+          "id": "fa433630cb97456a9bce4eee079a4ee4",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 1,
+            "y": 5,
+            "z": 6
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_12": {
+          "id": "object_12",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 10
           },
           "anchored": false,
           "color": ""
@@ -2820,7 +3141,7 @@
           "cell": {
             "x": 6,
             "y": 3,
-            "z": 6
+            "z": 1
           },
           "anchored": false,
           "color": ""
@@ -2833,20 +3154,7 @@
           "cell": {
             "x": 5,
             "y": 3,
-            "z": 6
-          },
-          "anchored": false,
-          "color": ""
-        },
-        "spring_01_copy_1": {
-          "id": "spring_01_copy_1",
-          "kind": "Object",
-          "subject": "SPRING",
-          "token": "",
-          "cell": {
-            "x": 3,
-            "y": 1,
-            "z": 7
+            "z": 1
           },
           "anchored": false,
           "color": ""
@@ -2886,19 +3194,6 @@
             "x": 9,
             "y": 3,
             "z": 0
-          },
-          "anchored": false,
-          "color": ""
-        },
-        "object_12": {
-          "id": "object_12",
-          "kind": "Object",
-          "subject": "WALL",
-          "token": "",
-          "cell": {
-            "x": 5,
-            "y": 3,
-            "z": 10
           },
           "anchored": false,
           "color": ""
@@ -2964,6 +3259,71 @@
             "x": 0,
             "y": 3,
             "z": 10
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_18": {
+          "id": "object_18",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_19": {
+          "id": "object_19",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_20": {
+          "id": "object_20",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 0,
+            "y": 1,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_18_copy_1": {
+          "id": "object_18_copy_1",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 2
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "812c297ff5f14aa7a96fd5dcdfad199d": {
+          "id": "812c297ff5f14aa7a96fd5dcdfad199d",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROCK",
+          "cell": {
+            "x": 13,
+            "y": 1,
+            "z": 9
           },
           "anchored": false,
           "color": ""
@@ -3396,7 +3756,13 @@
         "3,0,11": "Stone",
         "2,0,11": "Stone",
         "1,0,11": "Stone",
-        "0,0,11": "Stone"
+        "0,0,11": "Stone",
+        "2,4,5": "Stone",
+        "1,4,5": "Stone",
+        "0,4,5": "Stone",
+        "2,5,1": "Stone",
+        "2,5,2": "Stone",
+        "2,5,3": "Stone"
       }
     }
   }
