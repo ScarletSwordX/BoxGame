@@ -1,0 +1,675 @@
+{
+  "date": "2026-09-27",
+  "engine": "2022.3.51f1",
+  "results": [
+    {
+      "map": "L2P1",
+      "steps": 17,
+      "initialValidation": "Passed",
+      "replay": "Passed",
+      "undoEachStep": "Passed",
+      "restart": "Passed",
+      "noBounceOriginalRouteWon": false,
+      "noInteractionSearch": {
+        "expanded": 118,
+        "states": 118,
+        "exhausted": true,
+        "won": false,
+        "limit": 4000
+      },
+      "trace": [
+        {
+          "command": "W",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 4
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 5
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 7
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 5
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 9,
+              "y": 3,
+              "z": 5
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 9,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 9,
+              "y": 3,
+              "z": 7
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 7
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 5
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 4
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 11,
+              "y": 5,
+              "z": 4
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 12,
+              "y": 5,
+              "z": 4
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 13,
+              "y": 5,
+              "z": 4
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 13,
+              "y": 5,
+              "z": 3
+            }
+          ]
+        }
+      ],
+      "file": "Assets/_RulePyramid/Content/LevelDrafts/L2P1.json",
+      "sha256": "ed78fb23ed44cea2c3ee0d60db218ead60d3b35f1002b4f1a63e309d1e64410d",
+      "parent": null,
+      "originalSourceRulesPreserved": true,
+      "originalTerrainPreserved": "仅按确认修复第一座高台；其余地形格保持"
+    },
+    {
+      "map": "L2P2",
+      "steps": 21,
+      "initialValidation": "Passed",
+      "replay": "Passed",
+      "undoEachStep": "Passed",
+      "restart": "Passed",
+      "noBounceOriginalRouteWon": false,
+      "noInteractionSearch": {
+        "expanded": 86,
+        "states": 86,
+        "exhausted": true,
+        "won": false,
+        "limit": 4000
+      },
+      "trace": [
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 3
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 8,
+              "y": 3,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 9,
+              "y": 3,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 11,
+              "y": 5,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 12,
+              "y": 5,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 12,
+              "y": 5,
+              "z": 3
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 12,
+              "y": 5,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "S",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 12,
+              "y": 3,
+              "z": 1
+            }
+          ]
+        },
+        {
+          "command": "W",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 11,
+              "y": 3,
+              "z": 1
+            }
+          ]
+        },
+        {
+          "command": "W",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 1
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 2
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 3
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 4
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 5
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 7
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 10,
+              "y": 3,
+              "z": 8
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 11,
+              "y": 5,
+              "z": 8
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 12,
+              "y": 5,
+              "z": 8
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 13,
+              "y": 5,
+              "z": 8
+            }
+          ]
+        }
+      ],
+      "file": "Assets/_RulePyramid/Content/LevelDrafts/L2P2.json",
+      "sha256": "58fc852c9918f9d0d244c5a9c97165ea2e8363979756b16218d1f39dd7fa8392",
+      "parent": "L2P1.json",
+      "originalSourceRulesPreserved": true,
+      "originalTerrainPreserved": true
+    },
+    {
+      "map": "L2P3",
+      "steps": 10,
+      "initialValidation": "Passed",
+      "replay": "Passed",
+      "undoEachStep": "Passed",
+      "restart": "Passed",
+      "noBounceOriginalRouteWon": false,
+      "noInteractionSearch": {
+        "expanded": 4000,
+        "states": 4182,
+        "exhausted": false,
+        "won": false,
+        "limit": 4000
+      },
+      "trace": [
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 9,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 10,
+              "y": 3,
+              "z": 6
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 10,
+              "y": 3,
+              "z": 7
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 10,
+              "y": 3,
+              "z": 8
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 10,
+              "y": 3,
+              "z": 9
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 10,
+              "y": 3,
+              "z": 10
+            }
+          ]
+        },
+        {
+          "command": "N",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 10,
+              "y": 3,
+              "z": 11
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 11,
+              "y": 5,
+              "z": 11
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 12,
+              "y": 5,
+              "z": 11
+            }
+          ]
+        },
+        {
+          "command": "E",
+          "actors": [
+            {
+              "id": "robot_01",
+              "x": 4,
+              "y": 1,
+              "z": 9
+            },
+            {
+              "id": "rock_01",
+              "x": 13,
+              "y": 5,
+              "z": 11
+            }
+          ]
+        }
+      ],
+      "file": "Assets/_RulePyramid/Content/LevelDrafts/L2P3.json",
+      "sha256": "c24ce4eae15748eda5ee2c07794bdbf4666931f0d06ee8f7a9765de654c99cc3",
+      "parent": "L2P2.json",
+      "originalSourceRulesPreserved": true,
+      "originalTerrainPreserved": true
+    }
+  ],
+  "limitations": "未进行真人盲测或完整交互绕解穷尽检查",
+  "p3DualControlCheck": "初态两 YOU；W 两者均移动；参考路线中机器人受阻时 ROCK 仍可行动",
+  "editorInheritanceValidation": {
+    "unitTestsPassed": 6,
+    "existingStageWorkflowTestsPassed": 7,
+    "actualEditorSaveAndUndoCascade": "Passed on Temp copies",
+    "broaderRegression": {
+      "total": 22,
+      "passed": 21,
+      "unrelatedFailure": "L3P1 reference step 30 E rejected; no L3 files changed"
+    }
+  }
+}

@@ -9,7 +9,7 @@
     "solidityMode": "YouPushStopOrText",
     "bounceRiseCells": 3,
     "supportMode": "StrictBelow",
-    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "controlMode": "MultiYouIndependentBlocking_NoControlUndo",
     "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
     "ruleSourceMode": "WorldTextOnly",
     "textMobilityMode": "AllWordsMovable_GeometryAccess"
@@ -42,7 +42,7 @@
       "z": 0
     },
     "max": {
-      "x": 12,
+      "x": 14,
       "y": 5,
       "z": 10
     },
@@ -50,267 +50,57 @@
   },
   "terrain": [
     {
-      "id": "floor",
-      "min": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "max": {
-        "x": 12,
-        "y": 0,
-        "z": 10
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "work_ledge",
-      "min": {
-        "x": 4,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 8,
-        "y": 2,
-        "z": 10
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing",
-      "min": {
-        "x": 12,
-        "y": 1,
-        "z": 1
-      },
-      "max": {
-        "x": 12,
-        "y": 2,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_6",
-      "min": {
-        "x": 12,
-        "y": 3,
-        "z": 2
-      },
-      "max": {
-        "x": 12,
-        "y": 3,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_5",
-      "min": {
-        "x": 12,
-        "y": 4,
-        "z": 2
-      },
-      "max": {
-        "x": 12,
-        "y": 4,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_3",
-      "min": {
-        "x": 11,
-        "y": 1,
-        "z": 1
-      },
-      "max": {
-        "x": 11,
-        "y": 2,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_3_1",
-      "min": {
-        "x": 11,
-        "y": 3,
-        "z": 2
-      },
-      "max": {
-        "x": 11,
-        "y": 3,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_4",
-      "min": {
-        "x": 11,
-        "y": 4,
-        "z": 2
-      },
-      "max": {
-        "x": 11,
-        "y": 4,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_1",
-      "min": {
-        "x": 10,
-        "y": 1,
-        "z": 1
-      },
-      "max": {
-        "x": 10,
-        "y": 2,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_1_1",
-      "min": {
-        "x": 10,
-        "y": 3,
-        "z": 2
-      },
-      "max": {
-        "x": 10,
-        "y": 3,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "old_landing_2",
-      "min": {
-        "x": 10,
-        "y": 4,
-        "z": 2
-      },
-      "max": {
-        "x": 10,
-        "y": 4,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "new_landing",
-      "min": {
-        "x": 10,
-        "y": 1,
-        "z": 7
-      },
-      "max": {
-        "x": 12,
-        "y": 4,
-        "z": 9
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "source_partition",
-      "min": {
-        "x": 0,
-        "y": 1,
-        "z": 4
-      },
-      "max": {
-        "x": 2,
-        "y": 1,
-        "z": 4
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "source_side_wall",
-      "min": {
-        "x": 3,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 3,
-        "y": 3,
-        "z": 10
-      },
-      "appearance": "Stone"
-    },
-    {
       "id": "terrain_1",
       "min": {
-        "x": 10,
-        "y": 4,
-        "z": 4
+        "x": 2,
+        "y": 0,
+        "z": 0
       },
       "max": {
-        "x": 10,
-        "y": 4,
-        "z": 4
+        "x": 14,
+        "y": 0,
+        "z": 10
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_2",
       "min": {
-        "x": 11,
-        "y": 4,
-        "z": 4
+        "x": 5,
+        "y": 1,
+        "z": 0
       },
       "max": {
-        "x": 11,
-        "y": 4,
-        "z": 4
+        "x": 14,
+        "y": 2,
+        "z": 1
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_3",
       "min": {
-        "x": 12,
-        "y": 4,
-        "z": 4
+        "x": 5,
+        "y": 1,
+        "z": 2
       },
       "max": {
-        "x": 12,
-        "y": 4,
-        "z": 4
+        "x": 10,
+        "y": 2,
+        "z": 10
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_4",
       "min": {
-        "x": 10,
-        "y": 3,
-        "z": 4
+        "x": 12,
+        "y": 1,
+        "z": 2
       },
       "max": {
-        "x": 10,
-        "y": 3,
-        "z": 4
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_5",
-      "min": {
-        "x": 11,
-        "y": 3,
-        "z": 4
-      },
-      "max": {
-        "x": 11,
-        "y": 3,
+        "x": 14,
+        "y": 4,
         "z": 4
       },
       "appearance": "Stone"
@@ -319,153 +109,97 @@
       "id": "terrain_6",
       "min": {
         "x": 12,
-        "y": 3,
-        "z": 4
+        "y": 1,
+        "z": 7
       },
       "max": {
-        "x": 12,
-        "y": 3,
-        "z": 4
+        "x": 14,
+        "y": 4,
+        "z": 9
       },
       "appearance": "Stone"
     },
     {
-      "id": "terrain_7",
+      "id": "floor_1",
       "min": {
-        "x": 9,
-        "y": 2,
+        "x": 0,
+        "y": 0,
         "z": 0
       },
       "max": {
-        "x": 9,
-        "y": 2,
-        "z": 0
+        "x": 1,
+        "y": 0,
+        "z": 10
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_5",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 0,
+        "y": 1,
+        "z": 7
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_8",
       "min": {
-        "x": 10,
-        "y": 2,
-        "z": 0
+        "x": 1,
+        "y": 1,
+        "z": 7
       },
       "max": {
-        "x": 10,
-        "y": 2,
-        "z": 0
+        "x": 1,
+        "y": 1,
+        "z": 7
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_9",
       "min": {
-        "x": 11,
-        "y": 2,
-        "z": 0
+        "x": 2,
+        "y": 1,
+        "z": 7
       },
       "max": {
-        "x": 11,
-        "y": 2,
-        "z": 0
+        "x": 2,
+        "y": 1,
+        "z": 7
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_10",
       "min": {
-        "x": 12,
-        "y": 2,
-        "z": 0
+        "x": 3,
+        "y": 1,
+        "z": 7
       },
       "max": {
-        "x": 12,
-        "y": 2,
-        "z": 0
+        "x": 3,
+        "y": 1,
+        "z": 7
       },
       "appearance": "Stone"
     },
     {
       "id": "terrain_11",
       "min": {
-        "x": 9,
-        "y": 2,
-        "z": 1
+        "x": 4,
+        "y": 1,
+        "z": 7
       },
       "max": {
-        "x": 9,
-        "y": 2,
-        "z": 1
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_12",
-      "min": {
-        "x": 9,
+        "x": 4,
         "y": 1,
-        "z": 1
-      },
-      "max": {
-        "x": 9,
-        "y": 1,
-        "z": 1
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_13",
-      "min": {
-        "x": 9,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 9,
-        "y": 1,
-        "z": 0
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_14",
-      "min": {
-        "x": 10,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 10,
-        "y": 1,
-        "z": 0
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_15",
-      "min": {
-        "x": 11,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 11,
-        "y": 1,
-        "z": 0
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "terrain_16",
-      "min": {
-        "x": 12,
-        "y": 1,
-        "z": 0
-      },
-      "max": {
-        "x": 12,
-        "y": 1,
-        "z": 0
+        "z": 7
       },
       "appearance": "Stone"
     }
@@ -477,9 +211,9 @@
       "subject": "",
       "token": "FLAG",
       "cell": {
-        "x": 0,
+        "x": 1,
         "y": 1,
-        "z": 8
+        "z": 9
       },
       "anchored": false,
       "color": ""
@@ -490,9 +224,9 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
+        "x": 2,
         "y": 1,
-        "z": 8
+        "z": 9
       },
       "anchored": false,
       "color": ""
@@ -503,9 +237,9 @@
       "subject": "",
       "token": "WIN",
       "cell": {
-        "x": 2,
+        "x": 3,
         "y": 1,
-        "z": 8
+        "z": 9
       },
       "anchored": false,
       "color": ""
@@ -516,9 +250,9 @@
       "subject": "",
       "token": "SPRING",
       "cell": {
-        "x": 0,
+        "x": 1,
         "y": 1,
-        "z": 6
+        "z": 5
       },
       "anchored": false,
       "color": ""
@@ -529,9 +263,9 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
+        "x": 2,
         "y": 1,
-        "z": 6
+        "z": 5
       },
       "anchored": false,
       "color": ""
@@ -542,9 +276,9 @@
       "subject": "",
       "token": "STOP",
       "cell": {
-        "x": 2,
+        "x": 3,
         "y": 1,
-        "z": 6
+        "z": 5
       },
       "anchored": false,
       "color": ""
@@ -555,9 +289,9 @@
       "subject": "",
       "token": "ROBOT",
       "cell": {
-        "x": 0,
+        "x": 1,
         "y": 1,
-        "z": 2
+        "z": 3
       },
       "anchored": false,
       "color": ""
@@ -568,9 +302,9 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
+        "x": 2,
         "y": 1,
-        "z": 2
+        "z": 3
       },
       "anchored": false,
       "color": ""
@@ -581,48 +315,9 @@
       "subject": "",
       "token": "YOU",
       "cell": {
-        "x": 2,
+        "x": 3,
         "y": 1,
-        "z": 2
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "source_rock_0",
-      "kind": "Text",
-      "subject": "",
-      "token": "ROCK",
-      "cell": {
-        "x": 0,
-        "y": 1,
-        "z": 10
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "source_rock_1",
-      "kind": "Text",
-      "subject": "",
-      "token": "IS",
-      "cell": {
-        "x": 1,
-        "y": 1,
-        "z": 10
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "source_rock_2",
-      "kind": "Text",
-      "subject": "",
-      "token": "STOP",
-      "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 10
+        "z": 3
       },
       "anchored": false,
       "color": ""
@@ -633,9 +328,9 @@
       "subject": "",
       "token": "SPRING",
       "cell": {
-        "x": 5,
-        "y": 3,
-        "z": 2
+        "x": 12,
+        "y": 5,
+        "z": 4
       },
       "anchored": false,
       "color": ""
@@ -646,9 +341,9 @@
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 6,
-        "y": 3,
-        "z": 2
+        "x": 13,
+        "y": 5,
+        "z": 4
       },
       "anchored": false,
       "color": ""
@@ -659,22 +354,9 @@
       "subject": "",
       "token": "BOUNCY",
       "cell": {
-        "x": 7,
-        "y": 3,
-        "z": 2
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "new_bounce_0",
-      "kind": "Text",
-      "subject": "",
-      "token": "ROCK",
-      "cell": {
-        "x": 10,
+        "x": 14,
         "y": 5,
-        "z": 3
+        "z": 4
       },
       "anchored": false,
       "color": ""
@@ -685,7 +367,7 @@
       "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 6,
+        "x": 8,
         "y": 3,
         "z": 4
       },
@@ -698,22 +380,9 @@
       "subject": "SPRING",
       "token": "",
       "cell": {
-        "x": 9,
+        "x": 11,
         "y": 1,
-        "z": 4
-      },
-      "anchored": false,
-      "color": ""
-    },
-    {
-      "id": "rock_01",
-      "kind": "Object",
-      "subject": "ROCK",
-      "token": "",
-      "cell": {
-        "x": 9,
-        "y": 1,
-        "z": 8
+        "z": 2
       },
       "anchored": false,
       "color": ""
@@ -724,8 +393,333 @@
       "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 11,
+        "x": 13,
         "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_1",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 10
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_2",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_3",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_5",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_6",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_7",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_8",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_9",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_10",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_11",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_12",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_13",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_14",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_15",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_16",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_17",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_18",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_19",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_20",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 14,
+        "y": 3,
+        "z": 0
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_rock_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_rock_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_rock_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "new_bounce_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 12,
+        "y": 5,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock_01",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
         "z": 8
       },
       "anchored": false,
@@ -738,17 +732,20 @@
       "name": "标准参考解",
       "family": "P2-A",
       "commands": [
-        "E",
+        "S",
         "S",
         "E",
         "E",
         "E",
-        "N",
-        "N",
-        "N",
         "E",
         "N",
+        "S",
+        "S",
         "W",
+        "W",
+        "N",
+        "N",
+        "N",
         "N",
         "N",
         "N",
@@ -760,15 +757,13 @@
       "mustControlAtWin": "robot_01",
       "mustWinWith": "goal",
       "requireEvents": [
-        "Pushed",
-        "RulesChanged",
         "LandingBounce",
-        "ApexSteer"
+        "ApexSteer",
+        "ActiveInteraction",
+        "RulesChanged"
       ],
-      "forbidEvents": [
-        "ControlChanged"
-      ],
-      "status": "UnityReplayPassed_Prototype_v0.5_GroundRules",
+      "forbidEvents": [],
+      "status": "布局继承后待重新验证",
       "expectedFinalStatus": "Won",
       "claim": "作者参考路线；不是强制指定步骤胜利条件。"
     }
@@ -785,9 +780,2677 @@
   "authoringDesign": {
     "designCard": "docs/level-design/L02.md",
     "stage": 2,
-    "status": "地面规则布局回放、逐步撤销与重开通过；待画面审核与盲测",
+    "status": "初态、参考解、逐步撤销与重开通过；教学与画面待盲测复核",
     "readingDirection": "同高度 +X 或 -Z",
-    "runtimeStageProgression": "独立地图；自动阶段切换未接入",
-    "layoutRevision": "v0.5：用户纠正为地面层 Y=1；左下 YOU 句跨阶段同位，P3 地面出生；固定源句由地形隔离，交互句靠 -Z 侧。"
+    "runtimeStageProgression": "正式 L02 三阶段自动推进，固定初态，不继承玩家残局",
+    "layoutRevision": "v0.6：保留用户当前布局，修复拼句、取 ROCK 词替换及双 YOU 岩块通关；P1 第一座高台按用户确认对齐 P2。"
+  },
+  "editorInheritance": {
+    "version": 1,
+    "parent": "L2P1.json",
+    "overrides": [
+      {
+        "path": [
+          "entities",
+          "source_flag_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 8
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 8
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 8
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 6
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 12
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_0",
+          "cell",
+          "y"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 13
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_1",
+          "cell",
+          "y"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 14
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_2",
+          "cell",
+          "y"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "old_bounce_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 4
+      },
+      {
+        "path": [
+          "entities",
+          "robot_01",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 8
+      },
+      {
+        "path": [
+          "entities",
+          "spring_01",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "goal",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 8
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_0"
+        ],
+        "remove": false,
+        "value": {
+          "id": "source_rock_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROCK",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 10
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_1"
+        ],
+        "remove": false,
+        "value": {
+          "id": "source_rock_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 10
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_2"
+        ],
+        "remove": false,
+        "value": {
+          "id": "source_rock_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "STOP",
+          "cell": {
+            "x": 4,
+            "y": 1,
+            "z": 10
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "new_bounce_0"
+        ],
+        "remove": false,
+        "value": {
+          "id": "new_bounce_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROCK",
+          "cell": {
+            "x": 12,
+            "y": 5,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "rock_01"
+        ],
+        "remove": false,
+        "value": {
+          "id": "rock_01",
+          "kind": "Object",
+          "subject": "ROCK",
+          "token": "",
+          "cell": {
+            "x": 11,
+            "y": 1,
+            "z": 8
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "terrain",
+          "11,1,2"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "11,1,3"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "0,1,7"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "1,1,7"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "2,1,7"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "3,1,7"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "4,1,7"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "11,2,2"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "11,2,3"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "6,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "7,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "7,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "7,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "7,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "8,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "8,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "8,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "8,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "9,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "9,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "9,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "9,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "10,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "10,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "10,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "10,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "11,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "11,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "11,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "11,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,1,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,1,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,2,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,2,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,1,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,1,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "4,1,4"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,1,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,1,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,2,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,2,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,2,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,3,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,3,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,3,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,4,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,4,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "12,4,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,1,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,1,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,2,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,2,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,2,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,3,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,3,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,3,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,4,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,4,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "13,4,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,1,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,1,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,2,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,2,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,2,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,3,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,3,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,3,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,4,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,4,8"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "14,4,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,0"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,1"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 9
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 9
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_flag_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 9
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_spring_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 5
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_rock_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "terrain",
+          "2,1,4"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "3,1,4"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "4,1,4"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "0,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "1,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "2,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "4,1,7"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_0",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 1
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_0",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_1",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 2
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_1",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_2",
+          "cell",
+          "x"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "source_you_2",
+          "cell",
+          "z"
+        ],
+        "remove": false,
+        "value": 3
+      },
+      {
+        "path": [
+          "entities",
+          "object_1"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_1",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 10
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_2"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_2",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 9
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_3"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_3",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 8
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_4"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 7
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_5"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_5",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 6
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_6"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_6",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_7"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_7",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_8"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_8",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_9"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_9",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 2
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_10"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_10",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "entities",
+          "object_11"
+        ],
+        "remove": false,
+        "value": {
+          "id": "object_11",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,2"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,3"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,4"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,5"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,6"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,7"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,8"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,9"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,10"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,0"
+        ],
+        "remove": true,
+        "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "5,3,1"
+        ],
+        "remove": true,
+        "value": null
+      }
+    ],
+    "resolved": {
+      "bounds": {
+        "id": "",
+        "min": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "max": {
+          "x": 14,
+          "y": 5,
+          "z": 10
+        },
+        "appearance": "Stone"
+      },
+      "entities": {
+        "source_flag_0": {
+          "id": "source_flag_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "FLAG",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 9
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_flag_1": {
+          "id": "source_flag_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 9
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_flag_2": {
+          "id": "source_flag_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "WIN",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 9
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_spring_0": {
+          "id": "source_spring_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "SPRING",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_spring_1": {
+          "id": "source_spring_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_spring_2": {
+          "id": "source_spring_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "STOP",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_you_0": {
+          "id": "source_you_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROBOT",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_you_1": {
+          "id": "source_you_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_you_2": {
+          "id": "source_you_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "YOU",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "old_bounce_0": {
+          "id": "old_bounce_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "SPRING",
+          "cell": {
+            "x": 12,
+            "y": 5,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "old_bounce_1": {
+          "id": "old_bounce_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 13,
+            "y": 5,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "old_bounce_2": {
+          "id": "old_bounce_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "BOUNCY",
+          "cell": {
+            "x": 14,
+            "y": 5,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "robot_01": {
+          "id": "robot_01",
+          "kind": "Object",
+          "subject": "ROBOT",
+          "token": "",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "spring_01": {
+          "id": "spring_01",
+          "kind": "Object",
+          "subject": "SPRING",
+          "token": "",
+          "cell": {
+            "x": 11,
+            "y": 1,
+            "z": 2
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "goal": {
+          "id": "goal",
+          "kind": "Object",
+          "subject": "FLAG",
+          "token": "",
+          "cell": {
+            "x": 13,
+            "y": 5,
+            "z": 8
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_1": {
+          "id": "object_1",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 10
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_2": {
+          "id": "object_2",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 9
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_3": {
+          "id": "object_3",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 8
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_4": {
+          "id": "object_4",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 7
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_5": {
+          "id": "object_5",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 6
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_6": {
+          "id": "object_6",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 5
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_7": {
+          "id": "object_7",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 4
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_8": {
+          "id": "object_8",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_9": {
+          "id": "object_9",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 2
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_10": {
+          "id": "object_10",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_11": {
+          "id": "object_11",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 5,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_12": {
+          "id": "object_12",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 6,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_13": {
+          "id": "object_13",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 7,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_14": {
+          "id": "object_14",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 8,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_15": {
+          "id": "object_15",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 9,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_16": {
+          "id": "object_16",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 10,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_17": {
+          "id": "object_17",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 11,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_18": {
+          "id": "object_18",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 12,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_19": {
+          "id": "object_19",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 13,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "object_20": {
+          "id": "object_20",
+          "kind": "Object",
+          "subject": "WALL",
+          "token": "",
+          "cell": {
+            "x": 14,
+            "y": 3,
+            "z": 0
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_rock_0": {
+          "id": "source_rock_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROCK",
+          "cell": {
+            "x": 1,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_rock_1": {
+          "id": "source_rock_1",
+          "kind": "Text",
+          "subject": "",
+          "token": "IS",
+          "cell": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "source_rock_2": {
+          "id": "source_rock_2",
+          "kind": "Text",
+          "subject": "",
+          "token": "STOP",
+          "cell": {
+            "x": 3,
+            "y": 1,
+            "z": 1
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "new_bounce_0": {
+          "id": "new_bounce_0",
+          "kind": "Text",
+          "subject": "",
+          "token": "ROCK",
+          "cell": {
+            "x": 12,
+            "y": 5,
+            "z": 3
+          },
+          "anchored": false,
+          "color": ""
+        },
+        "rock_01": {
+          "id": "rock_01",
+          "kind": "Object",
+          "subject": "ROCK",
+          "token": "",
+          "cell": {
+            "x": 11,
+            "y": 1,
+            "z": 8
+          },
+          "anchored": false,
+          "color": ""
+        }
+      },
+      "terrain": {
+        "0,0,0": "Stone",
+        "1,0,0": "Stone",
+        "2,0,0": "Stone",
+        "3,0,0": "Stone",
+        "4,0,0": "Stone",
+        "5,0,0": "Stone",
+        "6,0,0": "Stone",
+        "7,0,0": "Stone",
+        "8,0,0": "Stone",
+        "9,0,0": "Stone",
+        "10,0,0": "Stone",
+        "11,0,0": "Stone",
+        "12,0,0": "Stone",
+        "13,0,0": "Stone",
+        "14,0,0": "Stone",
+        "0,0,1": "Stone",
+        "1,0,1": "Stone",
+        "2,0,1": "Stone",
+        "3,0,1": "Stone",
+        "4,0,1": "Stone",
+        "5,0,1": "Stone",
+        "6,0,1": "Stone",
+        "7,0,1": "Stone",
+        "8,0,1": "Stone",
+        "9,0,1": "Stone",
+        "10,0,1": "Stone",
+        "11,0,1": "Stone",
+        "12,0,1": "Stone",
+        "13,0,1": "Stone",
+        "14,0,1": "Stone",
+        "0,0,2": "Stone",
+        "1,0,2": "Stone",
+        "2,0,2": "Stone",
+        "3,0,2": "Stone",
+        "4,0,2": "Stone",
+        "5,0,2": "Stone",
+        "6,0,2": "Stone",
+        "7,0,2": "Stone",
+        "8,0,2": "Stone",
+        "9,0,2": "Stone",
+        "10,0,2": "Stone",
+        "11,0,2": "Stone",
+        "12,0,2": "Stone",
+        "13,0,2": "Stone",
+        "14,0,2": "Stone",
+        "0,0,3": "Stone",
+        "1,0,3": "Stone",
+        "2,0,3": "Stone",
+        "3,0,3": "Stone",
+        "4,0,3": "Stone",
+        "5,0,3": "Stone",
+        "6,0,3": "Stone",
+        "7,0,3": "Stone",
+        "8,0,3": "Stone",
+        "9,0,3": "Stone",
+        "10,0,3": "Stone",
+        "11,0,3": "Stone",
+        "12,0,3": "Stone",
+        "13,0,3": "Stone",
+        "14,0,3": "Stone",
+        "0,0,4": "Stone",
+        "1,0,4": "Stone",
+        "2,0,4": "Stone",
+        "3,0,4": "Stone",
+        "4,0,4": "Stone",
+        "5,0,4": "Stone",
+        "6,0,4": "Stone",
+        "7,0,4": "Stone",
+        "8,0,4": "Stone",
+        "9,0,4": "Stone",
+        "10,0,4": "Stone",
+        "11,0,4": "Stone",
+        "12,0,4": "Stone",
+        "13,0,4": "Stone",
+        "14,0,4": "Stone",
+        "0,0,5": "Stone",
+        "1,0,5": "Stone",
+        "2,0,5": "Stone",
+        "3,0,5": "Stone",
+        "4,0,5": "Stone",
+        "5,0,5": "Stone",
+        "6,0,5": "Stone",
+        "7,0,5": "Stone",
+        "8,0,5": "Stone",
+        "9,0,5": "Stone",
+        "10,0,5": "Stone",
+        "11,0,5": "Stone",
+        "12,0,5": "Stone",
+        "13,0,5": "Stone",
+        "14,0,5": "Stone",
+        "0,0,6": "Stone",
+        "1,0,6": "Stone",
+        "2,0,6": "Stone",
+        "3,0,6": "Stone",
+        "4,0,6": "Stone",
+        "5,0,6": "Stone",
+        "6,0,6": "Stone",
+        "7,0,6": "Stone",
+        "8,0,6": "Stone",
+        "9,0,6": "Stone",
+        "10,0,6": "Stone",
+        "11,0,6": "Stone",
+        "12,0,6": "Stone",
+        "13,0,6": "Stone",
+        "14,0,6": "Stone",
+        "0,0,7": "Stone",
+        "1,0,7": "Stone",
+        "2,0,7": "Stone",
+        "3,0,7": "Stone",
+        "4,0,7": "Stone",
+        "5,0,7": "Stone",
+        "6,0,7": "Stone",
+        "7,0,7": "Stone",
+        "8,0,7": "Stone",
+        "9,0,7": "Stone",
+        "10,0,7": "Stone",
+        "11,0,7": "Stone",
+        "12,0,7": "Stone",
+        "13,0,7": "Stone",
+        "14,0,7": "Stone",
+        "0,0,8": "Stone",
+        "1,0,8": "Stone",
+        "2,0,8": "Stone",
+        "3,0,8": "Stone",
+        "4,0,8": "Stone",
+        "5,0,8": "Stone",
+        "6,0,8": "Stone",
+        "7,0,8": "Stone",
+        "8,0,8": "Stone",
+        "9,0,8": "Stone",
+        "10,0,8": "Stone",
+        "11,0,8": "Stone",
+        "12,0,8": "Stone",
+        "13,0,8": "Stone",
+        "14,0,8": "Stone",
+        "0,0,9": "Stone",
+        "1,0,9": "Stone",
+        "2,0,9": "Stone",
+        "3,0,9": "Stone",
+        "4,0,9": "Stone",
+        "5,0,9": "Stone",
+        "6,0,9": "Stone",
+        "7,0,9": "Stone",
+        "8,0,9": "Stone",
+        "9,0,9": "Stone",
+        "10,0,9": "Stone",
+        "11,0,9": "Stone",
+        "12,0,9": "Stone",
+        "13,0,9": "Stone",
+        "14,0,9": "Stone",
+        "0,0,10": "Stone",
+        "1,0,10": "Stone",
+        "2,0,10": "Stone",
+        "3,0,10": "Stone",
+        "4,0,10": "Stone",
+        "5,0,10": "Stone",
+        "6,0,10": "Stone",
+        "7,0,10": "Stone",
+        "8,0,10": "Stone",
+        "9,0,10": "Stone",
+        "10,0,10": "Stone",
+        "11,0,10": "Stone",
+        "12,0,10": "Stone",
+        "13,0,10": "Stone",
+        "14,0,10": "Stone",
+        "5,1,2": "Stone",
+        "6,1,2": "Stone",
+        "7,1,2": "Stone",
+        "8,1,2": "Stone",
+        "9,1,2": "Stone",
+        "10,1,2": "Stone",
+        "12,1,2": "Stone",
+        "13,1,2": "Stone",
+        "14,1,2": "Stone",
+        "5,1,3": "Stone",
+        "6,1,3": "Stone",
+        "7,1,3": "Stone",
+        "8,1,3": "Stone",
+        "9,1,3": "Stone",
+        "10,1,3": "Stone",
+        "12,1,3": "Stone",
+        "13,1,3": "Stone",
+        "14,1,3": "Stone",
+        "5,1,4": "Stone",
+        "6,1,4": "Stone",
+        "7,1,4": "Stone",
+        "8,1,4": "Stone",
+        "9,1,4": "Stone",
+        "10,1,4": "Stone",
+        "12,1,4": "Stone",
+        "13,1,4": "Stone",
+        "14,1,4": "Stone",
+        "5,1,5": "Stone",
+        "6,1,5": "Stone",
+        "7,1,5": "Stone",
+        "8,1,5": "Stone",
+        "9,1,5": "Stone",
+        "10,1,5": "Stone",
+        "5,1,6": "Stone",
+        "6,1,6": "Stone",
+        "7,1,6": "Stone",
+        "8,1,6": "Stone",
+        "9,1,6": "Stone",
+        "10,1,6": "Stone",
+        "5,1,7": "Stone",
+        "6,1,7": "Stone",
+        "7,1,7": "Stone",
+        "8,1,7": "Stone",
+        "9,1,7": "Stone",
+        "10,1,7": "Stone",
+        "5,1,8": "Stone",
+        "6,1,8": "Stone",
+        "7,1,8": "Stone",
+        "8,1,8": "Stone",
+        "9,1,8": "Stone",
+        "10,1,8": "Stone",
+        "5,1,9": "Stone",
+        "6,1,9": "Stone",
+        "7,1,9": "Stone",
+        "8,1,9": "Stone",
+        "9,1,9": "Stone",
+        "10,1,9": "Stone",
+        "5,1,10": "Stone",
+        "6,1,10": "Stone",
+        "7,1,10": "Stone",
+        "8,1,10": "Stone",
+        "9,1,10": "Stone",
+        "10,1,10": "Stone",
+        "5,2,2": "Stone",
+        "6,2,2": "Stone",
+        "7,2,2": "Stone",
+        "8,2,2": "Stone",
+        "9,2,2": "Stone",
+        "10,2,2": "Stone",
+        "12,2,2": "Stone",
+        "13,2,2": "Stone",
+        "14,2,2": "Stone",
+        "5,2,3": "Stone",
+        "6,2,3": "Stone",
+        "7,2,3": "Stone",
+        "8,2,3": "Stone",
+        "9,2,3": "Stone",
+        "10,2,3": "Stone",
+        "12,2,3": "Stone",
+        "13,2,3": "Stone",
+        "14,2,3": "Stone",
+        "5,2,4": "Stone",
+        "6,2,4": "Stone",
+        "7,2,4": "Stone",
+        "8,2,4": "Stone",
+        "9,2,4": "Stone",
+        "10,2,4": "Stone",
+        "12,2,4": "Stone",
+        "13,2,4": "Stone",
+        "14,2,4": "Stone",
+        "5,2,5": "Stone",
+        "6,2,5": "Stone",
+        "7,2,5": "Stone",
+        "8,2,5": "Stone",
+        "9,2,5": "Stone",
+        "10,2,5": "Stone",
+        "5,2,6": "Stone",
+        "6,2,6": "Stone",
+        "7,2,6": "Stone",
+        "8,2,6": "Stone",
+        "9,2,6": "Stone",
+        "10,2,6": "Stone",
+        "5,2,7": "Stone",
+        "6,2,7": "Stone",
+        "7,2,7": "Stone",
+        "8,2,7": "Stone",
+        "9,2,7": "Stone",
+        "10,2,7": "Stone",
+        "5,2,8": "Stone",
+        "6,2,8": "Stone",
+        "7,2,8": "Stone",
+        "8,2,8": "Stone",
+        "9,2,8": "Stone",
+        "10,2,8": "Stone",
+        "5,2,9": "Stone",
+        "6,2,9": "Stone",
+        "7,2,9": "Stone",
+        "8,2,9": "Stone",
+        "9,2,9": "Stone",
+        "10,2,9": "Stone",
+        "5,2,10": "Stone",
+        "6,2,10": "Stone",
+        "7,2,10": "Stone",
+        "8,2,10": "Stone",
+        "9,2,10": "Stone",
+        "10,2,10": "Stone",
+        "12,3,2": "Stone",
+        "13,3,2": "Stone",
+        "14,3,2": "Stone",
+        "12,3,3": "Stone",
+        "13,3,3": "Stone",
+        "14,3,3": "Stone",
+        "12,3,4": "Stone",
+        "13,3,4": "Stone",
+        "14,3,4": "Stone",
+        "12,4,2": "Stone",
+        "13,4,2": "Stone",
+        "14,4,2": "Stone",
+        "12,4,3": "Stone",
+        "13,4,3": "Stone",
+        "14,4,3": "Stone",
+        "12,4,4": "Stone",
+        "13,4,4": "Stone",
+        "14,4,4": "Stone",
+        "5,1,1": "Stone",
+        "6,1,1": "Stone",
+        "7,1,1": "Stone",
+        "8,1,1": "Stone",
+        "9,1,1": "Stone",
+        "10,1,1": "Stone",
+        "11,1,1": "Stone",
+        "12,1,1": "Stone",
+        "13,1,1": "Stone",
+        "14,1,1": "Stone",
+        "5,1,0": "Stone",
+        "6,1,0": "Stone",
+        "7,1,0": "Stone",
+        "8,1,0": "Stone",
+        "9,2,0": "Stone",
+        "5,2,1": "Stone",
+        "6,2,1": "Stone",
+        "7,2,1": "Stone",
+        "8,2,1": "Stone",
+        "9,2,1": "Stone",
+        "10,2,1": "Stone",
+        "11,2,1": "Stone",
+        "12,2,1": "Stone",
+        "13,2,1": "Stone",
+        "14,2,1": "Stone",
+        "10,2,0": "Stone",
+        "7,2,0": "Stone",
+        "11,2,0": "Stone",
+        "12,2,0": "Stone",
+        "13,2,0": "Stone",
+        "14,2,0": "Stone",
+        "8,2,0": "Stone",
+        "6,2,0": "Stone",
+        "5,2,0": "Stone",
+        "9,1,0": "Stone",
+        "10,1,0": "Stone",
+        "11,1,0": "Stone",
+        "12,1,0": "Stone",
+        "13,1,0": "Stone",
+        "14,1,0": "Stone",
+        "12,1,7": "Stone",
+        "12,1,8": "Stone",
+        "12,1,9": "Stone",
+        "12,2,7": "Stone",
+        "12,2,8": "Stone",
+        "12,2,9": "Stone",
+        "12,3,7": "Stone",
+        "12,3,8": "Stone",
+        "12,3,9": "Stone",
+        "12,4,7": "Stone",
+        "12,4,8": "Stone",
+        "12,4,9": "Stone",
+        "13,1,7": "Stone",
+        "13,1,8": "Stone",
+        "13,1,9": "Stone",
+        "13,2,7": "Stone",
+        "13,2,8": "Stone",
+        "13,2,9": "Stone",
+        "13,3,7": "Stone",
+        "13,3,8": "Stone",
+        "13,3,9": "Stone",
+        "13,4,7": "Stone",
+        "13,4,8": "Stone",
+        "13,4,9": "Stone",
+        "14,1,7": "Stone",
+        "14,1,8": "Stone",
+        "14,1,9": "Stone",
+        "14,2,7": "Stone",
+        "14,2,8": "Stone",
+        "14,2,9": "Stone",
+        "14,3,7": "Stone",
+        "14,3,8": "Stone",
+        "14,3,9": "Stone",
+        "14,4,7": "Stone",
+        "14,4,8": "Stone",
+        "14,4,9": "Stone",
+        "0,1,7": "Stone",
+        "1,1,7": "Stone",
+        "2,1,7": "Stone",
+        "3,1,7": "Stone",
+        "4,1,7": "Stone"
+      }
+    }
   }
 }
