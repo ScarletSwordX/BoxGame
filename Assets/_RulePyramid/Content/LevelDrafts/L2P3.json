@@ -972,6 +972,34 @@
         "z": 10
       },
       "appearance": "Stone"
+    },
+    {
+      "id": "terrain_7",
+      "min": {
+        "x": 11,
+        "y": 1,
+        "z": 4
+      },
+      "max": {
+        "x": 11,
+        "y": 1,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_8",
+      "min": {
+        "x": 11,
+        "y": 1,
+        "z": 3
+      },
+      "max": {
+        "x": 11,
+        "y": 1,
+        "z": 3
+      },
+      "appearance": "Stone"
     }
   ],
   "entities": [
@@ -2764,6 +2792,22 @@
         ],
         "remove": true,
         "value": null
+      },
+      {
+        "path": [
+          "terrain",
+          "3,1,9"
+        ],
+        "remove": false,
+        "value": "Stone"
+      },
+      {
+        "path": [
+          "terrain",
+          "3,1,10"
+        ],
+        "remove": false,
+        "value": "Stone"
       }
     ],
     "resolved": {
@@ -3762,7 +3806,9 @@
         "0,4,5": "Stone",
         "2,5,1": "Stone",
         "2,5,2": "Stone",
-        "2,5,3": "Stone"
+        "2,5,3": "Stone",
+        "3,1,9": "Stone",
+        "3,1,10": "Stone"
       }
     }
   }
