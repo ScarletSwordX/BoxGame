@@ -20,6 +20,7 @@ namespace RulePyramid.Runtime
         readonly Dictionary<Material, Material> _cutawayMaterials = new Dictionary<Material, Material>();
         MaterialPropertyBlock _cutawayBlock;
         static readonly int CutawayTarget = Shader.PropertyToID("_CutawayTarget");
+        static readonly int CutawayMinHeight = Shader.PropertyToID("_CutawayMinHeight");
         static readonly int CutawayRadius = Shader.PropertyToID("_CutawayRadius");
         static readonly int CutawayFeather = Shader.PropertyToID("_CutawayFeather");
         static readonly int CutawayDepthBias = Shader.PropertyToID("_CutawayDepthBias");
@@ -329,6 +330,8 @@ namespace RulePyramid.Runtime
             if (_cutawayBlock == null) _cutawayBlock = new MaterialPropertyBlock();
             renderer.GetPropertyBlock(_cutawayBlock);
             _cutawayBlock.SetVector(CutawayTarget, target != null ? (Vector4)target.position : Vector4.zero);
+            // 使用动画中的脚底高度，合并地形盒也只裁切玩家同层及上方部分。
+            _cutawayBlock.SetFloat(CutawayMinHeight, target != null ? target.position.y - 0.5f * CellSize : 0f);
             _cutawayBlock.SetFloat(CutawayRadius, active ? radius : 0f);
             _cutawayBlock.SetFloat(CutawayFeather, 0.06f * CellSize);
             _cutawayBlock.SetFloat(CutawayDepthBias, 0.05f * CellSize);

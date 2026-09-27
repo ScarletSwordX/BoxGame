@@ -180,6 +180,7 @@ namespace RulePyramid.Tests.PlayMode
                 var block = new MaterialPropertyBlock();
                 renderer.GetPropertyBlock(block);
                 Assert.AreEqual((Vector4)robot.position, block.GetVector("_CutawayTarget"));
+                Assert.AreEqual(robot.position.y - 0.5f, block.GetFloat("_CutawayMinHeight"), 0.001f);
                 Assert.AreEqual(0.9f, block.GetFloat("_CutawayRadius"), 0.001f);
                 Assert.AreEqual(1f, renderer.sharedMaterial.color.a);
                 Assert.AreEqual("Standard", source.shader.name);
@@ -255,6 +256,7 @@ namespace RulePyramid.Tests.PlayMode
                 AssertDominant(Sample(0f, 0f), 0, "中心必须显示红色 YOU。");
                 AssertDominant(Sample(0.76f, 0f), 1, "圆内侧向空隙必须剔除。");
                 AssertDominant(Sample(0f, 0.76f), 1, "竖向半径必须与横向相同。");
+                AssertDominant(Sample(0f, -0.86f), 2, "圆内低于玩家脚底的表面必须保留，合并地形不能整盒剔除。");
                 AssertDominant(Sample(1.18f, 0f), 2, "圆外横向地形必须保留蓝色。");
                 AssertDominant(Sample(0f, 1.18f), 2, "圆外竖向地形必须保留蓝色。");
                 // 同一投影位置移动到 YOU 后方，圆内原先的空隙应恢复实体表面。

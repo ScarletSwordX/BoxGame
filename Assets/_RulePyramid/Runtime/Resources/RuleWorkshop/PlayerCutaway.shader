@@ -27,7 +27,7 @@ Shader "RuleWorkshop/PlayerCutaway"
         fixed4 _Color, _EmissionColor;
         half _Metallic, _Glossiness;
         float4 _CutawayTarget;
-        float _CutawayRadius, _CutawayFeather, _CutawayDepthBias;
+        float _CutawayRadius, _CutawayFeather, _CutawayDepthBias, _CutawayMinHeight;
         struct Input
         {
             float2 uv_MainTex;
@@ -40,6 +40,9 @@ Shader "RuleWorkshop/PlayerCutaway"
             float3 focusView = mul(UNITY_MATRIX_V, float4(_CutawayTarget.xyz, 1)).xyz;
             float fragmentDepth = -mul(UNITY_MATRIX_V, float4(IN.worldPos, 1)).z;
             if (_CutawayRadius > 0 && -focusView.z > 0
+                // 视线圆形通道只到玩家为止；脚下地面及跨层合并盒的下部保持完整。
+                && IN.worldPos.y > _CutawayMinHeight + 0.0001
+                && fragmentDepth > 0
                 && fragmentDepth < -focusView.z - _CutawayDepthBias)
             {
                 float4 focusClip = mul(UNITY_MATRIX_P, float4(focusView, 1));

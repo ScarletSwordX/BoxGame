@@ -33,7 +33,7 @@ MonoBehaviour:
   paletteVersion: 1
   youTint: {r: 1, g: 0.35, b: 0.25, a: 1}
   winGlow: {r: 1, g: 0.5, b: 0.8, a: 0.45}
-  occlusionRadiusCells: 0.9
+  occlusionRadiusCells: 0
   bounceHintDelay: 1.5
   bouncePeripheralDarkness: 0.38
   bounceDispersionPixels: 1.1
