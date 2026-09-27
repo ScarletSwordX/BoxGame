@@ -58,9 +58,9 @@ namespace RulePyramid.Editor
             if (Stages.Length == 0)
             {
                 string parent = StageMapInheritance.Parent(_session.Draft);
-                GUILayout.Label(string.IsNullOrEmpty(parent) ? "当前阶段：无父阶段" : "继承自：" + parent, EditorStyles.wordWrappedLabel);
+                GUILayout.Label(string.IsNullOrEmpty(parent) ? "当前阶段：无父阶段" : "继承自：" + parent + (StageMapInheritance.Version(_session.Draft) == 2 ? " · 右上角对齐" : " · 旧坐标"), EditorStyles.wordWrappedLabel);
                 using (new EditorGUI.DisabledScope(Playing || _dragging || Dirty))
-                    if (GUILayout.Button("建立整组顺序继承（保留各图现状）")) EnableStageInheritance();
+                    if (GUILayout.Button("建立 / 升级整组继承（右上角对齐）")) EnableStageInheritance();
                 if (Dirty) GUILayout.Label("请先保存当前地图，再建立继承。", EditorStyles.wordWrappedMiniLabel);
             }
             if (Stages.Length == 0)
@@ -88,7 +88,7 @@ namespace RulePyramid.Editor
                     var map = LevelJsonSerializer.FromDraftJson(File.ReadAllText(linked.Path, Encoding.UTF8));
                     if (previous != null && !SamePath(Path.GetDirectoryName(previous), Path.GetDirectoryName(linked.Path)))
                         throw new InvalidOperationException("建立顺序继承需要阶段地图位于同一目录");
-                    if (parent != null && string.IsNullOrEmpty(StageMapInheritance.Parent(map)))
+                    if (parent != null && StageMapInheritance.Version(map) < 2)
                         map = StageMapInheritance.Link(parent, map, Path.GetFileName(previous));
                     maps[linked.Path] = map;
                     parent = map; previous = linked.Path;

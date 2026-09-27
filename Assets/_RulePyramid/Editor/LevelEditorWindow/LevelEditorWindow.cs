@@ -352,8 +352,11 @@ namespace RulePyramid.Editor
             try
             {
                 var sequence = FindLinkedStages(path, _session.Draft.id, Path.Combine(Application.dataPath, "_RulePyramid", "Content")).Select(s => s.Path).ToArray();
-                var saves = StageMapInheritance.BuildSave(path, _session.Draft, sequence);
-                CheckOpenStageWindows(saves.Keys);
+                var skipped = new System.Collections.Generic.List<string>();
+                var protectedPaths = Resources.FindObjectsOfTypeAll<LevelEditorWindow>()
+                    .Where(w => w != this && (w.Dirty || w.Playing) && !string.IsNullOrEmpty(w._session?.SourcePath))
+                    .Select(w => w._session.SourcePath).ToArray();
+                var saves = StageMapInheritance.BuildSave(path, _session.Draft, sequence, skipped, protectedPaths);
                 StageMapInheritance.WriteBatch(saves);
                 var saved = saves[Path.GetFullPath(path)];
                 if (JsonUtility.ToJson(saved) != JsonUtility.ToJson(_session.Draft))
@@ -367,6 +370,12 @@ namespace RulePyramid.Editor
                 _session.SourcePath = path; _session.MarkSaved(); _recoveredDirty = false;
                 _linkedStages = null;
                 CaptureRecovery(); hasUnsavedChanges = false; _message = "已保存作者初态：" + path + "；更新地图 " + saves.Count + " 张。";
+                if (skipped.Count > 0)
+                {
+                    _message += " 已跳过 " + skipped.Count + " 项继承：" + string.Join("；", skipped.Take(4));
+                    if (skipped.Count > 4) _message += "；完整明细见 Console。";
+                    Debug.Log("阶段继承跳过明细：\n" + string.Join("\n", skipped));
+                }
                 AssetDatabase.Refresh(); return true;
             }
             catch (Exception ex) { _message = "保存失败，原文件保留：" + ex.Message; return false; }
