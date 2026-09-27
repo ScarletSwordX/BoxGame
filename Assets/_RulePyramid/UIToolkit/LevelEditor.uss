@@ -1,7 +1,0 @@
-.root { flex-grow: 1; }
-.toolbar { flex-direction: row; padding: 4px; }
-.meta { flex-direction: row; padding: 4px; }
-.body { flex-direction: row; flex-grow: 1; }
-.grid-host { flex-grow: 1; min-height: 320px; background-color: rgb(32, 32, 36); }
-.side { width: 280px; padding: 8px; }
-.diag { white-space: normal; }
