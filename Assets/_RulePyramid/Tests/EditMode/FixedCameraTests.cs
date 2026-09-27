@@ -60,6 +60,33 @@ namespace RulePyramid.Tests.EditMode
         }
 
         [Test]
+        public void StageCoordinateShiftPreservesScreenPositionAndScale()
+        {
+            var holder = new GameObject("右上角过场对齐测试");
+            var config = ScriptableObject.CreateInstance<VisualConfig>();
+            try
+            {
+                config.cellSize = 2f;
+                config.origin = new Vector3(10f, 3f, -5f);
+                var lens = holder.AddComponent<Camera>();
+                lens.aspect = 16f / 9f;
+                var camera = holder.AddComponent<CameraSlotsController>();
+                camera.config = config;
+                camera.FrameLevel(new GridCellBox { min = new GridCell(-3, 0, -4), max = new GridCell(7, 5, 8) }, true);
+                var point = GridMap.ToWorld(new GridCell(7, 0, 8), config);
+                var before = lens.WorldToViewportPoint(point);
+                var size = lens.orthographicSize;
+                var rotation = holder.transform.rotation;
+                var delta = new Vector3(4f, 0f, 3f) * config.cellSize;
+                camera.TranslateFrame(delta);
+                Assert.Less(Vector3.Distance(before, lens.WorldToViewportPoint(point + delta)), .0001f);
+                Assert.AreEqual(size, lens.orthographicSize);
+                Assert.AreEqual(rotation, holder.transform.rotation);
+            }
+            finally { Object.DestroyImmediate(holder); Object.DestroyImmediate(config); }
+        }
+
+        [Test]
         public void RotationCommandsAreRejectedWithoutSpendingATurn()
         {
             var path = Path.Combine(Application.dataPath, "_RulePyramid/Content/Levels/L01.json");

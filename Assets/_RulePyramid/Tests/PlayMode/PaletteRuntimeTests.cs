@@ -267,7 +267,7 @@ namespace RulePyramid.Tests.PlayMode
                     host.transform.Find("Terrain floor").GetComponent<Renderer>().sharedMaterial);
                 var expansion = view.ExpandTo(next, 0.12f);
                 Assert.IsTrue(expansion.MoveNext());
-                var tile = host.transform.Find("Expanded Terrain (4,1,2)");
+                var tile = host.transform.Find("Added Terrain (3,1,2)");
                 Assert.IsNotNull(tile);
                 Assert.AreSame(config.structureMaterial, tile.GetComponent<Renderer>().sharedMaterial);
                 float deadline = Time.realtimeSinceStartup + 3f;

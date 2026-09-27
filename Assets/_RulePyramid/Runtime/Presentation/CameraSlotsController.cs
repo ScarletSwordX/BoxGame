@@ -44,6 +44,14 @@ namespace RulePyramid.Runtime
             ApplyPose();
         }
 
+        // 与地图过场同帧平移坐标系，屏幕构图不产生跳变。
+        public void TranslateFrame(Vector3 delta)
+        {
+            _frameCenter += delta;
+            _desiredCenter += delta;
+            ApplyPose();
+        }
+
         Quaternion ViewRotation()
         {
             float pitch = config != null ? config.cameraPitch : 75f;

@@ -16,6 +16,9 @@ namespace RulePyramid.Runtime
             { "同一间规则室：共用 IS", "Share IS" },
             { "同一座旗台：岩浆弹跳", "Lava Bounce" },
             { "回到左室：两个主体共用一句", "Share a Rule" },
+            { "同一个名词，两条规则", "One Noun, Two Rules" },
+            { "岩浆的两条规则", "Two Rules for Lava" },
+            { "整圈墙都是你", "A Ring of You" },
             { "方向键 / WASD 移动", "WASD / Arrow keys to move" },
             { "没有可控制的对象了，按 Z 撤销。", "No YOU left. Press Z to undo." }
         };

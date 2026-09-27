@@ -1,5 +1,7 @@
 # Rule Workshop｜全规则空间化、十二关与多解原型规格
 
+> **2026-09-27 阶段过场更新：** L01—L03 按相邻地图的右上角原点对齐，展示实际地形保留/移除/新增及固定初态物件重布；同地形阶段也有过场。镜头与地图同步补偿坐标，不改变模拟和地图 JSON。见 [六处切换说明](level-design/L01-L03-阶段过场更新.md)。
+
 > **2026-09-27 L03 规则教学修订（用户明确要求，覆盖旧胜利约定）：** 同一存活 Object 同时具有 YOU 与 WIN 时立即获胜，不再要求一定由两个不同实例接触；两个不同 YOU/WIN 实例合法同格仍可获胜。判定只读取世界规则，无按关卡 ID 特例，危险入格销毁仍先于胜利。新草稿使用 `winMode=YouAndWinSameCell`；旧 `DistinctEntitiesSameCell` 标签作为 schemaVersion 9 兼容输入，统一执行新判定。L3P1 由同一 ROBOT 名词同时参与 ROBOT IS YOU 与 ROBOT IS WIN；L3P2 仍为岩浆双属性；L3P3 整圈八块 WALL 经 WALL IS ROBOT 原位转成 ROBOT，全部按 ROBOT IS YOU 受控。下文未接入正式目录的旧 L09 设计因该语义变更待重审。
 
 

@@ -147,7 +147,8 @@ namespace RulePyramid.Runtime
             while (IsPaused) yield return null;
             _bounceFeedback?.ResetFeedback();
             animator?.Stop();
-            cameraSlots?.FrameLevel(next.Level.bounds, false);
+            var layout = StageTransitionLayout.Between(_session.World, next.World);
+            cameraSlots?.FrameLevel(layout.FramingBounds, false);
             if (worldView != null)
                 yield return worldView.ExpandTo(next.World, Mathf.Max(0f, stageExpansionDuration));
             else if (stageExpansionDuration > 0f)
@@ -155,15 +156,19 @@ namespace RulePyramid.Runtime
             while (IsPaused) yield return null;
             IsStageTransitioning = false;
             _stageTransition = null;
+            float cellSize = visualConfig != null ? visualConfig.cellSize : 1f;
+            cameraSlots?.TranslateFrame(new Vector3(-layout.NextOffset.x, 0f, -layout.NextOffset.z) * cellSize);
             ActivateStage(next, nextStage, false);
         }
 
         void CancelStageTransition()
         {
+            bool wasTransitioning = IsStageTransitioning;
             if (_stageTransition != null) StopCoroutine(_stageTransition);
             _stageTransition = null;
             IsStageTransitioning = false;
             worldView?.CancelExpansion();
+            if (wasTransitioning && _session != null) cameraSlots?.FrameLevel(_session.Level.bounds, true);
             animator?.Stop();
         }
 

@@ -38,14 +38,9 @@ namespace RulePyramid.Runtime
 
         sealed class ExpansionTile
         {
-            public GridCell Cell;
-            public bool Glass;
-            public bool Structure;
-            public int Ring;
-            public float StartedAt;
+            public bool Added;
             public Vector3 Target;
             public Transform Transform;
-            public Renderer Renderer;
         }
 
         public int Generation => _generation;
@@ -53,7 +48,12 @@ namespace RulePyramid.Runtime
         public void Rebuild(WorldModel world)
         {
             CancelExpansion();
-            Clear();
+            ClearVisuals();
+            BuildWorld(world);
+        }
+
+        void BuildWorld(WorldModel world)
+        {
             _world = world;
             if (world == null) return;
             int ground = GroundHeight(world);
@@ -85,152 +85,128 @@ namespace RulePyramid.Runtime
             RefreshOcclusion(Camera.main);
         }
 
-        /// <summary>Reveal terrain cells added by the next stage, then replace all stage entities with its authored initial state.</summary>
+        /// <summary>按右上角对齐展示地形增删，再重布下一阶段的物件与词牌。</summary>
         public IEnumerator ExpandTo(WorldModel next, float duration)
         {
             if (next == null) throw new ArgumentNullException(nameof(next));
             CancelExpansion();
-            if (_world == null || duration <= 0f)
-            {
-                Rebuild(next);
-                yield break;
-            }
-
+            if (_world == null || duration <= 0f) { Rebuild(next); yield break; }
             var previous = _world;
-            var added = AddedTerrain(previous, next);
-            if (added.Count == 0)
-            {
-                Rebuild(next);
-                yield break;
-            }
-
+            var layout = StageTransitionLayout.Between(previous, next);
             int version = ++_expansionVersion;
             _expansionPreviousWorld = previous;
             RefreshOcclusion(null);
-            foreach (var view in _views.Values)
-                if (view != null) view.gameObject.SetActive(false);
             _world = null;
+            var outgoing = CaptureEntityScales();
+            foreach (var renderer in _terrain) if (renderer != null) renderer.gameObject.SetActive(false);
+            CreateRetainedTerrain(layout.Retained);
+            foreach (var surface in layout.Removed) CreateTransitionTile(surface, false);
+            foreach (var surface in layout.Added) CreateTransitionTile(surface, true);
 
-            int highestRing = added[added.Count - 1].Ring;
-            float batchDuration = duration / (highestRing + 1);
-            float riseDuration = Mathf.Min(0.28f, batchDuration * 0.8f);
-            int nextTile = 0;
+            bool incomingBuilt = false;
+            Dictionary<Transform, Vector3> incoming = null;
+            var offset = new Vector3(layout.NextOffset.x, 0f, layout.NextOffset.z) * CellSize;
             float elapsed = 0f;
             while (elapsed < duration)
             {
                 if (version != _expansionVersion) yield break;
                 if (Time.timeScale == 0f) { yield return null; continue; }
-                int currentRing = Mathf.Min(highestRing, Mathf.FloorToInt(elapsed / batchDuration));
-                while (nextTile < added.Count && added[nextTile].Ring <= currentRing)
+                float progress = elapsed / duration;
+                if (!incomingBuilt && progress >= .72f)
                 {
-                    var tile = added[nextTile++];
-                    var cube = CreateCube("Expanded Terrain " + tile.Cell,
-                        tile.Cell, tile.Glass ? GlassMat() : TerrainMat(tile.Structure), 1f);
-                    tile.Transform = cube;
-                    tile.Renderer = cube.GetComponent<Renderer>();
-                    tile.Target = cube.position;
-                    tile.StartedAt = elapsed;
-                    cube.position = tile.Target + Vector3.down * CellSize;
-                    Register(tile.Renderer, tile.Renderer.sharedMaterial, tile.Glass ? 0.28f : 1f);
-                    _expansionTiles.Add(tile);
+                    ClearVisuals();
+                    _expansionTiles.Clear();
+                    BuildWorld(next);
+                    foreach (Transform child in transform) if (child.gameObject.activeSelf) child.position += offset;
+                    RefreshOcclusion(null);
+                    _world = null;
+                    incoming = CaptureEntityScales();
+                    incomingBuilt = true;
                 }
-                for (int i = 0; i < _expansionTiles.Count; i++)
+                if (incomingBuilt)
+                    ScaleEntities(incoming, Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(.72f, 1f, progress)));
+                else
                 {
-                    var tile = _expansionTiles[i];
-                    if (tile.Transform == null) continue;
-                    float rise = Mathf.Clamp01((elapsed - tile.StartedAt) / Mathf.Max(0.001f, riseDuration));
-                    tile.Transform.position = tile.Target + Vector3.down * (CellSize * (1f - Mathf.SmoothStep(0f, 1f, rise)));
+                    ScaleEntities(outgoing, 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(0f, .2f, progress)));
+                    foreach (var tile in _expansionTiles)
+                    {
+                        float amount = tile.Added ? Mathf.InverseLerp(.4f, .7f, progress) : 1f - Mathf.InverseLerp(.2f, .4f, progress);
+                        amount = Mathf.SmoothStep(0f, 1f, amount);
+                        tile.Transform.gameObject.SetActive(amount > 0f);
+                        tile.Transform.position = tile.Target + Vector3.down * CellSize * (1f - amount);
+                        tile.Transform.localScale = new Vector3(1f, Mathf.Max(.001f, amount), 1f) * CellSize;
+                    }
                 }
                 elapsed += Time.deltaTime;
                 yield return null;
             }
             if (version != _expansionVersion) yield break;
-            while (Time.timeScale == 0f) yield return null;
+            while (Time.timeScale == 0f)
+            {
+                if (version != _expansionVersion) yield break;
+                yield return null;
+            }
+            if (version != _expansionVersion) yield break;
             _expansionPreviousWorld = null;
+            // 与外层镜头平移在同一帧完成，从临时对齐坐标回到下一张地图的真实坐标。
             Rebuild(next);
         }
 
-        /// <summary>Stop an in-progress reveal and restore the previous stage's visual state.</summary>
+        Dictionary<Transform, Vector3> CaptureEntityScales()
+        {
+            var scales = new Dictionary<Transform, Vector3>();
+            foreach (var view in _views.Values) if (view != null) scales.Add(view, view.localScale);
+            return scales;
+        }
+
+        static void ScaleEntities(Dictionary<Transform, Vector3> scales, float amount)
+        {
+            foreach (var pair in scales)
+            {
+                if (pair.Key == null) continue;
+                pair.Key.localScale = pair.Value * amount;
+                pair.Key.gameObject.SetActive(amount > 0f);
+            }
+        }
+
+        void CreateTransitionTile(StageTransitionLayout.Surface surface, bool added)
+        {
+            var cube = CreateCube((added ? "Added Terrain " : "Removed Terrain ") + surface.Cell,
+                surface.Cell, surface.Glass ? GlassMat() : TerrainMat(surface.Structure), 1f);
+            var renderer = cube.GetComponent<Renderer>();
+            Register(renderer, renderer.sharedMaterial, surface.Glass ? .28f : 1f);
+            _expansionTiles.Add(new ExpansionTile { Added = added, Transform = cube, Target = cube.position });
+            cube.gameObject.SetActive(!added);
+        }
+
+        void CreateRetainedTerrain(List<StageTransitionLayout.Surface> cells)
+        {
+            // 相邻同材质格合成行，避免大型共用平台在过场中变成数百个 Draw Call。
+            cells.Sort((a, b) => a.Cell.y != b.Cell.y ? a.Cell.y.CompareTo(b.Cell.y)
+                : a.Cell.z != b.Cell.z ? a.Cell.z.CompareTo(b.Cell.z) : a.Cell.x.CompareTo(b.Cell.x));
+            for (int i = 0; i < cells.Count;)
+            {
+                var first = cells[i++];
+                var last = first.Cell;
+                while (i < cells.Count && cells[i].Cell.y == last.y && cells[i].Cell.z == last.z
+                    && cells[i].Cell.x == last.x + 1 && cells[i].Glass == first.Glass && cells[i].Structure == first.Structure)
+                    last = cells[i++].Cell;
+                var box = new GridCellBox { id = "Retained " + first.Cell, min = first.Cell, max = last };
+                var renderer = CreateTerrainBox(box, first.Glass ? GlassMat() : TerrainMat(first.Structure));
+                Register(renderer, renderer.sharedMaterial, first.Glass ? .28f : 1f);
+            }
+        }
+
+        /// <summary>取消任意过场阶段，完整恢复上一阶段的实际终局画面。</summary>
         public void CancelExpansion()
         {
             _expansionVersion++;
-            for (int i = 0; i < _expansionTiles.Count; i++)
-            {
-                var tile = _expansionTiles[i];
-                if (tile.Renderer != null)
-                {
-                    _baseMaterials.Remove(tile.Renderer);
-                    _baseAlpha.Remove(tile.Renderer);
-                }
-                if (tile.Transform == null) continue;
-                tile.Transform.gameObject.SetActive(false);
-                if (Application.isPlaying) Destroy(tile.Transform.gameObject);
-                else DestroyImmediate(tile.Transform.gameObject);
-            }
             _expansionTiles.Clear();
-            if (_expansionPreviousWorld == null) return;
-            _world = _expansionPreviousWorld;
+            var previous = _expansionPreviousWorld;
             _expansionPreviousWorld = null;
-            foreach (var view in _views.Values)
-                if (view != null) view.gameObject.SetActive(true);
-            RefreshOcclusion(Camera.main);
-        }
-
-        static List<ExpansionTile> AddedTerrain(WorldModel previous, WorldModel next)
-        {
-            var tiles = new List<ExpansionTile>();
-            var glass = new HashSet<GridCell>();
-            var structure = new HashSet<GridCell>();
-            int ground = GroundHeight(next);
-            if (next.Spec?.terrain != null)
-            foreach (var box in next.Spec.terrain)
-            {
-                if (box == null) continue;
-                bool isGlass = string.Equals(box.appearance, "TransparentGlass", StringComparison.OrdinalIgnoreCase);
-                bool isStructure = box.min.y > ground;
-                if (!isGlass && !isStructure) continue;
-                for (int y = box.min.y; y <= box.max.y; y++)
-                for (int z = box.min.z; z <= box.max.z; z++)
-                for (int x = box.min.x; x <= box.max.x; x++)
-                {
-                    var cell = new GridCell(x, y, z);
-                    if (isGlass) glass.Add(cell);
-                    if (isStructure) structure.Add(cell);
-                }
-            }
-
-            bool hasOld = previous.Terrain.Count > 0;
-            int minX = int.MaxValue, minY = int.MaxValue, minZ = int.MaxValue;
-            int maxX = int.MinValue, maxY = int.MinValue, maxZ = int.MinValue;
-            foreach (var cell in previous.Terrain)
-            {
-                minX = Math.Min(minX, cell.x); maxX = Math.Max(maxX, cell.x);
-                minY = Math.Min(minY, cell.y); maxY = Math.Max(maxY, cell.y);
-                minZ = Math.Min(minZ, cell.z); maxZ = Math.Max(maxZ, cell.z);
-            }
-            int minimumRing = int.MaxValue;
-            foreach (var cell in next.Terrain)
-            {
-                if (previous.Terrain.Contains(cell)) continue;
-                int ring = hasOld
-                    ? Math.Max(Math.Max(Math.Max(minX - cell.x, cell.x - maxX), Math.Max(minY - cell.y, cell.y - maxY)),
-                        Math.Max(Math.Max(minZ - cell.z, cell.z - maxZ), 0))
-                    : 0;
-                minimumRing = Math.Min(minimumRing, ring);
-                tiles.Add(new ExpansionTile { Cell = cell, Glass = glass.Contains(cell),
-                    Structure = next.Spec?.terrain != null ? structure.Contains(cell) : cell.y > ground, Ring = ring });
-            }
-            foreach (var tile in tiles) tile.Ring -= minimumRing;
-            tiles.Sort((a, b) =>
-            {
-                int cmp = a.Ring.CompareTo(b.Ring);
-                if (cmp != 0) return cmp;
-                cmp = a.Cell.z.CompareTo(b.Cell.z);
-                if (cmp != 0) return cmp;
-                cmp = a.Cell.x.CompareTo(b.Cell.x);
-                return cmp != 0 ? cmp : a.Cell.y.CompareTo(b.Cell.y);
-            });
-            return tiles;
+            if (previous == null) return;
+            ClearVisuals();
+            BuildWorld(previous);
         }
 
         public void AlignToState(WorldModel world)
@@ -605,6 +581,11 @@ namespace RulePyramid.Runtime
         public void Clear()
         {
             CancelExpansion();
+            ClearVisuals();
+        }
+
+        void ClearVisuals()
+        {
             for (int i = transform.childCount - 1; i >= 0; i--)
             {
                 var child = transform.GetChild(i).gameObject;

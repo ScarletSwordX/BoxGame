@@ -1,0 +1,200 @@
+{
+  "date": "2026-09-27",
+  "scope": "L01-L03 六处阶段过场；只更改展示和镜头",
+  "mapsUnchanged": {
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L1P1.json": "26d18bd87f973d90d2b15641a554c300df3fe499635e091202d01409bd2b0f55",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L1P2.json": "bf84bb74f942fae71788e77a908785685bbb75ce1ca3b101e245490f5284aa11",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L1P3.json": "347d7f44e20d3cb6e952497f0e30b2f522f06f7e499dc24bdbfdd0f0553480ff",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L2P1.json": "c557a6032dec3efa73bb0491a65ace874e9a138ef56b57d3600a0672a53e3b3f",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L2P2.json": "d5fb0ae616fc79bdbd7756094372f6048b4fb2e679611a955a98c266c0bcdd88",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L2P3.json": "e50ce51ec99f4a7a08796901316737c1c966f6f81ba7fee397877648abfd4029",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L3P1.json": "4d303d2996a46e6f405eda4e40f3cef7a5657b87bceacafae63c062962d60899",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L3P2.json": "6b9eb90549551c88c65828472463d46610c6363266ab6e5784ae41bc09df0f80",
+    "Assets\\_RulePyramid\\Content\\LevelDrafts\\L3P3.json": "776a7eef2e9f3a5f9a7ebff19638fc1647f371995f391c3ae7c2856a14db5332"
+  },
+  "deltas": [
+    {
+      "from": "L1P1",
+      "to": "L1P2",
+      "nextOffset": {
+        "x": 0,
+        "y": 0,
+        "z": -4
+      },
+      "retained": 21,
+      "removed": 0,
+      "added": 28,
+      "framing": {
+        "id": null,
+        "min": {
+          "x": 1,
+          "y": 0,
+          "z": -2
+        },
+        "max": {
+          "x": 7,
+          "y": 1,
+          "z": 4
+        },
+        "appearance": null
+      }
+    },
+    {
+      "from": "L1P2",
+      "to": "L1P3",
+      "nextOffset": {
+        "x": -4,
+        "y": 0,
+        "z": -1
+      },
+      "retained": 49,
+      "removed": 0,
+      "added": 71,
+      "framing": {
+        "id": null,
+        "min": {
+          "x": -4,
+          "y": 0,
+          "z": -1
+        },
+        "max": {
+          "x": 7,
+          "y": 1,
+          "z": 8
+        },
+        "appearance": null
+      }
+    },
+    {
+      "from": "L2P1",
+      "to": "L2P2",
+      "nextOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "retained": 354,
+      "removed": 4,
+      "added": 36,
+      "framing": {
+        "id": null,
+        "min": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "max": {
+          "x": 14,
+          "y": 5,
+          "z": 10
+        },
+        "appearance": null
+      }
+    },
+    {
+      "from": "L2P2",
+      "to": "L2P3",
+      "nextOffset": {
+        "x": 0,
+        "y": 0,
+        "z": -3
+      },
+      "retained": 382,
+      "removed": 8,
+      "added": 51,
+      "framing": {
+        "id": null,
+        "min": {
+          "x": 0,
+          "y": 0,
+          "z": -3
+        },
+        "max": {
+          "x": 14,
+          "y": 5,
+          "z": 10
+        },
+        "appearance": null
+      }
+    },
+    {
+      "from": "L3P1",
+      "to": "L3P2",
+      "nextOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "retained": 546,
+      "removed": 0,
+      "added": 20,
+      "framing": {
+        "id": null,
+        "min": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "max": {
+          "x": 17,
+          "y": 5,
+          "z": 11
+        },
+        "appearance": null
+      }
+    },
+    {
+      "from": "L3P2",
+      "to": "L3P3",
+      "nextOffset": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "retained": 566,
+      "removed": 0,
+      "added": 0,
+      "framing": {
+        "id": null,
+        "min": {
+          "x": 0,
+          "y": 0,
+          "z": 0
+        },
+        "max": {
+          "x": 17,
+          "y": 5,
+          "z": 11
+        },
+        "appearance": null
+      }
+    }
+  ],
+  "testJobs": [
+    {
+      "id": "4af6cd9338a74360b7e6bb3e04d512bb",
+      "mode": "PlayMode",
+      "passed": 16
+    },
+    {
+      "id": "9ecd94301a2e4cc79dded5a05f164a07",
+      "mode": "EditMode",
+      "passed": 4
+    },
+    {
+      "id": "4a04227b113244fb8be3de903110f0e4",
+      "mode": "PlayMode",
+      "passed": 1
+    },
+    {
+      "id": "f8528f8422dd4c849603a180e3b9809e",
+      "mode": "PlayMode",
+      "passed": 5,
+      "scope": "最终取消保护后复验，包含先前已统计用例"
+    }
+  ],
+  "limitations": [
+    "六处集成测试直接设置上一会话胜利状态，只验证阶段管理与展示，不代表实际解法通关。",
+    "未执行真人完整游玩、人工动画节奏验收或发布构建。"
+  ]
+}
