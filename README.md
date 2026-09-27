@@ -1,37 +1,41 @@
-# 规则工坊原型（Rule Workshop）
+# 规则工坊（Rule Workshop）
 
-当前基础移动：普通方向统一移动与推动可推物件和词牌；推不动则停住，不能翻越，不需要 Shift。所有关卡与编辑器试玩共用这一规则。
+基于 Unity 2022.3.51f1 的空间规则解谜原型。玩家推动世界中的词牌改写规则；当前玩法合同为 [RW-v0.9 / schemaVersion 9](docs/PROTOTYPE_SPEC.md)。规则、关卡设计与实现进展分别以规格、设计卡和[实施状态](docs/IMPLEMENTATION_STATUS.md)为准。
 
-Unity 2022.3 原型，玩法合同：`docs/PROTOTYPE_SPEC.md`（**RW-v0.9** / schemaVersion **9**）。
+## 快速开始
 
-设计包参考：`RuleWorkshop_Prototype_Codex_v0.9_Pack/`（十二关 + `reference_check.py`）。
+1. 用 Unity 2022.3.51f1 打开本仓库。首次打开或需要修复场景、关卡目录时，运行菜单 `Tools/规则工坊/创建或修复原型`。
+2. 打开 [Prototype 场景](Assets/_RulePyramid/Scenes/Prototype.unity)，进入 Play Mode。
+3. 主界面的 **Play** 从首关开始；有可继续的存档时才显示 **Continue**，它从最后通关关卡的下一关第一阶段开始。
 
-## 运行
+| 操作 | 按键 |
+|---|---|
+| 相对镜头移动、推动物件与词牌 | WASD / 方向键 |
+| 原地跳跃；弹跳顶点恢复下降 | Space |
+| 撤销当前阶段的一步 | Z |
+| 重开当前阶段 | R |
+| 暂停或继续 | Esc |
 
-1. 菜单 `Tools/规则工坊/创建或修复原型`（首次或修复场景／关卡目录）
-2. 打开 `Assets/_RulePyramid/Scenes/Prototype.unity`
-3. Play。WASD / 方向键移动与推动（相对镜头）；Space 原地跳或弹跳顶点恢复下降；固定第 1 视角；Z 撤销；R 重开。
+方向移动会自动尝试推动可推的物件或词牌；推不动则停下。无需 Shift，也不能用方向键翻越。暂停菜单也可通过 HUD 的 Pause 按钮打开。
 
-正式游戏目前为 L01、L02 两关，各三个阶段，直接引用 `Assets/_RulePyramid/Content/LevelDrafts/L1P1.json`—`L1P3.json`、`L2P1.json`—`L2P3.json`。旧 `Content/Levels/L01.json`—`L12.json` 已退出正式目录，仅保留历史设计与旧测试资料，不再从游戏入口加载。
+## 当前正式关卡
 
-`Content/Levels/catalog.json` 是章节及阶段顺序的配置来源；菜单 `Tools/规则工坊/同步正式关卡目录` 将其同步到构建使用的 `Config/LevelCatalog.asset`，不重建场景。创建或修复原型同样读取此清单，不会恢复旧十二关。P1/P2 获胜后自动切换，P3 获胜完成整关；第一关结束后点击下一关进入 L2P1，第二关末阶段为当前游戏终点。Z 撤销、R 重开均限当前阶段。
+[正式目录清单](Assets/_RulePyramid/Content/Levels/catalog.json)目前包含 L01、L02、L03 三关，每关 P1—P3 三张独立地图，位于 `Assets/_RulePyramid/Content/LevelDrafts/`。P1/P2 获胜后自动进入下一阶段的固定初态；P3 获胜后完成整关；若目录中还有下一关，可点击 Next 进入。阶段切换不继承玩家残局、撤销记录或提示状态。
 
-**v0.9 要点：** 所有显式规则只来自世界词牌（无 `fixedRules`）；词牌全部可推；源词区用透明隔墙隔离。
+完成一关的最后阶段时，游戏在本机保存最远通关进度。重玩较早关卡不会倒退存档；全部关卡通关后因没有下一关，Continue 会隐藏。Play 始终从首关开始。
 
-## 编辑器
+显式规则只由地图中的可移动词牌组成，HUD 仅展示解析结果。当前实现支持多个 YOU、LAVA/HOT/MELT、DEFEAT、名词变形，以及同一存活对象同时具有 YOU 和 WIN 时获胜；具体判定以[玩法合同](docs/PROTOTYPE_SPEC.md)的最新修订为准。正式目录接入不等于每张地图都已完成盲测与定稿，见[实施状态](docs/IMPLEMENTATION_STATUS.md)。
 
-关卡可按设计安排 P1—PN（N≥1）个游玩阶段，数量由各关需要决定。每阶段使用独立地图文件，例如 `L1P1.json`、`L1P2.json`；各文件分别保存地图边界、地形、物件、词牌、出生点和参考解。后阶段可保留地标并局部移动、增删地形，边界不必包含旧地图；设计卡记录变化原因。进入下一阶段时加载预设初态，不继承玩家残局。编辑器不再使用阶段区域笔刷或色块归属；旧 `stagePlan` 草稿仅供兼容读取、切换和导出当前阶段地图。游戏内已接入这两关的阶段推进与过渡，切换清空上一阶段的撤销/提示状态。独立编辑器试玩仍以当前地图为单位。
+旧版 L01—L12 单图关卡仍在 `Assets/_RulePyramid/Content/Levels/`，旧设计包在 `Legacy/`；两者都不从当前游戏入口加载，也不作为现行九张阶段地图的验证基线。
 
-关卡制作遵循 [关卡设计工作流](docs/LEVEL_DESIGN_WORKFLOW.md)，逐工序填写 [设计卡](docs/templates/LEVEL_DESIGN_CARD.md)：定位与目的 → 空间结构与地图尺寸 → 地图原型搭建并输出 JSON → 教学方法与反馈 → 解题逻辑审查 → 解法验证 → 盲测 → 定稿。前两项完成后即可搭建可回修的原型；后续审查和验证须针对实际地图。Teach–Test–Twist 留到多关卡联合审核。操作说明见 [编辑器指南](docs/LEVEL_EDITOR_GUIDE.md)。
+## 关卡编辑与制作
 
-`Tools/规则工坊/关卡编辑器`：Y 切片绘制、校验、隔离试玩、参考解回放 A/B/C、互动审核。试玩不写回草稿。打开 L1P* 或 L2P* 后，上方“游玩阶段”可切换关联文件；优先使用正式清单，未登记草稿按同目录严格 L数字P数字 命名与地图 ID 匹配并按阶段数字排序。切换时保护未保存修改。
+`Tools/规则工坊/关卡编辑器` 提供地图编辑、校验、独立试玩与参考解回放。每个游玩阶段使用独立 JSON；阶段数量由关卡设计决定，不固定为三阶段。编辑器试玩只操作当前地图，不写回草稿。
 
-## 测试
+新增或重做关卡时，先读[关卡设计工作流](docs/LEVEL_DESIGN_WORKFLOW.md)，按[设计卡模板](docs/templates/LEVEL_DESIGN_CARD.md)在 `docs/level-design/` 逐工序记录。操作细节见[编辑器指南](docs/LEVEL_EDITOR_GUIDE.md)。
 
-Unity Test Runner → EditMode → `RulePyramid.Tests.EditMode`。
+`Assets/_RulePyramid/Content/Levels/catalog.json` 是正式关卡与阶段顺序的来源；改动目录后运行 `Tools/规则工坊/同步正式关卡目录`，更新构建使用的 `Assets/_RulePyramid/Config/LevelCatalog.asset`。
 
-Python 设计模型：
+## 验证
 
-```shell
-python RuleWorkshop_Prototype_Codex_v0.9_Pack/reference_check.py
-```
+在 Unity Test Runner 中分别运行 EditMode 与 PlayMode 测试。当前测试结果、已知限制和未完成的设计验证记录在[实施状态](docs/IMPLEMENTATION_STATUS.md)。`Legacy/RuleWorkshop_Prototype_Codex_v0.9_Pack/reference_check.py` 属于旧设计包，不代表当前九张阶段地图的运行时验收。
