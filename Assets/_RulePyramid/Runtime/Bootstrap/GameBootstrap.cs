@@ -27,6 +27,7 @@ namespace RulePyramid.Runtime
         int _index;
         string _reject;
         int _stageIndex;
+        bool _campaignStartedFromMenu;
         Coroutine _stageTransition;
         public float stageWinPause = 0.35f;
         public float stageExpansionDuration = 1.1f;
@@ -35,6 +36,7 @@ namespace RulePyramid.Runtime
         public bool IsStageTransitioning { get; private set; }
         public bool HasNextStage => _session != null && _stageIndex + 1 < CurrentStageCount;
         public bool HasNextLevel => catalog != null && _index + 1 < catalog.Count;
+        public bool HasContinue => CampaignProgress.TryGetNextIndex(catalog, out _);
 
         public GameSession Session => _session;
         public RegionTutorialSession RegionTutorial => _regionTutorial;
@@ -198,7 +200,11 @@ namespace RulePyramid.Runtime
                 if (animator != null) animator.Play(events, _session.World);
                 else worldView?.AlignToState(_session.World);
             }
-            if (ok && _session.Won && HasNextStage) BeginStageTransition();
+            if (ok && _session.Won)
+            {
+                if (HasNextStage) BeginStageTransition();
+                else if (_campaignStartedFromMenu) CampaignProgress.RecordCompleted(catalog, _index);
+            }
             hud?.Refresh(_session, _reject, _regionTutorial);
         }
 
@@ -239,7 +245,18 @@ namespace RulePyramid.Runtime
         {
             if (!IsMainMenu || catalog == null || catalog.Count == 0) return;
             IsMainMenu = false;
+            _campaignStartedFromMenu = true;
             LoadIndex(startIndex);
+            _resumeFrame = Time.frameCount;
+            hud?.RefreshMenus();
+        }
+
+        public void ContinueGame()
+        {
+            if (!IsMainMenu || !CampaignProgress.TryGetNextIndex(catalog, out int nextIndex)) return;
+            IsMainMenu = false;
+            _campaignStartedFromMenu = true;
+            LoadIndex(nextIndex);
             _resumeFrame = Time.frameCount;
             hud?.RefreshMenus();
         }

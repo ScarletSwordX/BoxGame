@@ -42,6 +42,7 @@
                 <ui:Label text="Rule Workshop" class="menu-title" />
                 <ui:VisualElement class="menu-divider" />
                 <ui:Button name="startButton" text="Play" class="menu-button primary-button" />
+                <ui:Button name="continueButton" text="Continue" class="menu-button secondary-button hidden" />
                 <ui:Button name="quitButton" text="Quit" class="menu-button secondary-button" />
             </ui:VisualElement>
         </ui:VisualElement>

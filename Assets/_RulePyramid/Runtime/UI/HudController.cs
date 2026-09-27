@@ -49,6 +49,7 @@ namespace RulePyramid.Runtime
             root.Q<Button>("winRestartButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Restart());
             root.Q<Button>("nextButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.NextLevel());
             root.Q<Button>("startButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.StartGame());
+            root.Q<Button>("continueButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.ContinueGame());
             root.Q<Button>("quitButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.QuitGame());
             root.Q<Button>("pauseButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.TogglePause());
             root.Q<Button>("resumeButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.ResumeGame());
@@ -79,6 +80,7 @@ namespace RulePyramid.Runtime
             SetVisible("gameHud", !_bootstrap.IsMenuOpen);
             var start = _root.Q<Button>("startButton");
             start?.SetEnabled(_bootstrap.catalog != null && _bootstrap.catalog.Count > 0);
+            SetVisible("continueButton", _bootstrap.IsMainMenu && _bootstrap.HasContinue);
             if (_bootstrap.IsMainMenu) start?.Focus();
             else if (_bootstrap.IsPaused)
             {
