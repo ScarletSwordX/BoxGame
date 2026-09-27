@@ -2,7 +2,7 @@
   "schemaVersion": 9,
   "mechanicsVersion": "RW-v0.9",
   "id": "L01",
-  "title": "写出终点，再走进去",
+  "title": "推开岩块，走进旗帜",
   "bounds": {
     "min": {
       "x": 0,
@@ -10,91 +10,174 @@
       "z": -4
     },
     "max": {
-      "x": 5,
-      "y": 5,
-      "z": 3
-    }
+      "x": 15,
+      "y": 2,
+      "z": 11
+    },
+    "id": "",
+    "appearance": ""
   },
   "terrain": [
     {
-      "id": "t_main_01",
-      "min": {
-        "x": 0,
-        "y": 0,
-        "z": 0
-      },
-      "max": {
-        "x": 5,
-        "y": 0,
-        "z": 3
-      },
-      "appearance": "Stone"
-    },
-    {
-      "id": "t_source_floor",
+      "id": "floor",
       "min": {
         "x": 0,
         "y": 0,
         "z": -4
       },
       "max": {
-        "x": 5,
+        "x": 7,
         "y": 0,
-        "z": -1
+        "z": 1
       },
       "appearance": "Stone"
     },
     {
-      "id": "t_source_partition",
+      "id": "floor_1",
       "min": {
-        "x": 0,
-        "y": 1,
-        "z": -1
+        "x": 8,
+        "y": 0,
+        "z": -4
       },
       "max": {
-        "x": 5,
-        "y": 5,
-        "z": -1
+        "x": 15,
+        "y": 0,
+        "z": 1
       },
-      "appearance": "TransparentGlass"
+      "appearance": "Stone"
+    },
+    {
+      "id": "floor_2",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 2
+      },
+      "max": {
+        "x": 15,
+        "y": 0,
+        "z": 11
+      },
+      "appearance": "Stone"
     }
   ],
   "entities": [
     {
-      "id": "src_01_01_robot",
+      "id": "robot_word",
       "kind": "Text",
       "subject": "",
       "token": "ROBOT",
       "cell": {
-        "x": 0,
+        "x": 4,
         "y": 1,
-        "z": -3
+        "z": -1
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
     },
     {
-      "id": "src_01_02_is",
+      "id": "robot_is",
       "kind": "Text",
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
+        "x": 5,
         "y": 1,
-        "z": -3
+        "z": -1
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
     },
     {
-      "id": "src_01_03_you",
+      "id": "robot_you",
       "kind": "Text",
       "subject": "",
       "token": "YOU",
       "cell": {
-        "x": 2,
+        "x": 6,
         "y": 1,
-        "z": -3
+        "z": -1
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock_property",
+      "kind": "Text",
+      "subject": "",
+      "token": "PUSH",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "flag_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 10,
+        "y": 1,
+        "z": -1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "flag_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": -1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "flag_win",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": -1
+      },
+      "anchored": false,
+      "color": ""
     },
     {
       "id": "robot_01",
@@ -102,11 +185,25 @@
       "subject": "ROBOT",
       "token": "",
       "cell": {
-        "x": 2,
+        "x": 5,
         "y": 1,
-        "z": 0
+        "z": 3
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
     },
     {
       "id": "goal",
@@ -114,47 +211,311 @@
       "subject": "FLAG",
       "token": "",
       "cell": {
-        "x": 4,
+        "x": 11,
         "y": 1,
-        "z": 0
+        "z": 3
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
     },
     {
-      "id": "w_win",
-      "kind": "Text",
-      "subject": "",
-      "token": "WIN",
+      "id": "rock_copy_1",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
       "cell": {
-        "x": 2,
-        "y": 1,
-        "z": 1
-      },
-      "anchored": false
-    },
-    {
-      "id": "w_flag",
-      "kind": "Text",
-      "subject": "",
-      "token": "FLAG",
-      "cell": {
-        "x": 0,
+        "x": 8,
         "y": 1,
         "z": 2
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
     },
     {
-      "id": "w_is",
+      "id": "rock_copy_1_copy_1",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "WALL",
+      "cell": {
+        "x": 10,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_2",
       "kind": "Text",
       "subject": "",
       "token": "IS",
       "cell": {
-        "x": 1,
+        "x": 11,
         "y": 1,
-        "z": 2
+        "z": 7
       },
-      "anchored": false
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_3",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "6312fde524b54b748b935509c4cb5805",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_1",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_2",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_3",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_5",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_6",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_7",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_8",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_9",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_10",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_11",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_12",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_13",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_14",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_15",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_16",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "object_17",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
     }
   ],
   "options": {
@@ -172,15 +533,16 @@
   },
   "camera": {
     "initialSlot": 0,
-    "pitchDegrees": 35,
+    "pitchDegrees": 35.0,
     "yawDegrees": [
-      45,
-      135,
-      225,
-      315
+      45.0,
+      135.0,
+      225.0,
+      315.0
     ],
     "inputMode": "ScreenRelative",
-    "orthographic": true
+    "orthographic": true,
+    "slot": 0
   },
   "designContract": {
     "requireActiveInteraction": true,
@@ -188,43 +550,67 @@
     "interactionIsAuthoringConstraint": true,
     "requireVisibleWorldRules": true,
     "requireReachableMovableWord": true,
-    "requireWordInteractionOnWitness": true
+    "requireWordInteractionOnWitness": false
   },
   "referenceSolutions": [
     {
       "id": "A",
-      "name": "把 WIN 写入空间句子并进入旗标",
-      "family": "activate-win",
+      "name": "推动岩块到尽头，进入旗帜",
+      "family": "push-rock-to-exit",
       "commands": [
-        "PN",
-        "S",
         "E",
-        "E"
+        "PE",
+        "PE",
+        "PE",
+        "PE"
       ],
-      "mustControlAtWin": "",
-      "mustWinWith": "",
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
       "requireEvents": [
+        "ActiveInteraction"
+      ],
+      "forbidEvents": [
         "RulesChanged"
       ],
-      "forbidEvents": [],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
       "status": "ReferenceModelPassed_NotUnityVerified",
-      "claim": "来自同一初态的机制不同参考解；非唯一、最短或全部解法声明。"
+      "claim": "本关录制的主教学参考解；其他合法解法仍可通关。"
     }
   ],
   "tutorial": {
-    "objective": "先认识走、登攀与“进入目标”，不要一上来学习推物或拆句。",
-    "concept": "先认识走、登攀与“进入目标”，不要一上来学习推物或拆句。",
-    "observation": "旗标是一个可进入的一格轮廓；平台高一格，普通方向就能登上。",
-    "necessity": "本关有意允许不改变任何物品的通关，作为后续互动审核的正向对照，不占多解配额。",
+    "objective": "把挡在通道里的岩块向前推开，再走进旗帜。",
+    "concept": "朝岩块移动即可推动它。",
+    "observation": "岩块挡住了通往旗帜的单格通道。",
+    "necessity": "主教学路线是推动岩块；词牌区也提供可改写规则的另解。",
     "hints": [
-      "看看旗标的空心轮廓占的是哪一格。",
-      "普通方向可以登上一格；站在目标旁边还不算进入。",
-      "沿平台继续向 +X 前进，进入旗标，而不是停在它前一格。"
+      "朝岩块移动，把它推开。",
+      "把岩块一直推到旗帜后方。"
     ],
     "risks": [
-      "不要把相邻即胜或“碰到外壳”加回来。",
-      "用地面箭头解释视角切换后的方向，不靠屏幕投影判断高差。"
+      "不要把规则改写的可行路线录为本关参考解。"
+    ],
+    "regions": [
+      {
+        "id": "spawn_tip",
+        "name": "起点提示",
+        "text": "朝岩块前进，把它推到旗帜后方。",
+        "bounds": {
+          "min": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "max": {
+            "x": 1,
+            "y": 1,
+            "z": 0
+          },
+          "id": "",
+          "appearance": ""
+        },
+        "durationSeconds": 5.0,
+        "enabled": true
+      }
     ]
   }
 }

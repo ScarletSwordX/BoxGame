@@ -2,7 +2,7 @@
   "schemaVersion": 9,
   "mechanicsVersion": "RW-v0.9",
   "id": "L03",
-  "title": "阻挡和可推，可以改写",
+  "title": "云朵与可改写的阻挡",
   "bounds": {
     "min": {
       "x": 0,
@@ -89,10 +89,10 @@
   ],
   "entities": [
     {
-      "id": "src_01_01_robot",
+      "id": "src_01_01_cloud",
       "kind": "Text",
       "subject": "",
-      "token": "ROBOT",
+      "token": "CLOUD",
       "cell": {
         "x": 0,
         "y": 1,
@@ -161,9 +161,9 @@
       "anchored": false
     },
     {
-      "id": "robot_01",
+      "id": "cloud_01",
       "kind": "Object",
-      "subject": "ROBOT",
+      "subject": "CLOUD",
       "token": "",
       "cell": {
         "x": 2,
@@ -294,8 +294,8 @@
         "E",
         "E"
       ],
-      "mustControlAtWin": "",
-      "mustWinWith": "",
+      "mustControlAtWin": "cloud_01",
+      "mustWinWith": "goal",
       "requireEvents": [],
       "forbidEvents": [],
       "expectedFinalStatus": "ReferenceModelPassed_NotUnityVerified",
@@ -304,9 +304,9 @@
     }
   ],
   "tutorial": {
-    "objective": "STOP 与 PUSH 的差异来自规则，而非换模型或角色变强。",
-    "concept": "STOP 与 PUSH 的差异来自规则，而非换模型或角色变强。",
-    "observation": "岩块当前为 STOP，不能手动搬动；低处的规则槽旁有一个 PUSH 词。",
+    "objective": "从出生起控制云朵，观察岩块的规则并抵达旗帜。",
+    "concept": "CLOUD IS YOU 使云朵成为当前控制对象。",
+    "observation": "云朵旁的世界词牌从一开始就组成 CLOUD IS YOU。",
     "necessity": "初始高台不可只靠移动到达；参考解将 STOP 换 PUSH 后才能把上层岩块推到更高出口前。",
     "hints": [
       "看看岩块当前究竟是 STOP 还是 PUSH。",
@@ -316,6 +316,27 @@
     "risks": [
       "PUSH 已经包含实体性，不要要求再加 STOP。",
       "不要声称所有解法都必须用这一块 PUSH；若玩家合法地改造词牌搭阶，应另评估为新解而非脚本封锁。"
+    ],
+    "regions": [
+      {
+        "id": "spawn_tip",
+        "name": "起点提示",
+        "text": "你从一开始控制云朵；观察岩块规则，前往旗帜。",
+        "bounds": {
+          "min": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          },
+          "max": {
+            "x": 2,
+            "y": 1,
+            "z": 1
+          }
+        },
+        "durationSeconds": 5.0,
+        "enabled": true
+      }
     ]
   }
 }

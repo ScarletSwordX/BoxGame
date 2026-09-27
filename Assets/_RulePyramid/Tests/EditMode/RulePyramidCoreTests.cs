@@ -140,18 +140,130 @@ namespace RulePyramid.Tests.EditMode
         }
 
         [Test]
-        public void Climb_Vs_Push_Are_Distinct()
+        public void DirectionPushesRockAndUndoRestoresBothObjects()
         {
             var m = Fixture(new GridCell(0, 1, 0), new[] { Ob("rock", "ROCK", new GridCell(1, 1, 0)) },
                 new[] { "ROCK IS PUSH" });
-            Assert.IsTrue(m.TryCommand("E", out _)); // climb onto rock
-            Assert.AreEqual(new GridCell(1, 2, 0), m.Entity("player").Cell);
-
-            m = Fixture(new GridCell(0, 1, 0), new[] { Ob("rock", "ROCK", new GridCell(1, 1, 0)) },
-                new[] { "ROCK IS PUSH" });
-            Assert.IsTrue(m.TryCommand("PE", out _));
+            string initial = m.Fingerprint();
+            Assert.IsTrue(m.TryCommand("E", out _));
             Assert.AreEqual(new GridCell(1, 1, 0), m.Entity("player").Cell);
             Assert.AreEqual(new GridCell(2, 1, 0), m.Entity("rock").Cell);
+            Assert.IsTrue(m.Undo());
+            Assert.AreEqual(initial, m.Fingerprint());
+        }
+
+        [Test]
+        public void DirectionPushesMovableSolidsAndNeverClimbsBlockedSolids(
+            [Values("E", "W", "N", "S")] string command,
+            [Values("ROCK_PUSH", "ROCK_STOP", "WALL_STOP", "TEXT", "TERRAIN")] string obstacle)
+        {
+            var start = new GridCell(3, 1, 3);
+            WorldDirections.TryParse(command, out var direction);
+            var destination = start.Add(WorldDirections.ToOffset(direction));
+            EntityDefinition[] extras;
+            string[] rules;
+            if (obstacle == "TEXT")
+            {
+                extras = new[] { Tx("blocker", "WIN", destination) };
+                rules = null;
+            }
+            else if (obstacle == "TERRAIN")
+            {
+                extras = null;
+                rules = null;
+            }
+            else
+            {
+                var parts = obstacle.Split('_');
+                extras = new[] { Ob("blocker", parts[0], destination) };
+                rules = new[] { parts[0] + " IS " + parts[1] };
+            }
+            var m = Fixture(start, extras, rules);
+            if (obstacle == "TERRAIN") m.Terrain.Add(destination);
+            Assert.Greater(m.Spec.bounds.max.y, start.y + 1, "本测试不能靠低顶边界阻止登攀");
+            if (obstacle == "ROCK_PUSH" || obstacle == "TEXT")
+            {
+                var target = destination.Add(WorldDirections.ToOffset(direction));
+                Assert.IsTrue(m.TryCommand(command, out _), "普通方向必须推动物件与词牌");
+                Assert.AreEqual(destination, m.Actor().Cell);
+                Assert.AreEqual(target, m.Entity("blocker").Cell);
+                Assert.IsTrue(m.Undo());
+                m.Terrain.Add(target); // 堵住推链末端，上方仍有空间，禁止退回翻越。
+            }
+            string initial = m.Fingerprint();
+            int logCount = m.Log.Count;
+            Assert.IsFalse(m.TryCommand(command, out _), obstacle + "/" + command);
+            Assert.AreEqual(initial, m.Fingerprint());
+            Assert.AreEqual(start, m.Actor().Cell);
+            Assert.AreEqual(0, m.History.Count);
+            Assert.AreEqual(logCount, m.Log.Count);
+            if (obstacle == "TERRAIN" || obstacle.EndsWith("_STOP"))
+            {
+                Assert.IsFalse(m.TryCommand("P" + command, out _), "不可推物不能退回登攀");
+                Assert.AreEqual(initial, m.Fingerprint());
+            }
+        }
+
+        [Test]
+        public void PushChainRemainsAtomicAndBlockedPushNeverClimbs()
+        {
+            var m = Fixture(new GridCell(0, 1, 0), new[]
+                {
+                    Ob("first", "ROCK", new GridCell(1, 1, 0)),
+                    Ob("second", "ROCK", new GridCell(2, 1, 0))
+                }, new[] { "ROCK IS PUSH" });
+            m.Terrain.Add(new GridCell(3, 1, 0));
+            string initial = m.Fingerprint();
+            Assert.IsFalse(m.TryCommand("E", out _));
+            Assert.AreEqual(initial, m.Fingerprint());
+            Assert.AreEqual(0, m.History.Count);
+            m.Terrain.Remove(new GridCell(3, 1, 0));
+            Assert.IsTrue(m.TryCommand("E", out _));
+            Assert.AreEqual(new GridCell(1, 1, 0), m.Actor().Cell);
+            Assert.AreEqual(new GridCell(2, 1, 0), m.Entity("first").Cell);
+            Assert.AreEqual(new GridCell(3, 1, 0), m.Entity("second").Cell);
+        }
+
+        [Test]
+        public void NonRobotYouAlsoCannotClimbButCanEnterNonSolidObjects()
+        {
+            var m = Fixture(new GridCell(0, 1, 0),
+                new[] { Ob("wall", "WALL", new GridCell(1, 1, 0)) }, new[] { "WALL IS STOP" });
+            m.Entity("player").Subject = "CLOUD";
+            m.Entity("fx_you_s").Token = "CLOUD";
+            m.Refresh();
+            Assert.AreEqual("CLOUD", m.Actor().Subject);
+            Assert.IsFalse(m.TryCommand("E", out _));
+            m.Entity("fx_s0_2").Token = "WIN";
+            m.Refresh();
+            Assert.IsTrue(m.TryCommand("E", out _));
+            Assert.AreEqual(new GridCell(1, 1, 0), m.Actor().Cell);
+            Assert.IsTrue(m.WonLatched);
+        }
+
+        [TestCase("E", "PE")]
+        [TestCase("W", "PW")]
+        [TestCase("N", "PN")]
+        [TestCase("S", "PS")]
+        public void LegacyPushCommandsParseAndRecordAsOrdinaryDirections(string direction, string legacy)
+        {
+            Assert.IsTrue(SimCommand.TryParse(legacy, out var parsed, out _));
+            Assert.AreEqual(CommandKind.Move, parsed.Kind);
+            Assert.AreEqual(direction, parsed.Raw);
+            WorldDirections.TryParse(direction, out var worldDirection);
+            var start = new GridCell(3, 1, 3);
+            var destination = start.Add(WorldDirections.ToOffset(worldDirection));
+            var model = Fixture(start, new[] { Ob("rock", "ROCK", destination) }, new[] { "ROCK IS PUSH" });
+            var normal = new GameSession(model.Spec);
+            var compatible = new GameSession(model.Spec);
+            var recorder = new PlaytestRecorder(compatible);
+            Assert.IsTrue(normal.TryExecute(direction));
+            Assert.IsTrue(recorder.TryExecute(legacy));
+            Assert.AreEqual(normal.World.Fingerprint(), compatible.World.Fingerprint());
+            CollectionAssert.AreEqual(new[] { direction }, recorder.Commands);
+            Assert.IsTrue(recorder.Undo());
+            Assert.AreEqual(start, compatible.World.Actor().Cell);
+            Assert.AreEqual(0, recorder.CommandCount);
         }
 
         [Test]
@@ -231,12 +343,94 @@ namespace RulePyramid.Tests.EditMode
         }
 
         [Test]
-        public void L01_RequiresActiveInteraction_AndReferenceWins()
+        public void L01_ReferencePushesRockWithoutChangingRules_AlternativeCanChangeRules()
         {
             var level = Load("L01");
             Assert.IsTrue(level.designContract.requireActiveInteraction);
             var result = ReplayRunner.Run(level, level.referenceSolutions[0]);
             Assert.IsTrue(result.Won, result.FailReason);
+            Assert.IsTrue(result.EventKinds.Contains("ActiveInteraction"));
+            Assert.IsFalse(result.EventKinds.Contains("RulesChanged"));
+            Assert.AreEqual(new GridCell(7, 1, 0), ReplayRockAfter(level, level.referenceSolutions[0].commands));
+
+            // 规则词牌保持可改写，作为主教学解以外的合法路线。
+            var alternative = new GameSession(level);
+            foreach (var command in new[] { "S", "S", "E", "PS", "N", "W", "N", "N", "E", "E", "E", "E", "E" })
+                Assert.IsTrue(alternative.TryExecute(command), command + ": " + alternative.LastRejectReason);
+            Assert.IsTrue(alternative.Won);
+            Assert.AreEqual(new GridCell(3, 1, 0), alternative.World.Entity("rock").Cell);
+            Assert.IsFalse(alternative.World.Solid(alternative.World.Entity("rock")));
+            Assert.IsTrue(InteractionAudit.IsActiveInteraction(alternative.World.Log));
+        }
+
+        [Test]
+        public void L02_ReferenceBreaksStopAndPassesThroughUnmovedRock()
+        {
+            var level = Load("L02");
+            var session = new GameSession(level);
+            Assert.IsTrue(session.World.Props(session.World.Entity("rock")).Contains("STOP"));
+            Assert.IsTrue(session.World.Solid(session.World.Entity("rock")));
+            Assert.IsFalse(session.World.Movable(session.World.Entity("rock")));
+            Assert.IsTrue(session.TryExecute("E"));
+            Assert.IsFalse(session.TryExecute("E"), "完整 STOP 规则不能直接穿过岩块");
+            Assert.AreEqual(new GridCell(3, 1, 0), session.World.Entity("rock").Cell);
+            session.Restart();
+
+            bool crossedRock = false;
+            foreach (var command in level.referenceSolutions[0].commands)
+            {
+                Assert.IsTrue(session.TryExecute(command), command + ": " + session.LastRejectReason);
+                if (session.World.Actor().Cell == session.World.Entity("rock").Cell)
+                    crossedRock = true;
+            }
+            Assert.IsTrue(session.Won);
+            Assert.IsTrue(crossedRock, "参考解应真正与失去 STOP 的岩块共享一格");
+            Assert.AreEqual(new GridCell(3, 1, 0), session.World.Entity("rock").Cell);
+            Assert.IsFalse(session.World.Props(session.World.Entity("rock")).Contains("STOP"));
+            Assert.IsFalse(session.World.Solid(session.World.Entity("rock")));
+            var result = ReplayRunner.Run(level, level.referenceSolutions[0]);
+            Assert.IsTrue(result.Won, result.FailReason);
+            Assert.IsTrue(result.EventKinds.Contains("RulesChanged"));
+        }
+
+        [Test]
+        public void L03_StartsWithCloudIsYou_AndCloudWins()
+        {
+            var level = Load("L03");
+            var world = WorldModel.FromLevel(level);
+            Assert.AreEqual("cloud_01", world.ActorId);
+            Assert.AreEqual("CLOUD", world.Actor().Subject);
+            Assert.IsTrue(world.Rules.Get("CLOUD").Contains("YOU"));
+            Assert.IsFalse(world.Rules.Get("ROBOT").Contains("YOU"));
+            var result = ReplayRunner.Run(level, level.referenceSolutions[0]);
+            Assert.IsTrue(result.Won, result.FailReason);
+            Assert.AreEqual("cloud_01", result.ActorIdAtWin);
+            Assert.AreEqual("goal", result.WinId);
+        }
+
+        [Test]
+        public void FirstThreeLevels_ShowOnePromptAtSpawn()
+        {
+            for (int i = 1; i <= 3; i++)
+            {
+                var level = Load("L" + i.ToString("00"));
+                var session = new GameSession(level);
+                var prompts = new RegionTutorialSession(level.tutorial);
+                prompts.Observe(session);
+                Assert.IsNotNull(prompts.Current, level.id + " 出生时应立即出现提示");
+                Assert.AreEqual(5f, prompts.Current.durationSeconds, level.id);
+                prompts.Tick(5.1);
+                Assert.IsNull(prompts.Current, level.id + " 提示展示结束后应消失");
+            }
+        }
+
+        static GridCell ReplayRockAfter(LevelDefinition level, string[] commands)
+        {
+            var session = new GameSession(level);
+            foreach (var command in commands)
+                Assert.IsTrue(session.TryExecute(command), command + ": " + session.LastRejectReason);
+            Assert.IsTrue(session.Won);
+            return session.World.Entity("rock").Cell;
         }
 
         [Test]
