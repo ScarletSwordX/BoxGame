@@ -30,7 +30,7 @@ namespace RulePyramid.Editor
                     collisionMode = "SolidPairsTerrainUniversal",
                     solidityMode = "YouPushStopOrText",
                     supportMode = "StrictBelow",
-                    controlMode = "SingleYouTransfer_NoControlUndo",
+                    controlMode = "MultiYouIndependentBlocking_NoControlUndo",
                     bounceRiseCells = 3,
                     transformationMode = "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
                     ruleSourceMode = "WorldTextOnly",

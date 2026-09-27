@@ -240,7 +240,8 @@ namespace RulePyramid.Core
                 AssertOption(report, level.options.collisionMode, ExpectedOptions["collisionMode"], "collisionMode");
                 AssertOption(report, level.options.solidityMode, ExpectedOptions["solidityMode"], "solidityMode");
                 AssertOption(report, level.options.supportMode, ExpectedOptions["supportMode"], "supportMode");
-                AssertOption(report, level.options.controlMode, ExpectedOptions["controlMode"], "controlMode");
+                if (level.options.controlMode != "MultiYouIndependentBlocking_NoControlUndo")
+                    AssertOption(report, level.options.controlMode, ExpectedOptions["controlMode"], "controlMode");
                 AssertOption(report, level.options.transformationMode, ExpectedOptions["transformationMode"], "transformationMode");
                 AssertOption(report, level.options.ruleSourceMode, ExpectedOptions["ruleSourceMode"], "ruleSourceMode");
                 AssertOption(report, level.options.textMobilityMode, ExpectedOptions["textMobilityMode"], "textMobilityMode");
@@ -376,8 +377,8 @@ namespace RulePyramid.Core
                 int youCount = 0;
                 foreach (var e in world.Entities)
                     if (PropertyResolver.HasYou(e, world.Rules)) youCount++;
-                if (youCount != 1)
-                    report.Add(ValidationSeverity.PlaytestError, "YOU", "Playtest requires exactly one YOU, found " + youCount);
+                if (youCount < 1)
+                    report.Add(ValidationSeverity.PlaytestError, "YOU", "Playtest requires at least one YOU");
                 if (world.WonLatched)
                     report.Add(ValidationSeverity.PlaytestError, "WON", "Initial state already won");
                 var before = world.Fingerprint();

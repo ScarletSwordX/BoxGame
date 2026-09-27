@@ -9,12 +9,12 @@ namespace RulePyramid.Core
 
         public static readonly HashSet<string> Subjects = new HashSet<string>
         {
-            "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL"
+            "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA"
         };
 
         public static readonly HashSet<string> Props = new HashSet<string>
         {
-            "YOU", "PUSH", "STOP", "HOVER", "FLY", "WIN", "BOUNCY"
+            "YOU", "PUSH", "STOP", "HOVER", "FLY", "WIN", "BOUNCY", "HOT", "MELT"
         };
 
         public static readonly HashSet<string> Operators = new HashSet<string>

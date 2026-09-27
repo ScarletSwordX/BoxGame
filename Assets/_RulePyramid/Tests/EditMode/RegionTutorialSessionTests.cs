@@ -105,6 +105,27 @@ namespace RulePyramid.Tests.EditMode
         }
 
         [Test]
+        public void MultipleYouObserveEveryRegionInAuthorOrderRegardlessOfEntityOrder()
+        {
+            var first = new GridCell(1, 1, 1);
+            var second = new GridCell(3, 1, 1);
+            var world = World(second, first);
+            world.Rules["ROCK"].Add("YOU");
+            foreach (bool reverse in new[] { false, true })
+            {
+                if (reverse) world.Entities.Reverse();
+                var prompts = new RegionTutorialSession(new TutorialData
+                {
+                    regions = new[] { Region("first", first, first, 1), Region("second", second, second, 1) }
+                });
+                Assert.IsTrue(prompts.Observe(world));
+                Assert.AreEqual("first", prompts.Current.id);
+                Assert.AreEqual(RegionTutorialState.Queued, prompts.StateAt(1));
+                Assert.IsFalse(prompts.Observe(world));
+            }
+        }
+
+        [Test]
         public void CloningCopiesRegionsAndBounds()
         {
             var level = new LevelDefinition

@@ -106,7 +106,7 @@ namespace RulePyramid.Runtime
         static string FormatRules(RuleSet rules)
         {
             var sb = new StringBuilder();
-            foreach (var subject in new[] { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL" })
+            foreach (var subject in new[] { "ROBOT", "ROCK", "CLOUD", "SPRING", "FLAG", "WALL", "LAVA" })
             {
                 var props = new List<string>(rules[subject]);
                 if (props.Count == 0) continue;

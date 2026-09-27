@@ -51,16 +51,18 @@ namespace RulePyramid.Core
         public bool Observe(WorldModel world)
         {
             if (world == null) throw new ArgumentNullException(nameof(world));
-            var actor = world.FindYou();
-            if (actor == null) return false;
-
-            return ObserveCell(actor.Cell);
+            var cells = new List<GridCell>();
+            foreach (var entity in world.Entities)
+                if (world.Props(entity).Contains("YOU")) cells.Add(entity.Cell);
+            return ObserveCells(cells);
         }
 
-        public bool ObserveCell(GridCell cell)
-        {
+        public bool ObserveCell(GridCell cell) => ObserveCells(new[] { cell });
 
+        bool ObserveCells(IReadOnlyList<GridCell> cells)
+        {
             bool changed = false;
+            // 多个 YOU 同时满足条件时，仍按作者区域列表顺序排队。
             for (int i = 0; i < _regions.Length; i++)
             {
                 var region = _regions[i];
@@ -71,9 +73,11 @@ namespace RulePyramid.Core
                     continue;
                 var min = region.bounds.min;
                 var max = region.bounds.max;
-                if (cell.x < min.x || cell.x > max.x || cell.y < min.y || cell.y > max.y
-                    || cell.z < min.z || cell.z > max.z)
-                    continue;
+                bool containsYou = false;
+                foreach (var cell in cells)
+                    if (cell.x >= min.x && cell.x <= max.x && cell.y >= min.y && cell.y <= max.y
+                        && cell.z >= min.z && cell.z <= max.z) { containsYou = true; break; }
+                if (!containsYou) continue;
                 _states[i] = RegionTutorialState.Queued;
                 _queue.Enqueue(i);
                 changed = true;

@@ -89,13 +89,12 @@ namespace RulePyramid.Core
             }
             world.Refresh();
             world.ValidateState();
-            var actors = new List<EntityState>();
-            foreach (var e in world.Entities)
-                if (world.Props(e).Contains("YOU")) actors.Add(e);
-            if (actors.Count != 1)
-                throw new InvalidOperationException("Authored initial state must have exactly one YOU.");
-            if (!world.Solid(actors[0]) || world.Gravity(actors[0]) != GravityMode.Down)
-                throw new InvalidOperationException("Implicit player defaults required in these witnesses.");
+            var actors = world.Actors();
+            if (actors.Count == 0)
+                throw new InvalidOperationException("Authored initial state must have at least one YOU.");
+            foreach (var actor in actors)
+                if (!world.Solid(actor) || world.Gravity(actor) != GravityMode.Down)
+                    throw new InvalidOperationException("Implicit player defaults required in these witnesses.");
             world.CheckWin("LevelLoaded", interrupt: false);
             if (settleInitial)
                 world.Settle();
@@ -136,8 +135,15 @@ namespace RulePyramid.Core
 
         public EntityState Actor()
         {
-            return ControlResolver.Actor(Entities, Props, Gravity);
+            var actors = Actors();
+            if (actors.Count == 0) return null;
+            foreach (var actor in actors)
+                if (Apex.ContainsKey(actor.Id)) return actor;
+            return actors[0];
         }
+
+        /// <summary>本命令开始时可受控的全部存活对象，按 ID 稳定排序。</summary>
+        public List<EntityState> Actors() => ControlResolver.Actors(Entities, Props, Gravity);
 
         public EntityState FindYou()
         {
@@ -290,7 +296,7 @@ namespace RulePyramid.Core
             return TransformationResolver.PendingTransforms(Entities, Transforms, TransformedThisTurn);
         }
 
-        public void ResolveRules(string reason)
+        public void ResolveRules(string reason, HashSet<string> entrants = null)
         {
             var oldActor = ActorIdSafe();
             var oldRules = RuleSignature();
@@ -307,6 +313,7 @@ namespace RulePyramid.Core
             }
             var changes = PendingTransforms();
             TransformationResolver.Apply(changes, TransformedThisTurn);
+            ResolveHeat(entrants);
             ValidateState();
             foreach (var change in changes)
             {
@@ -336,9 +343,38 @@ namespace RulePyramid.Core
                     NewId = newActor
                 });
             }
-            if (newActor != null)
-                ControlledCellVisited?.Invoke(Entity(newActor).Cell);
+            foreach (var actor in Actors())
+                ControlledCellVisited?.Invoke(actor.Cell);
             CheckWin(reason);
+        }
+
+        // Only an actual entrant with MELT is destroyed. A HOT body moving into a
+        // stationary MELT body does not count as the latter entering the HOT cell.
+        void ResolveHeat(HashSet<string> entrants)
+        {
+            if (entrants == null || entrants.Count == 0) return;
+            var ordered = new List<string>(entrants);
+            ordered.Sort(StringComparer.Ordinal);
+            var melted = new List<(EntityState mover, EntityState heat)>();
+            foreach (var id in ordered)
+            {
+                var mover = Entity(id);
+                if (mover == null || !Props(mover).Contains("MELT")) continue;
+                EntityState heat = null;
+                foreach (var other in Entities)
+                    if (other.Id != id && other.Cell == mover.Cell && Props(other).Contains("HOT")
+                        && (heat == null || string.CompareOrdinal(other.Id, heat.Id) < 0))
+                        heat = other;
+                if (heat != null) melted.Add((mover, heat));
+            }
+            foreach (var pair in melted)
+            {
+                Entities.Remove(pair.mover);
+                Apex.Remove(pair.mover.Id);
+                ForcedFall.Remove(pair.mover.Id);
+                Pressed.Remove(pair.mover.Id);
+                Log.Add(new SimEvent { Kind = "Melted", EntityId = pair.mover.Id, Cell = pair.mover.Cell, SurfaceId = pair.heat.Id });
+            }
         }
 
         string ActorIdSafe()
@@ -359,7 +395,7 @@ namespace RulePyramid.Core
 
         public void ValidateState()
         {
-            Actor();
+            Actors();
             var cells = new Dictionary<GridCell, List<EntityState>>();
             foreach (var e in Entities)
             {
@@ -431,12 +467,16 @@ namespace RulePyramid.Core
             return true;
         }
 
-        public void Commit(List<(EntityState entity, GridCell dest)> moves, string reason)
+        public void Commit(List<(EntityState entity, GridCell dest)> moves, string reason, bool resolve = true)
         {
             var oldActor = ActorIdSafe();
             var staged = new List<(EntityState e, GridCell old, GridCell dest)>();
+            var entrants = new HashSet<string>();
             foreach (var move in moves)
+            {
                 staged.Add((move.entity, move.entity.Cell, move.dest));
+                if (move.entity.Cell != move.dest) entrants.Add(move.entity.Id);
+            }
             foreach (var s in staged) s.e.Cell = s.dest;
             foreach (var s in staged)
             {
@@ -455,7 +495,7 @@ namespace RulePyramid.Core
                     });
                 }
             }
-            ResolveRules(reason);
+            if (resolve) ResolveRules(reason, entrants);
         }
 
         public void Shift(EntityState e, GridCell d, string reason)
@@ -499,6 +539,7 @@ namespace RulePyramid.Core
                 if (!Free(mover.Cell.Add(GridCell.Up), ignore, mover)) break;
                 Shift(mover, GridCell.Up, "BounceStep");
                 rose++;
+                if (Entity(mover.Id) == null) return;
             }
             Log.Add(new SimEvent
             {
@@ -531,6 +572,7 @@ namespace RulePyramid.Core
 
         public void Land(EntityState mover, bool allowPress)
         {
+            if (Entity(mover.Id) == null) return;
             if (Apex.ContainsKey(mover.Id)) return;
             bool descended = false;
             var ignore = new HashSet<string> { mover.Id };
@@ -539,21 +581,31 @@ namespace RulePyramid.Core
                 if (!ForcedFall.Contains(mover.Id) && Gravity(mover) != GravityMode.Down)
                     return;
                 var dest = mover.Cell.Add(GridCell.Down);
+                if (descended)
+                {
+                    EntityState surface = null;
+                    foreach (var candidate in Entities)
+                        if (candidate.Id != mover.Id && candidate.Cell == dest
+                            && PropertyResolver.HasBouncy(candidate, Rules)
+                            && (surface == null || string.CompareOrdinal(candidate.Id, surface.Id) < 0))
+                            surface = candidate;
+                    if (surface != null)
+                    {
+                        Bounce(mover, surface);
+                        return;
+                    }
+                }
                 var hit = Occupant(dest, ignore, mover);
                 if (hit.IsEmpty)
                 {
                     string reason = Props(mover).Contains("YOU") ? "PlayerFell" : "GravityFall";
                     Shift(mover, GridCell.Down, reason);
+                    if (Entity(mover.Id) == null) return;
                     descended = true;
                     continue;
                 }
                 if (hit.IsEntity && !Solid(hit.Entity))
                     throw new UnsupportedContactException("Unsupported solid-to-hollow gravity contact in witness subset");
-                if (descended && hit.IsEntity && PropertyResolver.HasBouncy(hit.Entity, Rules))
-                {
-                    Bounce(mover, hit.Entity);
-                    return;
-                }
                 if (descended && allowPress && !Pressed.Contains(mover.Id) && hit.IsEntity && Movable(hit.Entity)
                     && Free(hit.Entity.Cell.Add(GridCell.Down), null, hit.Entity))
                 {
@@ -588,20 +640,17 @@ namespace RulePyramid.Core
                 });
                 foreach (var e in upList)
                 {
+                    if (Entity(e.Id) == null) continue;
                     if (e.Kind != EntityKind.Object) continue;
                     if (Props(e).Contains("YOU")) continue;
                     if (Apex.ContainsKey(e.Id) || ForcedFall.Contains(e.Id)) continue;
                     if (Gravity(e) != GravityMode.Up) continue;
                     var group = new List<EntityState> { e };
-                    EntityState player = null;
-                    try { player = Actor(); } catch (RuleConflictException) { }
-                    if (Solid(e) && player != null
-                        && !Apex.ContainsKey(player.Id)
-                        && !ForcedFall.Contains(player.Id)
-                        && player.Cell == e.Cell.Add(GridCell.Up))
-                    {
-                        group.Add(player);
-                    }
+                    if (Solid(e))
+                        foreach (var player in Actors())
+                            if (!Apex.ContainsKey(player.Id) && !ForcedFall.Contains(player.Id)
+                                && player.Cell == e.Cell.Add(GridCell.Up))
+                                group.Add(player);
                     var ids = new HashSet<string>();
                     foreach (var v in group) ids.Add(v.Id);
                     bool allFree = true;
@@ -629,6 +678,7 @@ namespace RulePyramid.Core
                 });
                 foreach (var e in downList)
                 {
+                    if (Entity(e.Id) == null) continue;
                     if (Apex.ContainsKey(e.Id)) continue;
                     bool forced = ForcedFall.Contains(e.Id);
                     bool natural = Gravity(e) == GravityMode.Down;
@@ -765,86 +815,125 @@ namespace RulePyramid.Core
             TransformedThisTurn.Clear();
             var snap = Snapshot();
             int oldLog = Log.Count;
-            EntityState player;
-            try { player = Actor(); }
+            List<EntityState> players;
+            try { players = Actors(); }
             catch (RuleConflictException ex)
             {
                 message = ex.Message;
                 LastRejection = ex.Message;
                 return false;
             }
-            if (player == null)
+            if (players.Count == 0)
             {
                 message = "NoControl";
                 return false;
             }
-            string actorId = player.Id;
-            bool hadApex = Apex.ContainsKey(actorId);
+            var hadApex = new HashSet<string>(Apex.Keys);
+            if (WorldDirections.TryParse(cmd, out var priorityDirection))
+            {
+                var priorityOffset = WorldDirections.ToOffset(priorityDirection);
+                players.Sort((a, b) =>
+                {
+                    int frontA = a.Cell.x * priorityOffset.x + a.Cell.z * priorityOffset.z;
+                    int frontB = b.Cell.x * priorityOffset.x + b.Cell.z * priorityOffset.z;
+                    int comparison = frontB.CompareTo(frontA);
+                    return comparison != 0 ? comparison : string.CompareOrdinal(a.Id, b.Id);
+                });
+            }
+            else if (cmd == "J")
+                players.Sort((a, b) =>
+                {
+                    int comparison = b.Cell.y.CompareTo(a.Cell.y);
+                    return comparison != 0 ? comparison : string.CompareOrdinal(a.Id, b.Id);
+                });
+            var pendingApex = new Dictionary<string, BounceApexState>();
+            foreach (var player in players)
+                if (Apex.TryGetValue(player.Id, out var apex)) pendingApex[player.Id] = apex;
             foreach (var id in new List<string>(Apex.Keys)) ForcedFall.Add(id);
             Apex.Clear();
             Pressed.Clear();
             bool success = false;
+            var entrants = new HashSet<string>();
+            var pushed = new HashSet<string>();
             try
             {
-                if (hadApex)
+                foreach (var player in players)
                 {
-                    if (cmd == "WAIT" || cmd == "J")
+                    if (hadApex.Contains(player.Id))
                     {
-                        Log.Add(new SimEvent { Kind = "ApexReleased", EntityId = actorId, Steer = null });
-                        success = true;
-                    }
-                    else if (WorldDirections.TryParse(cmd, out var dir))
-                    {
-                        var d = WorldDirections.ToOffset(dir);
-                        if (Free(player.Cell.Add(d), new HashSet<string> { actorId }, player))
+                        if (cmd == "WAIT" || cmd == "J")
                         {
-                            Shift(player, d, "ApexSteer");
+                            Log.Add(new SimEvent { Kind = "ApexReleased", EntityId = player.Id, Steer = null });
+                            pendingApex.Remove(player.Id);
                             success = true;
                         }
-                    }
-                }
-                else if (cmd == "J")
-                {
-                    var up = player.Cell.Add(GridCell.Up);
-                    var hit = Occupant(up, null, player);
-                    if (hit.IsEmpty)
-                    {
-                        Shift(player, GridCell.Up, "JumpApex");
-                        success = true;
-                    }
-                    else if (hit.IsEntity && Movable(hit.Entity) && Free(up.Add(GridCell.Up), null, hit.Entity))
-                    {
-                        Commit(new List<(EntityState, GridCell)>
+                        else if (WorldDirections.TryParse(cmd, out var apexDir))
                         {
-                            (hit.Entity, up.Add(GridCell.Up)),
-                            (player, up)
-                        }, "HeadBump");
-                        success = true;
+                            var d = WorldDirections.ToOffset(apexDir);
+                            if (Free(player.Cell.Add(d), new HashSet<string> { player.Id }, player))
+                            {
+                                Commit(new List<(EntityState, GridCell)> { (player, player.Cell.Add(d)) }, "ApexSteer", false);
+                                entrants.Add(player.Id);
+                                pendingApex.Remove(player.Id);
+                                success = true;
+                            }
+                        }
+                        continue;
                     }
-                }
-                else if (WorldDirections.TryParse(cmd, out var walkDir))
-                {
-                    var d = WorldDirections.ToOffset(walkDir);
-                    var dest = player.Cell.Add(d);
-                    var hit = Occupant(dest, null, player);
-                    if (hit.IsEmpty)
+                    if (cmd == "J")
                     {
-                        Shift(player, d, "Walk");
-                        success = true;
-                    }
-                    else if (hit.IsEntity)
-                    {
-                        var chain = PlanPush(hit.Entity, d);
-                        if (chain != null)
+                        var up = player.Cell.Add(GridCell.Up);
+                        var hit = Occupant(up, null, player);
+                        if (hit.IsEmpty)
                         {
-                            var moves = new List<(EntityState, GridCell)>();
-                            foreach (var e in chain) moves.Add((e, e.Cell.Add(d)));
-                            moves.Add((player, dest));
-                            Commit(moves, "Pushed");
+                            Commit(new List<(EntityState, GridCell)> { (player, up) }, "JumpApex", false);
+                            entrants.Add(player.Id);
                             success = true;
                         }
+                        else if (hit.IsEntity && !pushed.Contains(hit.Entity.Id) && Movable(hit.Entity)
+                            && Free(up.Add(GridCell.Up), null, hit.Entity))
+                        {
+                            Commit(new List<(EntityState, GridCell)>
+                            {
+                                (hit.Entity, up.Add(GridCell.Up)), (player, up)
+                            }, "HeadBump", false);
+                            pushed.Add(hit.Entity.Id);
+                            entrants.Add(hit.Entity.Id);
+                            entrants.Add(player.Id);
+                            success = true;
+                        }
+                        continue;
                     }
-                    // 方向输入统一尝试平移或推动；不可推、推链堵塞时失败，绝不自动登攀。
+                    if (WorldDirections.TryParse(cmd, out var walkDir))
+                    {
+                        var d = WorldDirections.ToOffset(walkDir);
+                        var dest = player.Cell.Add(d);
+                        var hit = Occupant(dest, null, player);
+                        if (hit.IsEmpty)
+                        {
+                            Commit(new List<(EntityState, GridCell)> { (player, dest) }, "Walk", false);
+                            entrants.Add(player.Id);
+                            success = true;
+                        }
+                        else if (hit.IsEntity)
+                        {
+                            var chain = PlanPush(hit.Entity, d);
+                            if (chain != null && !chain.Exists(e => pushed.Contains(e.Id)))
+                            {
+                                var moves = new List<(EntityState, GridCell)>();
+                                foreach (var e in chain)
+                                {
+                                    moves.Add((e, e.Cell.Add(d)));
+                                    pushed.Add(e.Id);
+                                    entrants.Add(e.Id);
+                                }
+                                moves.Add((player, dest));
+                                Commit(moves, "Pushed", false);
+                                entrants.Add(player.Id);
+                                success = true;
+                            }
+                        }
+                    }
                 }
 
                 if (!success)
@@ -855,11 +944,19 @@ namespace RulePyramid.Core
                     return false;
                 }
 
-                ResolveRules("AfterManualPhase");
-                EntityState currentActor = null;
-                try { currentActor = Actor(); } catch (RuleConflictException) { }
-                if (currentActor != null)
-                    Land(currentActor, allowPress: true);
+                // A blocked apex actor keeps its input opportunity when another
+                // YOU succeeds in the same command. A wholly blocked command is
+                // already rolled back above, preserving the original behavior.
+                foreach (var kv in pendingApex)
+                {
+                    Apex[kv.Key] = kv.Value;
+                    ForcedFall.Remove(kv.Key);
+                }
+
+                ResolveRules("AfterManualPhase", entrants);
+                foreach (var player in players)
+                    if (Entity(player.Id) != null && Props(player).Contains("YOU"))
+                        Land(player, allowPress: true);
                 SettleInternal();
             }
             catch (VictoryCommittedException)
