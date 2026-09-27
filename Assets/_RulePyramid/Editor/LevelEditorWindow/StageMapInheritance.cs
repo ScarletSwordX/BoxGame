@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Text;
 using Newtonsoft.Json.Linq;
 using RulePyramid.Core;
@@ -14,9 +15,37 @@ namespace RulePyramid.Editor
     {
         const string Metadata = "editorInheritance";
         static JObject Json(LevelDefinition map) => JObject.Parse(LevelJsonSerializer.ToJson(map));
-        public static string Parent(LevelDefinition map) => (string)Json(map)[Metadata]?["parent"];
+        sealed class InheritanceSummary
+        {
+            public string Parent;
+            public int Version;
+        }
 
-        public static int Version(LevelDefinition map) => (int?)Json(map)[Metadata]?["version"] ?? 0;
+        // 继承字段只来自作者源 JSON。面板每次 Layout/Repaint 都读取，不能为标签重建整张地图。
+        // 源字符串不可变；保存、重载和撤销换回另一份源时自动命中对应摘要。
+        // 弱键不延长旧草稿及其大型继承历史的生命周期，克隆草稿也可共用缓存。
+        static readonly ConditionalWeakTable<string, InheritanceSummary> Summaries = new ConditionalWeakTable<string, InheritanceSummary>();
+        static readonly InheritanceSummary NoInheritance = new InheritanceSummary();
+
+        static InheritanceSummary Summary(LevelDefinition map)
+        {
+            if (map == null) throw new ArgumentNullException(nameof(map));
+            return string.IsNullOrEmpty(map.authoringSourceJson) ? NoInheritance
+                : Summaries.GetValue(map.authoringSourceJson, ReadSummary);
+        }
+
+        static InheritanceSummary ReadSummary(string source)
+        {
+            var metadata = JObject.Parse(source)[Metadata];
+            return new InheritanceSummary
+            {
+                Parent = (string)metadata?["parent"],
+                Version = (int?)metadata?["version"] ?? 0
+            };
+        }
+
+        public static string Parent(LevelDefinition map) => Summary(map).Parent;
+        public static int Version(LevelDefinition map) => Summary(map).Version;
 
         // 关于指定右上角的反射是可逆变换；区域两端同时交换，Y 不变。
         static JObject Reframe(JObject source, int anchorX, int anchorZ)

@@ -14,6 +14,43 @@ namespace RulePyramid.Tests.EditorPreview
         static LevelDefinition Map() => (LevelDefinition)typeof(LevelEditorWindow).GetMethod("CreateEmpty", BindingFlags.Static | BindingFlags.NonPublic).Invoke(null, null);
         static EntityDefinition Player(LevelDefinition map) => map.entities.First(e => e.id == "player");
 
+        [Test]
+        public void InheritanceLabelsFollowSourceReplacementAndUndoWithoutChangingDraft()
+        {
+            var parent = Map();
+            var session = new LevelEditSession(StageMapInheritance.Link(parent, parent.Clone(), "L9P1.json"));
+            var initialSource = session.Draft.authoringSourceJson;
+            Assert.AreEqual("L9P1.json", StageMapInheritance.Parent(session.Draft));
+            Assert.AreEqual(2, StageMapInheritance.Version(session.Draft));
+            session.Edit("替换继承元数据", draft => draft.authoringSourceJson =
+                initialSource.Replace("L9P1.json", "L9P2.json"));
+            Assert.AreEqual("L9P2.json", StageMapInheritance.Parent(session.Draft));
+            Assert.AreEqual(2, StageMapInheritance.Version(session.Draft));
+            Assert.IsTrue(session.Undo());
+            Assert.AreEqual("L9P1.json", StageMapInheritance.Parent(session.Draft));
+            Assert.AreSame(initialSource, session.Draft.authoringSourceJson);
+            Assert.IsFalse(session.Dirty);
+            Assert.IsTrue(session.Redo());
+            Assert.AreEqual("L9P2.json", StageMapInheritance.Parent(session.Draft));
+            var reloaded = LevelJsonSerializer.FromDraftJson(LevelJsonSerializer.ToJson(session.Draft));
+            Assert.AreEqual("L9P2.json", StageMapInheritance.Parent(reloaded));
+        }
+
+        [Test]
+        public void InheritanceLabelsHandleNewUnlinkedAndLegacyDrafts()
+        {
+            var map = Map();
+            map.authoringSourceJson = null;
+            Assert.IsNull(StageMapInheritance.Parent(map));
+            Assert.AreEqual(0, StageMapInheritance.Version(map));
+            map.authoringSourceJson = "{\"editorInheritance\":{\"parent\":\"L8P1.json\",\"version\":1}}";
+            Assert.AreEqual("L8P1.json", StageMapInheritance.Parent(map));
+            Assert.AreEqual(1, StageMapInheritance.Version(map));
+            map.authoringSourceJson = "{}";
+            Assert.IsNull(StageMapInheritance.Parent(map));
+            Assert.AreEqual(0, StageMapInheritance.Version(map));
+        }
+
         static LevelDefinition Shifted(LevelDefinition map, int x, int z)
         {
             var shifted = map.Clone();
