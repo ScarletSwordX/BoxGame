@@ -14,8 +14,23 @@ namespace RulePyramid.Runtime
         public Material pinkHollowMaterial;
         public Material textMaterial;
         public Material anchoredTextMaterial;
+        [Header("暖砂配色")]
+        public Material structureMaterial;
+        public Material cloudMaterial;
+        public Material springMaterial;
+        public Material wallMaterial;
+        public Material lavaMaterial;
+        public Material nounTextMaterial;
+        public Material operatorTextMaterial;
+        public Material propertyTextMaterial;
+        public Color backgroundColor = new Color32(243, 239, 230, 255);
+        public Color wordInk = new Color32(41, 50, 70, 255);
+        [HideInInspector] public int paletteVersion;
         public Color youTint = new Color(1f, 0.35f, 0.25f);
         public Color winGlow = new Color(1f, 0.5f, 0.8f, 0.45f);
+        [Header("玩家遮挡剖切")]
+        [Min(0f), Tooltip("玩家周围圆形开口的半径（格）；0 关闭。仅剔除前方遮挡，圆外保持原样。")]
+        public float occlusionRadiusCells = 0.9f;
         [Header("弹跳顶点提示")]
         [Min(0f), Tooltip("抵达顶点且上升动画结束后，弱引导延迟出现的秒数。")]
         public float bounceHintDelay = 1.5f;

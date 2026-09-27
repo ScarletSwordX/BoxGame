@@ -98,6 +98,11 @@ namespace RulePyramid.Runtime
             var cam = GetComponent<Camera>();
             if (cam != null)
             {
+                if (config != null)
+                {
+                    cam.clearFlags = CameraClearFlags.SolidColor;
+                    cam.backgroundColor = config.backgroundColor;
+                }
                 cam.orthographic = true;
                 cam.orthographicSize = _framed ? _frameSize : Mathf.Max(6f, dist * 0.35f);
             }

@@ -21,8 +21,22 @@ MonoBehaviour:
   pinkHollowMaterial: {fileID: 2100000, guid: 1cc6ac712829a9146a7da7c20d86f444, type: 2}
   textMaterial: {fileID: 2100000, guid: bcf4cb4d5b98cad418614e598bc25c0a, type: 2}
   anchoredTextMaterial: {fileID: 2100000, guid: 834de510413f9164682e3f56b5f4c658, type: 2}
+  structureMaterial: {fileID: 2100000, guid: f85c10e0b5606554ea01efc816c90418, type: 2}
+  cloudMaterial: {fileID: 2100000, guid: 2cb6c95e2935444489976fc7fd3a388c, type: 2}
+  springMaterial: {fileID: 2100000, guid: 6e32c88f73614024ba36903d69cc734a, type: 2}
+  wallMaterial: {fileID: 2100000, guid: 107980e4018ca0440b8ca6a64a7afa7d, type: 2}
+  nounTextMaterial: {fileID: 2100000, guid: 54ef0da418d1ec441888ec27758ef236, type: 2}
+  operatorTextMaterial: {fileID: 2100000, guid: 86b54e3c917f0a844ada23e28db5eee9, type: 2}
+  propertyTextMaterial: {fileID: 2100000, guid: d0cfbd1f3d7f062448362d5a6b4ea498, type: 2}
+  backgroundColor: {r: 0.9529412, g: 0.9372549, b: 0.9019608, a: 1}
+  wordInk: {r: 0.16078432, g: 0.19607843, b: 0.27450982, a: 1}
+  paletteVersion: 1
   youTint: {r: 1, g: 0.35, b: 0.25, a: 1}
   winGlow: {r: 1, g: 0.5, b: 0.8, a: 0.45}
+  occlusionRadiusCells: 0.9
+  bounceHintDelay: 1.5
+  bouncePeripheralDarkness: 0.38
+  bounceDispersionPixels: 1.1
   cameraDistance: 18
   cameraPitch: 35.264
   cameraYaws:

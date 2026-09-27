@@ -43,6 +43,8 @@ namespace RulePyramid.Runtime
                 foreach (var ev in events)
                 {
                     if (worldView != null && worldView.Generation != gen) yield break;
+                    if (ev.Kind == "Melted" && worldView != null)
+                        worldView.HideEntity(ev.EntityId);
                     if (IsMove(ev.Kind) && worldView != null && worldView.TryGetView(ev.EntityId, out var t))
                     {
                         Vector3 from = GridMap.ToWorld(ev.From, worldView.config);

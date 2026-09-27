@@ -17,11 +17,19 @@ namespace RulePyramid.Runtime
         readonly Dictionary<Renderer, float> _baseAlpha = new Dictionary<Renderer, float>();
         readonly Dictionary<Material, Dictionary<int, Material>> _transparentMaterials =
             new Dictionary<Material, Dictionary<int, Material>>();
+        readonly Dictionary<Material, Material> _cutawayMaterials = new Dictionary<Material, Material>();
+        MaterialPropertyBlock _cutawayBlock;
+        static readonly int CutawayTarget = Shader.PropertyToID("_CutawayTarget");
+        static readonly int CutawayRadius = Shader.PropertyToID("_CutawayRadius");
+        static readonly int CutawayFeather = Shader.PropertyToID("_CutawayFeather");
+        static readonly int CutawayDepthBias = Shader.PropertyToID("_CutawayDepthBias");
+        Shader _cutawayShader;
         readonly List<Renderer> _terrain = new List<Renderer>();
         readonly List<ExpansionTile> _expansionTiles = new List<ExpansionTile>();
         WorldModel _world;
         WorldModel _expansionPreviousWorld;
         Material _fallbackMaterial;
+        Material _lavaMaterial;
         Mesh _cubeMesh;
         Mesh _wallMesh;
         int _generation;
@@ -31,6 +39,7 @@ namespace RulePyramid.Runtime
         {
             public GridCell Cell;
             public bool Glass;
+            public bool Structure;
             public int Ring;
             public float StartedAt;
             public Vector3 Target;
@@ -46,6 +55,7 @@ namespace RulePyramid.Runtime
             Clear();
             _world = world;
             if (world == null) return;
+            int ground = GroundHeight(world);
 
             if (world.Spec?.terrain != null)
             {
@@ -53,7 +63,7 @@ namespace RulePyramid.Runtime
                 {
                     if (box == null) continue;
                     bool glass = string.Equals(box.appearance, "TransparentGlass", StringComparison.OrdinalIgnoreCase);
-                    var renderer = CreateTerrainBox(box, glass ? GlassMat() : TerrainMat());
+                    var renderer = CreateTerrainBox(box, glass ? GlassMat() : TerrainMat(box.min.y > ground));
                     Register(renderer, renderer.sharedMaterial, glass ? 0.28f : 1f);
                     _terrain.Add(renderer);
                 }
@@ -62,7 +72,7 @@ namespace RulePyramid.Runtime
             {
                 foreach (var cell in world.Terrain)
                 {
-                    var renderer = CreateCube("Terrain " + cell, cell, TerrainMat(), 1f).GetComponent<Renderer>();
+                    var renderer = CreateCube("Terrain " + cell, cell, TerrainMat(cell.y > ground), 1f).GetComponent<Renderer>();
                     Register(renderer, renderer.sharedMaterial, 1f);
                     _terrain.Add(renderer);
                 }
@@ -113,7 +123,7 @@ namespace RulePyramid.Runtime
                 {
                     var tile = added[nextTile++];
                     var cube = CreateCube("Expanded Terrain " + tile.Cell,
-                        tile.Cell, tile.Glass ? GlassMat() : TerrainMat(), 1f);
+                        tile.Cell, tile.Glass ? GlassMat() : TerrainMat(tile.Structure), 1f);
                     tile.Transform = cube;
                     tile.Renderer = cube.GetComponent<Renderer>();
                     tile.Target = cube.position;
@@ -167,15 +177,23 @@ namespace RulePyramid.Runtime
         {
             var tiles = new List<ExpansionTile>();
             var glass = new HashSet<GridCell>();
+            var structure = new HashSet<GridCell>();
+            int ground = GroundHeight(next);
             if (next.Spec?.terrain != null)
             foreach (var box in next.Spec.terrain)
             {
-                if (box == null || !string.Equals(box.appearance, "TransparentGlass", StringComparison.OrdinalIgnoreCase))
-                    continue;
+                if (box == null) continue;
+                bool isGlass = string.Equals(box.appearance, "TransparentGlass", StringComparison.OrdinalIgnoreCase);
+                bool isStructure = box.min.y > ground;
+                if (!isGlass && !isStructure) continue;
                 for (int y = box.min.y; y <= box.max.y; y++)
                 for (int z = box.min.z; z <= box.max.z; z++)
                 for (int x = box.min.x; x <= box.max.x; x++)
-                    glass.Add(new GridCell(x, y, z));
+                {
+                    var cell = new GridCell(x, y, z);
+                    if (isGlass) glass.Add(cell);
+                    if (isStructure) structure.Add(cell);
+                }
             }
 
             bool hasOld = previous.Terrain.Count > 0;
@@ -196,7 +214,8 @@ namespace RulePyramid.Runtime
                         Math.Max(Math.Max(minZ - cell.z, cell.z - maxZ), 0))
                     : 0;
                 minimumRing = Math.Min(minimumRing, ring);
-                tiles.Add(new ExpansionTile { Cell = cell, Glass = glass.Contains(cell), Ring = ring });
+                tiles.Add(new ExpansionTile { Cell = cell, Glass = glass.Contains(cell),
+                    Structure = next.Spec?.terrain != null ? structure.Contains(cell) : cell.y > ground, Ring = ring });
             }
             foreach (var tile in tiles) tile.Ring -= minimumRing;
             tiles.Sort((a, b) =>
@@ -225,6 +244,7 @@ namespace RulePyramid.Runtime
                     continue;
                 }
                 t.position = GridMap.ToWorld(e.Cell, config);
+                t.gameObject.SetActive(true);
                 UpdateEntityVisual(e, world, t);
             }
 
@@ -252,45 +272,68 @@ namespace RulePyramid.Runtime
 
         public bool TryGetView(string id, out Transform t) => _views.TryGetValue(id, out t);
 
+        public void HideEntity(string id)
+        {
+            if (id != null && _views.TryGetValue(id, out var view) && view != null)
+                view.gameObject.SetActive(false);
+        }
+
         void LateUpdate()
         {
             if (_world != null) RefreshOcclusion(Camera.main);
         }
 
-        /// <summary>Applies camera-relative fading without changing the simulation collision state.</summary>
+        /// <summary>仅剔除 YOU 前方圆形范围内的表面，保留圆外地形和实际碰撞。</summary>
         public void RefreshOcclusion(Camera camera)
         {
             string youId = _world?.ActorId;
             Transform target = null;
-            bool hasTarget = camera != null && youId != null
-                && _views.TryGetValue(youId, out target) && target != null;
-            Ray ray = default;
-            float targetDistance = 0f;
-            if (hasTarget)
-            {
-                var viewport = camera.WorldToViewportPoint(target.position);
-                ray = camera.ViewportPointToRay(viewport);
-                targetDistance = Vector3.Dot(target.position - ray.origin, ray.direction);
-                hasTarget = targetDistance > 0.001f;
-            }
-
-            foreach (var renderer in _terrain)
-                ApplyAlpha(renderer, IsOccluding(renderer) ? Mathf.Min(_baseAlpha[renderer], 0.22f) : _baseAlpha[renderer]);
+            bool hasTarget = isActiveAndEnabled && camera != null && youId != null
+                && _views.TryGetValue(youId, out target) && target != null && target.gameObject.activeInHierarchy;
+            float radius = (config != null ? config.occlusionRadiusCells : 0.9f) * CellSize;
+            hasTarget &= radius > 0f;
+            foreach (var renderer in _terrain) ApplyCutaway(renderer, hasTarget, target, radius);
             foreach (var pair in _entityRenderers)
             {
-                var renderer = pair.Value;
-                float alpha = _baseAlpha[renderer];
-                if (pair.Key != youId && IsOccluding(renderer)) alpha = Mathf.Min(alpha, 0.22f);
-                ApplyAlpha(renderer, alpha);
-            }
-
-            bool IsOccluding(Renderer renderer)
-            {
-                if (!hasTarget || renderer == null || !renderer.enabled) return false;
-                if (!renderer.bounds.IntersectRay(ray, out var entry)) return false;
-                return entry >= 0f && entry < targetDistance - 0.05f;
+                // 规则词牌始终保留，避免圆形开口隐藏规则来源。
+                var entity = _world?.Entity(pair.Key);
+                ApplyCutaway(pair.Value, hasTarget && entity?.Kind == EntityKind.Object
+                    && !(_world.Props(entity).Contains("YOU")),
+                    target, radius);
             }
         }
+
+        void ApplyCutaway(Renderer renderer, bool active, Transform target, float radius)
+        {
+            if (renderer == null) return;
+            var source = _baseMaterials[renderer];
+            float alpha = _baseAlpha[renderer];
+            if (alpha < 0.999f) source = TransparentMaterial(source, alpha);
+            var chosen = source;
+            if (active)
+            {
+                if (_cutawayShader == null)
+                    _cutawayShader = Resources.Load<Shader>("RuleWorkshop/PlayerCutaway");
+                if (_cutawayShader == null || !_cutawayShader.isSupported) return;
+                if (!_cutawayMaterials.TryGetValue(source, out var material))
+                {
+                    material = new Material(source) { name = source.name + " 玩家局部剖切" };
+                    material.shader = _cutawayShader;
+                    _cutawayMaterials[source] = material;
+                }
+                chosen = material;
+            }
+            if (renderer.sharedMaterial != chosen) renderer.sharedMaterial = chosen;
+            if (_cutawayBlock == null) _cutawayBlock = new MaterialPropertyBlock();
+            renderer.GetPropertyBlock(_cutawayBlock);
+            _cutawayBlock.SetVector(CutawayTarget, target != null ? (Vector4)target.position : Vector4.zero);
+            _cutawayBlock.SetFloat(CutawayRadius, active ? radius : 0f);
+            _cutawayBlock.SetFloat(CutawayFeather, 0.06f * CellSize);
+            _cutawayBlock.SetFloat(CutawayDepthBias, 0.05f * CellSize);
+            renderer.SetPropertyBlock(_cutawayBlock);
+        }
+
+        void OnDisable() => RefreshOcclusion(null);
 
         void AddEntity(EntityState e, WorldModel world)
         {
@@ -302,11 +345,11 @@ namespace RulePyramid.Runtime
 
         Transform CreateEntity(EntityState e, WorldModel world)
         {
-            bool solid = PropertyResolver.IsSolid(e, world.Rules);
-            bool win = PropertyResolver.HasWin(e, world.Rules);
-            var t = CreateCube(e.Id, e.Cell, MaterialFor(e, solid, win), 1f);
+            var t = CreateCube(e.Id, e.Cell, MaterialFor(e), 1f);
             if (e.Kind == EntityKind.Text)
             {
+                // 阴影不应把类别底色压暗到无法衬托正文；物件与地形仍接收阴影。
+                t.GetComponent<Renderer>().receiveShadows = false;
                 var label = new GameObject("Label");
                 label.transform.SetParent(t, false);
                 label.transform.localPosition = Vector3.up * 0.55f;
@@ -316,7 +359,7 @@ namespace RulePyramid.Runtime
                 tm.alignment = TextAlignment.Center;
                 tm.characterSize = 0.12f;
                 tm.fontSize = 32;
-                tm.color = Color.black;
+                tm.color = WordInk;
                 label.AddComponent<CameraBillboard>();
             }
             if (e.Anchored)
@@ -333,15 +376,46 @@ namespace RulePyramid.Runtime
 
         void UpdateEntityVisual(EntityState e, WorldModel world, Transform t)
         {
-            bool solid = PropertyResolver.IsSolid(e, world.Rules);
-            bool win = PropertyResolver.HasWin(e, world.Rules);
             var renderer = t.GetComponent<Renderer>();
-            float alpha = e.Kind == EntityKind.Object && !solid ? (win ? 0.45f : 0.22f) : 1f;
-            Register(renderer, MaterialFor(e, solid, win), alpha);
+            Register(renderer, MaterialFor(e), 1f);
             var filter = t.GetComponent<MeshFilter>();
             if (filter != null)
                 filter.sharedMesh = e.Kind == EntityKind.Object && e.Subject == "WALL" ? WallMesh() : _cubeMesh;
-            t.localScale = Vector3.one * CellSize * (e.Kind == EntityKind.Text || !solid ? 0.92f : 1f);
+            t.localScale = Vector3.one * CellSize * (e.Kind == EntityKind.Text ? 0.92f : 1f);
+            if (e.Kind == EntityKind.Text)
+            {
+                var label = t.GetComponentInChildren<TextMesh>();
+                if (label != null)
+                {
+                    if (label.text != e.Token) label.text = e.Token;
+                    label.color = WordInk;
+                }
+            }
+            else
+            {
+                var marker = t.Find("YouMarker");
+                bool isYou = world.Props(e).Contains("YOU");
+                if (isYou && marker == null)
+                {
+                    var go = new GameObject("YouMarker");
+                    marker = go.transform;
+                    marker.SetParent(t, false);
+                    marker.localPosition = Vector3.up * 0.7f;
+                    var text = go.AddComponent<TextMesh>();
+                    text.text = "YOU";
+                    text.anchor = TextAnchor.MiddleCenter;
+                    text.alignment = TextAlignment.Center;
+                    text.characterSize = 0.1f;
+                    text.fontSize = 32;
+                    go.AddComponent<CameraBillboard>();
+                }
+                if (marker != null)
+                {
+                    marker.gameObject.SetActive(isYou);
+                    var text = marker.GetComponent<TextMesh>();
+                    if (text != null) text.color = config != null ? config.youTint : new Color(1f, 0.35f, 0.25f);
+                }
+            }
         }
 
         Renderer CreateTerrainBox(GridCellBox box, Material mat)
@@ -464,23 +538,61 @@ namespace RulePyramid.Runtime
             return _fallbackMaterial;
         }
 
+        Material LavaMaterial()
+        {
+            if (config != null && config.lavaMaterial != null) return config.lavaMaterial;
+            if (_lavaMaterial == null)
+            {
+                _lavaMaterial = new Material(FallbackMaterial()) { name = "LAVA 橙红色" };
+                _lavaMaterial.color = new Color(0.92f, 0.22f, 0.06f);
+                _lavaMaterial.EnableKeyword("_EMISSION");
+                _lavaMaterial.SetColor("_EmissionColor", new Color(0.35f, 0.035f, 0f));
+            }
+            return _lavaMaterial;
+        }
+
         float CellSize => config != null ? config.cellSize : 1f;
-        Material TerrainMat() => config != null ? config.terrainMaterial : null;
+        // GUI/Text Shader 直接使用顶点色；仅在这一输入边界转换，配置仍保存 sRGB。
+        Color WordInk => config == null ? Color.black : QualitySettings.activeColorSpace == ColorSpace.Linear
+            ? config.wordInk.linear : config.wordInk;
+        // 只给已有地形盒分配颜色，不拆模型，也不按关卡名或物件属性猜用途。
+        static int GroundHeight(WorldModel world)
+        {
+            int lowest = int.MaxValue;
+            foreach (var cell in world.Terrain) lowest = Math.Min(lowest, cell.y);
+            return lowest == int.MaxValue ? 0 : lowest;
+        }
+
+        Material TerrainMat(bool structure = false) => config == null ? null
+            : structure && config.structureMaterial != null ? config.structureMaterial : config.terrainMaterial;
         Material GlassMat() => config != null && config.pinkHollowMaterial != null ? config.pinkHollowMaterial : TerrainMat();
 
-        Material MaterialFor(EntityState e, bool solid, bool win)
+        Material MaterialFor(EntityState e)
         {
+            if ((e.Kind == EntityKind.Object && e.Subject == "LAVA")
+                || (e.Kind == EntityKind.Text && e.Token == "LAVA")) return LavaMaterial();
             if (config == null) return null;
             if (e.Kind == EntityKind.Text)
-                return e.Anchored && config.anchoredTextMaterial != null ? config.anchoredTextMaterial : config.textMaterial;
-            switch (e.Subject)
+            {
+                if (Tokens.IsSubject(e.Token)) return SubjectMaterial(e.Token);
+                if (Tokens.IsOperator(e.Token)) return config.operatorTextMaterial != null ? config.operatorTextMaterial : config.textMaterial;
+                if (Tokens.IsProp(e.Token)) return config.propertyTextMaterial != null ? config.propertyTextMaterial : config.textMaterial;
+                return config.textMaterial;
+            }
+            return SubjectMaterial(e.Subject);
+        }
+
+        // 名词词牌与物件共用身份材质，后续调色也保持一致。
+        Material SubjectMaterial(string subject)
+        {
+            switch (subject)
             {
                 case "ROBOT": return config.redMaterial;
                 case "ROCK": return config.blueMaterial;
-                case "FLAG": return !solid && config.pinkHollowMaterial != null ? config.pinkHollowMaterial : config.pinkMaterial;
-                case "CLOUD": return config.blueMaterial != null ? config.blueMaterial : config.textMaterial;
-                case "SPRING": return config.pinkMaterial != null ? config.pinkMaterial : config.textMaterial;
-                case "WALL": return config.terrainMaterial != null ? config.terrainMaterial : config.textMaterial;
+                case "FLAG": return config.pinkMaterial;
+                case "CLOUD": return config.cloudMaterial != null ? config.cloudMaterial : config.blueMaterial;
+                case "SPRING": return config.springMaterial != null ? config.springMaterial : config.pinkMaterial;
+                case "WALL": return config.wallMaterial != null ? config.wallMaterial : config.terrainMaterial;
                 default: return config.textMaterial;
             }
         }
@@ -505,11 +617,15 @@ namespace RulePyramid.Runtime
 
         void OnDestroy()
         {
+            foreach (var material in _cutawayMaterials.Values)
+                if (material != null) DestroyMaterial(material);
+            _cutawayMaterials.Clear();
             foreach (var levels in _transparentMaterials.Values)
             foreach (var material in levels.Values)
                 if (material != null) DestroyMaterial(material);
             _transparentMaterials.Clear();
             if (_fallbackMaterial != null) DestroyMaterial(_fallbackMaterial);
+            if (_lavaMaterial != null) DestroyMaterial(_lavaMaterial);
             if (_wallMesh != null)
             {
                 if (Application.isPlaying) Destroy(_wallMesh);
