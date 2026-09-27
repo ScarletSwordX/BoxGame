@@ -66,7 +66,7 @@ namespace RulePyramid.Runtime
 
         static bool IsMove(string kind)
         {
-            return kind == "Walk" || kind == "TextPushed" || kind == "HeadBump" || kind == "JumpApex"
+            return kind == "Walk" || kind == "Pushed" || kind == "TextPushed" || kind == "HeadBump" || kind == "JumpApex"
                 || kind == "GravityFall" || kind == "PlayerFell" || kind == "LandingPress"
                 || kind == "BounceStep" || kind == "ApexSteer" || kind == "FlyOrRide";
         }
