@@ -1,0 +1,352 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "id": "L1P2",
+  "title": "文字改变世界 · 阶段 2",
+  "bounds": {
+    "id": "",
+    "min": {
+      "x": 1,
+      "y": 0,
+      "z": 2
+    },
+    "max": {
+      "x": 7,
+      "y": 1,
+      "z": 8
+    },
+    "appearance": "Stone"
+  },
+  "terrain": [
+    {
+      "id": "shared_floor",
+      "min": {
+        "x": 1,
+        "y": 0,
+        "z": 2
+      },
+      "max": {
+        "x": 7,
+        "y": 0,
+        "z": 8
+      },
+      "appearance": "Stone"
+    }
+  ],
+  "entities": [
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_1_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_2_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_3_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_4_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_5_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_6_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_7_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_3",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_4",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_5",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_6",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_7",
+      "kind": "Text",
+      "subject": "",
+      "token": "WALL",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_8",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "text_9",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 7,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    }
+  ],
+  "options": {
+    "actionMode": "MoveAutoPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.0,
+    "yawDegrees": [
+      45.0,
+      135.0,
+      225.0,
+      315.0
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true,
+    "slot": 0
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "referenceSolutions": [
+    {
+      "id": "P2-A",
+      "name": "标准参考解",
+      "family": "P2-A",
+      "commands": [
+        "E",
+        "E",
+        "N",
+        "E",
+        "S",
+        "W",
+        "S",
+        "S",
+        "E",
+        "E",
+        "S",
+        "S"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "ActiveInteraction",
+        "RulesChanged"
+      ],
+      "forbidEvents": [],
+      "status": "UnityReplayPassed_Standalone",
+      "expectedFinalStatus": "Won",
+      "claim": "已确认设计的灰盒参考路线；其他合法解法仍可通关。"
+    }
+  ],
+  "tutorial": {
+    "objective": "",
+    "concept": "",
+    "observation": "",
+    "necessity": "",
+    "hints": [],
+    "risks": [],
+    "regions": []
+  },
+  "authoringDesign": {
+    "designCard": "docs/level-design/L01.md",
+    "status": "独立地图初态与所有参考解已通过 Unity 回放；待系统审查与盲测",
+    "sourceDraft": "L01_Stages.json",
+    "sourceSha256": "7e2da05026ed2030719551a4a8a42ba18263129fcde0c5b9037bb79c6df3b711",
+    "stage": 2,
+    "readingDirection": "同高度 +X（左到右）或 -Z（上到下），不随镜头改变",
+    "runtimeStageProgression": "各阶段独立试玩，自动推进未接入"
+  }
+}

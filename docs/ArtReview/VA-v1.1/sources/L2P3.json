@@ -1,0 +1,478 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "options": {
+    "actionMode": "MoveAutoPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.0,
+    "yawDegrees": [
+      45.0,
+      135.0,
+      225.0,
+      315.0
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true,
+    "slot": 0
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "id": "L2P3",
+  "title": "换一个我",
+  "bounds": {
+    "id": "",
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 12,
+      "y": 5,
+      "z": 10
+    },
+    "appearance": "Stone"
+  },
+  "terrain": [
+    {
+      "id": "floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 12,
+        "y": 0,
+        "z": 10
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "work_ledge",
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 2,
+        "z": 10
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing",
+      "min": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 12,
+        "y": 4,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "new_landing",
+      "min": {
+        "x": 10,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 12,
+        "y": 4,
+        "z": 9
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "push_stance",
+      "min": {
+        "x": 9,
+        "y": 1,
+        "z": 3
+      },
+      "max": {
+        "x": 9,
+        "y": 2,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 4
+      },
+      "max": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_side_wall",
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 3,
+        "y": 3,
+        "z": 10
+      },
+      "appearance": "Stone"
+    }
+  ],
+  "entities": [
+    {
+      "id": "source_flag_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_flag_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_flag_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_spring_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_spring_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_spring_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_you_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_you_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_you_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "control_new_noun",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "control_new_you",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "new_bounce_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "new_bounce_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "bounce_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "rock_01",
+      "kind": "Object",
+      "subject": "ROCK",
+      "token": "",
+      "cell": {
+        "x": 8,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "spring_01",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_rock_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROCK",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 10
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_rock_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 10
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_rock_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 10
+      },
+      "anchored": false,
+      "color": ""
+    }
+  ],
+  "referenceSolutions": [
+    {
+      "id": "P3-A",
+      "name": "标准参考解",
+      "family": "P3-A",
+      "commands": [
+        "N",
+        "S",
+        "W",
+        "N",
+        "E",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "rock_01",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "ControlChanged",
+        "Pushed",
+        "RulesChanged",
+        "LandingBounce",
+        "ApexSteer"
+      ],
+      "forbidEvents": [],
+      "status": "UnityReplayPassed_Prototype_v0.5_GroundRules",
+      "expectedFinalStatus": "Won",
+      "claim": "作者参考路线；不是强制指定步骤胜利条件。"
+    }
+  ],
+  "tutorial": {
+    "objective": "",
+    "concept": "",
+    "observation": "",
+    "necessity": "",
+    "hints": [],
+    "risks": [],
+    "regions": []
+  },
+  "authoringDesign": {
+    "designCard": "docs/level-design/L02.md",
+    "stage": 3,
+    "status": "地面规则布局回放、逐步撤销与重开通过；待画面审核与盲测",
+    "readingDirection": "同高度 +X 或 -Z",
+    "runtimeStageProgression": "独立地图；自动阶段切换未接入",
+    "layoutRevision": "v0.5：用户纠正为地面层 Y=1；左下 YOU 句跨阶段同位，P3 地面出生；固定源句由地形隔离，交互句靠 -Z 侧。"
+  }
+}

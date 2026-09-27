@@ -1,0 +1,414 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "options": {
+    "actionMode": "MoveAutoPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.0,
+    "yawDegrees": [
+      45.0,
+      135.0,
+      225.0,
+      315.0
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true,
+    "slot": 0
+  },
+  "designContract": {
+    "requireActiveInteraction": false,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "id": "L3P1",
+  "title": "一块 IS 的两种用途",
+  "bounds": {
+    "id": "",
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 12,
+      "y": 1,
+      "z": 8
+    },
+    "appearance": "Stone"
+  },
+  "terrain": [
+    {
+      "id": "floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 12,
+        "y": 0,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_front_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 7
+      },
+      "max": {
+        "x": 3,
+        "y": 1,
+        "z": 7
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_side_partition",
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 8
+      },
+      "max": {
+        "x": 3,
+        "y": 1,
+        "z": 8
+      },
+      "appearance": "Stone"
+    }
+  ],
+  "entities": [
+    {
+      "id": "source_wall",
+      "kind": "Text",
+      "subject": "",
+      "token": "WALL",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_stop",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "robot_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "shared_is",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "you_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 4,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "flag_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 3,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "gate_win_word",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 8,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 5,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_09_02",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_09_03",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_09_05",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_09_06",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_10_02",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_10_06",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 10,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_11_02",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_11_06",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_12_02",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_12_03",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_12_04",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_12_05",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "courtyard_wall_12_06",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    }
+  ],
+  "referenceSolutions": [],
+  "tutorial": {
+    "objective": "",
+    "concept": "",
+    "observation": "",
+    "necessity": "",
+    "hints": [],
+    "risks": [],
+    "regions": []
+  },
+  "authoringDesign": {
+    "designCard": "docs/level-design/L03.md",
+    "stage": 1,
+    "status": "工序3灰盒原型；待Unity参考解回放、解题审查与盲测",
+    "readingDirection": "同高度 +X 或 -Z",
+    "runtimeStageProgression": "独立地图；自动阶段切换未接入",
+    "layoutRevision": "v0.1：13×2×9；唯一可用 IS 保持 ROBOT IS YOU，FLAG 在上，入口 WIN 可搬到下方；WALL IS STOP 真源词隔离。"
+  }
+}

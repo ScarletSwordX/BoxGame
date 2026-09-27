@@ -1,0 +1,741 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "options": {
+    "actionMode": "MoveAutoPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.0,
+    "yawDegrees": [
+      45.0,
+      135.0,
+      225.0,
+      315.0
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true,
+    "slot": 0
+  },
+  "designContract": {
+    "requireActiveInteraction": false,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "id": "L2P1",
+  "title": "借力向上",
+  "bounds": {
+    "id": "",
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 12,
+      "y": 5,
+      "z": 8
+    },
+    "appearance": "Stone"
+  },
+  "terrain": [
+    {
+      "id": "floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 12,
+        "y": 0,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "work_ledge",
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 8,
+        "y": 2,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing",
+      "min": {
+        "x": 12,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 12,
+        "y": 2,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_7",
+      "min": {
+        "x": 12,
+        "y": 4,
+        "z": 2
+      },
+      "max": {
+        "x": 12,
+        "y": 4,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_8",
+      "min": {
+        "x": 12,
+        "y": 3,
+        "z": 2
+      },
+      "max": {
+        "x": 12,
+        "y": 3,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_4",
+      "min": {
+        "x": 11,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 11,
+        "y": 2,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_5",
+      "min": {
+        "x": 11,
+        "y": 4,
+        "z": 2
+      },
+      "max": {
+        "x": 11,
+        "y": 4,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_6",
+      "min": {
+        "x": 11,
+        "y": 3,
+        "z": 2
+      },
+      "max": {
+        "x": 11,
+        "y": 3,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_1",
+      "min": {
+        "x": 10,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 10,
+        "y": 2,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_2",
+      "min": {
+        "x": 10,
+        "y": 4,
+        "z": 2
+      },
+      "max": {
+        "x": 10,
+        "y": 4,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "old_landing_3",
+      "min": {
+        "x": 10,
+        "y": 3,
+        "z": 2
+      },
+      "max": {
+        "x": 10,
+        "y": 3,
+        "z": 3
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_partition",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 4
+      },
+      "max": {
+        "x": 2,
+        "y": 1,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_side_wall",
+      "min": {
+        "x": 3,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 3,
+        "y": 3,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_1",
+      "min": {
+        "x": 9,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 9,
+        "y": 2,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_2",
+      "min": {
+        "x": 10,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 2,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_3",
+      "min": {
+        "x": 11,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 11,
+        "y": 2,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_4",
+      "min": {
+        "x": 12,
+        "y": 2,
+        "z": 0
+      },
+      "max": {
+        "x": 12,
+        "y": 2,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_5",
+      "min": {
+        "x": 9,
+        "y": 2,
+        "z": 1
+      },
+      "max": {
+        "x": 9,
+        "y": 2,
+        "z": 1
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_7",
+      "min": {
+        "x": 10,
+        "y": 2,
+        "z": 4
+      },
+      "max": {
+        "x": 10,
+        "y": 2,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_8",
+      "min": {
+        "x": 11,
+        "y": 2,
+        "z": 4
+      },
+      "max": {
+        "x": 11,
+        "y": 2,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_9",
+      "min": {
+        "x": 12,
+        "y": 2,
+        "z": 4
+      },
+      "max": {
+        "x": 12,
+        "y": 2,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_6",
+      "min": {
+        "x": 10,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 10,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_10",
+      "min": {
+        "x": 11,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 11,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_11",
+      "min": {
+        "x": 12,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 12,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_12",
+      "min": {
+        "x": 10,
+        "y": 4,
+        "z": 4
+      },
+      "max": {
+        "x": 10,
+        "y": 4,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_13",
+      "min": {
+        "x": 11,
+        "y": 4,
+        "z": 4
+      },
+      "max": {
+        "x": 11,
+        "y": 4,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_14",
+      "min": {
+        "x": 12,
+        "y": 4,
+        "z": 4
+      },
+      "max": {
+        "x": 12,
+        "y": 4,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_15",
+      "min": {
+        "x": 9,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 9,
+        "y": 1,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_16",
+      "min": {
+        "x": 10,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 1,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_17",
+      "min": {
+        "x": 11,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 11,
+        "y": 1,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_18",
+      "min": {
+        "x": 12,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 12,
+        "y": 1,
+        "z": 0
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "terrain_19",
+      "min": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      },
+      "max": {
+        "x": 9,
+        "y": 1,
+        "z": 1
+      },
+      "appearance": "Stone"
+    }
+  ],
+  "entities": [
+    {
+      "id": "source_flag_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_flag_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_flag_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_spring_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_spring_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_spring_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_you_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_you_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "source_you_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 1,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "old_bounce_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "SPRING",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "old_bounce_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "old_bounce_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 1
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 2
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "spring_01",
+      "kind": "Object",
+      "subject": "SPRING",
+      "token": "",
+      "cell": {
+        "x": 9,
+        "y": 1,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 5,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    }
+  ],
+  "referenceSolutions": [
+    {
+      "id": "P1-A",
+      "name": "标准参考解",
+      "family": "P1-A",
+      "commands": [
+        "E",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "LandingBounce",
+        "ApexSteer"
+      ],
+      "forbidEvents": [
+        "ActiveInteraction",
+        "RulesChanged"
+      ],
+      "status": "UnityReplayPassed_Prototype_v0.5_GroundRules",
+      "expectedFinalStatus": "Won",
+      "claim": "作者参考路线；不是强制指定步骤胜利条件。"
+    }
+  ],
+  "tutorial": {
+    "objective": "",
+    "concept": "",
+    "observation": "",
+    "necessity": "",
+    "hints": [],
+    "risks": [],
+    "regions": []
+  },
+  "authoringDesign": {
+    "designCard": "docs/level-design/L02.md",
+    "stage": 1,
+    "status": "地面规则布局回放、逐步撤销与重开通过；待画面审核与盲测",
+    "readingDirection": "同高度 +X 或 -Z",
+    "runtimeStageProgression": "独立地图；自动阶段切换未接入",
+    "layoutRevision": "v0.5：用户纠正为地面层 Y=1；左下 YOU 句跨阶段同位，P3 地面出生；固定源句由地形隔离，交互句靠 -Z 侧。"
+  }
+}

@@ -1,0 +1,597 @@
+{
+  "schemaVersion": 9,
+  "mechanicsVersion": "RW-v0.9",
+  "options": {
+    "actionMode": "MoveAutoPush",
+    "winMode": "DistinctEntitiesSameCell",
+    "gravityMode": "WorldDownExceptHoverOrFly",
+    "collisionMode": "SolidPairsTerrainUniversal",
+    "solidityMode": "YouPushStopOrText",
+    "bounceRiseCells": 3,
+    "supportMode": "StrictBelow",
+    "controlMode": "SingleYouTransfer_NoControlUndo",
+    "transformationMode": "PermanentSingleTarget_SimultaneousOncePerEntityPerCommand",
+    "ruleSourceMode": "WorldTextOnly",
+    "textMobilityMode": "AllWordsMovable_GeometryAccess"
+  },
+  "camera": {
+    "initialSlot": 0,
+    "pitchDegrees": 35.0,
+    "yawDegrees": [
+      45.0,
+      135.0,
+      225.0,
+      315.0
+    ],
+    "inputMode": "ScreenRelative",
+    "orthographic": true,
+    "slot": 0
+  },
+  "designContract": {
+    "requireActiveInteraction": true,
+    "minimumSolutionFamilies": 1,
+    "interactionIsAuthoringConstraint": true
+  },
+  "id": "L3P2",
+  "title": "同一块岩浆，两条规则",
+  "bounds": {
+    "id": "",
+    "min": {
+      "x": 0,
+      "y": 0,
+      "z": 0
+    },
+    "max": {
+      "x": 14,
+      "y": 5,
+      "z": 10
+    },
+    "appearance": "Stone"
+  },
+  "terrain": [
+    {
+      "id": "floor",
+      "min": {
+        "x": 0,
+        "y": 0,
+        "z": 0
+      },
+      "max": {
+        "x": 14,
+        "y": 0,
+        "z": 10
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "source_ledge",
+      "min": {
+        "x": 0,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 2,
+        "y": 2,
+        "z": 10
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "work_ledge",
+      "min": {
+        "x": 4,
+        "y": 1,
+        "z": 0
+      },
+      "max": {
+        "x": 10,
+        "y": 2,
+        "z": 10
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "goal_platform",
+      "min": {
+        "x": 12,
+        "y": 1,
+        "z": 6
+      },
+      "max": {
+        "x": 14,
+        "y": 4,
+        "z": 8
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_0",
+      "min": {
+        "x": 9,
+        "y": 3,
+        "z": 5
+      },
+      "max": {
+        "x": 9,
+        "y": 3,
+        "z": 5
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_1",
+      "min": {
+        "x": 8,
+        "y": 3,
+        "z": 6
+      },
+      "max": {
+        "x": 8,
+        "y": 3,
+        "z": 6
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_2",
+      "min": {
+        "x": 8,
+        "y": 3,
+        "z": 4
+      },
+      "max": {
+        "x": 8,
+        "y": 3,
+        "z": 4
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_3",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 7
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 7
+      },
+      "appearance": "Stone"
+    },
+    {
+      "id": "rule_guard_4",
+      "min": {
+        "x": 7,
+        "y": 3,
+        "z": 3
+      },
+      "max": {
+        "x": 7,
+        "y": 3,
+        "z": 3
+      },
+      "appearance": "Stone"
+    }
+  ],
+  "entities": [
+    {
+      "id": "src_wall_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "WALL",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_wall_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_wall_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "STOP",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 9
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_flag_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "FLAG",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_flag_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_flag_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "WIN",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_robot_melt_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_robot_melt_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_robot_melt_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "MELT",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_you_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "ROBOT",
+      "cell": {
+        "x": 0,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_you_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 1,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "src_you_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "YOU",
+      "cell": {
+        "x": 2,
+        "y": 3,
+        "z": 3
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_hot_0",
+      "kind": "Text",
+      "subject": "",
+      "token": "LAVA",
+      "cell": {
+        "x": 6,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_hot_1",
+      "kind": "Text",
+      "subject": "",
+      "token": "IS",
+      "cell": {
+        "x": 7,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_hot_2",
+      "kind": "Text",
+      "subject": "",
+      "token": "HOT",
+      "cell": {
+        "x": 8,
+        "y": 3,
+        "z": 5
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "branch_lava",
+      "kind": "Text",
+      "subject": "",
+      "token": "LAVA",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "branch_bouncy",
+      "kind": "Text",
+      "subject": "",
+      "token": "BOUNCY",
+      "cell": {
+        "x": 5,
+        "y": 3,
+        "z": 4
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "robot_01",
+      "kind": "Object",
+      "subject": "ROBOT",
+      "token": "",
+      "cell": {
+        "x": 4,
+        "y": 3,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "lava_01",
+      "kind": "Object",
+      "subject": "LAVA",
+      "token": "",
+      "cell": {
+        "x": 11,
+        "y": 1,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "goal",
+      "kind": "Object",
+      "subject": "FLAG",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_0",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 5,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_1",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 5,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_2",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 14,
+        "y": 5,
+        "z": 6
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_3",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 14,
+        "y": 5,
+        "z": 7
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_4",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 14,
+        "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_5",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 13,
+        "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    },
+    {
+      "id": "wall_6",
+      "kind": "Object",
+      "subject": "WALL",
+      "token": "",
+      "cell": {
+        "x": 12,
+        "y": 5,
+        "z": 8
+      },
+      "anchored": false,
+      "color": ""
+    }
+  ],
+  "tutorial": {
+    "objective": "",
+    "concept": "",
+    "observation": "",
+    "necessity": "",
+    "hints": [],
+    "risks": [],
+    "regions": []
+  },
+  "referenceSolutions": [
+    {
+      "id": "P2-A",
+      "name": "新机制参考路线（待引擎回放）",
+      "family": "P2-A",
+      "commands": [
+        "E",
+        "E",
+        "W",
+        "W",
+        "S",
+        "S",
+        "E",
+        "E",
+        "S",
+        "S",
+        "E",
+        "E",
+        "E",
+        "E",
+        "N",
+        "N",
+        "N",
+        "N",
+        "N",
+        "E",
+        "E",
+        "E"
+      ],
+      "mustControlAtWin": "robot_01",
+      "mustWinWith": "goal",
+      "requireEvents": [
+        "RulesChanged",
+        "LandingBounce",
+        "ApexSteer"
+      ],
+      "forbidEvents": [],
+      "status": "Pending_NewMechanics_RuntimeReplay",
+      "expectedFinalStatus": "Won",
+      "claim": "作者预期路线；现有 Unity 模拟不支持 LAVA/HOT/MELT，不能将此状态当作验证通过。"
+    }
+  ],
+  "authoringDesign": {
+    "designCard": "docs/level-design/L03.md",
+    "stage": 2,
+    "status": "完整布局原型；待新机制接入后 Unity 回放",
+    "readingDirection": "同高度 +X 或 -Z",
+    "runtimeCompatibility": "Blocked_NewMechanics_NotImplemented",
+    "requiredMechanics": [
+      "LAVA",
+      "HOT_MELT_EntryDestruction",
+      "TopContactBounceBeforeEntry"
+    ],
+    "schemaNote": "schemaVersion 9 沿用文件结构；P3 新 controlMode 为待接入的明确合同标记，旧校验器应拒绝，不能静默退回单 YOU。",
+    "requiresNextCommandForNewYou": false
+  }
+}
