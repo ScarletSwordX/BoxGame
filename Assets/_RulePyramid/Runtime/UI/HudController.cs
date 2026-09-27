@@ -106,6 +106,8 @@ namespace RulePyramid.Runtime
                 : session.Phase.ToString();
             if (_stageTransition != null)
             {
+                if (_stageTransition is Label transitionLabel && transitioning)
+                    transitionLabel.text = "Stage " + (_bootstrap.CurrentStageIndex + 1) + " clear  ·  Stage " + (_bootstrap.CurrentStageIndex + 2);
                 if (transitioning) _stageTransition.RemoveFromClassList("hidden");
                 else _stageTransition.AddToClassList("hidden");
             }
@@ -124,7 +126,10 @@ namespace RulePyramid.Runtime
                     || session.Level.tutorial?.hints == null || session.Level.tutorial.hints.Length == 0
                     ? DisplayStyle.None : DisplayStyle.Flex;
             if (_hint != null)
+            {
+                _hint.EnableInClassList("no-control", GlobalStatusHint.Current(session) != null);
                 _hint.text = PlayerText.English(GlobalStatusHint.DisplayText(session, regionTutorial?.Current?.text, _manualHint));
+            }
             if (_winPanel != null)
             {
                 if (session.Won && !transitioning && (_bootstrap == null || !_bootstrap.HasNextStage)) _winPanel.RemoveFromClassList("hidden");
@@ -146,8 +151,11 @@ namespace RulePyramid.Runtime
             if (_hintIndex >= tutorial.hints.Length) _hintIndex = tutorial.hints.Length - 1;
             _manualHint = tutorial.hints[_hintIndex];
             if (_hint != null)
+            {
+                _hint.EnableInClassList("no-control", GlobalStatusHint.Current(_bootstrap?.Session) != null);
                 _hint.text = PlayerText.English(GlobalStatusHint.DisplayText(_bootstrap?.Session,
                     _bootstrap?.RegionTutorial?.Current?.text, _manualHint));
+            }
             if (_hintIndex < tutorial.hints.Length - 1) _hintIndex++;
         }
 

@@ -91,17 +91,20 @@ namespace RulePyramid.Tests.EditorPreview
                 region.Observe(session);
                 hud.Refresh(session, null, region);
                 Assert.AreEqual("区域提示", label.text);
+                Assert.IsFalse(label.ClassListContains("no-control"));
                 Assert.IsTrue(session.TryExecute("PN"));
                 hud.Refresh(session, null, region);
-                Assert.AreEqual(GlobalStatusHint.NoControlText, label.text);
+                Assert.AreEqual(PlayerText.English(GlobalStatusHint.NoControlText), label.text);
+                Assert.IsTrue(label.ClassListContains("no-control"));
                 typeof(HudController).GetMethod("ShowNextHint", Fields).Invoke(hud, null);
-                Assert.AreEqual(GlobalStatusHint.NoControlText, label.text);
+                Assert.AreEqual(PlayerText.English(GlobalStatusHint.NoControlText), label.text);
                 region.Tick(20);
                 hud.Refresh(session, null, region);
-                Assert.AreEqual(GlobalStatusHint.NoControlText, label.text);
+                Assert.AreEqual(PlayerText.English(GlobalStatusHint.NoControlText), label.text);
                 Assert.IsTrue(session.Undo());
                 hud.Refresh(session, null, region);
                 Assert.AreEqual("手动提示", label.text);
+                Assert.IsFalse(label.ClassListContains("no-control"));
             }
             finally { UnityEngine.Object.DestroyImmediate(host); }
         }

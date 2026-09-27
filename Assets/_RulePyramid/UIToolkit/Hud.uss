@@ -1,14 +1,14 @@
 .hud-root {
     flex-grow: 1;
     font-size: 16px;
-    color: rgb(240, 240, 240);
+    color: rgb(0, 0, 0);
 }
 
 .hud-top {
     flex-direction: row;
     justify-content: space-between;
     padding: 12px 16px;
-    background-color: rgba(0, 0, 0, 0.45);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .hud-left {
@@ -17,7 +17,7 @@
     top: 64px;
     width: 280px;
     padding: 12px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .hud-bottom {
@@ -26,7 +26,7 @@
     left: 16px;
     right: 16px;
     padding: 12px;
-    background-color: rgba(0, 0, 0, 0.4);
+    background-color: rgba(255, 255, 255, 0.8);
 }
 
 .win-panel {
@@ -35,7 +35,7 @@
     top: 40%;
     translate: -50% -50%;
     padding: 24px;
-    background-color: rgba(20, 20, 30, 0.9);
+    background-color: rgba(250, 241, 225, 0.95);
     border-width: 2px;
     border-color: rgb(255, 180, 220);
 }
@@ -55,8 +55,12 @@
 }
 
 .reject {
-    color: rgb(255, 160, 120);
+    color: rgb(180, 0, 0);
     margin-top: 6px;
+}
+
+.hint.no-control {
+    color: rgb(180, 0, 0);
 }
 
 .row {
@@ -73,8 +77,8 @@
     top: 18%;
     align-self: center;
     padding: 12px 24px;
-    background-color: rgba(20, 20, 30, 0.85);
-    color: rgb(255, 220, 160);
+    background-color: rgba(250, 241, 225, 0.95);
+    color: rgb(0, 0, 0);
     font-size: 22px;
     -unity-font-style: bold;
 }
