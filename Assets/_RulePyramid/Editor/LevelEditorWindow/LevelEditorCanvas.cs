@@ -406,7 +406,11 @@ namespace RulePyramid.Editor
         }
         void HandleKeyboard()
         {
-            var ev=Event.current;
+            HandleKeyboardEvent(Event.current);
+        }
+
+        void HandleKeyboardEvent(Event ev)
+        {
             if (ev==null || ev.type!=EventType.KeyDown) return;
             var operation=EditorCommands.Resolve(ev.keyCode,_inputFocus,EditorGUIUtility.editingTextField,_dragging,Playing,ev.control||ev.command||ev.alt,ev.shift);
             if (operation!=EditorCommand.None) { ExecuteEditorCommand(operation); ev.Use(); return; }

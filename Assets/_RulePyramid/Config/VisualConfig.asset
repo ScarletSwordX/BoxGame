@@ -40,7 +40,7 @@ MonoBehaviour:
   cameraDistance: 18
   cameraPitch: 75
   cameraYaws:
-  - 45
+  - 15
   - 135
   - 225
   - 315

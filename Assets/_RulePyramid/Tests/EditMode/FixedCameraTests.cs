@@ -8,6 +8,70 @@ namespace RulePyramid.Tests.EditMode
 {
     public class FixedCameraTests
     {
+        static void AssertInputAlignment(CameraSlotsController camera, float expectedAngle)
+        {
+            var forward = Vector3.ProjectOnPlane(camera.transform.forward, Vector3.up).normalized;
+            var right = Vector3.ProjectOnPlane(camera.transform.right, Vector3.up).normalized;
+            var inputs = new[] { Vector2.up, Vector2.down, Vector2.left, Vector2.right };
+            var expected = new[] { forward, -forward, -right, right };
+            for (int i = 0; i < inputs.Length; i++)
+            {
+                var offset = WorldDirections.ToOffset(camera.ScreenToWorld(inputs[i]));
+                float angle = Vector3.Angle(new Vector3(offset.x, offset.y, offset.z), expected[i]);
+                Assert.LessOrEqual(angle, 20.001f, "四向输入与地平面镜头方向的偏差不得超过 20°。");
+                Assert.AreEqual(expectedAngle, angle, .001f);
+            }
+        }
+
+        [TestCase(15f, 15f)]
+        [TestCase(-15f, 15f)]
+        [TestCase(0f, 0f)]
+        [TestCase(20f, 20f)]
+        [TestCase(-20f, 20f)]
+        [TestCase(45f, 20f)]
+        [TestCase(-45f, 20f)]
+        [TestCase(375f, 15f)]
+        [TestCase(345f, 15f)]
+        [TestCase(360f, 0f)]
+        [TestCase(float.NaN, 15f)]
+        [TestCase(float.PositiveInfinity, 15f)]
+        public void FourDirectionsStayWithinTwentyDegreesOfGroundProjectedCamera(float yaw, float angle)
+        {
+            var holder = new GameObject("操作与镜头夹角测试");
+            var config = ScriptableObject.CreateInstance<VisualConfig>();
+            try
+            {
+                config.cameraYaws[0] = yaw;
+                var camera = holder.AddComponent<CameraSlotsController>();
+                camera.config = config;
+                camera.ConfigureFromLevel(new CameraData { initialSlot = 3 });
+                camera.Snap();
+                AssertInputAlignment(camera, angle);
+            }
+            finally { Object.DestroyImmediate(holder); Object.DestroyImmediate(config); }
+        }
+
+        [TestCase(-1)]
+        [TestCase(0)]
+        [TestCase(1)]
+        [TestCase(3)]
+        public void MissingOrMalformedYawConfigUsesFifteenDegreeFallback(int length)
+        {
+            var holder = new GameObject("镜头回退测试");
+            var config = ScriptableObject.CreateInstance<VisualConfig>();
+            try
+            {
+                var camera = holder.AddComponent<CameraSlotsController>();
+                camera.Snap();
+                AssertInputAlignment(camera, 15f);
+                config.cameraYaws = length < 0 ? null : new float[length];
+                camera.config = config;
+                camera.Snap();
+                AssertInputAlignment(camera, 15f);
+            }
+            finally { Object.DestroyImmediate(holder); Object.DestroyImmediate(config); }
+        }
+
         [Test]
         public void PlayerCameraUsesFirstViewEvenWhenLevelRequestsAnotherSlot()
         {

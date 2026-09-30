@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using RulePyramid.Core;
+using RulePyramid.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -159,6 +160,15 @@ namespace RulePyramid.Editor
         {
             _target = Center(cell);
             _hasFrame = true;
+        }
+
+        public void SetPlayerView(VisualConfig config)
+        {
+            _slot = 0;
+            _yaw = VisualConfig.GetPlayerCameraYaw(config);
+            _pitch = VisualConfig.GetPlayerViewRotation(config).eulerAngles.x;
+            // 下次绘制按玩家视角重新取景，不沿用作者旋转时的缩放。
+            _hasFrame = false;
         }
 
         public void RotateSlot(int slot)

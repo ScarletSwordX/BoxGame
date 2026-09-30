@@ -86,6 +86,14 @@ namespace RulePyramid.Tests.EditorPreview
 
             Call(_window, "StartPlay", false);
             Assert.IsNotNull(session.Playtest);
+            var visual = UnityEditor.AssetDatabase.LoadAssetAtPath<VisualConfig>("Assets/_RulePyramid/Config/VisualConfig.asset");
+            Assert.IsNotNull(visual);
+            Assert.AreEqual(15f, visual.cameraYaws[0]);
+            var playerView = _preview.CaptureView();
+            Assert.AreEqual(0, playerView.Slot);
+            Assert.AreEqual(15f, playerView.Yaw, .001f);
+            Assert.AreEqual(75f, playerView.Pitch, .001f);
+            _preview.UpdatePicking(new Rect(0, 0, 500, 400), session.Playtest.Level, session.Playtest.World.Entities, 0, false, false, false);
             session.CurrentY = 0;
             selected.Clear();
             _preview.RotateSlot(1);
@@ -97,7 +105,57 @@ namespace RulePyramid.Tests.EditorPreview
             var after = _preview.CaptureView();
             Assert.AreEqual(before.Slot, after.Slot);
             Assert.AreEqual(before.Yaw, after.Yaw);
+            Assert.AreEqual(before.Pitch, after.Pitch);
+            Assert.AreEqual(before.Size, after.Size);
+            Assert.AreEqual(before.HasFrame, after.HasFrame);
             Assert.AreEqual(before.Target, after.Target);
+        }
+
+        [TestCase(KeyCode.W, 0, 1)]
+        [TestCase(KeyCode.UpArrow, 0, 1)]
+        [TestCase(KeyCode.S, 0, -1)]
+        [TestCase(KeyCode.DownArrow, 0, -1)]
+        [TestCase(KeyCode.A, -1, 0)]
+        [TestCase(KeyCode.LeftArrow, -1, 0)]
+        [TestCase(KeyCode.D, 1, 0)]
+        [TestCase(KeyCode.RightArrow, 1, 0)]
+        public void PlaytestKeyboardMovesAlongCameraAlignedGridAxes(KeyCode key, int dx, int dz)
+        {
+            var level = LoadL01();
+            level.bounds = new GridCellBox { min = new GridCell(0, 0, 0), max = new GridCell(6, 4, 6) };
+            level.terrain = new[] { new GridCellBox { min = new GridCell(0, 0, 0), max = new GridCell(6, 0, 6) } };
+            level.entities = new[]
+            {
+                new EntityDefinition { id = "actor", kind = "Object", subject = "ROBOT", cell = new GridCell(3, 1, 3) },
+                new EntityDefinition { id = "noun", kind = "Text", token = "ROBOT", cell = new GridCell(0, 1, 0) },
+                new EntityDefinition { id = "is", kind = "Text", token = "IS", cell = new GridCell(1, 1, 0) },
+                new EntityDefinition { id = "you", kind = "Text", token = "YOU", cell = new GridCell(2, 1, 0) }
+            };
+            level.designContract = null;
+            level.referenceSolutions = Array.Empty<ReferenceSolutionData>();
+            level.tutorial = null;
+            var session = new LevelEditSession(level);
+            Set(_window, "_session", session);
+            bool editing = UnityEditor.EditorGUIUtility.editingTextField;
+            try
+            {
+                Call(_window, "StartPlay", false);
+                Assert.IsNotNull(session.Playtest, (string)Get(_window, "_message"));
+                UnityEditor.EditorGUIUtility.editingTextField = false;
+                Call(_window, "HandleKeyboardEvent", new Event { type = EventType.KeyDown, keyCode = key });
+                Assert.AreEqual(new GridCell(3 + dx, 1, 3 + dz), session.Playtest.World.FindYou().Cell);
+                Assert.AreEqual(1, session.Playtest.TurnCount);
+                var view = _preview.CaptureView();
+                var rotation = Quaternion.Euler(view.Pitch, view.Yaw, 0f);
+                var axis = dz != 0 ? rotation * Vector3.forward * dz : rotation * Vector3.right * dx;
+                float angle = Vector3.Angle(new Vector3(dx, 0, dz), Vector3.ProjectOnPlane(axis, Vector3.up));
+                Assert.AreEqual(15f, angle, .001f);
+            }
+            finally
+            {
+                UnityEditor.EditorGUIUtility.editingTextField = editing;
+                Call(_window, "StopPlay");
+            }
         }
 
         [Test]

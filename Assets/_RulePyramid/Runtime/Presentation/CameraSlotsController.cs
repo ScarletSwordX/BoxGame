@@ -54,10 +54,7 @@ namespace RulePyramid.Runtime
 
         Quaternion ViewRotation()
         {
-            float pitch = config != null ? config.cameraPitch : 75f;
-            float[] yaws = config != null && config.cameraYaws != null && config.cameraYaws.Length == 4
-                ? config.cameraYaws : new[] { 45f, 135f, 225f, 315f };
-            return Quaternion.Euler(pitch, yaws[0], 0f);
+            return VisualConfig.GetPlayerViewRotation(config);
         }
 
         public int Slot => 0;

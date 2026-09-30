@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using RulePyramid.Core;
+using RulePyramid.Runtime;
 using UnityEditor;
 using UnityEngine;
 
@@ -305,7 +306,8 @@ namespace RulePyramid.Editor
             _recorder=new PlaytestRecorder(game); _tutorial=new RegionTutorialSession(game.Level.tutorial); _tutorial.Observe(game);
             _recordTargetIndex=recording?_solutionIndex:-1;
             _recording=recording; _replay=null; _replayStep=0; _autoReplay=false; _inputFocus=true;
-            _preview.RotateSlot(0); _lastTick=EditorApplication.timeSinceStartup;
+            _preview.SetPlayerView(AssetDatabase.LoadAssetAtPath<VisualConfig>("Assets/_RulePyramid/Config/VisualConfig.asset"));
+            _lastTick=EditorApplication.timeSinceStartup;
             _message="试玩已开始；点击画布后使用 WASD / 方向键移动与推动，Space 跳跃。退出恢复原草稿。";
             if(recording)_tab=2;
         }

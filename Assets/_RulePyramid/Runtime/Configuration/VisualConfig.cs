@@ -5,6 +5,9 @@ namespace RulePyramid.Runtime
     [CreateAssetMenu(menuName = "规则工坊/视觉配置", fileName = "VisualConfig")]
     public class VisualConfig : ScriptableObject
     {
+        public const float DefaultPlayerCameraYaw = 15f;
+        public const float MaxPlayerCameraYaw = 20f;
+
         public float cellSize = 1f;
         public Vector3 origin = Vector3.zero;
         public Material terrainMaterial;
@@ -40,6 +43,21 @@ namespace RulePyramid.Runtime
         public float cameraDistance = 18f;
         [Range(60f, 80f), Tooltip("玩家镜头相对水平地面的俯角；所有关卡共用。")]
         public float cameraPitch = 75f;
-        public float[] cameraYaws = { 45f, 135f, 225f, 315f };
+        [Tooltip("玩家只使用第 1 项：水平偏航默认 15°，实际限制在 −20°至 +20°。其余项保留兼容。")]
+        public float[] cameraYaws = { DefaultPlayerCameraYaw, 135f, 225f, 315f };
+
+        public static float GetPlayerCameraYaw(VisualConfig config)
+        {
+            float yaw = config != null && config.cameraYaws != null && config.cameraYaws.Length == 4
+                ? config.cameraYaws[0] : DefaultPlayerCameraYaw;
+            if (float.IsNaN(yaw) || float.IsInfinity(yaw)) yaw = DefaultPlayerCameraYaw;
+            return Mathf.Clamp(Mathf.DeltaAngle(0f, yaw), -MaxPlayerCameraYaw, MaxPlayerCameraYaw);
+        }
+
+        public static Quaternion GetPlayerViewRotation(VisualConfig config)
+        {
+            float pitch = config != null ? config.cameraPitch : 75f;
+            return Quaternion.Euler(pitch, GetPlayerCameraYaw(config), 0f);
+        }
     }
 }

@@ -4,6 +4,7 @@ using System.Reflection;
 using NUnit.Framework;
 using RulePyramid.Core;
 using RulePyramid.Editor;
+using RulePyramid.Runtime;
 using UnityEngine;
 
 namespace RulePyramid.Tests.EditorPreview
@@ -18,6 +19,41 @@ namespace RulePyramid.Tests.EditorPreview
                 terrain = terrain,
                 entities = Array.Empty<EntityDefinition>()
             };
+        }
+
+        [TestCase(15f, 15f)]
+        [TestCase(45f, 20f)]
+        [TestCase(345f, -15f)]
+        public void PlayerViewMatchesRuntimeCameraAndReframesMap(float yaw, float expectedYaw)
+        {
+            var config = ScriptableObject.CreateInstance<VisualConfig>();
+            try
+            {
+                config.cameraYaws[0] = yaw;
+                using (var preview = new AuthoringPreview3D())
+                {
+                    preview.RotateSlot(2);
+                    preview.Focus(new GridCell(100, 0, 100));
+                    preview.SetPlayerView(config);
+                    var level = Level();
+                    var rect = new Rect(0, 0, 640, 360);
+                    preview.UpdatePicking(rect, level, null, 1, false, false, false);
+                    var state = preview.CaptureView();
+                    Assert.AreEqual(expectedYaw, state.Yaw, .001f);
+                    Assert.Less(Quaternion.Angle(VisualConfig.GetPlayerViewRotation(config),
+                        Quaternion.Euler(state.Pitch, state.Yaw, 0f)), .001f);
+                    foreach (int x in new[] { level.bounds.min.x, level.bounds.max.x })
+                    foreach (int y in new[] { level.bounds.min.y, level.bounds.max.y })
+                    foreach (int z in new[] { level.bounds.min.z, level.bounds.max.z })
+                        Assert.IsTrue(rect.Contains(preview.ProjectCellCenter(new GridCell(x, y, z))));
+                    preview.SetPlayerView(null);
+                    Assert.AreEqual(15f, preview.CaptureView().Yaw);
+                    Assert.AreEqual(75f, preview.CaptureView().Pitch, .001f);
+                    preview.RotateSlot(3);
+                    Assert.AreEqual(315f, preview.CaptureView().Yaw, "作者四视角仍可自由切换。");
+                }
+            }
+            finally { UnityEngine.Object.DestroyImmediate(config); }
         }
 
         [Test]
