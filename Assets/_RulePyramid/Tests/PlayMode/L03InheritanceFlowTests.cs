@@ -95,7 +95,8 @@ namespace RulePyramid.Tests.PlayMode
                     {
                         var previous = bootstrap.Session;
                         int generation = view.Generation;
-                        Assert.IsTrue(bootstrap.IsStageTransitioning);
+                        bootstrap.ContinueStage();
+                Assert.IsTrue(bootstrap.IsStageTransitioning);
                         float deadline = Time.realtimeSinceStartup + 5f;
                         while (bootstrap.IsStageTransitioning && Time.realtimeSinceStartup < deadline)
                             yield return null;

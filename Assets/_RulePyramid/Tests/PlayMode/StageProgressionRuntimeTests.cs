@@ -84,6 +84,7 @@ namespace RulePyramid.Tests.PlayMode
 
         static IEnumerator WaitForStage(GameBootstrap bootstrap, int stage)
         {
+            bootstrap.ContinueStage();
             float deadline = Time.realtimeSinceStartup + 5f;
             while ((bootstrap.CurrentStageIndex != stage || bootstrap.IsStageTransitioning) &&
                    Time.realtimeSinceStartup < deadline)
@@ -142,6 +143,7 @@ namespace RulePyramid.Tests.PlayMode
 
                 SubmitSolution(bootstrap, "P1-A");
                 var first = bootstrap.Session;
+                bootstrap.ContinueStage();
                 Assert.IsTrue(bootstrap.IsStageTransitioning);
                 int firstTurns = first.TurnCount;
                 bootstrap.Submit("E");
@@ -171,6 +173,7 @@ namespace RulePyramid.Tests.PlayMode
                 Assert.AreEqual(0, bootstrap.Session.TurnCount);
                 SubmitSolution(bootstrap, "P2-A");
                 var second = bootstrap.Session;
+                bootstrap.ContinueStage();
                 Assert.IsTrue(bootstrap.IsStageTransitioning);
                 yield return WaitForStage(bootstrap, 2);
                 Assert.AreEqual("L1P3", bootstrap.Session.Level.id);
@@ -205,6 +208,7 @@ namespace RulePyramid.Tests.PlayMode
                 yield return null;
                 var bootstrap = fixture.Bootstrap;
                 SubmitSolution(bootstrap, "P1-A");
+                bootstrap.ContinueStage();
                 Assert.IsTrue(bootstrap.IsStageTransitioning);
                 bootstrap.LoadIndex(0);
                 Assert.IsFalse(bootstrap.IsStageTransitioning);

@@ -69,7 +69,8 @@ namespace RulePyramid.Tests.PlayMode
                         {
                             var old = bootstrap.Session;
                             int generation = view.Generation;
-                            Assert.IsTrue(bootstrap.IsStageTransitioning);
+                            bootstrap.ContinueStage();
+                Assert.IsTrue(bootstrap.IsStageTransitioning);
                             bootstrap.Submit("E"); bootstrap.Undo(); bootstrap.Restart(); bootstrap.NextLevel();
                             Assert.AreSame(old, bootstrap.Session, "过渡锁定防止重复推进或改写残局");
                             float deadline = Time.realtimeSinceStartup + 5f;

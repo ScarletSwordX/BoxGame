@@ -148,7 +148,7 @@ namespace RulePyramid.Tests.PlayMode
                     var next = new GameSession(catalog.LoadStage(0, 1));
                     // 只测试阶段管理与展示，不用失效的旧参考路线冒充解法验证。
                     previous.World.WonLatched = true;
-                    game.NextLevel();
+                    game.ContinueStage();
                     Assert.IsTrue(game.IsStageTransitioning, firstPath);
                     game.Submit("E"); game.Undo(); game.Restart(); game.NextLevel();
                     Assert.AreSame(previous, game.Session);

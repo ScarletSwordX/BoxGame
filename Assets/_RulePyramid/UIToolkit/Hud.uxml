@@ -23,13 +23,22 @@
                 </ui:VisualElement>
             </ui:VisualElement>
             <ui:Label name="stageTransition" text="Stage clear" class="stage-transition hidden" />
-            <ui:VisualElement name="winPanel" class="win-panel hidden">
-                <ui:Label text="Level clear" class="title" />
+            <ui:VisualElement name="stageCompletePanel" class="completion-screen hidden">
+                <ui:VisualElement class="completion-card stage-card">
+                    <ui:Label text="Stage completed" class="completion-title" />
+                    <ui:Button name="stageContinueButton" text="Next stage" class="menu-button stage-primary" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="winPanel" class="completion-screen hidden">
+              <ui:VisualElement class="completion-card level-card">
+                <ui:Label name="levelCompleteTitle" text="Level complete" class="completion-title" />
+                <ui:Label text="All stages cleared." class="completion-context" />
+                <ui:Button name="nextButton" text="Next level" class="menu-button level-primary" />
                 <ui:VisualElement class="row">
                     <ui:Button name="winUndoButton" text="Undo" />
                     <ui:Button name="winRestartButton" text="Restart" />
-                    <ui:Button name="nextButton" text="Next" />
                 </ui:VisualElement>
+              </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="mainMenu" class="menu-screen main-menu">

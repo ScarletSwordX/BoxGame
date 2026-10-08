@@ -157,6 +157,8 @@ namespace RulePyramid.Tests.PlayMode
             _game.animator.stepDuration = 0.001f;
             foreach (var command in _game.Session.Level.referenceSolutions[0].commands)
                 _game.Submit(command);
+            while (!_game.IsCompletionReady) yield return null;
+            _game.ContinueStage();
             Assert.IsTrue(_game.IsStageTransitioning);
             yield return new WaitForSecondsRealtime(0.15f);
             _game.TogglePause();

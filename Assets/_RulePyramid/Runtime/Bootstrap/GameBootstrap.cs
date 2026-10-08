@@ -29,11 +29,17 @@ namespace RulePyramid.Runtime
         int _stageIndex;
         bool _campaignStartedFromMenu;
         Coroutine _stageTransition;
+        [Tooltip("保留旧场景兼容；阶段完成后由玩家确认继续。")]
         public float stageWinPause = 0.35f;
+        bool _completionWasReady;
         public float stageExpansionDuration = 1.1f;
         public int CurrentStageIndex => _stageIndex;
         public int CurrentStageCount => catalog != null && catalog.Count > 0 ? catalog.StageCount(_index) : 1;
         public bool IsStageTransitioning { get; private set; }
+        public bool IsCompletionReady => _session != null && _session.Won && !IsStageTransitioning
+            && (animator == null || !animator.IsPlaying);
+        public bool IsStageComplete => IsCompletionReady && HasNextStage;
+        public bool IsLevelComplete => IsCompletionReady && !HasNextStage;
         public bool HasNextStage => _session != null && _stageIndex + 1 < CurrentStageCount;
         public bool HasNextLevel => catalog != null && _index + 1 < catalog.Count;
         public bool HasContinue => CampaignProgress.TryGetNextIndex(catalog, out _);
@@ -64,6 +70,12 @@ namespace RulePyramid.Runtime
 
         void Update()
         {
+            if (_completionWasReady != IsCompletionReady)
+            {
+                _completionWasReady = IsCompletionReady;
+                if (_completionWasReady) _bounceFeedback?.ResetFeedback();
+                hud?.Refresh(_session, _reject, _regionTutorial);
+            }
             if (UnityEngine.Input.GetKeyDown(KeyCode.Escape) && !IsMainMenu && _session != null)
             {
                 TogglePause();
@@ -104,6 +116,7 @@ namespace RulePyramid.Runtime
         void ActivateStage(GameSession session, int stage, bool rebuild)
         {
             _bounceFeedback?.ResetFeedback();
+            _completionWasReady = false;
             _stageIndex = stage;
             _session = session;
             _regionTutorial = new RegionTutorialSession(_session.Level.tutorial);
@@ -121,9 +134,9 @@ namespace RulePyramid.Runtime
             hud?.Refresh(_session, _reject, _regionTutorial);
         }
 
-        void BeginStageTransition()
+        public void ContinueStage()
         {
-            if (IsStageTransitioning || _session == null || !_session.Won || !HasNextStage) return;
+            if (!isActiveAndEnabled || IsMenuOpen || !IsStageComplete) return;
             GameSession next;
             try { next = new GameSession(catalog.LoadStage(_index, _stageIndex + 1)); }
             catch (System.Exception ex)
@@ -134,6 +147,8 @@ namespace RulePyramid.Runtime
                 return;
             }
             IsStageTransitioning = true;
+            _reject = null;
+            hud?.Refresh(_session, _reject, _regionTutorial);
             inputAdapter?.ResetRepeat();
             _stageTransition = StartCoroutine(AdvanceStage(next, _stageIndex + 1));
         }
@@ -145,7 +160,6 @@ namespace RulePyramid.Runtime
             while (IsPaused) yield return null;
             hud?.Refresh(_session, _reject, _regionTutorial);
             while (animator != null && animator.IsPlaying) yield return null;
-            if (stageWinPause > 0f) yield return new WaitForSeconds(stageWinPause);
             while (IsPaused) yield return null;
             _bounceFeedback?.ResetFeedback();
             animator?.Stop();
@@ -176,7 +190,7 @@ namespace RulePyramid.Runtime
 
         void OnEnable()
         {
-            if (_session != null && _session.Won && HasNextStage) BeginStageTransition();
+            hud?.Refresh(_session, _reject, _regionTutorial);
         }
 
         void OnDisable()
@@ -184,12 +198,13 @@ namespace RulePyramid.Runtime
             ResumeGame();
             bool interrupted = IsStageTransitioning;
             CancelStageTransition();
-            if (interrupted && _session != null) worldView?.Rebuild(_session.World);
+            if (_session != null && (interrupted || _session.Won)) worldView?.Rebuild(_session.World);
         }
 
         public void Submit(string command)
         {
             if (IsMenuOpen || _session == null || IsStageTransitioning) return;
+            if (_session.Won) return;
             int logFrom = _session.World.Log.Count;
             bool ok = _session.TryExecute(command);
             _reject = ok ? null : _session.LastRejectReason;
@@ -202,8 +217,7 @@ namespace RulePyramid.Runtime
             }
             if (ok && _session.Won)
             {
-                if (HasNextStage) BeginStageTransition();
-                else if (_campaignStartedFromMenu) CampaignProgress.RecordCompleted(catalog, _index);
+                if (!HasNextStage && _campaignStartedFromMenu) CampaignProgress.RecordCompleted(catalog, _index);
             }
             hud?.Refresh(_session, _reject, _regionTutorial);
         }
@@ -236,8 +250,7 @@ namespace RulePyramid.Runtime
 
         public void NextLevel()
         {
-            if (IsMenuOpen || IsStageTransitioning || _session == null || !_session.Won) return;
-            if (HasNextStage) { BeginStageTransition(); return; }
+            if (!isActiveAndEnabled || IsMenuOpen || !IsLevelComplete) return;
             if (HasNextLevel) LoadIndex(_index + 1);
         }
 

@@ -47,6 +47,7 @@ namespace RulePyramid.Runtime
             root.Q<Button>("restartButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Restart());
             root.Q<Button>("winUndoButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Undo());
             root.Q<Button>("winRestartButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.Restart());
+            root.Q<Button>("stageContinueButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.ContinueStage());
             root.Q<Button>("nextButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.NextLevel());
             root.Q<Button>("startButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.StartGame());
             root.Q<Button>("continueButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.ContinueGame());
@@ -56,7 +57,7 @@ namespace RulePyramid.Runtime
             root.Q<Button>("pauseQuitButton")?.RegisterCallback<ClickEvent>(_ => bootstrap.QuitGame());
             // 游戏中空格用于跳跃，避免已点击的 HUD 按钮再次响应空格。
             foreach (var id in new[] { "undoButton", "restartButton", "hintButton", "pauseButton",
-                "winUndoButton", "winRestartButton", "nextButton" })
+                "winUndoButton", "winRestartButton", "nextButton", "stageContinueButton" })
             {
                 var button = root.Q<Button>(id);
                 if (button != null) button.focusable = false;
@@ -116,6 +117,14 @@ namespace RulePyramid.Runtime
             foreach (var id in new[] { "undoButton", "restartButton", "winUndoButton", "winRestartButton", "hintButton" })
                 _root?.Q<Button>(id)?.SetEnabled(!transitioning);
             _root?.Q<Button>("nextButton")?.SetEnabled(!transitioning && (_bootstrap == null || _bootstrap.HasNextLevel));
+            bool stageComplete = _bootstrap != null && _bootstrap.IsStageComplete;
+            SetVisible("stageCompletePanel", stageComplete);
+            foreach (var id in new[] { "top", "left", "bottom" }) SetVisible(id, !stageComplete);
+            _root?.Q<Button>("stageContinueButton")?.SetEnabled(stageComplete);
+            var completeTitle = _root?.Q<Label>("levelCompleteTitle");
+            if (completeTitle != null) completeTitle.text = _bootstrap != null && !_bootstrap.HasNextLevel
+                ? "Campaign complete" : "Level complete";
+            SetVisible("nextButton", _bootstrap == null || _bootstrap.HasNextLevel);
             if (_turns != null) _turns.text = "Moves " + session.TurnCount;
             if (_rules != null) _rules.text = FormatRules(session.World.Rules);
             if (_objective != null && session.Level.tutorial != null)
@@ -134,7 +143,7 @@ namespace RulePyramid.Runtime
             }
             if (_winPanel != null)
             {
-                if (session.Won && !transitioning && (_bootstrap == null || !_bootstrap.HasNextStage)) _winPanel.RemoveFromClassList("hidden");
+                if (_bootstrap != null ? _bootstrap.IsLevelComplete : session.Won) _winPanel.RemoveFromClassList("hidden");
                 else _winPanel.AddToClassList("hidden");
             }
         }

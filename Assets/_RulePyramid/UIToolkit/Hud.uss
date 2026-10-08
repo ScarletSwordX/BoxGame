@@ -209,3 +209,20 @@
     color: rgb(116, 100, 99);
     -unity-text-align: middle-center;
 }
+/* 两种结算共用布局，通过标题和主按钮区分完成范围。 */
+.completion-screen {
+    position: absolute; left: 0; right: 0; top: 0; bottom: 0;
+    align-items: center; justify-content: center;
+    background-color: rgba(41, 50, 70, 0.26);
+}
+.completion-card {
+    width: 440px; max-width: 85%; padding: 28px 32px;
+    background-color: rgb(250, 241, 225); color: rgb(41, 50, 70);
+    border-radius: 14px; border-width: 2px; border-bottom-width: 7px;
+}
+.stage-card { border-color: rgb(158, 141, 183); }
+.level-card { border-color: rgb(190, 146, 63); }
+.completion-title { font-size: 30px; -unity-font-style: bold; -unity-text-align: middle-center; }
+.completion-context { font-size: 16px; white-space: normal; -unity-text-align: middle-center; margin-top: 10px; }
+.stage-primary { background-color: rgb(191, 179, 214); border-color: rgb(158, 141, 183); color: rgb(41, 50, 70); margin-top: 20px; }
+.level-primary { background-color: rgb(236, 198, 107); border-color: rgb(190, 146, 63); color: rgb(41, 50, 70); margin-top: 20px; }

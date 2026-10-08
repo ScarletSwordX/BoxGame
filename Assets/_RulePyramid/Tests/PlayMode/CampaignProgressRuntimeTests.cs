@@ -124,6 +124,7 @@ namespace RulePyramid.Tests.PlayMode
                 fixture.Game.Submit("E");
                 Assert.IsTrue(fixture.Game.Session.Won);
                 Assert.IsFalse(PlayerPrefs.HasKey(key), "完成中间阶段不应写入关卡存档");
+                fixture.Click("stageContinueButton");
                 float deadline = Time.realtimeSinceStartup + 3f;
                 while (fixture.Game.IsStageTransitioning && Time.realtimeSinceStartup < deadline) yield return null;
                 Assert.AreEqual("L1P2", fixture.Game.Session.Level.id);
