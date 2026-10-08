@@ -12,6 +12,28 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad903e064e8a4bc49b5cbdfe94a8acfb, type: 3}
   m_Name: VisualConfig
   m_EditorClassIdentifier: 
+  objectAppearances:
+  - subject: ROBOT
+    mesh: {fileID: 4300000, guid: 18870dddaaeb85344827cdd48c079477, type: 2}
+    material: {fileID: 2100000, guid: d17c890da3830234d90ec1e4351c0439, type: 2}
+  - subject: ROCK
+    mesh: {fileID: 4300000, guid: 06a11b1a61a09ce439eb50ef02e421d3, type: 2}
+    material: {fileID: 2100000, guid: 877aa7ba1d78c1a449c8267c491fcd6b, type: 2}
+  - subject: CLOUD
+    mesh: {fileID: 4300000, guid: 44235ff22cfed174db14494b539e99d3, type: 2}
+    material: {fileID: 2100000, guid: 158c52a37ea5d554e9fd25d848145814, type: 2}
+  - subject: SPRING
+    mesh: {fileID: 4300000, guid: b75694117e3934440b73294e706e374f, type: 2}
+    material: {fileID: 2100000, guid: febef5fe982e4e345b28bcae6809bba4, type: 2}
+  - subject: FLAG
+    mesh: {fileID: 4300000, guid: 40460f73c57be5c409797cc3bfcf84b6, type: 2}
+    material: {fileID: 2100000, guid: 180e3d9ae1386a84f9f58f43d5b2e042, type: 2}
+  - subject: WALL
+    mesh: {fileID: 4300000, guid: ca6596d94677bc841ba0b6b476840b0f, type: 2}
+    material: {fileID: 2100000, guid: 13ec1cc8088d8b1489b85444d3135c79, type: 2}
+  - subject: LAVA
+    mesh: {fileID: 4300000, guid: 6e48d072ebc5bef4bbc396162e3e25e3, type: 2}
+    material: {fileID: 2100000, guid: 5f8162062bd458742b293ab93a4ce2f4, type: 2}
   cellSize: 1
   origin: {x: 0, y: 0, z: 0}
   terrainMaterial: {fileID: 2100000, guid: 0367bff605fa7964ebcb3e18f02c036e, type: 2}
@@ -25,6 +47,7 @@ MonoBehaviour:
   cloudMaterial: {fileID: 2100000, guid: 2cb6c95e2935444489976fc7fd3a388c, type: 2}
   springMaterial: {fileID: 2100000, guid: 6e32c88f73614024ba36903d69cc734a, type: 2}
   wallMaterial: {fileID: 2100000, guid: 107980e4018ca0440b8ca6a64a7afa7d, type: 2}
+  lavaMaterial: {fileID: 2100000, guid: 753e111770cef974e9ba87cacfe789e5, type: 2}
   nounTextMaterial: {fileID: 2100000, guid: 54ef0da418d1ec441888ec27758ef236, type: 2}
   operatorTextMaterial: {fileID: 2100000, guid: 86b54e3c917f0a844ada23e28db5eee9, type: 2}
   propertyTextMaterial: {fileID: 2100000, guid: d0cfbd1f3d7f062448362d5a6b4ea498, type: 2}

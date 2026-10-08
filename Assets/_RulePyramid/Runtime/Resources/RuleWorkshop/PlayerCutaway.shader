@@ -4,6 +4,7 @@ Shader "RuleWorkshop/PlayerCutaway"
     {
         _Color ("颜色", Color) = (1,1,1,1)
         _MainTex ("贴图", 2D) = "white" {}
+        _FlowSpeed ("贴图流动速度", Vector) = (0,0,0,0)
         _Metallic ("金属度", Range(0,1)) = 0
         _Glossiness ("光滑度", Range(0,1)) = 0.5
         _EmissionColor ("发光", Color) = (0,0,0,0)
@@ -25,6 +26,7 @@ Shader "RuleWorkshop/PlayerCutaway"
         #include "UnityCG.cginc"
         sampler2D _MainTex, _EmissionMap;
         fixed4 _Color, _EmissionColor;
+        float4 _FlowSpeed;
         half _Metallic, _Glossiness;
         float4 _CutawayTarget;
         float _CutawayRadius, _CutawayFeather, _CutawayDepthBias, _CutawayMinHeight;
@@ -57,13 +59,13 @@ Shader "RuleWorkshop/PlayerCutaway"
                 float noise = frac(52.9829189 * frac(dot(pixel, float2(0.06711056, 0.00583715))));
                 clip(distanceToEdge - max(_CutawayFeather, 0.0001) * noise);
             }
-            fixed4 color = tex2D(_MainTex, IN.uv_MainTex) * _Color;
+            fixed4 color = tex2D(_MainTex, IN.uv_MainTex + _Time.y * _FlowSpeed.xy) * _Color;
             o.Albedo = color.rgb;
             o.Metallic = _Metallic;
             o.Smoothness = _Glossiness;
             o.Alpha = color.a;
             #ifdef _EMISSION
-            o.Emission = tex2D(_EmissionMap, IN.uv_EmissionMap).rgb * _EmissionColor.rgb;
+            o.Emission = tex2D(_EmissionMap, IN.uv_EmissionMap + _Time.y * _FlowSpeed.xy).rgb * _EmissionColor.rgb;
             #endif
         }
         ENDCG

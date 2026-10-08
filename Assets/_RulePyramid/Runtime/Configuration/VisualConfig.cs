@@ -8,6 +8,25 @@ namespace RulePyramid.Runtime
         public const float DefaultPlayerCameraYaw = 15f;
         public const float MaxPlayerCameraYaw = 20f;
 
+        [System.Serializable]
+        public sealed class ObjectAppearance
+        {
+            public string subject;
+            public Mesh mesh;
+            public Material material;
+        }
+
+        [Header("物件造型")]
+        public ObjectAppearance[] objectAppearances;
+
+        public ObjectAppearance AppearanceFor(string subject)
+        {
+            if (objectAppearances != null)
+                foreach (var appearance in objectAppearances)
+                    if (appearance != null && appearance.subject == subject) return appearance;
+            return null;
+        }
+
         public float cellSize = 1f;
         public Vector3 origin = Vector3.zero;
         public Material terrainMaterial;

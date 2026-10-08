@@ -361,7 +361,9 @@ namespace RulePyramid.Runtime
             Register(renderer, MaterialFor(e), 1f);
             var filter = t.GetComponent<MeshFilter>();
             if (filter != null)
-                filter.sharedMesh = e.Kind == EntityKind.Object && e.Subject == "WALL" ? WallMesh() : _cubeMesh;
+                filter.sharedMesh = e.Kind == EntityKind.Object && config?.AppearanceFor(e.Subject)?.mesh != null
+                    ? config.AppearanceFor(e.Subject).mesh
+                    : e.Kind == EntityKind.Object && e.Subject == "WALL" ? WallMesh() : _cubeMesh;
             t.localScale = Vector3.one * CellSize * (e.Kind == EntityKind.Text ? 0.92f : 1f);
             if (e.Kind == EntityKind.Text)
             {
@@ -388,13 +390,17 @@ namespace RulePyramid.Runtime
                     text.alignment = TextAlignment.Center;
                     text.characterSize = 0.1f;
                     text.fontSize = 32;
-                    go.AddComponent<CameraBillboard>();
+                    go.AddComponent<CameraBillboard>().screenLift = .6f;
                 }
                 if (marker != null)
                 {
                     marker.gameObject.SetActive(isYou);
                     var text = marker.GetComponent<TextMesh>();
-                    if (text != null) text.color = config != null ? config.youTint : new Color(1f, 0.35f, 0.25f);
+                    if (text != null)
+                    {
+                        var ink = config != null ? config.youTint : new Color(1f, 0.35f, 0.25f);
+                        text.color = QualitySettings.activeColorSpace == ColorSpace.Linear ? ink.linear : ink;
+                    }
                 }
             }
         }
@@ -468,6 +474,7 @@ namespace RulePyramid.Runtime
         {
             var collider = go.GetComponent<Collider>();
             if (collider == null) return;
+            collider.enabled = false;
             if (Application.isPlaying) UnityEngine.Object.Destroy(collider);
             else UnityEngine.Object.DestroyImmediate(collider);
         }
@@ -550,6 +557,8 @@ namespace RulePyramid.Runtime
 
         Material MaterialFor(EntityState e)
         {
+            if (e.Kind == EntityKind.Object && config?.AppearanceFor(e.Subject)?.material != null)
+                return config.AppearanceFor(e.Subject).material;
             if ((e.Kind == EntityKind.Object && e.Subject == "LAVA")
                 || (e.Kind == EntityKind.Text && e.Token == "LAVA")) return LavaMaterial();
             if (config == null) return null;
@@ -628,10 +637,17 @@ namespace RulePyramid.Runtime
 
     public class CameraBillboard : MonoBehaviour
     {
+        public float screenLift;
+        Vector3 _baseLocalPosition;
+        void Start() => _baseLocalPosition = transform.localPosition;
         void LateUpdate()
         {
             if (Camera.main == null) return;
-            transform.rotation = Quaternion.LookRotation(transform.position - Camera.main.transform.position);
+            if (screenLift > 0f && transform.parent != null)
+                transform.position = transform.parent.TransformPoint(_baseLocalPosition)
+                    + Camera.main.transform.up * screenLift * transform.parent.lossyScale.y;
+            transform.rotation = Camera.main.orthographic ? Camera.main.transform.rotation
+                : Quaternion.LookRotation(transform.position - Camera.main.transform.position);
         }
     }
 }

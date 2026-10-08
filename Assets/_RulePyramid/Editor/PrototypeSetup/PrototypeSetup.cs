@@ -20,6 +20,7 @@ namespace RulePyramid.Editor
             Directory.CreateDirectory("Assets/_RulePyramid/Scenes");
             var visual = LoadOrCreate<VisualConfig>(Root + "/Config/VisualConfig.asset");
             EnsureMaterials(visual);
+            GameAppearanceSetup.Ensure(visual);
             var catalog = LoadOrCreate<LevelCatalog>(Root + "/Config/LevelCatalog.asset");
             ApplyCatalogManifest(catalog, ReadCatalogManifest());
             EnsureScene(visual, catalog);
