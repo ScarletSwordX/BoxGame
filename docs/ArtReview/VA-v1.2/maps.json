@@ -1,0 +1,56 @@
+[
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L1P1.json",
+    "sha256": "26d18bd87f973d90d2b15641a554c300df3fe499635e091202d01409bd2b0f55",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L1P2.json",
+    "sha256": "bf84bb74f942fae71788e77a908785685bbb75ce1ca3b101e245490f5284aa11",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L1P3.json",
+    "sha256": "347d7f44e20d3cb6e952497f0e30b2f522f06f7e499dc24bdbfdd0f0553480ff",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L2P1.json",
+    "sha256": "c557a6032dec3efa73bb0491a65ace874e9a138ef56b57d3600a0672a53e3b3f",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L2P2.json",
+    "sha256": "d5fb0ae616fc79bdbd7756094372f6048b4fb2e679611a955a98c266c0bcdd88",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L2P3.json",
+    "sha256": "d60b1cfc4eb2d9c34995a5e27d771d0e5c180ac36a32413b33228a24eb7ae547",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L3P1.json",
+    "sha256": "4d303d2996a46e6f405eda4e40f3cef7a5657b87bceacafae63c062962d60899",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L3P2.json",
+    "sha256": "6b9eb90549551c88c65828472463d46610c6363266ab6e5784ae41bc09df0f80",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  },
+  {
+    "path": "Assets/_RulePyramid/Content/LevelDrafts/L3P3.json",
+    "sha256": "776a7eef2e9f3a5f9a7ebff19638fc1647f371995f391c3ae7c2856a14db5332",
+    "matchesHeadContent": true,
+    "matchesHeadAfterLineEndingNormalization": true
+  }
+]

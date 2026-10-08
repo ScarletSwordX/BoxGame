@@ -1,0 +1,10 @@
+L1P1/P1-A: 4/4 won=True
+L1P2/P2-A: 12/12 won=True
+L1P3/P3-A: 39/46 won=False reject=NoControl
+L1P3/P3-B: 33/39 won=False reject=NoControl
+L2P1/P1-A: 17/17 won=True
+L2P2/P2-A: 19/21 won=False reject=Rejected
+L2P3/P3-A: 9/10 won=False reject=Rejected
+L3P1/rules: 4/4 won=False
+L3P2/rules: 8/18 won=False reject=Rejected
+L3P3/rules: 2/2 won=False
